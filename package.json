@@ -1,0 +1,13 @@
+{
+  "name": "core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "vite-plus": "catalog:"
+  },
+  "engines": {
+    "node": "24.14.1"
+  },
+  "packageManager": "pnpm@10.33.2"
+}

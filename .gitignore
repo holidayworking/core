@@ -1,0 +1,6 @@
+.direnv
+.vscode/*
+!.vscode/settings.json
+node_modules
+.markdownlint-cli2.jsonc
+.textlintrc.json
