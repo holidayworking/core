@@ -1,0 +1,93 @@
+name: test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+      - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
+      - run: nix flake check --all-systems --print-build-logs
+      - run: nix develop --command bash -c "vp install && vp check"
+    timeout-minutes: 10
+
+  changes:
+    permissions:
+      pull-requests: read
+    needs:
+      - check
+    runs-on: ubuntu-slim
+    outputs:
+      nix-diff: ${{ steps.filter.outputs.nix-diff }}
+    steps:
+      - id: filter
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1 cspell:disable-line
+
+        with:
+          filters: |
+            nix-diff:
+              - flake.lock
+              - flake.nix
+    timeout-minutes: 5
+
+  test:
+    permissions:
+      contents: read
+    needs:
+      - changes
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+      - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
+      - run: nix develop --command bash -c "vp install && vp test"
+    timeout-minutes: 10
+
+  nix-diff:
+    permissions:
+      contents: read
+      pull-requests: write
+    needs:
+      - changes
+    if: ${{ needs.changes.outputs.nix-diff == 'true' }}
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "true"
+      - uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+      - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
+      - uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4 # v1.1.0 cspell:disable-line
+        with:
+          attributes: |
+            - displayName: devShell
+              attribute: devShells.aarch64-linux.default
+    timeout-minutes: 30
+
+  status-check:
+    permissions: {}
+    needs:
+      - test
+      - nix-diff
+    if: failure()
+    runs-on: ubuntu-slim
+    steps:
+      - run: exit 1
+    timeout-minutes: 5

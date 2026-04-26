@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "dictionaries": ["bash", "npm", "node", "shellscript", "typescript"],
+  "enableGlobDot": true,
+  "ignorePaths": [".git", "pnpm-lock.yaml"],
+  "version": "0.2",
+  "words": [
+    "catthehacker",
+    "deadnix",
+    "direnv",
+    "dont",
+    "fetchurl",
+    "ghalint",
+    "hmarr",
+    "holidayworking",
+    "kakkun61",
+    "nixfmt",
+    "nixpkgs",
+    "numtide",
+    "pinact",
+    "pkgs",
+    "ryoppippi",
+    "stdenv",
+    "techbooster",
+    "textlint",
+    "textlintrc",
+    "treefmt",
+    "voidzero"
+  ]
+}
