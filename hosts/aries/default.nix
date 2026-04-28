@@ -1,6 +1,6 @@
 { delib, ... }:
 delib.host {
-  name = "desktop";
+  name = "aries";
 
   system = "aarch64-darwin";
   type = "desktop";
