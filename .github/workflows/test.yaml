@@ -9,7 +9,7 @@ jobs:
   check:
     permissions:
       contents: read
-    runs-on: ubuntu-24.04-arm
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -46,7 +46,7 @@ jobs:
       contents: read
     needs:
       - changes
-    runs-on: ubuntu-24.04-arm
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -61,11 +61,10 @@ jobs:
   nix-diff:
     permissions:
       contents: read
-      pull-requests: write
     needs:
       - changes
     if: ${{ needs.changes.outputs.nix-diff == 'true' }}
-    runs-on: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -74,18 +73,41 @@ jobs:
         with:
           determinate: false
       - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
-      - uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4 # v1.1.0 cspell:disable-line
+      - uses: natsukium/nix-diff-action@65526931655c9561dfdb1330b8770d1673857ae9 # v1.0.3
         with:
+          mode: diff-only
           attributes: |
-            - displayName: devShell
-              attribute: devShells.aarch64-linux.default
+            - displayName: ${{ matrix.host }}
+              attribute: ${{ matrix.attribute }}
     timeout-minutes: 30
+    strategy:
+      matrix:
+        include:
+          - host: desktop
+            attribute: darwinConfigurations.desktop.system
+            runner: macos-26
+          - host: devShell
+            attribute: devShells.aarch64-darwin.default
+            runner: macos-26
+
+  nix-diff-comment:
+    permissions:
+      actions: read
+      pull-requests: write
+    needs:
+      - nix-diff
+    runs-on: ubuntu-slim
+    steps:
+      - uses: natsukium/nix-diff-action@65526931655c9561dfdb1330b8770d1673857ae9 # v1.0.3
+        with:
+          mode: comment-only
+    timeout-minutes: 5
 
   status-check:
     permissions: {}
     needs:
       - test
-      - nix-diff
+      - nix-diff-comment
     if: failure()
     runs-on: ubuntu-slim
     steps:

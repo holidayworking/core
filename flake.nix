@@ -1,12 +1,27 @@
 {
   inputs = {
-    systems.url = "github:nix-systems/default";
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    denix = {
+      url = "github:yunfachi/denix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.nix-darwin.follows = "nix-darwin";
     };
 
     nix-vite-plus = {
@@ -26,7 +41,7 @@
   };
 
   outputs =
-    inputs@{ flake-parts, ... }:
+    inputs@{ flake-parts, denix, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } (
       { inputs, ... }:
       {
@@ -35,7 +50,39 @@
           inputs.treefmt-nix.flakeModule
         ];
 
-        systems = import inputs.systems;
+        flake =
+          let
+            mkConfigurations =
+              moduleSystem:
+              denix.lib.configurations {
+                inherit moduleSystem;
+
+                homeManagerUser = "hidekazu";
+
+                paths = [
+                  ./hosts
+                  ./modules
+                ];
+
+                extensions = with denix.lib.extensions; [
+                  args
+                  (base.withConfig {
+                    args.enable = true;
+                    rices.enable = false;
+                  })
+                ];
+
+                specialArgs = {
+                  inherit inputs;
+                };
+              };
+          in
+          {
+            darwinConfigurations = mkConfigurations "darwin";
+            homeConfigurations = mkConfigurations "home";
+          };
+
+        systems = [ "aarch64-darwin" ];
 
         perSystem =
           {
