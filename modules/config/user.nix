@@ -1,4 +1,4 @@
-{ delib, pkgs, ... }:
+{ delib, ... }:
 delib.module {
   name = "user";
 
@@ -19,7 +19,6 @@ delib.module {
           group = username;
           initialPassword = username;
           isNormalUser = true;
-          shell = pkgs.zsh;
           uid = 1000;
         };
       };

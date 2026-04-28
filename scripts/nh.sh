@@ -8,4 +8,8 @@ shift
 HOSTNAME="$(hostname)"
 readonly HOSTNAME
 
-nh darwin "$ACTION" --hostname "$HOSTNAME" "$@" .
+if [[ "$(uname)" == "Darwin" ]]; then
+  nh darwin "$ACTION" --hostname "$HOSTNAME" "$@" .
+else
+  nh os "$ACTION" --hostname "$HOSTNAME" "$@" .
+fi

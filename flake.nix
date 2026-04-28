@@ -24,6 +24,11 @@
       inputs.nix-darwin.follows = "nix-darwin";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-vite-plus = {
       url = "github:ryoppippi/nix-vite-plus";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -76,13 +81,22 @@
                   inherit inputs;
                 };
               };
+
+            lib = inputs.nixpkgs.lib;
+            filterBySystem =
+              suffix: configs:
+              lib.filterAttrs (_: cfg: lib.hasSuffix suffix (cfg.config.myconfig.host.system)) configs;
           in
           {
-            darwinConfigurations = mkConfigurations "darwin";
+            nixosConfigurations = filterBySystem "-linux" (mkConfigurations "nixos");
+            darwinConfigurations = filterBySystem "-darwin" (mkConfigurations "darwin");
             homeConfigurations = mkConfigurations "home";
           };
 
-        systems = [ "aarch64-darwin" ];
+        systems = [
+          "aarch64-darwin"
+          "aarch64-linux"
+        ];
 
         perSystem =
           {

@@ -37,8 +37,8 @@ jobs:
         with:
           filters: |
             nix-diff:
+              - "**/*.nix"
               - flake.lock
-              - flake.nix
     timeout-minutes: 5
 
   test:
@@ -86,6 +86,9 @@ jobs:
           - host: aries
             attribute: darwinConfigurations.aries.system
             runner: macos-26
+          - host: gemini
+            attribute: nixosConfigurations.gemini.config.system.build.toplevel
+            runner: ubuntu-24.04-arm
           - host: devShell
             attribute: devShells.aarch64-darwin.default
             runner: macos-26
