@@ -83,8 +83,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - host: desktop
-            attribute: darwinConfigurations.desktop.system
+          - host: aries
+            attribute: darwinConfigurations.aries.system
             runner: macos-26
           - host: devShell
             attribute: devShells.aarch64-darwin.default
