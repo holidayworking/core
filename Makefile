@@ -15,3 +15,9 @@ nix/switch:
 
 nix/clean:
 	@nh clean all --ask
+
+vm/create:
+	@./scripts/vm-create.sh
+
+vm/bootstrap:
+	@./scripts/vm-bootstrap.sh
