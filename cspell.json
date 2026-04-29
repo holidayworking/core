@@ -17,6 +17,7 @@
     "excludesfile",
     "fetchurl",
     "ghalint",
+    "gnumake",
     "hidekazu",
     "hmarr",
     "holidayworking",
