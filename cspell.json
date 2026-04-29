@@ -43,11 +43,13 @@
     "textlintrc",
     "toplevel",
     "treefmt",
+    "umport",
     "usbhid",
     "userfullname",
     "vfat",
     "voidzero",
     "xhci",
-    "yunfachi"
+    "yunfachi",
+    "zhaofengli"
   ]
 }
