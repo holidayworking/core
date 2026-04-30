@@ -37,6 +37,7 @@
     "pinact",
     "pkgs",
     "prlctl",
+    "recents",
     "ryoppippi",
     "stdenv",
     "tanaka",
@@ -50,6 +51,7 @@
     "userfullname",
     "vfat",
     "voidzero",
+    "wvous",
     "xhci",
     "yunfachi",
     "zhaofengli"
