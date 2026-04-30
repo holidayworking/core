@@ -33,6 +33,7 @@
     "nixos",
     "nixpkgs",
     "numtide",
+    "optimise",
     "pinact",
     "pkgs",
     "prlctl",
