@@ -16,6 +16,7 @@
     "ehci",
     "excludesfile",
     "fetchurl",
+    "fira",
     "ghalint",
     "gnumake",
     "hidekazu",
