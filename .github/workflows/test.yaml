@@ -73,7 +73,7 @@ jobs:
         with:
           determinate: false
       - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
-      - uses: natsukium/nix-diff-action@65526931655c9561dfdb1330b8770d1673857ae9 # v1.0.3
+      - uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4 # v1.1.0
         with:
           mode: diff-only
           attributes: |
@@ -101,7 +101,7 @@ jobs:
       - nix-diff
     runs-on: ubuntu-slim
     steps:
-      - uses: natsukium/nix-diff-action@65526931655c9561dfdb1330b8770d1673857ae9 # v1.0.3
+      - uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4 # v1.1.0
         with:
           mode: comment-only
     timeout-minutes: 5
