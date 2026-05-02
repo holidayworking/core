@@ -5,6 +5,7 @@
   "ignorePaths": [".git", "pnpm-lock.yaml"],
   "version": "0.2",
   "words": [
+    "appcleaner",
     "binfmt",
     "catthehacker",
     "cdrom",
