@@ -49,6 +49,7 @@
     "nixpkgs",
     "numtide",
     "optimise",
+    "peco",
     "pinact",
     "pkgs",
     "prlctl",
