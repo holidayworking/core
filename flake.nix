@@ -31,6 +31,16 @@
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
+    brew-nix = {
+      url = "github:BatteredBunny/brew-nix";
+      inputs.brew-api.follows = "brew-api";
+    };
+
+    brew-api = {
+      url = "github:BatteredBunny/brew-api";
+      flake = false;
+    };
+
     nix-vite-plus = {
       url = "github:ryoppippi/nix-vite-plus";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,6 +79,7 @@
                 paths = [
                   ./hosts
                   ./modules
+                  ./overlays
                 ];
 
                 extensions = with denix.lib.extensions; [
@@ -76,6 +87,12 @@
                   (base.withConfig {
                     args.enable = true;
                     rices.enable = false;
+                  })
+                  (overlays.withConfig {
+                    defaultTargets = [
+                      "nixos"
+                      "darwin"
+                    ];
                   })
                 ];
 
