@@ -11,6 +11,7 @@ delib.module {
 
   home.ifEnabled.programs.ghostty = {
     enable = true;
+    enableZshIntegration = false;
     package = pkgs.ghostty-bin;
 
     settings = {
