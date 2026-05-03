@@ -211,7 +211,6 @@
 
             devShells.default = pkgs.mkShell {
               packages = with pkgs; [
-                act
                 vite-plus
               ];
 
