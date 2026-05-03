@@ -179,7 +179,6 @@
             _module.args.pkgs = import inputs.nixpkgs {
               inherit system;
               overlays = [
-                inputs.nix-vite-plus.overlays.default
                 (_final: prev: {
                   textlint-filter-rule-comments = prev.stdenvNoCC.mkDerivation {
                     pname = "textlint-filter-rule-comments";
@@ -201,19 +200,12 @@
                       runHook postInstall
                     '';
                   };
-                  # Upstream installCheckPhase runs `vp --version`, which can fail on some
-                  # platforms; disable it everywhere for consistent builds.
-                  vite-plus = prev.vite-plus.overrideAttrs { doInstallCheck = false; };
                 })
               ];
               config = { };
             };
 
             devShells.default = pkgs.mkShell {
-              packages = with pkgs; [
-                vite-plus
-              ];
-
               shellHook = ''
                 ln -sfn ${textlintConfig} .textlintrc.json
                 ln -sfn ${markdownlintConfig} .markdownlint-cli2.jsonc
