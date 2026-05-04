@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "preview": "zenn preview"
+  },
   "dependencies": {
     "zenn-cli": "0.4.7"
   }
