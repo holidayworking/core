@@ -1,0 +1,9 @@
+{
+  "name": "zenn",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "zenn-cli": "0.4.7"
+  }
+}
