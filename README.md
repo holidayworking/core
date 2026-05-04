@@ -74,5 +74,5 @@ SSH into the VM and clone the repository:
 
 ```shell
 ssh gemini
-ghq get git@github.com:holidayworking/dotfiles.git
+ghq get git@github.com:holidayworking/core.git
 ```
