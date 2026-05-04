@@ -1,0 +1,41 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  changes:
+    permissions:
+      pull-requests: read
+    runs-on: ubuntu-slim
+    outputs:
+      zenn: ${{ steps.filter.outputs.zenn }}
+    steps:
+      - id: filter
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
+        with:
+          filters: |
+            zenn:
+              - "apps/zenn/**"
+    timeout-minutes: 5
+
+  zenn:
+    permissions:
+      contents: write
+    needs:
+      - changes
+    if: ${{ needs.changes.outputs.zenn == 'true' }}
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: publish/zenn
+          publish_dir: ./apps/zenn
+          force_orphan: true
+    timeout-minutes: 10
