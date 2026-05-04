@@ -27,7 +27,7 @@ delib.module {
         enableExtensionUpdateCheck = false;
 
         extensions =
-          (with pkgs.open-vsx; [
+          (with pkgs.open-vsx-release; [
             apollographql.vscode-apollo
             christian-kohler.path-intellisense
             davidanson.vscode-markdownlint
@@ -49,7 +49,7 @@ delib.module {
             void-zero.vite-plus-extension-pack
             vscode-icons-team.vscode-icons
           ])
-          ++ [ pkgs.vscode-marketplace."3w36zj6".textlint ];
+          ++ [ pkgs.vscode-marketplace-release."3w36zj6".textlint ];
 
         userSettings = {
           "cursor.composer.usageSummaryDisplay" = "always";
