@@ -1,0 +1,10 @@
+{
+  "config": {
+    "commands-show-output": false,
+    "line-length": false,
+    "no-bare-urls": false,
+    "no-inline-html": false,
+  },
+  "gitignore": true,
+  "globs": ["**/*.md"],
+}

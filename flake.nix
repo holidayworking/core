@@ -134,84 +134,10 @@
 
         perSystem =
           {
-            lib,
             pkgs,
-            system,
             ...
           }:
-          let
-            markdownlintConfig = pkgs.writeText "generated.markdownlint-cli2.jsonc" (
-              builtins.toJSON {
-                config = {
-                  commands-show-output = false;
-                  line-length = false;
-                  no-inline-html = false;
-                  no-bare-urls = false;
-                };
-              }
-            );
-
-            textlintConfig = pkgs.writeText "generated.textlintrc.json" (
-              builtins.toJSON {
-                filters = {
-                  comments = true;
-                };
-                plugins = { };
-                rules = {
-                  preset-ja-spacing = {
-                    ja-space-between-half-and-full-width = {
-                      space = "always";
-                    };
-                  };
-                  preset-ja-technical-writing = {
-                    sentence-length = false;
-                  };
-                  prh = {
-                    rulePaths = [
-                      "${pkgs.textlint-rule-prh}/lib/node_modules/textlint-rule-prh/node_modules/prh/prh-rules/media/techbooster.yml"
-                    ];
-                  };
-                };
-              }
-            );
-          in
           {
-            _module.args.pkgs = import inputs.nixpkgs {
-              inherit system;
-              overlays = [
-                (_final: prev: {
-                  textlint-filter-rule-comments = prev.stdenvNoCC.mkDerivation {
-                    pname = "textlint-filter-rule-comments";
-                    version = "1.3.0";
-
-                    src = prev.fetchurl {
-                      url = "https://registry.npmjs.org/textlint-filter-rule-comments/-/textlint-filter-rule-comments-1.3.0.tgz";
-                      hash = "sha256-+nMBkOEC8A2X5jw7Thg5rlI/9wC7ywaQjZhN8QkfiRA=";
-                    };
-
-                    dontBuild = true;
-
-                    installPhase = ''
-                      runHook preInstall
-
-                      mkdir -p "$out/lib/node_modules/textlint-filter-rule-comments"
-                      tar -xzf "$src" --strip-components=1 -C "$out/lib/node_modules/textlint-filter-rule-comments"
-
-                      runHook postInstall
-                    '';
-                  };
-                })
-              ];
-              config = { };
-            };
-
-            devShells.default = pkgs.mkShell {
-              shellHook = ''
-                ln -sfn ${textlintConfig} .textlintrc.json
-                ln -sfn ${markdownlintConfig} .markdownlint-cli2.jsonc
-              '';
-            };
-
             cspell.configFile = ./cspell.json;
 
             treefmt = {
@@ -238,34 +164,6 @@
                     ".github/workflows/*.yml"
                     ".github/workflows/*.yaml"
                   ];
-                };
-
-                markdownlint = {
-                  command = "${pkgs.bash}/bin/bash";
-                  options = [
-                    "-euc"
-                    "${pkgs.lib.getExe pkgs.markdownlint-cli2} --config ${markdownlintConfig} $@"
-                    "--"
-                  ];
-                  includes = [ "*.md" ];
-                };
-
-                textlint = {
-                  command = "${pkgs.bash}/bin/bash";
-                  options = [
-                    "-euc"
-                    "${
-                      with pkgs;
-                      lib.getExe' (textlint.withPackages [
-                        textlint-filter-rule-comments
-                        textlint-rule-preset-ja-spacing
-                        textlint-rule-preset-ja-technical-writing
-                        textlint-rule-prh
-                      ]) "textlint"
-                    } --config ${textlintConfig} $@"
-                    "--"
-                  ];
-                  includes = [ "*.md" ];
                 };
               };
             };

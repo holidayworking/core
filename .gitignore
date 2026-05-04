@@ -2,5 +2,3 @@
 !.vscode/settings.json
 node_modules
 result
-.markdownlint-cli2.jsonc
-.textlintrc.json

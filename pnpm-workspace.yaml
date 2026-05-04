@@ -4,9 +4,19 @@ packages:
   - tools/*
 
 catalog:
+  markdownlint: 0.40.0
+  markdownlint-cli2: 0.22.1
+  npm-run-all2: 8.0.4
+  prh: 6.0.6
+  textlint: 15.6.0
+  textlint-filter-rule-comments: 1.3.0
+  textlint-rule-preset-ja-spacing: 2.4.3
+  textlint-rule-preset-ja-technical-writing: 12.0.2
+  textlint-rule-prh: 6.1.0
   vite: npm:@voidzero-dev/vite-plus-core@latest
   vite-plus: latest
   vitest: npm:@voidzero-dev/vite-plus-test@latest
+  zenn-cli: 0.4.7
 
 catalogMode: prefer
 overrides:
