@@ -31,9 +31,7 @@ delib.module {
             apollographql.vscode-apollo
             christian-kohler.path-intellisense
             davidanson.vscode-markdownlint
-            dbaeumer.vscode-eslint
             eamodio.gitlens
-            esbenp.prettier-vscode
             github.github-vscode-theme
             github.vscode-github-actions
             hashicorp.terraform
@@ -44,7 +42,6 @@ delib.module {
             renesaarsoo.sql-formatter-vsc
             streetsidesoftware.code-spell-checker
             timonwong.shellcheck
-            tombonnike.vscode-status-bar-format-toggle
             tyriar.sort-lines
             void-zero.vite-plus-extension-pack
             vscode-icons-team.vscode-icons
@@ -53,8 +50,6 @@ delib.module {
 
         userSettings = {
           "cursor.composer.usageSummaryDisplay" = "always";
-          "editor.codeActionsOnSave"."source.fixAll.eslint" = "explicit";
-          "editor.defaultFormatter" = "esbenp.prettier-vscode";
           "editor.fontFamily" = "FiraCode Nerd Font";
           "editor.fontLigatures" = true;
           "editor.fontSize" = 14;
