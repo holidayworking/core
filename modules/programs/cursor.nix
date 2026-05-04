@@ -26,28 +26,30 @@ delib.module {
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = false;
 
-        extensions = with pkgs.open-vsx; [
-          apollographql.vscode-apollo
-          christian-kohler.path-intellisense
-          davidanson.vscode-markdownlint
-          dbaeumer.vscode-eslint
-          eamodio.gitlens
-          esbenp.prettier-vscode
-          github.github-vscode-theme
-          github.vscode-github-actions
-          hashicorp.terraform
-          jnoortheen.nix-ide
-          mkhl.shfmt
-          mylesmurphy.prettify-ts
-          redhat.vscode-yaml
-          renesaarsoo.sql-formatter-vsc
-          streetsidesoftware.code-spell-checker
-          timonwong.shellcheck
-          tombonnike.vscode-status-bar-format-toggle
-          tyriar.sort-lines
-          void-zero.vite-plus-extension-pack
-          vscode-icons-team.vscode-icons
-        ];
+        extensions =
+          (with pkgs.open-vsx; [
+            apollographql.vscode-apollo
+            christian-kohler.path-intellisense
+            davidanson.vscode-markdownlint
+            dbaeumer.vscode-eslint
+            eamodio.gitlens
+            esbenp.prettier-vscode
+            github.github-vscode-theme
+            github.vscode-github-actions
+            hashicorp.terraform
+            jnoortheen.nix-ide
+            mkhl.shfmt
+            mylesmurphy.prettify-ts
+            redhat.vscode-yaml
+            renesaarsoo.sql-formatter-vsc
+            streetsidesoftware.code-spell-checker
+            timonwong.shellcheck
+            tombonnike.vscode-status-bar-format-toggle
+            tyriar.sort-lines
+            void-zero.vite-plus-extension-pack
+            vscode-icons-team.vscode-icons
+          ])
+          ++ [ pkgs.vscode-marketplace."3w36zj6".textlint ];
 
         userSettings = {
           "cursor.composer.usageSummaryDisplay" = "always";
