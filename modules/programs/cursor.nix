@@ -34,7 +34,6 @@ delib.module {
             eamodio.gitlens
             github.github-vscode-theme
             github.vscode-github-actions
-            hashicorp.terraform
             jnoortheen.nix-ide
             mkhl.shfmt
             mylesmurphy.prettify-ts
@@ -81,7 +80,6 @@ delib.module {
           "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
           "[shellscript]"."editor.defaultFormatter" = "mkhl.shfmt";
           "[sql]"."editor.defaultFormatter" = "ReneSaarsoo.sql-formatter-vsc";
-          "[terraform]"."editor.defaultFormatter" = "hashicorp.terraform";
           "[toml]"."editor.defaultFormatter" = "tamasfe.even-better-toml";
         };
       };
