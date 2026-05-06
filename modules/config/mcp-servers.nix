@@ -12,7 +12,6 @@ delib.module {
       codex.enable = true;
       context7.enable = true;
       nixos.enable = true;
-      terraform.enable = true;
 
       github = {
         enable = true;
