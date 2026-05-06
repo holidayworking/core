@@ -1,0 +1,42 @@
+theme = "congo"
+baseURL = "https://holidayworking.org"
+enableRobotsTXT = true
+
+languageCode = "ja"
+title = "holidayworking.org"
+hasCJKLanguage = true
+
+[params]
+dateFormat = "2 January 2006"
+mainSections = ["blog"]
+enableCodeCopy = true
+enableImageWebp = false
+
+[params.author]
+name = "Hidekazu Tanaka"
+image = "img/author.jpg"
+links = [
+  { facebook = "https://facebook.com/holidayworking" },
+  { github = "https://github.com/holidayworking" },
+  { instagram = "https://instagram.com/holidayworking" },
+  { twitter = "https://twitter.com/holidayworking" },
+]
+
+[params.homepage]
+layout = "profile"
+
+[params.article]
+showAuthor = false
+showReadingTime = false
+showTaxonomies = true
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[[menu.main]]
+name = "blog"
+pageRef = "blog"
+weight = 10
+
+[social]
+twitter = "holidayworking"

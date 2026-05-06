@@ -61,11 +61,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cspell-nix = {
-      url = "github:kakkun61/cspell-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -78,7 +73,6 @@
       { inputs, ... }:
       {
         imports = [
-          inputs.cspell-nix.flakeModule
           inputs.treefmt-nix.flakeModule
         ];
 
@@ -133,12 +127,23 @@
         ];
 
         perSystem =
+          { pkgs, ... }:
           {
-            pkgs,
-            ...
-          }:
-          {
-            cspell.configFile = ./cspell.json;
+            packages = {
+              build-hugo = pkgs.stdenv.mkDerivation {
+                name = "build-hugo";
+                src = ./apps/hugo;
+                nativeBuildInputs = with pkgs; [
+                  hugo
+                ];
+                buildPhase = ''
+                  hugo --minify
+                '';
+                installPhase = ''
+                  cp -r ./public $out
+                '';
+              };
+            };
 
             treefmt = {
               projectRootFile = "flake.nix";

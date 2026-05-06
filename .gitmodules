@@ -1,0 +1,4 @@
+[submodule "apps/hugo/themes/congo"]
+	path = apps/hugo/themes/congo
+	url = https://github.com/jpanther/congo.git
+	branch = stable
