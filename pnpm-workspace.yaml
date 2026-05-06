@@ -4,6 +4,8 @@ packages:
   - tools/*
 
 catalog:
+  "@cspell/dict-people-names": 1.1.16
+  cspell: 10.0.0
   markdownlint: 0.40.0
   markdownlint-cli2: 0.22.1
   npm-run-all2: 8.0.4

@@ -7,4 +7,5 @@
   },
   "gitignore": true,
   "globs": ["**/*.md"],
+  "ignores": ["apps/hugo/themes"],
 }

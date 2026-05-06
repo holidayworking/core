@@ -11,6 +11,7 @@ jobs:
       pull-requests: read
     runs-on: ubuntu-slim
     outputs:
+      hugo: ${{ steps.filter.outputs.hugo }}
       zenn: ${{ steps.filter.outputs.zenn }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -21,9 +22,39 @@ jobs:
         uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           filters: |
+            hugo:
+              - .github/workflows/deploy.yaml
+              - "apps/hugo/**"
             zenn:
+              - .github/workflows/deploy.yaml
               - "apps/zenn/**"
     timeout-minutes: 5
+
+  hugo:
+    permissions:
+      contents: read
+      id-token: write
+      pages: write
+    needs:
+      - changes
+    if: ${{ needs.changes.outputs.zenn == 'true' }}
+    runs-on: ubuntu-24.04-arm
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
+      - run: nix build '.?submodules=1#build-hugo'
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ./result
+      - id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+    timeout-minutes: 10
 
   zenn:
     permissions:

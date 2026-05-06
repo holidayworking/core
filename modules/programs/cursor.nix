@@ -41,6 +41,7 @@ delib.module {
             redhat.vscode-yaml
             renesaarsoo.sql-formatter-vsc
             streetsidesoftware.code-spell-checker
+            tamasfe.even-better-toml
             timonwong.shellcheck
             tyriar.sort-lines
             void-zero.vite-plus-extension-pack
@@ -81,6 +82,7 @@ delib.module {
           "[shellscript]"."editor.defaultFormatter" = "mkhl.shfmt";
           "[sql]"."editor.defaultFormatter" = "ReneSaarsoo.sql-formatter-vsc";
           "[terraform]"."editor.defaultFormatter" = "hashicorp.terraform";
+          "[toml]"."editor.defaultFormatter" = "tamasfe.even-better-toml";
         };
       };
     };

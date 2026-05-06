@@ -4,8 +4,16 @@ export default defineConfig({
   test: {
     passWithNoTests: true,
   },
-  lint: { options: { typeAware: true, typeCheck: true } },
-  fmt: {},
+  lint: {
+    ignorePatterns: ["apps/hugo/themes/congo/**"],
+    options: { typeAware: true, typeCheck: true },
+  },
+  fmt: {
+    ignorePatterns: [
+      "apps/hugo/layouts/_partials/functions/warnings.html",
+      "apps/hugo/themes/congo/**",
+    ],
+  },
   run: {
     cache: true,
   },
