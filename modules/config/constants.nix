@@ -5,6 +5,7 @@ delib.module {
   options.constants = with delib; {
     username = readOnly (strOption "hidekazu");
     userfullname = readOnly (strOption "Hidekazu Tanaka");
+    useremail = readOnly (strOption "11025+holidayworking@users.noreply.github.com");
     authorizedKeys = readOnly (
       lib.mkOption {
         type = lib.types.listOf lib.types.str;

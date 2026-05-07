@@ -299,6 +299,7 @@
     "usbfs",
     "usbhid",
     "userboot",
+    "useremail",
     "userfullname",
     "vfat",
     "vgaarb",
