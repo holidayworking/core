@@ -15,7 +15,10 @@ delib.module {
 
         users.${username} = {
           description = userfullname;
-          extraGroups = [ "wheel" ];
+          extraGroups = [
+            "docker"
+            "wheel"
+          ];
           group = username;
           initialPassword = username;
           isNormalUser = true;
