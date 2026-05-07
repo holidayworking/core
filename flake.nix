@@ -129,6 +129,12 @@
         perSystem =
           { pkgs, ... }:
           {
+            devShells.default = pkgs.mkShell {
+              packages = with pkgs; [
+                nodejs
+              ];
+            };
+
             packages = {
               build-hugo = pkgs.stdenv.mkDerivation {
                 name = "build-hugo";

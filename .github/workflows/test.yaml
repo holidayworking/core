@@ -89,6 +89,8 @@ jobs:
           determinate: false
       - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
       - uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4 # v1.1.0
+        # TODO: revert after this PR merges; base lacks devShells.* attributes
+        continue-on-error: true
         with:
           mode: diff-only
           attributes: |
@@ -103,6 +105,12 @@ jobs:
             runner: macos-26
           - host: gemini
             attribute: nixosConfigurations.gemini.config.system.build.toplevel
+            runner: ubuntu-24.04-arm
+          - host: devShells.aarch64-darwin.default
+            attribute: devShells.aarch64-darwin.default
+            runner: macos-26
+          - host: devShells.aarch64-linux.default
+            attribute: devShells.aarch64-linux.default
             runner: ubuntu-24.04-arm
 
   nix-diff-comment:
