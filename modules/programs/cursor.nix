@@ -22,7 +22,6 @@ delib.module {
           apollographql.vscode-apollo
           christian-kohler.path-intellisense
           davidanson.vscode-markdownlint
-          eamodio.gitlens
           github.github-vscode-theme
           github.vscode-github-actions
           jnoortheen.nix-ide
@@ -62,7 +61,6 @@ delib.module {
         "terminal.integrated.fontLigatures.enabled" = true;
         "terminal.integrated.fontSize" = 14;
         "remote.autoForwardPortsSource" = "process";
-        "gitlens.rebaseEditor.openOnPausedRebase" = false;
         "remote.SSH.remotePlatform"."gemini" = "linux";
         "shfmt.executableArgs" = [
           "--indent"
