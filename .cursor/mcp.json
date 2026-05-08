@@ -1,8 +1,16 @@
 {
   "mcpServers": {
+    "codex": {
+      "command": "codex",
+      "args": ["mcp-server"]
+    },
+    "nixos": {
+      "command": "uv",
+      "args": ["run", "mcp-nixos"]
+    },
     "textlint": {
-      "command": "npx",
-      "args": ["textlint", "--mcp"],
+      "command": "vp",
+      "args": ["exec", "textlint", "--mcp"],
       "env": {}
     }
   }
