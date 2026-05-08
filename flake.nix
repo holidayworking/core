@@ -41,16 +41,6 @@
       flake = false;
     };
 
-    llm-agents = {
-      url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mcp-servers-nix = {
-      url = "github:natsukium/mcp-servers-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-vite-plus = {
       url = "github:ryoppippi/nix-vite-plus";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -129,12 +119,6 @@
         perSystem =
           { pkgs, ... }:
           {
-            devShells.default = pkgs.mkShell {
-              packages = with pkgs; [
-                nodejs
-              ];
-            };
-
             packages = {
               build-hugo = pkgs.stdenv.mkDerivation {
                 name = "build-hugo";

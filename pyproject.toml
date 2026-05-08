@@ -1,0 +1,5 @@
+[project]
+name = "core"
+version = "0.0.0"
+requires-python = "==3.14.*"
+dependencies = ["mcp-nixos==2.4.3"]
