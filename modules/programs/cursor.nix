@@ -9,9 +9,8 @@ delib.module {
 
   options = delib.singleEnableOption host.isDesktop;
 
-  home.ifEnabled.programs.vscode = {
+  home.ifEnabled.programs.cursor = {
     enable = true;
-    package = pkgs.code-cursor;
 
     profiles.default = {
       enableUpdateCheck = false;
