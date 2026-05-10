@@ -21,9 +21,9 @@
   "ignorePaths": [
     ".git",
     ".venv",
+    "**/cdk.out",
     "apps/hugo/public",
     "apps/hugo/themes/congo",
-    "infrastructures/aws/cdk.out",
     "*.snap",
     "pnpm-lock.yaml"
   ],
@@ -253,6 +253,7 @@
     "qdisc",
     "qlapi",
     "queryformat",
+    "radicast",
     "ramdisk",
     "rctm",
     "recents",

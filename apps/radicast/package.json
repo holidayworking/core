@@ -1,0 +1,17 @@
+{
+  "name": "radicast",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "aws-cdk-github-oidc": "catalog:",
+    "aws-cdk-lib": "catalog:",
+    "constructs": "catalog:"
+  },
+  "devDependencies": {
+    "aws-cdk": "catalog:",
+    "cdk-nag": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
