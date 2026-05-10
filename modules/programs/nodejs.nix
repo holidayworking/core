@@ -2,7 +2,7 @@
 delib.module {
   name = "programs.nodejs";
 
-  home.ifEnabled.home.packages = with pkgs; [
+  home.always.home.packages = with pkgs; [
     nodejs
   ];
 }
