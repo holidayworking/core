@@ -83,7 +83,7 @@ exports[`snapshot 1`] = `
             ],
           ],
         },
-        "PolicyName": "Route53LogGroupPolicy7C463D39",
+        "PolicyName": "Route53StackLogGroupPolicy85DC498D",
       },
       "Type": "AWS::Logs::ResourcePolicy",
     },
