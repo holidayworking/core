@@ -22,7 +22,7 @@ jobs:
       - run: vp run lint
     timeout-minutes: 10
 
-  check-nix:
+  nix-check:
     permissions:
       contents: read
     runs-on: ubuntu-24.04-arm
@@ -42,18 +42,23 @@ jobs:
       pull-requests: read
     needs:
       - check
-      - check-nix
+      - nix-check
     runs-on: ubuntu-slim
     outputs:
-      nix-diff: ${{ steps.filter.outputs.nix-diff }}
+      aws-infrastructure: ${{ steps.filter.outputs.aws-infrastructure }}
+      nix: ${{ steps.filter.outputs.nix }}
     steps:
       - id: filter
         uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           filters: |
-            nix-diff:
-              - "**/*.nix"
+            aws-infrastructure:
+              - .github/workflows/test.yaml
+              - "infrastructures/aws/**"
+            nix:
+              - .github/workflows/test.yaml
               - flake.lock
+              - "**/*.nix"
     timeout-minutes: 5
 
   test:
@@ -73,12 +78,37 @@ jobs:
       - run: vp test
     timeout-minutes: 10
 
+  aws-infrastructure-diff:
+    permissions:
+      contents: read
+      id-token: write
+    needs:
+      - changes
+      - test
+    if: ${{ needs.changes.outputs.aws-infrastructure == 'true' }}
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: voidzero-dev/setup-vp@4f5aa3e38c781f1b01e78fb9255527cee8a6efa6 # v1.8.0
+        with:
+          cache: true
+      - run: vp install
+      - uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6.0.0
+        with:
+          role-to-assume: arn:aws:iam::766612536658:role/github-actions-role
+          aws-region: ap-northeast-1
+      - run: vp exec --filter @infrastructures/aws cdk synth
+      - run: vp exec --filter @infrastructures/aws cdk diff --all
+    timeout-minutes: 10
+
   nix-diff:
     permissions:
       contents: read
     needs:
       - changes
-    if: ${{ needs.changes.outputs.nix-diff == 'true' }}
+    if: ${{ needs.changes.outputs.nix == 'true' }}
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -121,7 +151,7 @@ jobs:
   status-check:
     permissions: {}
     needs:
-      - test
+      - aws-infrastructure-diff
       - nix-diff-comment
     if: failure()
     runs-on: ubuntu-slim

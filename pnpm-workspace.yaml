@@ -1,10 +1,15 @@
 packages:
   - apps/*
   - packages/*
-  - tools/*
+  - infrastructures/*
 
 catalog:
   "@cspell/dict-people-names": 1.1.16
+  aws-cdk: 2.1121.0
+  aws-cdk-github-oidc: 4.1.0
+  aws-cdk-lib: 2.253.0
+  cdk-nag: 2.38.2
+  constructs: 10.6.0
   cspell: 10.0.0
   markdownlint: 0.40.0
   markdownlint-cli2: 0.22.1
@@ -15,9 +20,10 @@ catalog:
   textlint-rule-preset-ja-spacing: 2.4.3
   textlint-rule-preset-ja-technical-writing: 12.0.2
   textlint-rule-prh: 6.1.0
-  vite: npm:@voidzero-dev/vite-plus-core@latest
+  typescript: 6.0.3
+  vite: npm:@voidzero-dev/vite-plus-core@0.1.20
   vite-plus: latest
-  vitest: npm:@voidzero-dev/vite-plus-test@latest
+  vitest: npm:@voidzero-dev/vite-plus-test@0.1.20
   zenn-cli: 0.4.7
 
 catalogMode: prefer

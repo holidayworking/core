@@ -13,6 +13,7 @@ jobs:
     outputs:
       hugo: ${{ steps.filter.outputs.hugo }}
       zenn: ${{ steps.filter.outputs.zenn }}
+      aws-infrastructure: ${{ steps.filter.outputs.aws-infrastructure }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -28,6 +29,9 @@ jobs:
             zenn:
               - .github/workflows/deploy.yaml
               - "apps/zenn/**"
+            aws-infrastructure:
+              - .github/workflows/deploy.yaml
+              - "infrastructures/aws/**"
     timeout-minutes: 5
 
   hugo:
@@ -76,4 +80,27 @@ jobs:
           publish_branch: publish/zenn
           publish_dir: ./apps/zenn
           force_orphan: true
+    timeout-minutes: 10
+
+  aws-infrastructure:
+    permissions:
+      contents: write
+      id-token: write
+    needs:
+      - changes
+    if: ${{ needs.changes.outputs.aws-infrastructure == 'true' }}
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: voidzero-dev/setup-vp@4f5aa3e38c781f1b01e78fb9255527cee8a6efa6 # v1.8.0
+        with:
+          cache: true
+      - run: vp install
+      - uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6.0.0
+        with:
+          role-to-assume: arn:aws:iam::766612536658:role/github-actions-role
+          aws-region: ap-northeast-1
+      - run: vp exec --filter @infrastructures/aws cdk deploy --all --require-approval never
     timeout-minutes: 10
