@@ -1,0 +1,179 @@
+name: test (workflow call)
+
+on:
+  workflow_call:
+
+jobs:
+  vp-check:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: voidzero-dev/setup-vp@4f5aa3e38c781f1b01e78fb9255527cee8a6efa6 # v1.8.0
+        with:
+          cache: true
+      - run: vp install
+      - run: vp check
+      - run: vp run lint
+    timeout-minutes: 10
+
+  nix-check:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+      - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
+      - run: nix flake check --all-systems --print-build-logs
+    timeout-minutes: 10
+
+  changes:
+    permissions:
+      pull-requests: read
+    needs:
+      - vp-check
+      - nix-check
+    runs-on: ubuntu-slim
+    outputs:
+      radicast: ${{ steps.filter.outputs.radicast }}
+      aws-infrastructure: ${{ steps.filter.outputs.aws-infrastructure }}
+      nix: ${{ steps.filter.outputs.nix }}
+    steps:
+      - id: filter
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
+        with:
+          filters: |
+            radicast:
+              - .github/workflows/test.yaml
+              - .github/workflows/workflow_call_test.yaml
+              - "apps/radicast/**"
+            aws-infrastructure:
+              - .github/workflows/test.yaml
+              - .github/workflows/workflow_call_test.yaml
+              - "infrastructures/aws/**"
+            nix:
+              - .github/workflows/test.yaml
+              - .github/workflows/workflow_call_test.yaml
+              - flake.lock
+              - "**/*.nix"
+    timeout-minutes: 5
+
+  vp-test:
+    permissions:
+      contents: read
+    needs:
+      - changes
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: voidzero-dev/setup-vp@4f5aa3e38c781f1b01e78fb9255527cee8a6efa6 # v1.8.0
+        with:
+          cache: true
+      - run: vp install
+      - run: vp test
+    timeout-minutes: 10
+
+  radicast-diff:
+    permissions:
+      contents: read
+      id-token: write
+    needs:
+      - changes
+      - vp-test
+    if: ${{ needs.changes.outputs.radicast == 'true' }}
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: voidzero-dev/setup-vp@4f5aa3e38c781f1b01e78fb9255527cee8a6efa6 # v1.8.0
+        with:
+          cache: true
+      - run: vp install
+      - uses: aws-actions/configure-aws-credentials@ec61189d14ec14c8efccab744f656cffd0e33f37 # v6.1.0
+        with:
+          role-to-assume: arn:aws:iam::766612536658:role/github-actions-role
+          aws-region: ap-northeast-1
+      - run: vp exec --filter radicast cdk synth
+      - run: vp exec --filter radicast cdk diff --all
+    timeout-minutes: 10
+
+  aws-infrastructure-diff:
+    permissions:
+      contents: read
+      id-token: write
+    needs:
+      - changes
+      - vp-test
+    if: ${{ needs.changes.outputs.aws-infrastructure == 'true' }}
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "false"
+      - uses: voidzero-dev/setup-vp@4f5aa3e38c781f1b01e78fb9255527cee8a6efa6 # v1.8.0
+        with:
+          cache: true
+      - run: vp install
+      - uses: aws-actions/configure-aws-credentials@ec61189d14ec14c8efccab744f656cffd0e33f37 # v6.1.0
+        with:
+          role-to-assume: arn:aws:iam::766612536658:role/github-actions-role
+          aws-region: ap-northeast-1
+      - run: vp exec --filter @infrastructures/aws cdk synth
+      - run: vp exec --filter @infrastructures/aws cdk diff --all
+    timeout-minutes: 10
+
+  nix-diff:
+    permissions:
+      contents: read
+    needs:
+      - changes
+    if: ${{ needs.changes.outputs.nix == 'true' }}
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: "true"
+      - uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+      - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
+      - uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4 # v1.1.0
+        with:
+          mode: diff-only
+          attributes: |
+            - displayName: ${{ matrix.host }}
+              attribute: ${{ matrix.attribute }}
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        include:
+          - host: aries
+            attribute: darwinConfigurations.aries.system
+            runner: macos-26
+          - host: gemini
+            attribute: nixosConfigurations.gemini.config.system.build.toplevel
+            runner: ubuntu-24.04-arm
+
+  nix-diff-comment:
+    permissions:
+      actions: read
+      pull-requests: write
+    needs:
+      - nix-diff
+    runs-on: ubuntu-slim
+    steps:
+      - uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4 # v1.1.0
+        with:
+          mode: comment-only
+    timeout-minutes: 5

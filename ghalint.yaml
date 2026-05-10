@@ -1,4 +1,4 @@
 excludes:
   - policy_name: checkout_persist_credentials_should_be_false
-    workflow_file_path: .github/workflows/test.yaml
+    workflow_file_path: .github/workflows/workflow-call-test.yaml
     job_name: nix-diff
