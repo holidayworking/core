@@ -1,5 +1,13 @@
 {
   "mcpServers": {
+    "aws-iac-mcp-server": {
+      "command": "uv",
+      "args": ["run", "awslabs.aws-iac-mcp-server"],
+      "env": {
+        "AWS_PROFILE": "master",
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      }
+    },
     "codex": {
       "command": "codex",
       "args": ["mcp-server"]
