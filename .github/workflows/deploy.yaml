@@ -45,7 +45,7 @@ jobs:
       pages: write
     needs:
       - changes
-    if: ${{ needs.changes.outputs.zenn == 'true' }}
+    if: ${{ needs.changes.outputs.hugo == 'true' }}
     runs-on: ubuntu-24.04-arm
     environment:
       name: github-pages
