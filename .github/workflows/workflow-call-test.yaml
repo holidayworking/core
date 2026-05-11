@@ -52,18 +52,26 @@ jobs:
         with:
           filters: |
             radicast:
-              - .github/workflows/test.yaml
-              - .github/workflows/workflow_call_test.yaml
               - "apps/radicast/**"
+              - .github/workflows/test.yaml
+              - .github/workflows/workflow-call-test.yaml
+              - package.json
+              - pnpm-lock.yaml
+              - pnpm-workspace.yaml
+              - tsconfig.json
             aws-infrastructure:
-              - .github/workflows/test.yaml
-              - .github/workflows/workflow_call_test.yaml
               - "infrastructures/aws/**"
-            nix:
               - .github/workflows/test.yaml
-              - .github/workflows/workflow_call_test.yaml
-              - flake.lock
+              - .github/workflows/workflow-call-test.yaml
+              - package.json
+              - pnpm-lock.yaml
+              - pnpm-workspace.yaml
+              - tsconfig.json
+            nix:
               - "**/*.nix"
+              - .github/workflows/test.yaml
+              - .github/workflows/workflow-call-test.yaml
+              - flake.lock
     timeout-minutes: 5
 
   vp-test:
