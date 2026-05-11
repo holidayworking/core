@@ -25,17 +25,25 @@ jobs:
         with:
           filters: |
             hugo:
-              - .github/workflows/deploy.yaml
               - "apps/hugo/**"
+              - .github/workflows/deploy.yaml
             radicast:
-              - .github/workflows/deploy.yaml
               - "apps/radicast/**"
+              - .github/workflows/deploy.yaml
+              - package.json
+              - pnpm-lock.yaml
+              - pnpm-workspace.yaml
+              - tsconfig.json
             zenn:
-              - .github/workflows/deploy.yaml
               - "apps/zenn/**"
-            aws-infrastructure:
               - .github/workflows/deploy.yaml
+            aws-infrastructure:
               - "infrastructures/aws/**"
+              - .github/workflows/deploy.yaml
+              - package.json
+              - pnpm-lock.yaml
+              - pnpm-workspace.yaml
+              - tsconfig.json
     timeout-minutes: 5
 
   hugo:
