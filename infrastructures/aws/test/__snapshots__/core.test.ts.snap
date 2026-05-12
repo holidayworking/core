@@ -1,0 +1,129 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`snapshot 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "StorageCloudfrontAccessLogsBucket83FA66BA": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-S1",
+              "reason": "Access logs are not required.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "BucketName": {
+          "Fn::Join": [
+            "",
+            [
+              "cloudfront-access-logs-",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              "-",
+              {
+                "Ref": "AWS::Region",
+              },
+              "-an",
+            ],
+          ],
+        },
+        "BucketNamespace": "account-regional",
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "ExpirationInDays": 400,
+              "Status": "Enabled",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+    },
+    "StorageCloudfrontAccessLogsBucketFromCfnBucketPolicy18E75147": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "StorageCloudfrontAccessLogsBucket83FA66BA",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "StorageCloudfrontAccessLogsBucket83FA66BA",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "StorageCloudfrontAccessLogsBucket83FA66BA",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
