@@ -1,6 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import { AwsSolutionsChecks } from "cdk-nag";
 
+import { CoreStack } from "../lib/core-stack.ts";
 import { GithubActionsOidcStack } from "../lib/github-actions-oidc-stack.ts";
 import { Route53Stack } from "../lib/route53-stack.ts";
 
@@ -26,6 +27,12 @@ new Route53Stack(app, "Route53Stack", {
     region: "us-east-1",
   },
   stackName: "route53-stack",
+  terminationProtection: true,
+});
+
+new CoreStack(app, "CoreStack", {
+  ...props,
+  stackName: "core-stack",
   terminationProtection: true,
 });
 
