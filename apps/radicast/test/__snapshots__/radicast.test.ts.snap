@@ -9,6 +9,105 @@ exports[`snapshot 1`] = `
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
+  "Resources": {
+    "StorageBucket13B7643F": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-S1",
+              "reason": "Access logs are not required.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "BucketName": {
+          "Fn::Join": [
+            "",
+            [
+              "radicast-",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              "-",
+              {
+                "Ref": "AWS::Region",
+              },
+              "-an",
+            ],
+          ],
+        },
+        "BucketNamespace": "account-regional",
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "ExpiredObjectDeleteMarker": true,
+              "NoncurrentVersionExpirationInDays": 7,
+              "Status": "Enabled",
+              "Transitions": [
+                {
+                  "StorageClass": "STANDARD_IA",
+                  "TransitionInDays": 30,
+                },
+              ],
+            },
+          ],
+        },
+        "VersioningConfiguration": {
+          "Status": "Enabled",
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+    },
+    "StorageBucketFromCfnBucketPolicy2C4045F2": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "StorageBucket13B7643F",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "StorageBucket13B7643F",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "StorageBucket13B7643F",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+  },
   "Rules": {
     "CheckBootstrapVersion": {
       "Assertions": [
