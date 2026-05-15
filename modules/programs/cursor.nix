@@ -4,6 +4,26 @@
   pkgs,
   ...
 }:
+let
+  # Pinned for Cursor / VS Code 1.105.x: open-vsx-release tracks newer nix-ide whose
+  # engines.vscode exceeds 1.105 (see vscode-nix-ide releases through v0.5.7).
+  nixIdeForVscode105 = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      publisher = "jnoortheen";
+      name = "nix-ide";
+      version = "0.5.7";
+      hash = "sha256-6wIjuvMlA+mwg5gzctkfOAdaQLBy2K6YcV3kJxK3VOo=";
+    };
+    meta = {
+      changelog = "https://marketplace.visualstudio.com/items/jnoortheen.nix-ide/changelog";
+      description = "Nix language support with formatting and error report";
+      downloadPage = "https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide";
+      homepage = "https://github.com/nix-community/vscode-nix-ide";
+      license = pkgs.lib.licenses.mit;
+      maintainers = [ ];
+    };
+  };
+in
 delib.module {
   name = "programs.cursor";
 
@@ -25,7 +45,6 @@ delib.module {
           davidanson.vscode-markdownlint
           github.github-vscode-theme
           github.vscode-github-actions
-          jnoortheen.nix-ide
           mkhl.shfmt
           mylesmurphy.prettify-ts
           redhat.vscode-yaml
@@ -37,7 +56,10 @@ delib.module {
           void-zero.vite-plus-extension-pack
           vscode-icons-team.vscode-icons
         ])
-        ++ [ pkgs.vscode-marketplace-release."3w36zj6".textlint ];
+        ++ [
+          nixIdeForVscode105
+          pkgs.vscode-marketplace-release."3w36zj6".textlint
+        ];
 
       userSettings = {
         "cursor.composer.usageSummaryDisplay" = "always";
