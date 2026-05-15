@@ -31,8 +31,6 @@ delib.module {
 
   home.ifEnabled.programs.cursor = {
     enable = true;
-    # Nixpkgs 1password-gui is too old, so install via brew-nix instead.
-    package = pkgs.brewCasks."cursor";
 
     profiles.default = {
       enableUpdateCheck = false;
