@@ -13,8 +13,8 @@ catalogs:
       specifier: 2.1121.0
       version: 2.1121.0
     aws-cdk-github-oidc:
-      specifier: 4.1.1
-      version: 4.1.1
+      specifier: 4.2.4
+      version: 4.2.4
     aws-cdk-lib:
       specifier: 2.253.1
       version: 2.253.1
@@ -115,7 +115,7 @@ importers:
     dependencies:
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 4.1.1(aws-cdk-lib@2.253.1(constructs@10.6.0))(constructs@10.6.0)
+        version: 4.2.4(aws-cdk-lib@2.253.1(constructs@10.6.0))(constructs@10.6.0)
       aws-cdk-lib:
         specifier: 'catalog:'
         version: 2.253.1(constructs@10.6.0)
@@ -146,7 +146,7 @@ importers:
     dependencies:
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 4.1.1(aws-cdk-lib@2.253.1(constructs@10.6.0))(constructs@10.6.0)
+        version: 4.2.4(aws-cdk-lib@2.253.1(constructs@10.6.0))(constructs@10.6.0)
       aws-cdk-lib:
         specifier: 'catalog:'
         version: 2.253.1(constructs@10.6.0)
@@ -1270,11 +1270,11 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-github-oidc@4.1.1:
-    resolution: {integrity: sha512-BmRkdrdB24i0hznMxqTgzzauvudDCpHODyrqvHZmxYU3AQld8MJDUQzRp2xWimhhkGeAxRQ6tq8t5CapeUFqcg==}
+  aws-cdk-github-oidc@4.2.4:
+    resolution: {integrity: sha512-KuQm1e5Clgqb5eGsqdVcogIMOcVB8TgZvn+MC/FAECcyHOkgwvkStYYJk2lVih8OlQo6xaUhsl9M0enL6qp3yA==}
     engines: {node: '>= 20 <= 24'}
     peerDependencies:
-      aws-cdk-lib: ^2.220.0
+      aws-cdk-lib: ^v2.237.0
       constructs: ^10.3.0
 
   aws-cdk-lib@2.253.1:
@@ -4299,7 +4299,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  aws-cdk-github-oidc@4.1.1(aws-cdk-lib@2.253.1(constructs@10.6.0))(constructs@10.6.0):
+  aws-cdk-github-oidc@4.2.4(aws-cdk-lib@2.253.1(constructs@10.6.0))(constructs@10.6.0):
     dependencies:
       aws-cdk-lib: 2.253.1(constructs@10.6.0)
       constructs: 10.6.0
