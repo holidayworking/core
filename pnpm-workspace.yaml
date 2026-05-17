@@ -6,7 +6,7 @@ packages:
 catalog:
   "@cspell/dict-people-names": 1.1.16
   aws-cdk: 2.1121.0
-  aws-cdk-github-oidc: 4.1.1
+  aws-cdk-github-oidc: 4.2.4
   aws-cdk-lib: 2.253.1
   cdk-nag: 2.38.2
   constructs: 10.6.0
