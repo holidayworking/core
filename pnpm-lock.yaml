@@ -61,8 +61,8 @@ catalogs:
       specifier: latest
       version: 0.1.21
     zenn-cli:
-      specifier: 0.4.7
-      version: 0.4.7
+      specifier: 0.4.8
+      version: 0.4.8
 
 overrides:
   vite: npm:@voidzero-dev/vite-plus-core@0.1.21
@@ -140,7 +140,7 @@ importers:
     dependencies:
       zenn-cli:
         specifier: 'catalog:'
-        version: 0.4.7
+        version: 0.4.8
 
   infrastructures/aws:
     dependencies:
@@ -3327,8 +3327,8 @@ packages:
     engines: {node: '>= 14.6'}
     hasBin: true
 
-  zenn-cli@0.4.7:
-    resolution: {integrity: sha512-PkCvxOmP5bvSRx+cGFaXBkOABUez0XVioq91X39oziUppwDPFiT47qlNPX3In8W0/ySASq0ur49TkOTtv5fiIw==}
+  zenn-cli@0.4.8:
+    resolution: {integrity: sha512-DIJv1udDCyHd6AqoBaQDjTMs/3fo1KUCpumgyy/X8Yt1SKB/egLmhhNmePGukkIhUZDld1+RLoMWOEBky6njwg==}
     engines: {node: '>=22.0.0'}
     hasBin: true
 
@@ -6901,7 +6901,7 @@ snapshots:
 
   yaml@2.8.4: {}
 
-  zenn-cli@0.4.7:
+  zenn-cli@0.4.8:
     dependencies:
       open: 10.2.0
       package-manager-detector: 1.6.0
