@@ -3,6 +3,7 @@ import { Template } from "aws-cdk-lib/assertions";
 import { expect, test } from "vitest";
 
 import { AcmStack } from "../lib/acm-stack.ts";
+import { CloudfrontAccessLogStack } from "../lib/cloudfront-access-log-stack.ts";
 import { RadicastStack } from "../lib/radicast-stack.ts";
 import snapshotPlugin from "./snapshot-plugin.ts";
 
@@ -16,10 +17,15 @@ test("snapshot", () => {
     zoneName: "example.com",
   });
 
-  const stack = new RadicastStack(app, "RadicastStack", {
+  const radicastStack = new RadicastStack(app, "RadicastStack", {
     certificate: acmStack.certificate,
     hostedZoneId: "ZOJJZC49E0EPZ",
     zoneName: "example.com",
+  });
+
+  const stack = new CloudfrontAccessLogStack(app, "RadicastCloudfrontAccessLogStack", {
+    distribution: radicastStack.distribution,
+    distributionLogsBucket: radicastStack.distributionLogsBucket,
   });
 
   const template = Template.fromStack(stack);

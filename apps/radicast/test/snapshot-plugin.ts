@@ -1,4 +1,4 @@
-import { SnapshotSerializer } from "vitest";
+import type { SnapshotSerializer } from "vitest";
 
 const assetMatch = /[0-9a-f]{64}\.zip/;
 

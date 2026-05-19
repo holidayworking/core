@@ -1,16 +1,57 @@
-import { Aws, Fn } from "aws-cdk-lib";
+import type { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
+
+import { ScopedAws } from "aws-cdk-lib";
+import {
+  Distribution,
+  GeoRestriction,
+  type IDistribution,
+  KeyValueStore,
+  Function,
+  FunctionCode,
+  FunctionRuntime,
+  ViewerProtocolPolicy,
+  FunctionEventType,
+} from "aws-cdk-lib/aws-cloudfront";
+import { S3BucketOrigin } from "aws-cdk-lib/aws-cloudfront-origins";
 import { AnyPrincipal, Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
-import { Bucket, CfnBucket } from "aws-cdk-lib/aws-s3";
+import { ARecord, PublicHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
+import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
+import { Bucket, CfnBucket, type IBucket } from "aws-cdk-lib/aws-s3";
 import { NagSuppressions } from "cdk-nag";
 import { Construct } from "constructs";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const basicAuthFunctionSource = fs.readFileSync(
+  path.join(__dirname, "..", "..", "lambda", "functions", "basic-auth", "index.js"),
+  {
+    encoding: "utf-8",
+  },
+);
+
+type Props = {
+  readonly certificate: ICertificate;
+  readonly hostedZoneId: string;
+  readonly zoneName: string;
+};
 
 export class Storage extends Construct {
-  constructor(scope: Construct, id: string) {
+  public readonly distribution: IDistribution;
+  public readonly distributionLogsBucket: IBucket;
+
+  constructor(scope: Construct, id: string, props: Props) {
     super(scope, id);
+
+    const { accountId, region } = new ScopedAws(this);
+
+    const { certificate, hostedZoneId, zoneName } = props;
 
     const bucket = Bucket.fromCfnBucket(
       new CfnBucket(this, "Bucket", {
-        bucketName: Fn.join("", ["radicast-", Aws.ACCOUNT_ID, "-", Aws.REGION, "-an"]),
+        bucketName: `radicast-${accountId}-${region}-an`,
         bucketNamespace: "account-regional",
         lifecycleConfiguration: {
           rules: [
@@ -49,6 +90,57 @@ export class Storage extends Construct {
 
     NagSuppressions.addResourceSuppressions(bucket, [
       { id: "AwsSolutions-S1", reason: "Access logs are not required." },
+    ]);
+
+    const zone = PublicHostedZone.fromPublicHostedZoneAttributes(this, "Zone", {
+      hostedZoneId,
+      zoneName,
+    });
+
+    const keyValueStore = new KeyValueStore(this, "BasicAuthKeyValueStore");
+
+    const basicAuthFunction = new Function(this, "BasicAuthFunction", {
+      code: FunctionCode.fromInline(
+        basicAuthFunctionSource.replace("KVS_ID", keyValueStore.keyValueStoreId),
+      ),
+      keyValueStore,
+      runtime: FunctionRuntime.JS_2_0,
+    });
+
+    this.distribution = new Distribution(this, "Distribution", {
+      certificate,
+      defaultBehavior: {
+        origin: S3BucketOrigin.withOriginAccessControl(bucket),
+        functionAssociations: [
+          {
+            function: basicAuthFunction,
+            eventType: FunctionEventType.VIEWER_REQUEST,
+          },
+        ],
+        viewerProtocolPolicy: ViewerProtocolPolicy.HTTPS_ONLY,
+      },
+      defaultRootObject: "index.html",
+      domainNames: [`radicast.${zone.name}`],
+      geoRestriction: GeoRestriction.allowlist("JP"),
+    });
+
+    this.distributionLogsBucket = Bucket.fromBucketAttributes(this, "DistributionLogsBucket", {
+      bucketName: `cloudfront-access-logs-${accountId}-${region}-an`,
+    });
+
+    new ARecord(this, "DistributionAliasRecord", {
+      target: RecordTarget.fromAlias(new CloudFrontTarget(this.distribution)),
+      zone,
+      recordName: "radicast",
+    });
+
+    NagSuppressions.addResourceSuppressions(this.distribution, [
+      { id: "AwsSolutions-CFR2", reason: "AWS WAF is not required." },
+      {
+        id: "AwsSolutions-CFR3",
+        reason:
+          "Access logs are configured with Standard logging (v2), which cdk-nag does not support yet.",
+      },
     ]);
   }
 }

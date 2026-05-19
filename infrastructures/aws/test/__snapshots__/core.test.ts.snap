@@ -91,6 +91,53 @@ exports[`snapshot 1`] = `
                 },
               ],
             },
+            {
+              "Action": "s3:PutObject",
+              "Condition": {
+                "ArnLike": {
+                  "aws:SourceArn": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:aws:logs:us-east-1:",
+                        {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":delivery-source:*",
+                      ],
+                    ],
+                  },
+                },
+                "StringEquals": {
+                  "aws:SourceAccount": {
+                    "Ref": "AWS::AccountId",
+                  },
+                  "s3:x-amz-acl": "bucket-owner-full-control",
+                },
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "delivery.logs.amazonaws.com",
+              },
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "StorageCloudfrontAccessLogsBucket83FA66BA",
+                        "Arn",
+                      ],
+                    },
+                    "/AWSLogs/",
+                    {
+                      "Ref": "AWS::AccountId",
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
           ],
           "Version": "2012-10-17",
         },
