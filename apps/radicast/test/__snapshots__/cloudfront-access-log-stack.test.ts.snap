@@ -1,0 +1,111 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`snapshot 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "DistributionDelivery": {
+      "Properties": {
+        "DeliveryDestinationArn": {
+          "Fn::GetAtt": [
+            "DistributionDeliveryDestination",
+            "Arn",
+          ],
+        },
+        "DeliverySourceName": {
+          "Ref": "DistributionDeliverySource",
+        },
+        "S3SuffixPath": "AWSLogs/{account-id}/CloudFront/{DistributionId}/{yyyy}/{MM}/{dd}/{HH}",
+      },
+      "Type": "AWS::Logs::Delivery",
+    },
+    "DistributionDeliveryDestination": {
+      "Properties": {
+        "DeliveryDestinationType": "S3",
+        "DestinationResourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":s3:::cloudfront-access-logs-",
+              {
+                "Fn::ImportValue": "RadicastStack:ExportsOutputRefAWSAccountIdAD568057",
+              },
+              "-",
+              {
+                "Fn::ImportValue": "RadicastStack:ExportsOutputRefAWSRegion31D1D346",
+              },
+              "-an",
+            ],
+          ],
+        },
+        "Name": "radicast-cloudfront-access-logs-json",
+        "OutputFormat": "json",
+      },
+      "Type": "AWS::Logs::DeliveryDestination",
+    },
+    "DistributionDeliverySource": {
+      "Properties": {
+        "LogType": "ACCESS_LOGS",
+        "Name": "radicast-cloudfront-access-logs-source",
+        "ResourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":cloudfront::",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              ":distribution/",
+              {
+                "Fn::ImportValue": "RadicastStack:ExportsOutputRefStorageDistributionA4A168F6EB00D71C",
+              },
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Logs::DeliverySource",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

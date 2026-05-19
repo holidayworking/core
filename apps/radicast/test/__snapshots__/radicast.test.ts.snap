@@ -2,6 +2,16 @@
 
 exports[`snapshot 1`] = `
 {
+  "Mappings": {
+    "AWSCloudFrontPartitionHostedZoneIdMap": {
+      "aws": {
+        "zoneId": "Z2FDTNDATAQYW2",
+      },
+      "aws-cn": {
+        "zoneId": "Z3RFFRIM2A3IF5",
+      },
+    },
+  },
   "Parameters": {
     "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
@@ -10,6 +20,115 @@ exports[`snapshot 1`] = `
     },
   },
   "Resources": {
+    "StorageBasicAuthFunction881BDB16": {
+      "Properties": {
+        "AutoPublish": true,
+        "FunctionCode": {
+          "Fn::Join": [
+            "",
+            [
+              "import cf from "cloudfront";
+
+const kvsId = "",
+              {
+                "Fn::GetAtt": [
+                  "StorageBasicAuthKeyValueStoreFAFF1427",
+                  "Id",
+                ],
+              },
+              "";
+
+const kvsHandle = cf.kvs(kvsId);
+
+// oxlint-disable-next-line no-unused-vars
+async function handler(event) {
+  const request = event.request;
+  const headers = request.headers;
+
+  if (
+    typeof headers.authorization === "undefined" ||
+    typeof headers.authorization.value === "undefined"
+  ) {
+    return {
+      statusCode: 401,
+      statusDescription: "Unauthorized",
+      headers: { "www-authenticate": { value: "Basic" } },
+    };
+  }
+
+  const encoded = headers.authorization.value.split(" ")[1];
+  const decoded = Buffer.from(encoded, "base64").toString();
+  const userRequest = decoded.split(":")[0];
+  const passRequest = decoded.split(":")[1];
+
+  const exist = await kvsHandle.exists(userRequest);
+  if (!exist) {
+    return {
+      statusCode: 401,
+      statusDescription: "Unauthorized",
+      headers: { "www-authenticate": { value: "Basic" } },
+    };
+  }
+
+  const passStore = await kvsHandle.get(userRequest);
+  if (passStore !== passRequest) {
+    return {
+      statusCode: 401,
+      statusDescription: "Unauthorized",
+      headers: { "www-authenticate": { value: "Basic" } },
+    };
+  }
+
+  return request;
+}
+",
+            ],
+          ],
+        },
+        "FunctionConfig": {
+          "Comment": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Ref": "AWS::Region",
+                },
+                "RadicastStackStoasicAuthFunctionBB9F513B",
+              ],
+            ],
+          },
+          "KeyValueStoreAssociations": [
+            {
+              "KeyValueStoreARN": {
+                "Fn::GetAtt": [
+                  "StorageBasicAuthKeyValueStoreFAFF1427",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Runtime": "cloudfront-js-2.0",
+        },
+        "Name": {
+          "Fn::Join": [
+            "",
+            [
+              {
+                "Ref": "AWS::Region",
+              },
+              "RadicastStackStoasicAuthFunctionBB9F513B",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::CloudFront::Function",
+    },
+    "StorageBasicAuthKeyValueStoreFAFF1427": {
+      "Properties": {
+        "Name": "RadicastStackStorageBasicAuthKeyValueStoreD0BD81B9",
+      },
+      "Type": "AWS::CloudFront::KeyValueStore",
+    },
     "StorageBucket13B7643F": {
       "Metadata": {
         "cdk_nag": {
@@ -101,11 +220,171 @@ exports[`snapshot 1`] = `
                 },
               ],
             },
+            {
+              "Action": "s3:GetObject",
+              "Condition": {
+                "StringEquals": {
+                  "AWS:SourceArn": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":cloudfront::",
+                        {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":distribution/",
+                        {
+                          "Ref": "StorageDistributionA4A168F6",
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudfront.amazonaws.com",
+              },
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "StorageBucket13B7643F",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
           ],
           "Version": "2012-10-17",
         },
       },
       "Type": "AWS::S3::BucketPolicy",
+    },
+    "StorageDistributionA4A168F6": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-CFR2",
+              "reason": "AWS WAF is not required.",
+            },
+            {
+              "id": "AwsSolutions-CFR3",
+              "reason": "Access logs are configured with Standard logging (v2), which cdk-nag does not support yet.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "DistributionConfig": {
+          "Aliases": [
+            "radicast.example.com",
+          ],
+          "DefaultCacheBehavior": {
+            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+            "Compress": true,
+            "FunctionAssociations": [
+              {
+                "EventType": "viewer-request",
+                "FunctionARN": {
+                  "Fn::GetAtt": [
+                    "StorageBasicAuthFunction881BDB16",
+                    "FunctionARN",
+                  ],
+                },
+              },
+            ],
+            "TargetOriginId": "RadicastStackStorageDistributionOrigin1EEB128FD",
+            "ViewerProtocolPolicy": "https-only",
+          },
+          "DefaultRootObject": "index.html",
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "IPV6Enabled": true,
+          "Origins": [
+            {
+              "DomainName": {
+                "Fn::GetAtt": [
+                  "StorageBucket13B7643F",
+                  "RegionalDomainName",
+                ],
+              },
+              "Id": "RadicastStackStorageDistributionOrigin1EEB128FD",
+              "OriginAccessControlId": {
+                "Fn::GetAtt": [
+                  "StorageDistributionOrigin1S3OriginAccessControlAA77ED15",
+                  "Id",
+                ],
+              },
+              "S3OriginConfig": {
+                "OriginAccessIdentity": "",
+              },
+            },
+          ],
+          "Restrictions": {
+            "GeoRestriction": {
+              "Locations": [
+                "JP",
+              ],
+              "RestrictionType": "whitelist",
+            },
+          },
+          "ViewerCertificate": {
+            "AcmCertificateArn": {
+              "Fn::ImportValue": "RadicastAcmStack:ExportsOutputRefCertificate4E7ABB08F7C8AF50",
+            },
+            "MinimumProtocolVersion": "TLSv1.2_2021",
+            "SslSupportMethod": "sni-only",
+          },
+        },
+      },
+      "Type": "AWS::CloudFront::Distribution",
+    },
+    "StorageDistributionAliasRecord355B9CFC": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "StorageDistributionA4A168F6",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": "ZOJJZC49E0EPZ",
+        "Name": "radicast.example.com.",
+        "Type": "A",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "StorageDistributionOrigin1S3OriginAccessControlAA77ED15": {
+      "Properties": {
+        "OriginAccessControlConfig": {
+          "Name": "RadicastStackStorageDistribuOrigin1S3OriginAccessControl6BE9ACE7",
+          "OriginAccessControlOriginType": "s3",
+          "SigningBehavior": "always",
+          "SigningProtocol": "sigv4",
+        },
+      },
+      "Type": "AWS::CloudFront::OriginAccessControl",
     },
   },
   "Rules": {
