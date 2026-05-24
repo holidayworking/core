@@ -39,6 +39,7 @@ type Props = {
 };
 
 export class Storage extends Construct {
+  public readonly bucket: IBucket;
   public readonly distribution: IDistribution;
   public readonly distributionLogsBucket: IBucket;
 
@@ -49,7 +50,7 @@ export class Storage extends Construct {
 
     const { certificate, hostedZoneId, zoneName } = props;
 
-    const bucket = Bucket.fromCfnBucket(
+    this.bucket = Bucket.fromCfnBucket(
       new CfnBucket(this, "Bucket", {
         bucketName: `radicast-${accountId}-${region}-an`,
         bucketNamespace: "account-regional",
@@ -74,7 +75,7 @@ export class Storage extends Construct {
       }),
     );
 
-    bucket.addToResourcePolicy(
+    this.bucket.addToResourcePolicy(
       new PolicyStatement({
         actions: ["s3:*"],
         conditions: {
@@ -84,11 +85,11 @@ export class Storage extends Construct {
         },
         effect: Effect.DENY,
         principals: [new AnyPrincipal()],
-        resources: [bucket.bucketArn, `${bucket.bucketArn}/*`],
+        resources: [this.bucket.bucketArn, this.bucket.arnForObjects("*")],
       }),
     );
 
-    NagSuppressions.addResourceSuppressions(bucket, [
+    NagSuppressions.addResourceSuppressions(this.bucket, [
       { id: "AwsSolutions-S1", reason: "Access logs are not required." },
     ]);
 
@@ -110,7 +111,7 @@ export class Storage extends Construct {
     this.distribution = new Distribution(this, "Distribution", {
       certificate,
       defaultBehavior: {
-        origin: S3BucketOrigin.withOriginAccessControl(bucket),
+        origin: S3BucketOrigin.withOriginAccessControl(this.bucket),
         functionAssociations: [
           {
             function: basicAuthFunction,

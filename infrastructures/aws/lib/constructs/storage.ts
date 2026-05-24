@@ -37,7 +37,7 @@ export class Storage extends Construct {
         principals: [new AnyPrincipal()],
         resources: [
           cloudfrontAccessLogsBucket.bucketArn,
-          `${cloudfrontAccessLogsBucket.bucketArn}/*`,
+          cloudfrontAccessLogsBucket.arnForObjects("*"),
         ],
       }),
     );

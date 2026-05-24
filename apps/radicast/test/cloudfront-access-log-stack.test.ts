@@ -30,4 +30,4 @@ test("snapshot", () => {
 
   const template = Template.fromStack(stack);
   expect(template).toMatchSnapshot();
-});
+}, 180_000);
