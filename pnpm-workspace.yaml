@@ -10,7 +10,7 @@ catalog:
   "@cspell/dict-people-names": 1.1.16
   "@middy/core": 7.6.4
   "@types/node": 25.9.1
-  aws-cdk: 2.1122.0
+  aws-cdk: 2.1124.1
   aws-cdk-github-oidc: 4.2.5
   aws-cdk-lib: 2.255.0
   cdk-nag: 2.38.2
