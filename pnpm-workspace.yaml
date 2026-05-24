@@ -4,14 +4,22 @@ packages:
   - infrastructures/*
 
 catalog:
+  "@aws-lambda-powertools/logger": 2.33.0
+  "@aws-lambda-powertools/parameters": 2.33.0
+  "@aws-sdk/client-s3": 3.1053.0
   "@cspell/dict-people-names": 1.1.16
+  "@middy/core": 7.6.4
   "@types/node": 25.9.1
   aws-cdk: 2.1122.0
   aws-cdk-github-oidc: 4.2.5
   aws-cdk-lib: 2.255.0
   cdk-nag: 2.38.2
   constructs: 10.6.0
+  cron-parser: 5.5.0
   cspell: 10.0.0
+  date-fns: 4.3.0
+  date-fns-tz: 3.2.0
+  execa: 9.6.1
   markdownlint: 0.40.0
   markdownlint-cli2: 0.22.1
   npm-run-all2: 8.0.4

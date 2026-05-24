@@ -4,9 +4,17 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@aws-lambda-powertools/logger": "catalog:",
+    "@aws-lambda-powertools/parameters": "catalog:",
+    "@aws-sdk/client-s3": "catalog:",
+    "@middy/core": "catalog:",
     "aws-cdk-github-oidc": "catalog:",
     "aws-cdk-lib": "catalog:",
-    "constructs": "catalog:"
+    "constructs": "catalog:",
+    "cron-parser": "catalog:",
+    "date-fns": "catalog:",
+    "date-fns-tz": "catalog:",
+    "execa": "catalog:"
   },
   "devDependencies": {
     "aws-cdk": "catalog:",

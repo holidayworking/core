@@ -20,6 +20,211 @@ exports[`snapshot 1`] = `
     },
   },
   "Resources": {
+    "RadikoRecorderFunction8ECF5BD4": {
+      "DependsOn": [
+        "RadikoRecorderServiceRoleDefaultPolicy4A108080",
+        "RadikoRecorderServiceRoleBC470C91",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "[ASSET ZIP]",
+        },
+        "Environment": {
+          "Variables": {
+            "BUCKET": {
+              "Ref": "StorageBucket13B7643F",
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "Layers": [
+          {
+            "Ref": "RadikoRecorderRadigoLayer36A7529F",
+          },
+        ],
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "RadikoRecorderLogGroupD601C3EB",
+          },
+        },
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "RadikoRecorderServiceRoleBC470C91",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs24.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "RadikoRecorderLogGroupD601C3EB": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "RetentionInDays": 7,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RadikoRecorderRadigoLayer36A7529F": {
+      "Properties": {
+        "Content": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "[ASSET ZIP]",
+        },
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
+    "RadikoRecorderServiceRoleBC470C91": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "applies_to": [
+                "Resource::<StorageBucket13B7643F.Arn>/*",
+              ],
+              "id": "AwsSolutions-IAM5",
+              "reason": "Required to grant read and write access to all objects in the bucket.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "RadikoRecorderServiceRoleDefaultPolicy4A108080": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "applies_to": [
+                "Resource::<StorageBucket13B7643F.Arn>/*",
+              ],
+              "id": "AwsSolutions-IAM5",
+              "reason": "Required to grant read and write access to all objects in the bucket.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "RadikoRecorderLogGroupD601C3EB",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "ssm:GetParameter",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:ssm:",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":parameter/app/radicast/radiko_mail",
+                    ],
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:ssm:",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":parameter/app/radicast/radiko_password",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "s3:ListBucket",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "StorageBucket13B7643F",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "StorageBucket13B7643F",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "RadikoRecorderServiceRoleDefaultPolicy4A108080",
+        "Roles": [
+          {
+            "Ref": "RadikoRecorderServiceRoleBC470C91",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
     "StorageBasicAuthFunction881BDB16": {
       "Properties": {
         "AutoPublish": true,
