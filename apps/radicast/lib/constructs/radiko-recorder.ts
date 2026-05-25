@@ -35,7 +35,10 @@ export class RadikoRecorder extends Construct {
     logGroup.grantWrite(role);
 
     const radigoLayer = new LayerVersion(this, "RadigoLayer", {
-      code: Code.fromDockerBuild(join(__dirname, "..", "..", "docker", "radigo")),
+      code: Code.fromDockerBuild(join(__dirname, "..", "..", "docker", "radigo"), {
+        cacheFrom: [{ type: "gha" }],
+        cacheTo: { type: "gha", params: { mode: "max" } },
+      }),
     });
 
     const func = new NodejsFunction(this, "Function", {

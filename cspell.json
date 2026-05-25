@@ -129,6 +129,7 @@
     "geofilt",
     "getrawmonotonic",
     "gfxpayload",
+    "ghaction",
     "ghalint",
     "ghostty",
     "glgke",
