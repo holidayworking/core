@@ -64,12 +64,22 @@ delib.host {
 
     hardware.parallels.enable = true;
 
+    # Rosetta is mounted by prltoolsd; binfmt must start after it (fixBinary needs the interpreter).
+
     nix.settings = {
       extra-platforms = [ "x86_64-linux" ];
       extra-sandbox-paths = [
         "/run/binfmt"
         "/mnt/psf/RosettaLinux"
       ];
+    };
+
+    systemd.services.systemd-binfmt = {
+      after = [
+        "prltoolsd.service"
+        "systemd-tmpfiles-setup.service"
+      ];
+      requires = [ "prltoolsd.service" ];
     };
   };
 }
