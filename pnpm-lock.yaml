@@ -7,11 +7,11 @@ settings:
 catalogs:
   default:
     '@aws-lambda-powertools/logger':
-      specifier: 2.33.0
-      version: 2.33.0
+      specifier: 2.33.1
+      version: 2.33.1
     '@aws-lambda-powertools/parameters':
-      specifier: 2.33.0
-      version: 2.33.0
+      specifier: 2.33.1
+      version: 2.33.1
     '@aws-sdk/client-s3':
       specifier: 3.1053.0
       version: 3.1053.0
@@ -145,10 +145,10 @@ importers:
     dependencies:
       '@aws-lambda-powertools/logger':
         specifier: 'catalog:'
-        version: 2.33.0(@middy/core@7.6.5)
+        version: 2.33.1(@middy/core@7.6.5)
       '@aws-lambda-powertools/parameters':
         specifier: 'catalog:'
-        version: 2.33.0(@middy/core@7.6.5)
+        version: 2.33.1(@middy/core@7.6.5)
       '@aws-sdk/client-s3':
         specifier: 'catalog:'
         version: 3.1053.0
@@ -259,13 +259,13 @@ packages:
   '@aws-crypto/util@5.2.0':
     resolution: {integrity: sha512-4RkU9EsI6ZpBve5fseQlGNUWKMa1RLPQ1dnjnQoe07ldfIzcsGb5hC5W0Dm7u423KWzawlrpbjXBrXCEv9zazQ==}
 
-  '@aws-lambda-powertools/commons@2.33.0':
-    resolution: {integrity: sha512-cXGfWT4FXtLO7Ny/shep6V/xYzgVN7hvukOA0bTa4nlg2GWiQsPoBoKvCEcfQ9I8GIS0tPyDfRkdx80SvA7LpA==}
+  '@aws-lambda-powertools/commons@2.33.1':
+    resolution: {integrity: sha512-edzvz+zqBl8p9J2Cgo1rFmhd+3ANqr0PQDqowElS3CJ10ioHN2wUYiANGxfalcgbB8ulZxGkRbK3wvEEziV/5w==}
 
-  '@aws-lambda-powertools/logger@2.33.0':
-    resolution: {integrity: sha512-ejkgit7O8yrhu5Mbx8fBAd3lykBNtYsVzFSR653Sh3d8ojpp8zo2OoARt3lKEK4cjHsKB/kUGbpzZcSYkR6Hvg==}
+  '@aws-lambda-powertools/logger@2.33.1':
+    resolution: {integrity: sha512-DDnKcv2zghslh2AtrVsa4wHcAuI5M7+JlX65CgdXLk2th0Nr0octJQq0f4Bnp+DzuwFynmH4GJqsBe33rZapAw==}
     peerDependencies:
-      '@aws-lambda-powertools/jmespath': 2.33.0
+      '@aws-lambda-powertools/jmespath': 2.33.1
       '@middy/core': 4.x || 5.x || 6.x || 7.x
     peerDependenciesMeta:
       '@aws-lambda-powertools/jmespath':
@@ -273,8 +273,8 @@ packages:
       '@middy/core':
         optional: true
 
-  '@aws-lambda-powertools/parameters@2.33.0':
-    resolution: {integrity: sha512-jj3KL+CX5kiHeSaUz0tLWuEJTL7hMvOP1fVR8DePpF9/fFRKn1OXmvJ7lOfdxC9diaMmgKOL/Go2P8xLCE+nyQ==}
+  '@aws-lambda-powertools/parameters@2.33.1':
+    resolution: {integrity: sha512-LXY/RzBZaR+WHvMdB/tpf3x7PQ5ZKawY9SzaCEf2McRbs6kVuPmUQeX66CJ7u+H04MglKrx1XcABRQdIbuVhNw==}
     peerDependencies:
       '@aws-sdk/client-appconfigdata': '>=3.x'
       '@aws-sdk/client-dynamodb': '>=3.x'
@@ -3773,20 +3773,20 @@ snapshots:
       '@smithy/util-utf8': 2.3.0
       tslib: 2.8.1
 
-  '@aws-lambda-powertools/commons@2.33.0':
+  '@aws-lambda-powertools/commons@2.33.1':
     dependencies:
       '@aws/lambda-invoke-store': 0.2.4
 
-  '@aws-lambda-powertools/logger@2.33.0(@middy/core@7.6.5)':
+  '@aws-lambda-powertools/logger@2.33.1(@middy/core@7.6.5)':
     dependencies:
-      '@aws-lambda-powertools/commons': 2.33.0
+      '@aws-lambda-powertools/commons': 2.33.1
       '@aws/lambda-invoke-store': 0.2.4
     optionalDependencies:
       '@middy/core': 7.6.5
 
-  '@aws-lambda-powertools/parameters@2.33.0(@middy/core@7.6.5)':
+  '@aws-lambda-powertools/parameters@2.33.1(@middy/core@7.6.5)':
     dependencies:
-      '@aws-lambda-powertools/commons': 2.33.0
+      '@aws-lambda-powertools/commons': 2.33.1
     optionalDependencies:
       '@middy/core': 7.6.5
 
