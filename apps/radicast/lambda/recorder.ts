@@ -1,7 +1,7 @@
+import { tz } from "@date-fns/tz";
 import { CronExpressionParser } from "cron-parser";
 import { randomUUID } from "crypto";
 import { format } from "date-fns";
-import { toZonedTime } from "date-fns-tz";
 import { execa } from "execa";
 import { statSync, unlinkSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
@@ -34,7 +34,6 @@ export const recordEpisode = async (email: string, password: string, definition:
           station: definition.station,
           startedAt: startTimes[0],
           size: stat.size,
-          lastModified: stat.mtime,
           localPath: m4aPath,
         }),
       );
@@ -57,7 +56,7 @@ const record = async (
   programSchedule: Date,
 ) => {
   const workDir = tmpdir();
-  const programScheduleStr = format(toZonedTime(programSchedule, "Asia/Tokyo"), "yyyyMMddHHmmss");
+  const programScheduleStr = format(programSchedule, "yyyyMMddHHmmss", { in: tz("Asia/Tokyo") });
   const outputPath = `${workDir}/${programScheduleStr}-${station}.aac`;
   await execa("rm", ["-f", outputPath]);
   await execa("radigo", ["rec", "-area", area, "-id", station, "-s", programScheduleStr], {

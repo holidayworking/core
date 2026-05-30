@@ -14,6 +14,8 @@
   },
   "devDependencies": {
     "@cspell/dict-people-names": "catalog:",
+    "@types/aws-lambda": "catalog:",
+    "@types/ejs": "catalog:",
     "@types/node": "catalog:",
     "cspell": "catalog:",
     "markdownlint": "catalog:",

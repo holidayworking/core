@@ -5,6 +5,7 @@ import type { IBucket } from "aws-cdk-lib/aws-s3";
 import * as cdk from "aws-cdk-lib/core";
 import { Construct } from "constructs";
 
+import { FeedGenerator } from "./constructs/feed-generator.ts";
 import { RadikoRecorder } from "./constructs/radiko-recorder.ts";
 import { Storage } from "./constructs/storage.ts";
 
@@ -23,7 +24,12 @@ export class RadicastStack extends cdk.Stack {
 
     const { certificate, hostedZoneId, zoneName } = props;
 
-    const { bucket, distribution, distributionLogsBucket } = new Storage(this, "Storage", {
+    const {
+      bucket,
+      distribution,
+      distributionLogsBucket,
+      basicAuthenticationCredentialKeyValueStore,
+    } = new Storage(this, "Storage", {
       certificate,
       hostedZoneId,
       zoneName,
@@ -33,5 +39,11 @@ export class RadicastStack extends cdk.Stack {
     this.distributionLogsBucket = distributionLogsBucket;
 
     new RadikoRecorder(this, "RadikoRecorder", { bucket });
+
+    new FeedGenerator(this, "FeedGenerator", {
+      bucket,
+      basicAuthenticationCredentialKeyValueStore,
+      zoneName,
+    });
   }
 }

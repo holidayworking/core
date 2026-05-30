@@ -178,6 +178,7 @@
     "kernelenv",
     "kexec",
     "keypair",
+    "keyvaluestore",
     "killall",
     "kitematic",
     "knnclassifier",
