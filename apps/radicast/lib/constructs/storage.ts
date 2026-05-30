@@ -11,6 +11,7 @@ import {
   FunctionRuntime,
   ViewerProtocolPolicy,
   FunctionEventType,
+  type IKeyValueStore,
 } from "aws-cdk-lib/aws-cloudfront";
 import { S3BucketOrigin } from "aws-cdk-lib/aws-cloudfront-origins";
 import { AnyPrincipal, Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
@@ -25,8 +26,8 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const basicAuthFunctionSource = fs.readFileSync(
-  path.join(__dirname, "..", "..", "lambda", "functions", "basic-auth", "index.js"),
+const basicAuthenticationFunctionSourceSource = fs.readFileSync(
+  path.join(__dirname, "..", "..", "lambda", "functions", "basic-authentication", "index.js"),
   {
     encoding: "utf-8",
   },
@@ -42,6 +43,7 @@ export class Storage extends Construct {
   public readonly bucket: IBucket;
   public readonly distribution: IDistribution;
   public readonly distributionLogsBucket: IBucket;
+  public readonly basicAuthenticationCredentialKeyValueStore: IKeyValueStore;
 
   constructor(scope: Construct, id: string, props: Props) {
     super(scope, id);
@@ -98,13 +100,19 @@ export class Storage extends Construct {
       zoneName,
     });
 
-    const keyValueStore = new KeyValueStore(this, "BasicAuthKeyValueStore");
+    this.basicAuthenticationCredentialKeyValueStore = new KeyValueStore(
+      this,
+      "BasicAuthenticationCredentialKeyValueStore",
+    );
 
-    const basicAuthFunction = new Function(this, "BasicAuthFunction", {
+    const basicAuthenticationFunction = new Function(this, "BasicAuthenticationFunction", {
       code: FunctionCode.fromInline(
-        basicAuthFunctionSource.replace("KVS_ID", keyValueStore.keyValueStoreId),
+        basicAuthenticationFunctionSourceSource.replace(
+          "KVS_ID",
+          this.basicAuthenticationCredentialKeyValueStore.keyValueStoreId,
+        ),
       ),
-      keyValueStore,
+      keyValueStore: this.basicAuthenticationCredentialKeyValueStore,
       runtime: FunctionRuntime.JS_2_0,
     });
 
@@ -114,7 +122,7 @@ export class Storage extends Construct {
         origin: S3BucketOrigin.withOriginAccessControl(this.bucket),
         functionAssociations: [
           {
-            function: basicAuthFunction,
+            function: basicAuthenticationFunction,
             eventType: FunctionEventType.VIEWER_REQUEST,
           },
         ],

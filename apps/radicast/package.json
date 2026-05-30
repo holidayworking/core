@@ -6,14 +6,18 @@
   "dependencies": {
     "@aws-lambda-powertools/logger": "catalog:",
     "@aws-lambda-powertools/parameters": "catalog:",
+    "@aws-sdk/client-cloudfront-keyvaluestore": "catalog:",
     "@aws-sdk/client-s3": "catalog:",
+    "@aws-sdk/signature-v4a": "catalog:",
+    "@date-fns/tz": "catalog:",
     "@middy/core": "catalog:",
     "aws-cdk-github-oidc": "catalog:",
     "aws-cdk-lib": "catalog:",
+    "aws-lambda": "catalog:",
     "constructs": "catalog:",
     "cron-parser": "catalog:",
     "date-fns": "catalog:",
-    "date-fns-tz": "catalog:",
+    "ejs": "catalog:",
     "execa": "catalog:"
   },
   "devDependencies": {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title><%= definition.title %></title>
+    <itunes:author><%= definition.author %></itunes:author>
+    <itunes:summary></itunes:summary>
+    <itunes:image href="<%= definition.image %>" />
+    <% for (const episode of episodes) { %>
+    <item>
+      <title><%= format(episode.startedAt, "yyyyMMddHHmmss", { in: tz("Asia/Tokyo") }) %></title>
+      <itunes:author><%= definition.author %></itunes:author>
+      <itunes:image href="<%= definition.image %>" />
+      <pubDate><%= format(episode.startedAt, "eee, dd MMM yyyy HH:mm:ss xx", { in: tz("UTC") }) %></pubDate>
+      <enclosure url="<%= episode.url %>" length="<%= episode.size %>" type="audio/mp4; charset=binary" />
+    </item>
+    <% } %>
+  </channel>
+</rss>

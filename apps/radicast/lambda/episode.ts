@@ -1,11 +1,12 @@
+import { tz } from "@date-fns/tz";
+import { parse } from "date-fns";
+
 export type Episode = {
-  station: string;
-  title?: string;
+  station?: string;
   url?: string;
   startedAt: Date;
-  size: number;
-  lastModified: Date;
-  localPath: string;
+  size?: number;
+  localPath?: string;
 };
 
 export const Episode = {
@@ -14,23 +15,27 @@ export const Episode = {
     url,
     startedAt,
     size,
-    lastModified,
     localPath,
   }: {
-    station: string;
+    station?: string;
     url?: string;
-    startedAt: Date;
-    size: number;
-    lastModified: Date;
-    localPath: string;
+    startedAt?: Date;
+    size?: number;
+    localPath?: string;
   }): Episode {
+    const filename = url
+      ?.split("/")
+      .pop()
+      ?.replace(/\.[^.]+$/, "");
     return {
       station,
-      title: url?.split("/").pop(),
       url,
-      startedAt,
+      startedAt: startedAt
+        ? startedAt
+        : filename
+          ? parse(filename, "yyyyMMddHHmmss", new Date(), { in: tz("Asia/Tokyo") })
+          : new Date(),
       size,
-      lastModified,
       localPath,
     };
   },
