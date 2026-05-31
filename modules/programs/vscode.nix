@@ -18,6 +18,7 @@ delib.module {
 
       extensions =
         (with pkgs.vscode-marketplace-release; [
+          anthropic.claude-code
           apollographql.vscode-apollo
           christian-kohler.path-intellisense
           davidanson.vscode-markdownlint
