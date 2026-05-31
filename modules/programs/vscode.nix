@@ -28,7 +28,6 @@ delib.module {
           mkhl.shfmt
           ms-vscode-remote.vscode-remote-extensionpack
           mylesmurphy.prettify-ts
-          openai.chatgpt
           redhat.vscode-yaml
           renesaarsoo.sql-formatter-vsc
           streetsidesoftware.code-spell-checker
