@@ -41,6 +41,8 @@
       flake = false;
     };
 
+    llm-agents-nix.url = "github:numtide/llm-agents.nix";
+
     nix-vite-plus = {
       url = "github:ryoppippi/nix-vite-plus";
       inputs.nixpkgs.follows = "nixpkgs";
