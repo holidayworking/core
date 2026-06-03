@@ -25,6 +25,7 @@ delib.module {
           github.github-vscode-theme
           github.vscode-github-actions
           jnoortheen.nix-ide
+          long-kudo.vscode-claude-status
           mkhl.shfmt
           ms-vscode-remote.vscode-remote-extensionpack
           mylesmurphy.prettify-ts
