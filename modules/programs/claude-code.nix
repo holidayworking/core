@@ -8,6 +8,11 @@ delib.module {
 
     settings = {
       theme = "auto";
+
+      statusLine = {
+        type = "command";
+        command = "${pkgs.lib.getExe' pkgs.llm-agents.ccusage "ccusage"} statusline";
+      };
     };
   };
 }
