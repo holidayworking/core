@@ -194,6 +194,121 @@ def sort_filter_rules(json_obj):
       },
       "Type": "AWS::IAM::Role",
     },
+    "CloudFrontInvalidatorFunction6F5FAF8A": {
+      "DependsOn": [
+        "CloudFrontInvalidatorServiceRoleDefaultPolicy37725D5C",
+        "CloudFrontInvalidatorServiceRole34F76D40",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "[ASSET ZIP]",
+        },
+        "Environment": {
+          "Variables": {
+            "DISTRIBUTION_ID": {
+              "Ref": "StorageDistributionA4A168F6",
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "CloudFrontInvalidatorLogGroupA1614986",
+          },
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "CloudFrontInvalidatorServiceRole34F76D40",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs24.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CloudFrontInvalidatorLogGroupA1614986": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "RetentionInDays": 7,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "CloudFrontInvalidatorServiceRole34F76D40": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CloudFrontInvalidatorServiceRoleDefaultPolicy37725D5C": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "CloudFrontInvalidatorLogGroupA1614986",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "cloudfront:CreateInvalidation",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":cloudfront::",
+                    {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":distribution/",
+                    {
+                      "Ref": "StorageDistributionA4A168F6",
+                    },
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CloudFrontInvalidatorServiceRoleDefaultPolicy37725D5C",
+        "Roles": [
+          {
+            "Ref": "CloudFrontInvalidatorServiceRole34F76D40",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
     "FeedGeneratorFunction8027525D": {
       "DependsOn": [
         "FeedGeneratorServiceRoleDefaultPolicyD668747D",
@@ -722,6 +837,28 @@ async function handler(event) {
       },
       "Type": "AWS::S3::Bucket",
     },
+    "StorageBucketFromCfnBucketAllowBucketNotificationsToRadicastStackCloudFrontInvalidatorFunctionD0EED28085946975": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CloudFrontInvalidatorFunction6F5FAF8A",
+            "Arn",
+          ],
+        },
+        "Principal": "s3.amazonaws.com",
+        "SourceAccount": {
+          "Ref": "AWS::AccountId",
+        },
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "StorageBucket13B7643F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
     "StorageBucketFromCfnBucketAllowBucketNotificationsToRadicastStackFeedGeneratorFunction9DFB51D35FF0C7DF": {
       "Properties": {
         "Action": "lambda:InvokeFunction",
@@ -746,6 +883,7 @@ async function handler(event) {
     },
     "StorageBucketFromCfnBucketNotificationsF22FA94C": {
       "DependsOn": [
+        "StorageBucketFromCfnBucketAllowBucketNotificationsToRadicastStackCloudFrontInvalidatorFunctionD0EED28085946975",
         "StorageBucketFromCfnBucketAllowBucketNotificationsToRadicastStackFeedGeneratorFunction9DFB51D35FF0C7DF",
         "StorageBucketFromCfnBucketNotificationsHandlerPolicy5B2B780A",
         "StorageBucketFromCfnBucketPolicy2C4045F2",
@@ -816,6 +954,27 @@ async function handler(event) {
               "LambdaFunctionArn": {
                 "Fn::GetAtt": [
                   "FeedGeneratorFunction8027525D",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Events": [
+                "s3:ObjectCreated:*",
+              ],
+              "Filter": {
+                "Key": {
+                  "FilterRules": [
+                    {
+                      "Name": "suffix",
+                      "Value": ".rss",
+                    },
+                  ],
+                },
+              },
+              "LambdaFunctionArn": {
+                "Fn::GetAtt": [
+                  "CloudFrontInvalidatorFunction6F5FAF8A",
                   "Arn",
                 ],
               },

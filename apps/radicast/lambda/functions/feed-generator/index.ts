@@ -11,7 +11,7 @@ import { readFileSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
-import { findBasicAuthenticationCredential } from "../../cloudfront.ts";
+import { findBasicAuthenticationCredential } from "../../cloudfront-keyvaluestore.ts";
 import { findDefinition, listEpisodes, saveFeed } from "../../s3.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -74,7 +74,6 @@ const lambdaHandler = async (event: S3Event) => {
       return;
     }
   }
-  return null;
 };
 
 export const handler = middy(lambdaHandler).use(injectLambdaContext(logger));
