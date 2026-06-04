@@ -19,12 +19,13 @@
   ],
   "enableGlobDot": true,
   "ignorePaths": [
+    "**/cdk.out",
+    "*.snap",
+    ".claude/settings.local.json",
     ".git",
     ".venv",
-    "**/cdk.out",
     "apps/hugo/public",
     "apps/hugo/themes/congo",
-    "*.snap",
     "pnpm-lock.yaml"
   ],
   "import": ["@cspell/dict-people-names/cspell-ext.json"],

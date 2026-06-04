@@ -5,6 +5,7 @@ import type { IBucket } from "aws-cdk-lib/aws-s3";
 import * as cdk from "aws-cdk-lib/core";
 import { Construct } from "constructs";
 
+import { CloudFrontInvalidator } from "./constructs/cloudfront-invalidator.ts";
 import { FeedGenerator } from "./constructs/feed-generator.ts";
 import { RadikoRecorder } from "./constructs/radiko-recorder.ts";
 import { Storage } from "./constructs/storage.ts";
@@ -44,6 +45,11 @@ export class RadicastStack extends cdk.Stack {
       bucket,
       basicAuthenticationCredentialKeyValueStore,
       zoneName,
+    });
+
+    new CloudFrontInvalidator(this, "CloudFrontInvalidator", {
+      distribution,
+      bucket,
     });
   }
 }

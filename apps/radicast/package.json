@@ -6,6 +6,7 @@
   "dependencies": {
     "@aws-lambda-powertools/logger": "catalog:",
     "@aws-lambda-powertools/parameters": "catalog:",
+    "@aws-sdk/client-cloudfront": "catalog:",
     "@aws-sdk/client-cloudfront-keyvaluestore": "catalog:",
     "@aws-sdk/client-s3": "catalog:",
     "@aws-sdk/signature-v4a": "catalog:",
