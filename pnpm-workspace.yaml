@@ -17,12 +17,14 @@ catalog:
   "@date-fns/tz": 1.5.0
   "@middy/core": 7.6.5
   "@types/aws-lambda": 8.10.161
+  "@types/capitalize": 2.0.2
   "@types/ejs": 3.1.5
   "@types/node": 25.9.1
   aws-cdk: 2.1125.0
   aws-cdk-github-oidc: 4.2.5
   aws-cdk-lib: 2.257.0
   aws-lambda: 1.0.7
+  capitalize: 2.0.4
   cdk-nag: 2.38.2
   constructs: 10.6.0
   cron-parser: 5.5.0

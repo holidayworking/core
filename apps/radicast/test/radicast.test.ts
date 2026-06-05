@@ -20,6 +20,18 @@ test("snapshot", () => {
     certificate: acmStack.certificate,
     hostedZoneId: "ZOJJZC49E0EPZ",
     zoneName: "example.com",
+    definitions: [
+      {
+        id: "yuna78mhz",
+        title: "乃木坂46 柴田柚菜のDreaming time",
+        author: "柴田柚菜",
+        image: "https://program-static.cf.radiko.jp/4shbilswvp.jpg",
+        area: "JP13",
+        station: "BAYFM78",
+        programSchedules: ["00 23 * * 2"],
+        executionSchedule: "00 00 ? * 4 *",
+      },
+    ],
   });
 
   const template = Template.fromStack(stack);

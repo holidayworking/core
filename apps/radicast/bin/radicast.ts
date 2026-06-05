@@ -1,6 +1,8 @@
 import * as cdk from "aws-cdk-lib/core";
 import { AwsSolutionsChecks } from "cdk-nag";
 
+import type { Definition } from "../lib/radicast-stack.ts";
+
 import { AcmStack } from "../lib/acm-stack.ts";
 import { CloudfrontAccessLogStack } from "../lib/cloudfront-access-log-stack.ts";
 import { RadicastStack } from "../lib/radicast-stack.ts";
@@ -14,8 +16,15 @@ const requireAppContext = (app: cdk.App, key: string) => {
 };
 
 const app = new cdk.App();
+
 const hostedZoneId = requireAppContext(app, "hostedZoneId");
 const zoneName = requireAppContext(app, "zoneName");
+
+const definitionsContext = app.node.tryGetContext("definitions");
+if (!Array.isArray(definitionsContext) || definitionsContext.length === 0) {
+  throw new Error('Context value "definitions" is required.');
+}
+const definitions: Definition[] = definitionsContext;
 
 const props: cdk.StackProps = {
   env: {
@@ -42,6 +51,7 @@ const radicastStack = new RadicastStack(app, "RadicastStack", {
   certificate: acmStack.certificate,
   hostedZoneId,
   zoneName,
+  definitions,
   stackName: "radicast-stack",
 });
 
