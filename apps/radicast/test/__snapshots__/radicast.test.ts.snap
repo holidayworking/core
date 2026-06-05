@@ -319,7 +319,7 @@ def sort_filter_rules(json_obj):
           "rules_to_suppress": [
             {
               "id": "AwsSolutions-L1",
-              "reason": "CDK BucketDeployment custom resource Lambda runtime is managed by CDK and cannot be configured by the user.",
+              "reason": "CDK BucketDeployment Lambda runtime is managed by CDK and cannot be configured.",
             },
           ],
         },
@@ -390,7 +390,7 @@ def sort_filter_rules(json_obj):
           "rules_to_suppress": [
             {
               "id": "AwsSolutions-IAM5",
-              "reason": "CDK BucketDeployment custom resource requires S3 wildcard permissions to copy assets from the CDK staging bucket and manage files in the destination bucket. These permissions are managed by CDK and cannot be scoped down further.",
+              "reason": "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
             },
           ],
         },
@@ -548,7 +548,7 @@ def sort_filter_rules(json_obj):
                 "Resource::<StorageBucket13B7643F.Arn>/*",
               ],
               "id": "AwsSolutions-IAM5",
-              "reason": "Required to grant read and write access to all objects in the bucket.",
+              "reason": "Lambda requires read and write access to all objects in the S3 bucket.",
             },
           ],
         },
@@ -578,7 +578,7 @@ def sort_filter_rules(json_obj):
                 "Resource::<StorageBucket13B7643F.Arn>/*",
               ],
               "id": "AwsSolutions-IAM5",
-              "reason": "Required to grant read and write access to all objects in the bucket.",
+              "reason": "Lambda requires read and write access to all objects in the S3 bucket.",
             },
           ],
         },
@@ -725,7 +725,7 @@ def sort_filter_rules(json_obj):
                 "Resource::<StorageBucket13B7643F.Arn>/*",
               ],
               "id": "AwsSolutions-IAM5",
-              "reason": "Required to grant read and write access to all objects in the bucket.",
+              "reason": "Lambda requires read and write access to all objects in the S3 bucket.",
             },
           ],
         },
@@ -755,7 +755,7 @@ def sort_filter_rules(json_obj):
                 "Resource::<StorageBucket13B7643F.Arn>/*",
               ],
               "id": "AwsSolutions-IAM5",
-              "reason": "Required to grant read and write access to all objects in the bucket.",
+              "reason": "Lambda requires read and write access to all objects in the S3 bucket.",
             },
           ],
         },
@@ -1340,7 +1340,7 @@ async function handler(event) {
           "rules_to_suppress": [
             {
               "id": "AwsSolutions-CFR2",
-              "reason": "AWS WAF is not required.",
+              "reason": "AWS WAF is not required for static file distribution.",
             },
             {
               "id": "AwsSolutions-CFR3",

@@ -91,9 +91,11 @@ export class Storage extends Construct {
       }),
     );
 
-    NagSuppressions.addResourceSuppressions(this.bucket, [
-      { id: "AwsSolutions-S1", reason: "Access logs are not required." },
-    ]);
+    NagSuppressions.addResourceSuppressions(
+      this.bucket,
+      [{ id: "AwsSolutions-S1", reason: "Access logs are not required." }],
+      false,
+    );
 
     const zone = PublicHostedZone.fromPublicHostedZoneAttributes(this, "Zone", {
       hostedZoneId,
@@ -143,13 +145,20 @@ export class Storage extends Construct {
       recordName: "radicast",
     });
 
-    NagSuppressions.addResourceSuppressions(this.distribution, [
-      { id: "AwsSolutions-CFR2", reason: "AWS WAF is not required." },
-      {
-        id: "AwsSolutions-CFR3",
-        reason:
-          "Access logs are configured with Standard logging (v2), which cdk-nag does not support yet.",
-      },
-    ]);
+    NagSuppressions.addResourceSuppressions(
+      this.distribution,
+      [
+        {
+          id: "AwsSolutions-CFR2",
+          reason: "AWS WAF is not required for static file distribution.",
+        },
+        {
+          id: "AwsSolutions-CFR3",
+          reason:
+            "Access logs are configured with Standard logging (v2), which cdk-nag does not support yet.",
+        },
+      ],
+      false,
+    );
   }
 }

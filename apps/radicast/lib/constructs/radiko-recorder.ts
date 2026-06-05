@@ -94,7 +94,7 @@ export class RadikoRecorder extends Construct {
       [
         {
           id: "AwsSolutions-IAM5",
-          reason: "Required to grant read and write access to all objects in the bucket.",
+          reason: "Lambda requires read and write access to all objects in the S3 bucket.",
           appliesTo: ["Resource::<StorageBucket13B7643F.Arn>/*"],
         },
       ],

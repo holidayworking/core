@@ -1,6 +1,6 @@
 import type { IKeyValueStore } from "aws-cdk-lib/aws-cloudfront";
 
-import { Duration, Stack } from "aws-cdk-lib";
+import { Duration } from "aws-cdk-lib";
 import { PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { Architecture, Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
@@ -101,22 +101,12 @@ export class FeedGenerator extends Construct {
       suffix: "config.json",
     });
 
-    NagSuppressions.addStackSuppressions(Stack.of(this), [
-      {
-        id: "AwsSolutions-IAM4",
-        reason: "CDK-managed S3 bucket notifications handler requires AWSLambdaBasicExecutionRole.",
-        appliesTo: [
-          "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-        ],
-      },
-    ]);
-
     NagSuppressions.addResourceSuppressions(
       role,
       [
         {
           id: "AwsSolutions-IAM5",
-          reason: "Required to grant read and write access to all objects in the bucket.",
+          reason: "Lambda requires read and write access to all objects in the S3 bucket.",
           appliesTo: ["Resource::<StorageBucket13B7643F.Arn>/*"],
         },
       ],
