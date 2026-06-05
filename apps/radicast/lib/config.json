@@ -1,0 +1,10 @@
+{
+  "id": "{{ id }}",
+  "title": "{{ title }}",
+  "author": "{{ author }}",
+  "image": "{{ image }}",
+  "area": "{{ area }}",
+  "station": "{{ station }}",
+  "programSchedules": {{ programSchedules }},
+  "executionSchedule": "{{ executionSchedule }}"
+}

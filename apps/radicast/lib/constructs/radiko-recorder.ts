@@ -17,6 +17,8 @@ type Props = {
 };
 
 export class RadikoRecorder extends Construct {
+  public readonly function: NodejsFunction;
+
   constructor(scope: Construct, id: string, props: Props) {
     super(scope, id);
 
@@ -41,7 +43,7 @@ export class RadikoRecorder extends Construct {
       }),
     });
 
-    const func = new NodejsFunction(this, "Function", {
+    this.function = new NodejsFunction(this, "Function", {
       architecture: Architecture.ARM_64,
       bundling: {
         banner:
@@ -63,7 +65,7 @@ export class RadikoRecorder extends Construct {
       timeout: Duration.minutes(15),
     });
 
-    func.addToRolePolicy(
+    this.function.addToRolePolicy(
       new PolicyStatement({
         actions: ["ssm:GetParameter"],
         resources: [
@@ -73,14 +75,14 @@ export class RadikoRecorder extends Construct {
       }),
     );
 
-    func.addToRolePolicy(
+    this.function.addToRolePolicy(
       new PolicyStatement({
         actions: ["s3:ListBucket"],
         resources: [bucket.bucketArn],
       }),
     );
 
-    func.addToRolePolicy(
+    this.function.addToRolePolicy(
       new PolicyStatement({
         actions: ["s3:GetObject", "s3:PutObject"],
         resources: [bucket.arnForObjects("*")],

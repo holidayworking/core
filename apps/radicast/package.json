@@ -15,6 +15,7 @@
     "aws-cdk-github-oidc": "catalog:",
     "aws-cdk-lib": "catalog:",
     "aws-lambda": "catalog:",
+    "capitalize": "catalog:",
     "constructs": "catalog:",
     "cron-parser": "catalog:",
     "date-fns": "catalog:",

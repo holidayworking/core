@@ -8,8 +8,10 @@ export default defineConfig({
   },
   fmt: {
     ignorePatterns: [
+      ".claude/settings.local.json",
       "apps/hugo/layouts/_partials/functions/warnings.html",
       "apps/hugo/themes/congo/**",
+      "apps/radicast/lib/config.json",
     ],
     sortImports: {
       groups: [

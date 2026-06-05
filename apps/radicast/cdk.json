@@ -98,6 +98,38 @@
     "@aws-cdk/aws-elasticloadbalancingv2:usePostQuantumTlsPolicy": true,
     "@aws-cdk/aws-batch:defaultToAL2023": true,
     "hostedZoneId": "Z00449161JCYY0ECXBT0",
-    "zoneName": "holidayworking.org"
+    "zoneName": "holidayworking.org",
+    "definitions": [
+      {
+        "id": "nogi46ann",
+        "title": "乃木坂46のオールナイトニッポン",
+        "author": "井上和",
+        "image": "https://program-static.cf.radiko.jp/lvbzo9ef6r.jpg",
+        "area": "JP13",
+        "station": "LFR",
+        "programSchedules": ["00 1 * * 4"],
+        "executionSchedule": "30 3 ? * 5 *"
+      },
+      {
+        "id": "nogizaka46nono",
+        "title": "乃木坂46の「の」",
+        "author": "乃木坂46",
+        "image": "https://program-static.cf.radiko.jp/0f1ymirqr2.jpg",
+        "area": "JP13",
+        "station": "QRR",
+        "programSchedules": ["00 18 * * 0"],
+        "executionSchedule": "00 19 ? * 1 *"
+      },
+      {
+        "id": "yuna78mhz",
+        "title": "乃木坂46 柴田柚菜のDreaming time",
+        "author": "柴田柚菜",
+        "image": "https://program-static.cf.radiko.jp/4shbilswvp.jpg",
+        "area": "JP13",
+        "station": "BAYFM78",
+        "programSchedules": ["00 23 * * 2"],
+        "executionSchedule": "00 00 ? * 4 *"
+      }
+    ]
   }
 }

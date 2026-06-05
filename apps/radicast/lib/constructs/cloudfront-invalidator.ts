@@ -1,6 +1,5 @@
 import type { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 
-import { Duration } from "aws-cdk-lib";
 import { Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { Architecture, Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
