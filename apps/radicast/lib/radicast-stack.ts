@@ -122,14 +122,23 @@ export class RadicastStack extends cdk.Stack {
       });
     }
 
+    NagSuppressions.addStackSuppressions(this, [
+      {
+        id: "AwsSolutions-IAM4",
+        reason: "CDK-managed S3 bucket notifications handler requires AWSLambdaBasicExecutionRole.",
+        appliesTo: [
+          "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+        ],
+      },
+    ]);
+
     NagSuppressions.addResourceSuppressionsByPath(
       this,
       "/RadicastStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource", // cspell:disable-line
       [
         {
           id: "AwsSolutions-L1",
-          reason:
-            "CDK BucketDeployment custom resource Lambda runtime is managed by CDK and cannot be configured by the user.",
+          reason: "CDK BucketDeployment Lambda runtime is managed by CDK and cannot be configured.",
         },
       ],
     );
@@ -141,7 +150,7 @@ export class RadicastStack extends cdk.Stack {
         {
           id: "AwsSolutions-IAM5",
           reason:
-            "CDK BucketDeployment custom resource requires S3 wildcard permissions to copy assets from the CDK staging bucket and manage files in the destination bucket. These permissions are managed by CDK and cannot be scoped down further.",
+            "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
         },
       ],
     );
