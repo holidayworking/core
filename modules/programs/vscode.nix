@@ -64,6 +64,9 @@ delib.module {
         "terminal.integrated.fontFamily" = "FiraCode Nerd Font";
         "terminal.integrated.fontLigatures.enabled" = true;
         "terminal.integrated.fontSize" = 14;
+        "claudeCode.initialPermissionMode" = "plan";
+        "claudeCode.preferredLocation" = "panel";
+        "claudeCode.useCtrlEnterToSend" = true;
         "remote.autoForwardPortsSource" = "process";
         "shfmt.executableArgs" = [
           "--indent"

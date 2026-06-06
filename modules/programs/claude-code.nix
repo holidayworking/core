@@ -7,6 +7,7 @@ delib.module {
     package = pkgs.llm-agents.claude-code;
 
     settings = {
+      defaultMode = "plan";
       theme = "auto";
 
       statusLine = {
