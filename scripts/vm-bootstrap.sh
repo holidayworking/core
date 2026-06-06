@@ -7,7 +7,7 @@ readonly VM_IP="${VM_IP}"
 
 echo "Bootstrapping NixOS on VM..."
 nix run github:nix-community/nixos-anywhere -- \
-  --flake .#gemini \
+  --flake .#sakura \
   --target-host root@"$VM_IP" \
   --phases kexec,disko,install
 

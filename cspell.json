@@ -28,7 +28,9 @@
     "apps/hugo/themes/congo",
     "pnpm-lock.yaml"
   ],
-  "import": ["@cspell/dict-people-names/cspell-ext.json"],
+  "import": [
+    "@cspell/dict-people-names/cspell-ext.json"
+  ],
   "version": "0.2",
   "words": [
     "acpi",
@@ -288,6 +290,7 @@
     "rwdata",
     "rwxr",
     "ryoppippi",
+    "sakura",
     "screenreader",
     "sddr",
     "servicemetrics",
