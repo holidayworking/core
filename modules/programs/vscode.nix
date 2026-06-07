@@ -67,6 +67,7 @@ delib.module {
         "claudeCode.initialPermissionMode" = "plan";
         "claudeCode.preferredLocation" = "panel";
         "claudeCode.useCtrlEnterToSend" = true;
+        "github.copilot.chat.claudeAgent.enabled" = false;
         "remote.autoForwardPortsSource" = "process";
         "shfmt.executableArgs" = [
           "--indent"
