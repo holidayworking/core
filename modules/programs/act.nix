@@ -1,15 +1,8 @@
-{
-  delib,
-  host,
-  pkgs,
-  ...
-}:
+{ delib, pkgs, ... }:
 delib.module {
   name = "programs.act";
 
-  options = delib.singleEnableOption host.isDesktop;
-
-  home.ifEnabled.home.packages = with pkgs; [
+  home.always.home.packages = with pkgs; [
     act
   ];
 }
