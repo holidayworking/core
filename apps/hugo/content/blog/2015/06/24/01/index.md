@@ -10,7 +10,7 @@ Docker Machine で RancherOS が起動できるようになっていたので、
 
 {{< hatenablog-parts url="https://blog.docker.com/2015/06/compose-1-3-swarm-0-3-machine-0-3/" >}}
 
-`virtualbox-boot2docker-url` オプションに RancherOS の ISO イメージの URL を指定して、マシンを作成するようにする。`virtualbox-boot2docker-url` オプションを指定しない場合は boot2docker でマシンが作成されるようになっている。
+`virtualbox-boot2docker-url`オプションに RancherOS の ISO イメージの URL を指定して、マシンを作成するようにする。`virtualbox-boot2docker-url`オプションを指定しない場合は boot2docker でマシンが作成されるようになっている。
 
 ```bash
 $ docker-machine create -driver virtualbox --virtualbox-boot2docker-url https://releases.rancher.com/os/v0.3.1/machine-rancheros.iso RancherOS

@@ -24,7 +24,7 @@ Phoenix アプリケーションを Heroku にデプロイしてみた。
 
 ## Phoenix アプリケーションの作成
 
-[Up And Running · Phoenix](http://www.phoenixframework.org/v0.13.1/docs/up-and-running) を参考にして Phoenix アプリケーションを作成した。
+[Up And Running · Phoenix](http://www.phoenixframework.org/v0.13.1/docs/up-and-running)を参考にして Phoenix アプリケーションを作成した。
 
 ```bash
 $ mix local.hex
@@ -34,19 +34,19 @@ $ mix phoenix.new phoenix_on_heroku
 
 この状態で Heroku にデプロイしても動作しないので、次のファイルを作成または修正する必要がある。
 
-- `Procfile` の作成
-- `elixir_buildpack.config` の作成
-- `package.json` の修正
-- `config/prod.secret.exs` の修正
-- `.gitignore` の修正
+- `Procfile`の作成
+- `elixir_buildpack.config`の作成
+- `package.json`の修正
+- `config/prod.secret.exs`の修正
+- `.gitignore`の修正
 
-### `Procfile` の作成
+### `Procfile`の作成
 
 ```text
 web: yes | mix compile.protocols && elixir -pa _build/prod/consolidated -S mix phoenix.server
 ```
 
-### `elixir_buildpack.config` の作成
+### `elixir_buildpack.config`の作成
 
 ```text
 # Erlang version
@@ -62,9 +62,9 @@ always_rebuild=false
 config_vars_to_export=(DATABASE_URL)
 ```
 
-### `package.json` の修正
+### `package.json`の修正
 
-`npm install` で `brunch build --production` が実行されるようにする。
+`npm install`で`brunch build --production`が実行されるようにする。
 
 ```javascript
 {
@@ -85,9 +85,9 @@ config_vars_to_export=(DATABASE_URL)
 }
 ```
 
-### `config/prod.secret.exs` の修正
+### `config/prod.secret.exs`の修正
 
-`secret_key_base` と DB への接続情報を環境変数から取得するように修正する。
+`secret_key_base`と DB への接続情報を環境変数から取得するように修正する。
 
 ```elixir
 use Mix.Config
@@ -105,9 +105,9 @@ config :phoenix_on_heroku, PhoenixOnHeroku.Repo,
   size: 20 # The amount of database connections in the pool
 ```
 
-## `.gitignore` の修正
+## `.gitignore`の修正
 
-`config/prod.secret.exs` がコミットされるように修正する。
+`config/prod.secret.exs`がコミットされるように修正する。
 
 ```text
 # Mix artifacts
@@ -152,7 +152,7 @@ $ heroku create
 - [https://github.com/HashNuke/heroku-buildpack-elixir:title]
 - [https://github.com/heroku/heroku-buildpack-nodejs:title]
 
-複数のビルドパックを設定するためには [GitHub \- ddollar/heroku\-buildpack\-multi: DEPRECATED: Composable buildpacks](https://github.com/ddollar/heroku-buildpack-multi) を使う必要があったらしいが、最近の Heroku Toolbelt では次のように設定すればよい。
+複数のビルドパックを設定するためには[GitHub \- ddollar/heroku\-buildpack\-multi: DEPRECATED: Composable buildpacks](https://github.com/ddollar/heroku-buildpack-multi)を使う必要があったらしいが、最近の Heroku Toolbelt では次のように設定すればよい。
 
 ```bash
 $ heroku buildpacks:set https://github.com/HashNuke/heroku-buildpack-elixir.git
@@ -182,7 +182,7 @@ $ git push heroku master
 
 ## 確認
 
-`https://<app name>.herokuapp.com` にアクセスして、次の画面が表示されることを確認する。
+`https://<app name>.herokuapp.com`にアクセスして、次の画面が表示されることを確認する。
 
 {{< screenshot src="20150612004355.png" >}}
 

@@ -7,7 +7,7 @@ images:
   - blog/2020/12/06/01/20201202204058.png
 ---
 
-この記事は [Mackerel Advent Calendar 2020](https://qiita.com/advent-calendar/2020/mackerel) の 6 日目の記事である。
+この記事は[Mackerel Advent Calendar 2020](https://qiita.com/advent-calendar/2020/mackerel)の 6 日目の記事である。
 
 Mackerel ではカスタムメトリックプラグインを利用することで自分たちに必要なミドルウェアのメトリックを収集できることだと考えている。Mackerel エージェントをインストールした状態では[システムメトリック](https://mackerel.io/ja/docs/entry/spec/metrics)のみの取集となるため、必要なミドルウェアのメトリックを取集するためには、カスタムメトリックプラグインを利用することになる。カスタムメトリックは下記から探すことができるはず。
 
@@ -41,7 +41,7 @@ mackerel-remora では Docker イメージが公開されているので、Docke
         └── mackerel-plugin-nature-remo
 ```
 
-`config.yml` は次のような内容である。
+`config.yml`は次のような内容である。
 
 ```yaml
 apikey: { { Mackerel の API キー } }
@@ -52,7 +52,7 @@ plugin:
         command: /app/plugins/mackerel-plugin-nature-remo_linux_amd64/mackerel-plugin-nature-remo -access-token {{ Nature Remo のアクセストークン }}
 ```
 
-また、`docker-compose.yml` は次のような内容である。
+また、`docker-compose.yml`は次のような内容である。
 
 ```yaml
 version: "3"

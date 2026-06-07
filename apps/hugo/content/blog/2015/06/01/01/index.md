@@ -8,7 +8,7 @@ tags:
 
 ハイパーバイザー・ベースの Docker エンジンである Hyper を試してみた。
 
-普通の Docker エンジンが採用しているコンテナ型仮想化のメリットとハイパーバイザー型仮想化のメリットを組合せた印象を受ける。コンテナ型仮想化、ハイパーバイザー型仮想化と Hyper がどのように違うのかは、[Why Hyper | Hyper - Make VM run like Container](https://hyper.sh/why-hyper.html) にまとまっている。
+普通の Docker エンジンが採用しているコンテナ型仮想化のメリットとハイパーバイザー型仮想化のメリットを組合せた印象を受ける。コンテナ型仮想化、ハイパーバイザー型仮想化と Hyper がどのように違うのかは、[Why Hyper | Hyper - Make VM run like Container](https://hyper.sh/why-hyper.html)にまとまっている。
 
 現時点でサポートしている Linux ディストリビューションは次のとおりである。
 
@@ -26,11 +26,11 @@ tags:
 - QEMU 2.0 以上
 - Docker 1.5 以上
 
-今回は Vagrant（VirtualBox）で起動した Ubuntu 14.04 で試すことにした。作成した `Vagrantfile` は GitHub に公開している。
+今回は Vagrant（VirtualBox）で起動した Ubuntu 14.04 で試すことにした。作成した`Vagrantfile`は GitHub に公開している。
 
 {{< hatenablog-parts url="http://github.com/holidayworking/vagrant-hyper" >}}
 
-この `Vagrantfile` では、プロビジョニングで QEMU と Docker をインストールして、Ubuntu の Docker イメージを取得するようにしてある。Hyper のセットアップスクリプトの実行もプロビジョニングに含めたかったが、正常に実行してくれたなかったので含めていない。
+この`Vagrantfile`では、プロビジョニングで QEMU と Docker をインストールして、Ubuntu の Docker イメージを取得するようにしてある。Hyper のセットアップスクリプトの実行もプロビジョニングに含めたかったが、正常に実行してくれたなかったので含めていない。
 
 ## Hyper のインストール
 
@@ -83,7 +83,7 @@ To get more information:
 
 ## VM の起動
 
-起動したい Docker イメージを事前に取得しておいて、`hyper run <docker image name>` を実行すると VM として起動される。
+起動したい Docker イメージを事前に取得しておいて、`hyper run <docker image name>`を実行すると VM として起動される。
 
 ```bash
 $ docker pull ubuntu:latest
@@ -114,7 +114,7 @@ root     18919  6.8 18.0 761572 90696 ?        Ssl  13:40   0:02 qemu-system-x86
 
 ## VM のリストを取得
 
-`hyper list` を実行すると VM のリストを取得できる。
+`hyper list`を実行すると VM のリストを取得できる。
 
 ```bash
 $ sudo hyper list
@@ -124,7 +124,7 @@ $ sudo hyper list
 
 ## VM の停止
 
-VM にアタッチしている場合は、普通の Docker エンジンと同様に `exit` コマンドを実行することで VM の停止ができるようである。
+VM にアタッチしている場合は、普通の Docker エンジンと同様に`exit`コマンドを実行することで VM の停止ができるようである。
 
 ```bash
 root@ubuntu:latest-6107126173:/# exit

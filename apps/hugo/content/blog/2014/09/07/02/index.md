@@ -8,7 +8,7 @@ tags:
 
 Riak 2.0 で追加された Data Types で登録されたデータに対して Riak Search（Yokozuna）を試してみた。
 
-バケットとインデックスの紐付けをどうするか分からなかったけど、`Riak::Client#set_bucket_props` でバケットタイプを指定するだけで良かった模様。
+バケットとインデックスの紐付けをどうするか分からなかったけど、`Riak::Client#set_bucket_props`でバケットタイプを指定するだけで良かった模様。
 
 ```ruby
 $ rails c

@@ -56,7 +56,7 @@ sudo pacman -S yay
 yay -S 1password
 ```
 
-ログイン時に自動起動させたかったので、`~/.config/autostart/1password.desktop` を作成した。
+ログイン時に自動起動させたかったので、`~/.config/autostart/1password.desktop`を作成した。
 
 ```plaintext
 [Desktop Entry]
@@ -83,7 +83,7 @@ cd dotfiles
 ./install.sh
 ```
 
-端末アプリケーションで、カスタムコマンドを `/usr/bin/fish` に変更してから、端末アプリケーションを再起動後に次のコマンドを実行した。
+端末アプリケーションで、カスタムコマンドを`/usr/bin/fish`に変更してから、端末アプリケーションを再起動後に次のコマンドを実行した。
 
 ```shell
 curl -fsSL https://git.io/fisher | source && fisher update
@@ -193,7 +193,7 @@ echo uinput | sudo tee /etc/modules-load.d/uinput.conf
 echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/99-input.rules
 ```
 
-次の内容で `~/.config/xremap/config.yaml` を作成した。
+次の内容で`~/.config/xremap/config.yaml`を作成した。
 
 ```yaml
 modmap:
@@ -231,9 +231,9 @@ keymap:
       Super-f: C-Shift-f
 ```
 
-そして、`xremap ~/.config/xremap/config.yaml` を実行後 、期待どおりにキーがスワップしていることを確認した。
+そして、`xremap ~/.config/xremap/config.yaml`を実行後 、期待どおりにキーがスワップしていることを確認した。
 
-systemd で管理するために次の内容で `~/.config/systemd/user/xremap.service` を作成した。
+systemd で管理するために次の内容で`~/.config/systemd/user/xremap.service`を作成した。
 
 ```plaintext
 [Unit]
@@ -264,7 +264,7 @@ systemctl --user start xremap.service
 sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code ttf-inconsolata
 ```
 
-[フォント設定/サンプル \- ArchWiki](https://wiki.archlinux.jp/index.php/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E8%A8%AD%E5%AE%9A/%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB) を参考に `~/.config/fontconfig/fonts.conf` を作成した。
+[フォント設定/サンプル \- ArchWiki](https://wiki.archlinux.jp/index.php/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E8%A8%AD%E5%AE%9A/%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB)を参考に`~/.config/fontconfig/fonts.conf`を作成した。
 
 ```xml
 <?xml version='1.0'?>
@@ -371,7 +371,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-trash true
 yay -S ulauncher
 ```
 
-ホットキーは `Super+Space` に変更した。
+ホットキーは`Super+Space`に変更した。
 
 ## Microsoft Ege のインストール
 

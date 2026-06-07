@@ -6,7 +6,7 @@ tags:
   - machinelearning
 ---
 
-Go 言語で実装された機械学習ライブラリである [GoLearn](https://github.com/sjwhitworth/golearn) を試してみた。
+Go 言語で実装された機械学習ライブラリである[GoLearn](https://github.com/sjwhitworth/golearn)を試してみた。
 
 ## インストール
 

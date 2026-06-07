@@ -19,11 +19,11 @@ One-Class SVM のモデルを構築する必要があるので、オブジェク
 detector = Hazure::Detector.new([[1,0,0], [1,0,0]])
 ```
 
-モデルが構築後は `Hazure::Detector#outlier?` の引数に判定したいデータを渡す。
+モデルが構築後は`Hazure::Detector#outlier?`の引数に判定したいデータを渡す。
 
 ```ruby
 detector.outlier?([10, 0, 0])
 # => true
 ```
 
-`Hazure::Detector#outlier?` の返り値が `true` の場合が外れ値で `false` の場合が正常値となる。
+`Hazure::Detector#outlier?`の返り値が`true`の場合が外れ値で`false`の場合が正常値となる。

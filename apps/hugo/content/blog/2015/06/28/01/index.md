@@ -18,7 +18,7 @@ $ docker build -t holidayworking/extractopinion .
 
 ## 意見（評価表現）抽出ツールの実行
 
-オプションなしで Docker コンテナを起動すると、意見（評価表現）抽出ツールに含まれているサンプルファイルを引数として `extract.sh` が実行されるようになっている。
+オプションなしで Docker コンテナを起動すると、意見（評価表現）抽出ツールに含まれているサンプルファイルを引数として`extract.sh`が実行されるようになっている。
 
 ```bash
 $ docker run holidayworking/extractopinion
@@ -32,7 +32,7 @@ $ docker run holidayworking/extractopinion
 /opt/extractopinion-1.2/sample.txt.euc  5       [著者]  メリット+       商機が拡大すると考えられる。
 ```
 
-任意のファイルに対して `extract.sh` を実行したい場合は、次のように Docker コンテナを実行する。
+任意のファイルに対して`extract.sh`を実行したい場合は、次のように Docker コンテナを実行する。
 
 ```bash
 $ cat sample.txt

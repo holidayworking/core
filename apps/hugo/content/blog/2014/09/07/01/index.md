@@ -6,7 +6,7 @@ tags:
   - riak
 ---
 
-Riak Ruby Client の [README](https://github.com/basho/riak-ruby-client/blob/master/README.markdown) のサンプルを試しただけ。
+Riak Ruby Client の[README](https://github.com/basho/riak-ruby-client/blob/master/README.markdown)のサンプルを試しただけ。
 
 ```ruby
 $ rails c

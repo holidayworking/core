@@ -10,7 +10,7 @@ images:
   - blog/2017/12/22/01/20171220090226.png
 ---
 
-この記事は [Mackerel Advent Calendar 2017](https://qiita.com/advent-calendar/2017/mackerel) の 22 日目の記事である。
+この記事は[Mackerel Advent Calendar 2017](https://qiita.com/advent-calendar/2017/mackerel)の 22 日目の記事である。
 
 今年の 2 月頃から仕事で Mackerel を使い出して、次のプラグインを作成した。
 
@@ -24,7 +24,7 @@ images:
 
 [Mackerel のヘルプにも連携方法](https://mackerel.io/ja/docs/entry/advanced/capistrano-2.x)が書かれているが、Capistrano 2.x を前提としているため Capistrano 3.x で同じことをやろうとすると、少し修正が必要である。
 
-まずは `Capfile` で [mackerel-client](https://rubygems.org/gems/mackerel-client) を読み込むようにする。
+まずは`Capfile`で[mackerel-client](https://rubygems.org/gems/mackerel-client)を読み込むようにする。
 
 ```ruby
 require "capistrano/setup"
@@ -44,7 +44,7 @@ require 'mackerel/client'
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
 ```
 
-そして、`config/deploy/production.rb` で Mackerel からデプロイ対象のホストを取得するようにする。
+そして、`config/deploy/production.rb`で Mackerel からデプロイ対象のホストを取得するようにする。
 
 ```ruby
 set :mackerel_api_key, ENV.fetch('MACKEREL_API_KEY')
@@ -71,7 +71,7 @@ role :db,  host_ip_addrs(:app)
 
 ## デプロイ時に Mackerel のグラフアノテーションへ投稿
 
-`config/deploy/production.rb` に下記をすると、グラフアノテーションへ投稿できる。
+`config/deploy/production.rb`に下記をすると、グラフアノテーションへ投稿できる。
 
 ```ruby
 namespace :deploy do

@@ -8,14 +8,14 @@ tags:
   - rails
 ---
 
-Docker のオーケストレーションツールである [Fig](http://www.fig.sh) で Rails の CI 環境を構築してみた。
+Docker のオーケストレーションツールである[Fig](http://www.fig.sh)で Rails の CI 環境を構築してみた。
 
 CI 環境と言っても、下記を実行するだけ。
 
 - RSpec
 - RuboCop
 
-構築した Rails プロジェクトは [GitHub](https://github.com/holidayworking/fig-rails-example) で公開しているので、試すだけなら次のように。
+構築した Rails プロジェクトは[GitHub](https://github.com/holidayworking/fig-rails-example)で公開しているので、試すだけなら次のように。
 
 ```bash
 $ git clone https://github.com/holidayworking/fig-rails-example.git
@@ -27,7 +27,7 @@ $ ./bin/ci
 
 ### fig.yml の準備
 
-Fig でオーケストレーションをする場合は `fig.yml` を用意する必要がある。
+Fig でオーケストレーションをする場合は`fig.yml`を用意する必要がある。
 
 ```yaml
 db:
@@ -49,11 +49,11 @@ app:
     - db
 ```
 
-データベースのコンテナとして公式の [mysql イメージ](https://registry.hub.docker.com/_/mysql/)は、環境変数 `MYSQL_ROOT_PASSWORD` を設定しないと起動してくれないので、適当な文字列を設定してある。Rails 側でも必要になるので環境変 `FIG-RAILS-EXAMPLE_DATABASE_PASSWORD` を設定しておく。
+データベースのコンテナとして公式の[mysql イメージ](https://registry.hub.docker.com/_/mysql/)は、環境変数`MYSQL_ROOT_PASSWORD`を設定しないと起動してくれないので、適当な文字列を設定してある。Rails 側でも必要になるので環境変`FIG-RAILS-EXAMPLE_DATABASE_PASSWORD`を設定しておく。
 
 ### config/database.yml の変更
 
-Rails 側でデータベースのホストとポート、パスワードを取得するために `config/database.yml` を次のように変更しておく。
+Rails 側でデータベースのホストとポート、パスワードを取得するために`config/database.yml`を次のように変更しておく。
 
 ```yaml
 default: &default
@@ -99,7 +99,7 @@ $ fig run app bundle exec rake spec
 
 ### シェルスクリプトの用意
 
-Jenkins で実行することを想定して、 `./bin/ci` というシェルスクリプトを用意してみた。
+Jenkins で実行することを想定して、 `./bin/ci`というシェルスクリプトを用意してみた。
 
 ```bash
 #!/bin/sh
@@ -121,9 +121,9 @@ fig rm --force
 exit $RESULT
 ```
 
-`fig up` のオプションで `-d` を指定するとバックグラウンドで Docker コンテナーを起動してくれるんだけど、起動が完了したことを検知できなないので、30 秒スリープするようにしてある。環境によっては長すぎる場合があるので、この辺は調整していくしかない。起動が完了したことを簡単な方法で検知できればいいのだが…。
+`fig up`のオプションで`-d`を指定するとバックグラウンドで Docker コンテナーを起動してくれるんだけど、起動が完了したことを検知できなないので、30 秒スリープするようにしてある。環境によっては長すぎる場合があるので、この辺は調整していくしかない。起動が完了したことを簡単な方法で検知できればいいのだが…。
 
-`./bin/ci_spec` は次のようなシェルスクリプト。
+`./bin/ci_spec`は次のようなシェルスクリプト。
 
 ```bash
 #!/bin/sh

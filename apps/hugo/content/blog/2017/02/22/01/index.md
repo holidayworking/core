@@ -14,8 +14,8 @@ tags:
 WebACL に関連づけられている全ルールのメトリックスを取得するために、次の修正を実施した。
 
 - WebACL の指定方法を WebACL 名から WebACL ID に変更
-  - [GetWwbACL](http://docs.aws.amazon.com/ja_jp/waf/latest/APIReference/API_GetWebACL.html) で Web ACL ID を指定する必要があるため
-- グラフ定義における名前を `custom.waf.Requests` から `custom.waf.Requests.#.*` に変更
+  - [GetWwbACL](http://docs.aws.amazon.com/ja_jp/waf/latest/APIReference/API_GetWebACL.html)で Web ACL ID を指定する必要があるため
+- グラフ定義における名前を`custom.waf.Requests`から`custom.waf.Requests.#.*`に変更
 - ALB と連携している AWS WAF のサポートを削除
   - AWS WAF の API には AWS WAF と AWS WAF Regional の 2 種類がある
     - AWS WAF : CloudFront

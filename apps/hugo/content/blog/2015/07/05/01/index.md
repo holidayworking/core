@@ -15,7 +15,7 @@ tags:
 
 ## 原因
 
-`BOOTVOLUME` を定義していれば `IMG_HDD` の定義は不要だと勘違いしていたが、`IMG_HDD` の定義も必要であるらしい。この前は `IMG_HDD` を定義していなかったので、ディスクのマウントに失敗していたのである。
+`BOOTVOLUME`を定義していれば`IMG_HDD`の定義は不要だと勘違いしていたが、`IMG_HDD`の定義も必要であるらしい。この前は`IMG_HDD`を定義していなかったので、ディスクのマウントに失敗していたのである。
 
 {{< hatenablog-parts url="https://github.com/mist64/xhyve/issues/34" >}}
 

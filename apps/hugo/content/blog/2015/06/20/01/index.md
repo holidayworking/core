@@ -47,7 +47,7 @@ $ dd if=/dev/zero of=hdd.img bs=1g count=8
 
 ### 2. インストール用スクリプトの作成
 
-次の内容を `xhyve-run-fedora-install.sh` というファイル名で作成する。
+次の内容を`xhyve-run-fedora-install.sh`というファイル名で作成する。
 
 ```bash
 #!/bin/sh
@@ -110,14 +110,14 @@ drwx------. 2 root root    12288 Jun 20 06:57 lost+found
 -rwxr-xr-x. 1 root root  5897880 May 28 12:43 vmlinuz-4.0.4-303.fc22.x86_64
 ```
 
-`vmlinuz-4.0.4-303.fc22.x86_64` と `initramfs-4.0.4-303.fc22.x86_64.img` を OS X 側に持ってくる。
+`vmlinuz-4.0.4-303.fc22.x86_64`と`initramfs-4.0.4-303.fc22.x86_64.img`を OS X 側に持ってくる。
 
 ```bash
 $ scp root@192.168.64.22:/mnt/sysimage/boot/vmlinuz-4.0.4-303.fc22.x86_64 .
 $ scp root@192.168.64.22:/mnt/sysimage/boot/initramfs-4.0.4-303.fc22.x86_64.img .
 ```
 
-起動用スクリプトに記載するブートオプションの参考にするため、`grub.cfg` も持ってくる。
+起動用スクリプトに記載するブートオプションの参考にするため、`grub.cfg`も持ってくる。
 
 ```bash
 $ scp root@192.168.64.22:/mnt/sysimage/boot/grub2/grub.cfg .
@@ -127,7 +127,7 @@ $ scp root@192.168.64.22:/mnt/sysimage/boot/grub2/grub.cfg .
 
 ### 4. 起動用スクリプトの作成
 
-次の内容を `xhyve-run-fedora.sh` というファイル名で作成する。
+次の内容を`xhyve-run-fedora.sh`というファイル名で作成する。
 
 ```bash
 #!/bin/sh
@@ -146,9 +146,9 @@ LPC_DEV="-l com1,stdio"
 xhyve $MEM $SMP $PCI_DEV $LPC_DEV $NET $IMG_CD $IMG_HDD -f kexec,$KERNEL,$INITRD,"$CMDLINE"
 ```
 
-`KERNEL` と `INITRD` は持ってきた vmlinuz と initrd を指定する。
+`KERNEL`と`INITRD`は持ってきた vmlinuz と initrd を指定する。
 
-`CMDLINE` については `grub.cfg` の 90 行目当たりの内容を指定する。
+`CMDLINE`については`grub.cfg`の 90 行目当たりの内容を指定する。
 
 ```bash
 menuentry 'Fedora (4.0.4-303.fc22.x86_64) 22 (Twenty Two)' --class fedora --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-4.0.4-303.fc22.x86_64-advanced-4789ebcc-cc67-4818-bc91-bc590f7872de' {

@@ -8,11 +8,11 @@ images:
   - blog/2015/01/26/01/20150530204004.png
 ---
 
-Vagrant で Riak クラスターを構築するために [vagrant-riak-cluster](https://github.com/holidayworking/vagrant-riak-cluster) というものを作ってみた。
+Vagrant で Riak クラスターを構築するために[vagrant-riak-cluster](https://github.com/holidayworking/vagrant-riak-cluster)というものを作ってみた。
 
 ## 使い方
 
-使い方は [READE.md](https://github.com/holidayworking/vagrant-riak-cluster/blob/master/README.md) にあるとおりで、デフォルトでは 5 ノード作成されるようにしてある。作成するノードは環境変数 `NODES` で定義できるようにしてあるので、3 ノード作成したい場合は次のようにすればよい。
+使い方は[READE.md](https://github.com/holidayworking/vagrant-riak-cluster/blob/master/README.md)にあるとおりで、デフォルトでは 5 ノード作成されるようにしてある。作成するノードは環境変数`NODES`で定義できるようにしてあるので、3 ノード作成したい場合は次のようにすればよい。
 
 ```bash
 $ NODES=3 vagrant up
@@ -20,7 +20,7 @@ $ NODES=3 vagrant up
 
 ## Riak クラスターの構築
 
-`vagrant up` 完了時には各ノードに Riak がインストールされた状態となるので、クラスターを構築するのは次の手順が必要になる。
+`vagrant up`完了時には各ノードに Riak がインストールされた状態となるので、クラスターを構築するのは次の手順が必要になる。
 
 1. join
 2. plan
@@ -92,7 +92,7 @@ Transfers resulting from cluster changes: 51
 Cluster changes committed
 ```
 
-クラスターの状態は `member-status` で確認できる。
+クラスターの状態は`member-status`で確認できる。
 
 ```bash
 [vagrant@riak1 ~]$ sudo riak-admin member-status
@@ -108,10 +108,10 @@ valid      18.8%      --      'riak@192.168.33.15'
 Valid:5 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 ```
 
-`Pending` が `--` となっていれば、クラスターの構築は完了である。
+`Pending`が`--`となっていれば、クラスターの構築は完了である。
 
 ## Riak Control
 
-[Riak Control](http://docs.basho.com/riak/latest/ops/advanced/riak-control/) を有効にしてあるので、ブラウザで `http://192.168.33.11:8098/admin` にアクセスすると、次のような画面を確認できる。
+[Riak Control](http://docs.basho.com/riak/latest/ops/advanced/riak-control/)を有効にしてあるので、ブラウザで`http://192.168.33.11:8098/admin`にアクセスすると、次のような画面を確認できる。
 
 {{< screenshot src="20150530204004.png" >}}

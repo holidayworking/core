@@ -15,7 +15,7 @@ RancherOS の軽量バージョンである RancherOS Lite を試してみた。
 
 ## RancherOS Lite とは
 
-[Only Docker]（Only Docker）と同じように [RancherOS](https://github.com/rancherio/os) の軽量バージョンであるらしい。RancherOS の特徴のひとつであるシステム Docker という概念を持っていないけど、[RancherOS Base](https://github.com/rancherio/os-base) をベースにしているものである。
+[Only Docker]（Only Docker）と同じように[RancherOS](https://github.com/rancherio/os)の軽量バージョンであるらしい。RancherOS の特徴のひとつであるシステム Docker という概念を持っていないけど、[RancherOS Base](https://github.com/rancherio/os-base)をベースにしているものである。
 
 ## 起動方法
 
@@ -75,7 +75,7 @@ rancheros-lite login:
 
 ## ログイン
 
-ユーザーは `rancher`、パスワードは `rancher` でログインできる。
+ユーザーは`rancher`、パスワードは`rancher`でログインできる。
 
 ```bash
 rancheros-lite login: rancher

@@ -12,7 +12,7 @@ images:
 
 xhyve で CentOS 7 を動かしてみた。
 
-大体の手順は [xhyve – Lightweight Virtualization on OS X Based on bhyve – pagetable\.com](https://www.pagetable.com/?p=831) で書かれている Ubuntu Server の動かし方と変わらないが、CentOS であることを考慮する必要があった。
+大体の手順は[xhyve – Lightweight Virtualization on OS X Based on bhyve – pagetable\.com](https://www.pagetable.com/?p=831)で書かれている Ubuntu Server の動かし方と変わらないが、CentOS であることを考慮する必要があった。
 
 1. インストールディスクイメージの取得
 2. インストール用スクリプトの作成
@@ -51,7 +51,7 @@ $ dd if=/dev/zero of=hdd.img bs=1g count=8
 
 ### 2. インストール用スクリプトの作成
 
-次の内容を `xhyve-run-centos-install.sh` というファイル名で作成する。
+次の内容を`xhyve-run-centos-install.sh`というファイル名で作成する。
 
 ```sh
 #!/bin/sh
@@ -115,14 +115,14 @@ drwxr-xr-x. 6 root root      104 Jun 16 13:43 grub2
 -rwxr-xr-x. 1 root root  5029136 Mar  6 11:45 vmlinuz-3.10.0-229.el7.x86_64
 ```
 
-`vmlinuz-3.10.0-229.el7.x86_64` と `initramfs-3.10.0-229.el7.x86_64.img` を OS X 側に持ってくる。
+`vmlinuz-3.10.0-229.el7.x86_64`と`initramfs-3.10.0-229.el7.x86_64.img`を OS X 側に持ってくる。
 
 ```bash
 $ scp root@192.168.64.15:/mnt/sysimage/boot/vmlinuz-3.10.0-229.el7.x86_64 .
 $ scp root@192.168.64.15:/mnt/sysimage/boot/initramfs-3.10.0-229.el7.x86_64.img .
 ```
 
-起動用スクリプトに記載するブートオプションの参考にするため、`grub.cfg` も持ってくる。
+起動用スクリプトに記載するブートオプションの参考にするため、`grub.cfg`も持ってくる。
 
 ```bash
 $ scp root@192.168.64.15:/mnt/sysimage/boot/grub2/grub.cfg .
@@ -132,7 +132,7 @@ $ scp root@192.168.64.15:/mnt/sysimage/boot/grub2/grub.cfg .
 
 ### 4. 起動用スクリプトの作成
 
-次の内容を `xhyve-run-centos.sh` というファイル名で作成する。
+次の内容を`xhyve-run-centos.sh`というファイル名で作成する。
 
 ```bash
 #!/bin/sh
@@ -151,9 +151,9 @@ LPC_DEV="-l com1,stdio"
 xhyve $MEM $SMP $PCI_DEV $LPC_DEV $NET $IMG_CD $IMG_HDD -f kexec,$KERNEL,$INITRD,"$CMDLINE"
 ```
 
-`KERNEL` と `INITRD` は持ってきた vmlinuz と initrd を指定する。
+`KERNEL`と`INITRD`は持ってきた vmlinuz と initrd を指定する。
 
-`CMDLINE` については `grub.cfg` の 90 行目当たりの内容を指定する。
+`CMDLINE`については`grub.cfg`の 90 行目当たりの内容を指定する。
 
 ```bash
 menuentry 'CentOS Linux 7 (Core), with Linux 3.10.0-229.el7.x86_64' --class rhel fedora --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-3.10.0-229.el7.x86_64-advanced-15a33d58-bcf2-403c-99b2-29ec5bd3866d' {

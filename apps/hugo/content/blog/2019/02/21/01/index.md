@@ -15,9 +15,9 @@ Mackerel アンバサダーに就任したので mackerel-plugin-elasticsearch-c
 
 Mackerel の AWS インテグレーションで Amazon Elasticsearch Service を監視しているけど、対応しているメトリックでは fielddata や Query Cache がどれぐらいメモリーを確認することが出来ない状態である。CloudWatch でこれらのメトリックが取得できるようになればよいのだけど…。
 
-[mackerel-plugin-elasticsearch](https://github.com/mackerelio/mackerel-agent-plugins/tree/master/mackerel-plugin-elasticsearch) を使う方法も考えたけど、このプラグインは Amazon Elasticsearch Service が対応していない [Node Stats](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-stats.html) でメトリックを取得しているため、このプラグインを使うことを断念した。
+[mackerel-plugin-elasticsearch](https://github.com/mackerelio/mackerel-agent-plugins/tree/master/mackerel-plugin-elasticsearch)を使う方法も考えたけど、このプラグインは Amazon Elasticsearch Service が対応していない[Node Stats](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-stats.html)でメトリックを取得しているため、このプラグインを使うことを断念した。
 
-Node Stats と同様のメトリックが取得できそうである [Cluster Stats](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-stats.html) は Amazon Elasticsearch Service で対応しているので、Cluster Stats から必要なメトリックを取得するプラグインを作成することにした。
+Node Stats と同様のメトリックが取得できそうである[Cluster Stats](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-stats.html)は Amazon Elasticsearch Service で対応しているので、Cluster Stats から必要なメトリックを取得するプラグインを作成することにした。
 
 ## 使い方
 

@@ -11,7 +11,7 @@ images:
   - blog/2015/06/17/01/20150617232055.png
 ---
 
-次の記事で [RancherOS Lite with xhyve](https://github.com/ailispaw/rancheros-lite/tree/master/contrib/xhyve) では NFS によるファイル共有がサポートされてないと書いた。
+次の記事で[RancherOS Lite with xhyve](https://github.com/ailispaw/rancheros-lite/tree/master/contrib/xhyve)では NFS によるファイル共有がサポートされてないと書いた。
 
 {{< hatenablog-parts url="https://holidayworking.org/blog/2015/06/16/01/" >}}
 
@@ -40,13 +40,13 @@ $ sudo ./xhyve-run.sh
 
 ## Docker のボリューム機能の確認
 
-OS X 側に適当な HTML ファイルを作成して、[nginx](https://registry.hub.docker.com/_/nginx/) でそのファイルが表示できるかを確認してみた。
+OS X 側に適当な HTML ファイルを作成して、[nginx](https://registry.hub.docker.com/_/nginx/)でそのファイルが表示できるかを確認してみた。
 
 ```bash
 $ echo '<h1>Hello RancherOS Lite</h1>' > index.html
 $ docker -H 192.168.64.3:2375 run -d -p 80:80 -v `pwd`:/usr/share/nginx/html:ro nginx
 ```
 
-ブラウザで `http://192.168.64.3` にアクセスしたところ、OS X 側に作成した HTML ファイルを表示できた。
+ブラウザで`http://192.168.64.3`にアクセスしたところ、OS X 側に作成した HTML ファイルを表示できた。
 
 {{< screenshot src="20150617232055.png" >}}

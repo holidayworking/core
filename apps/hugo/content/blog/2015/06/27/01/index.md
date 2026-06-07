@@ -31,7 +31,7 @@ $ make
 
 ### 起動用スクリプトの作成
 
-次の内容で起動用スクリプト `xhyve-run-freebsd.sh` を作成した。
+次の内容で起動用スクリプト`xhyve-run-freebsd.sh`を作成した。
 
 ```bash
 #!/bin/sh
@@ -52,7 +52,7 @@ LPC_DEV="-l com1,stdio"
 build/xhyve -A $MEM $SMP $PCI_DEV $LPC_DEV $NET $IMG_CD $IMG_HDD $UUID -f fbsd,$USERBOOT,$BOOTVOLUME,"$KERNELENV"
 ```
 
-`BOOTVOLUME` で指定している `FreeBSD-10.1-RELEASE-amd64.raw` は[ここ](http://ftp.freebsd.org/pub/FreeBSD/releases/VM-IMAGES/10.1-RELEASE/amd64/Latest/)からダウンロードしてきたものである。
+`BOOTVOLUME`で指定している`FreeBSD-10.1-RELEASE-amd64.raw`は[ここ](http://ftp.freebsd.org/pub/FreeBSD/releases/VM-IMAGES/10.1-RELEASE/amd64/Latest/)からダウンロードしてきたものである。
 
 ## 起動
 

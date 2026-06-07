@@ -91,7 +91,7 @@ end
 
 ## バケットタイプが指定されたバケットに対するセカンダリインデックスの検索結果
 
-`Riak::MapReduce#index` がバケットタイプを考慮していなかったため、次のように書く必要があった。
+`Riak::MapReduce#index`がバケットタイプを考慮していなかったため、次のように書く必要があった。
 
 ```ruby
 map_reduce = Riak::MapReduce.new(client)
@@ -116,11 +116,11 @@ Riak::MapReduce.new(client).
 => [15]
 ```
 
-`Riak::BucketTyped::Bucket` のオブジェクトが渡された場合に `bucket` を `['yokozuna', 'action_logs']` のように展開するようになっている。`Riak::Bucket` のオブジェクトが渡された場合はこれまでとおり `bucket` は `action_logs` のようになる。
+`Riak::BucketTyped::Bucket`のオブジェクトが渡された場合に`bucket`を`['yokozuna', 'action_logs']`のように展開するようになっている。`Riak::Bucket`のオブジェクトが渡された場合はこれまでとおり`bucket`は`action_logs`のようになる。
 
 ## Riak Search （Yokozuna） の検索結果
 
-`Riak::MapReduce#search` で指定されていたモジュールが `riak_search` であったため、次のように書く必要があった。
+`Riak::MapReduce#search`で指定されていたモジュールが`riak_search`であったため、次のように書く必要があった。
 
 ```ruby
 map_reduce = Riak::MapReduce.new(client)
@@ -140,6 +140,6 @@ Riak::MapReduce.new(client).
 => [15]
 ```
 
-`Riak::MapReduce#search` で指定するモジュールが `yokozuna` に変更しただけである。また、インデックスを `String` または `Riak::Search::Index` のオブジェクトで指定できるようにもしている。
+`Riak::MapReduce#search`で指定するモジュールが`yokozuna`に変更しただけである。また、インデックスを`String`または`Riak::Search::Index`のオブジェクトで指定できるようにもしている。
 
 Yokozuna ではない Riak Search の検索結果を指定することを出来ないようにしてよいのかと不安に思っていたが、この点についてプルリクでは何も指摘されなかった…。
