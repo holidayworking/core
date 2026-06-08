@@ -8,7 +8,13 @@ delib.module {
 
     settings = {
       defaultMode = "plan";
+      enableAllProjectMcpServers = true;
       theme = "auto";
+
+      sandbox = {
+        enable = true;
+        failIfUnavailable = true;
+      };
 
       statusLine = {
         type = "command";

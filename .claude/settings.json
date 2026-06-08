@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__awslabs_aws-iac-mcp-server__cdk_best_practices",
+      "mcp__awslabs_aws-iac-mcp-server__check_cloudformation_template_compliance",
+      "mcp__awslabs_aws-iac-mcp-server__get_cloudformation_pre_deploy_validation_instructions",
+      "mcp__awslabs_aws-iac-mcp-server__read_iac_documentation_page",
+      "mcp__awslabs_aws-iac-mcp-server__search_cdk_documentation",
+      "mcp__awslabs_aws-iac-mcp-server__search_cdk_samples_and_constructs",
+      "mcp__awslabs_aws-iac-mcp-server__search_cloudformation_documentation",
+      "mcp__awslabs_aws-iac-mcp-server__validate_cloudformation_template",
+      "mcp__nixos__nix",
+      "mcp__nixos__nix_versions",
+      "mcp__textlint__lintFile",
+      "mcp__textlint__lintText"
+    ]
+  }
+}
