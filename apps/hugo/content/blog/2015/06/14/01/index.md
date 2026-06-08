@@ -9,7 +9,7 @@ images:
   - blog/2015/06/14/01/20150614145749.png
 ---
 
-Phoenix アプリケーションを Heroku へデプロイできるようになったので、[CircleCI](https://circleci.com) でテストを実行するようにしてみた。
+Phoenix アプリケーションを Heroku へデプロイできるようになったので、[CircleCI](https://circleci.com)でテストを実行するようにしてみた。
 
 CircleCI は Erlang と Elixir をサポートしていないため、テスト実行時に Erlang と Elixir をビルドする必要がある。ビルドスクリプトを Gist で公開している方がいたので、今回はこのスクリプトを使うことにした。
 
@@ -59,7 +59,7 @@ Erlang と Elixir をビルドするスクリプトである。
 - Erlang 17.5
 - Elixir v1.0.4
 
-それぞれ、環境変数 `ERLANG_VERSION` と `ELIXIR_VERSION` で定義しているため、新しいバージョンがリリースされた場合はこれらの環境変数を変更すればよい。
+それぞれ、環境変数`ERLANG_VERSION`と`ELIXIR_VERSION`で定義しているため、新しいバージョンがリリースされた場合はこれらの環境変数を変更すればよい。
 
 ```bash
 #!/bin/bash
@@ -142,19 +142,19 @@ mix test
 
 ### junit-formatter の追加
 
-ExUnit 単体では JUnit 形式の XML を出力できないため、[junit-formatter](https://hex.pm/packages/junit_formatter) を使う必要がある。
+ExUnit 単体では JUnit 形式の XML を出力できないため、[junit-formatter](https://hex.pm/packages/junit_formatter)を使う必要がある。
 
-#### `mix.exs` の修正
+#### `mix.exs`の修正
 
-`deps` 関数に下記を追加する。
+`deps`関数に下記を追加する。
 
 ```elixir
 {:junit_formatter, "~> 0.0.2", only: :test}
 ```
 
-#### `test/test_helper.exs` の修正
+#### `test/test_helper.exs`の修正
 
-`ExUnit.start` の後に下記を追加する。
+`ExUnit.start`の後に下記を追加する。
 
 ```elixir
 ExUnit.configure formatters: [ExUnit.CLIFormatter, JUnitFormatter]

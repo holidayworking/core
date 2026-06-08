@@ -19,7 +19,7 @@ curl -X PUT http://localhost:8098/types/animals/buckets/cats/keys/test -H 'Conte
 
 ## ログファイルを確認する方法
 
-ログファイル `/var/log/riak/solr.log` にエラー内容が出力されるので、このファイルを確認する方法である。この方法が一番簡単であるが、次のように Java のスタックトレースも出力されるため、エラーが大量に発生している場合等は原因を特定するのが難しいと思われる。
+ログファイル`/var/log/riak/solr.log`にエラー内容が出力されるので、このファイルを確認する方法である。この方法が一番簡単であるが、次のように Java のスタックトレースも出力されるため、エラーが大量に発生している場合等は原因を特定するのが難しいと思われる。
 
 ```bash
 2015-02-08 09:12:15,011 [ERROR] <qtp2114119444-16>@SolrException.java:109 org.apache.solr.common.SolrException: ERROR: [doc=1*animals*cats*snarf*2] Error adding field 'age_i'='hogehoge' msg=For input string: "hogehoge"
@@ -79,7 +79,7 @@ Caused by: java.lang.NumberFormatException: For input string: "hogehoge"
 
 ## yokozuna_error_patch を使う方法
 
-[yokozuna_error_patch](https://github.com/basho-labs/yokozuna_error_patch) は、次のようにインストールする必要がある。
+[yokozuna_error_patch](https://github.com/basho-labs/yokozuna_error_patch)は、次のようにインストールする必要がある。
 
 ```bash
 $ git clone https://github.com/basho-labs/yokozuna_error_patch.git
@@ -87,7 +87,7 @@ $ sudo cp yokozuna_error_patch/ebin/*.beam /usr/lib64/riak/lib/basho-patches
 $ sudo service riak restart
 ```
 
-インストール後に発生したエラーは `yz_err` インデックスに保存されるため、次のように確認できる。
+インストール後に発生したエラーは`yz_err`インデックスに保存されるため、次のように確認できる。
 
 ```bash
 $ curl -s 'http://localhost:8098/search/query/yz_err?wt=json&q=*:*' | jq .

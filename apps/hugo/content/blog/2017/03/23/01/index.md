@@ -9,7 +9,7 @@ Mackerel Drinkup #4 Tokyo で LT をしてきた。
 
 {{< hatenablog-parts url="https://mackerelio.connpass.com/event/52433/" >}}
 
-LT の内容は [mackerel-plugin-aws-waf](https://github.com/mackerelio/mackerel-agent-plugins/tree/master/mackerel-plugin-aws-waf) の紹介（公式プラグイン集のひとつになりました）。作成経緯や苦労した点について。AWS WAF 自体の説明は大雑把にしかしていないので、この発表資料は参考にしないほうがいいかも…。
+LT の内容は[mackerel-plugin-aws-waf](https://github.com/mackerelio/mackerel-agent-plugins/tree/master/mackerel-plugin-aws-waf)の紹介（公式プラグイン集のひとつになりました）。作成経緯や苦労した点について。AWS WAF 自体の説明は大雑把にしかしていないので、この発表資料は参考にしないほうがいいかも…。
 
 <script async class="speakerdeck-embed" data-id="8d015bbb1fb2406698bd31a14a725ad2" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 

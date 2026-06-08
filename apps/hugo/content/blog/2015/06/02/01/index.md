@@ -8,9 +8,9 @@ images:
   - blog/2015/06/02/01/20150602001212.png
 ---
 
-[以前のエントリー](http://holidayworking.org/blog/2015/06/01/01/) では `run` コマンドで VM インスタンスを作成・起動してみた。
+[以前のエントリー](http://holidayworking.org/blog/2015/06/01/01/)では`run`コマンドで VM インスタンスを作成・起動してみた。
 
-[Pod](https://docs.hyper.sh/get_started/pod.html) でも VM インスタンスの作成・起動ができるようなので、今回は Pod で VM インスタンスを作成して Nginx を実行してみた。
+[Pod](https://docs.hyper.sh/get_started/pod.html)でも VM インスタンスの作成・起動ができるようなので、今回は Pod で VM インスタンスを作成して Nginx を実行してみた。
 
 ## Podfile の作成
 
@@ -33,13 +33,13 @@ images:
 }
 ```
 
-Podfile の書き方については [Podfile | About Hyper](ttps://docs.hyper.sh/reference/podfile.html) で説明されている。
+Podfile の書き方については[Podfile | About Hyper](ttps://docs.hyper.sh/reference/podfile.html)で説明されている。
 
-今回は Docker イメージとして [nginx](https://registry.hub.docker.com/_/nginx/) を選択して、ホスト 8080 ポートを VM インスタンスの 80 ポートへフォワーディングさせるようにした。また、仮想 CPU を 1 コア、メモリを 128MB に設定した。
+今回は Docker イメージとして[nginx](https://registry.hub.docker.com/_/nginx/)を選択して、ホスト 8080 ポートを VM インスタンスの 80 ポートへフォワーディングさせるようにした。また、仮想 CPU を 1 コア、メモリを 128MB に設定した。
 
 ## VM のインスタンスの作成
 
-上記の Podfile を `nginx.pod` として保存した場合に、次のように実行すると VM インスタンスが作成される。
+上記の Podfile を`nginx.pod`として保存した場合に、次のように実行すると VM インスタンスが作成される。
 
 ```bash
 $ sudo hyper create nginx.pod
@@ -48,7 +48,7 @@ Pod ID is pod-cgZKrBZKUl
 
 正常に作成されると Pod ID が表示されるようだ。
 
-また、`list` コマンドでも確認できる。
+また、`list`コマンドでも確認できる。
 
 ```bash
 $ sudo hyper list
@@ -58,14 +58,14 @@ $ sudo hyper list
 
 ## VM インスタンスの起動
 
-Pod ID を `start` コマンドの引数として渡すと、VM インスタンスが起動される。
+Pod ID を`start`コマンドの引数として渡すと、VM インスタンスが起動される。
 
 ```bash
 $ sudo hyper start pod-cgZKrBZKUl
 Successful to start the Pod(pod-cgZKrBZKUl)
 ```
 
-`list` コマンドで確認すると、ステータスが `running` になっていることが分かる。
+`list`コマンドで確認すると、ステータスが`running`になっていることが分かる。
 
 ```bash
 $ sudo hyper list

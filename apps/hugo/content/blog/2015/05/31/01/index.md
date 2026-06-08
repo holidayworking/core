@@ -35,7 +35,7 @@ chapadao.data = 'Chapadao de Ferro'
 chapadao.store(type: 'beverages')
 ```
 
-2.2.0 では `Riak::BucketType` クラスと `Riak::BucketTyped::Bucket` クラスが追加されたため、次のように指定できるようになった。
+2.2.0 では`Riak::BucketType`クラスと`Riak::BucketTyped::Bucket`クラスが追加されたため、次のように指定できるようになった。
 
 ```ruby
 beverages = client.bucket_type('beverages')

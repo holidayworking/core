@@ -17,17 +17,17 @@ tags:
 
 ### 1. インストール
 
-RubyGems で公開されているので `vagrant plugin install` でインストールした。
+RubyGems で公開されているので`vagrant plugin install`でインストールした。
 
 ```bash
 $ vagrant plugin install vagrant-xhyve
 ```
 
-このプラグインは [xhyve-ruby](https://github.com/dalehamel/xhyve-ruby) に同梱されている xhyve を使うようになっているので、xhyve 自体のインストールは不要である。
+このプラグインは[xhyve-ruby](https://github.com/dalehamel/xhyve-ruby)に同梱されている xhyve を使うようになっているので、xhyve 自体のインストールは不要である。
 
 ### 2. Vagrantfile の作成
 
-Ubuntu 14.04 LTS の Box のみが提供されているので、この Box を起動する `Vagrantfile` を作成した。
+Ubuntu 14.04 LTS の Box のみが提供されているので、この Box を起動する`Vagrantfile`を作成した。
 
 ```ruby
 Vagrant.configure(2) do |config|
@@ -37,7 +37,7 @@ Vagrant.configure(2) do |config|
 end
 ```
 
-`config.nfs.functional` を `false` に設定している理由は、`vagrant up` 時に次のエラーを発生させないためである。
+`config.nfs.functional`を`false`に設定している理由は、`vagrant up`時に次のエラーを発生させないためである。
 
 ```text
 No host IP was given to the Vagrant core NFS helper. This is

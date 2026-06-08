@@ -8,7 +8,7 @@ tags:
 
 Riak Search（Yokozuna）のバックエンドである Solr は位置情報検索に対応しているので、Riak Search でも位置情報検索ができる。
 
-[HeartRails Express](http://express.heartrails.com) の API で駅の位置情報を取得できるので、検索対象データとして今回は駅情報を使うことにする。
+[HeartRails Express](http://express.heartrails.com)の API で駅の位置情報を取得できるので、検索対象データとして今回は駅情報を使うことにする。
 
 ```ruby
 #!/usr/bin/env ruby
@@ -36,7 +36,7 @@ JSON.parse(response)['response']['station'].each do |station|
 end
 ```
 
-このスクリプトを実行すると `stations` バケットとこのバケットに紐づく `stations` インデックスが作成されて、駅情報が登録される。
+このスクリプトを実行すると`stations`バケットとこのバケットに紐づく`stations`インデックスが作成されて、駅情報が登録される。
 
 あとは、次のようにすれば位置情報検索ができる。
 
@@ -73,7 +73,7 @@ $ bundle exec pry
     "location_p"=>"41.84635,140.722989"}]}
 ```
 
-函館駅から 10 キロメートル以内にある駅を検索している。`score` の値は函館駅からの距離のようである。
+函館駅から 10 キロメートル以内にある駅を検索している。`score`の値は函館駅からの距離のようである。
 
 ## 参考
 

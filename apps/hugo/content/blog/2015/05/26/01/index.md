@@ -13,7 +13,7 @@ tags:
 
 ## Secondary Indexes でバケットタイプを指定することができない
 
-master ブランチで [Riak::BucketTyped::Bucket](https://github.com/basho/riak-ruby-client/blob/v2.2.0.pre1/lib/riak/bucket_typed/bucket.rb) クラスが実装されて、バケットタイプを指定されたバケットと指定されていないバケットの判別が簡単にできるようになった。そのため、[Riak::MapReduce\#index](https://github.com/basho/riak-ruby-client/blob/v2.2.0.pre1/lib/riak/map_reduce.rb#L129) を次のように修正することにした。
+master ブランチで[Riak::BucketTyped::Bucket](https://github.com/basho/riak-ruby-client/blob/v2.2.0.pre1/lib/riak/bucket_typed/bucket.rb)クラスが実装されて、バケットタイプを指定されたバケットと指定されていないバケットの判別が簡単にできるようになった。そのため、[Riak::MapReduce\#index](https://github.com/basho/riak-ruby-client/blob/v2.2.0.pre1/lib/riak/map_reduce.rb#L129)を次のように修正することにした。
 
 ```ruby
 def index(bucket, index, query)
@@ -53,4 +53,4 @@ map_reduce.index(bucket, 'time_int', Time.now.utc.beginning_of_day.to_i..Time.no
 
 ## Riak Search （Yokozuna） を使うことができない
 
-[Riak::MapReduce\#search](https://github.com/basho/riak-ruby-client/blob/v2.2.0.pre1/lib/riak/map_reduce.rb#L116) で指定されている `module` を `riak_search` から `yokozuna` に変更すればよさそうである。しかし、後方互換性を考えると変更していいのか分からない状態のため、Secondary Indexes のプルリクが解決したら考えることにする。
+[Riak::MapReduce\#search](https://github.com/basho/riak-ruby-client/blob/v2.2.0.pre1/lib/riak/map_reduce.rb#L116)で指定されている`module`を`riak_search`から`yokozuna`に変更すればよさそうである。しかし、後方互換性を考えると変更していいのか分からない状態のため、Secondary Indexes のプルリクが解決したら考えることにする。

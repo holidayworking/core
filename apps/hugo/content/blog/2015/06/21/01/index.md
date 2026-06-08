@@ -7,7 +7,7 @@ tags:
   - xhyve
 ---
 
-[homebrew-head-only](https://github.com/Homebrew/homebrew-head-only) に xhyve が formula が追加されていた。
+[homebrew-head-only](https://github.com/Homebrew/homebrew-head-only)に xhyve が formula が追加されていた。
 
 {{< hatenablog-parts url="https://github.com/Homebrew/homebrew-head-only/commit/e6feaf41048436a49118877a6c45fd0e9fe36a2f" >}}
 

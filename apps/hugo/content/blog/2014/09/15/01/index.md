@@ -51,11 +51,11 @@ Loading development environment (Rails 4.1.5)
 <dynamicField name="*_ja" type="text_ja" indexed="true" stored="true" multiValued="true"/>
 ```
 
-`*_cjk` は bi-gram、`*_ja` は形態素解析で全文検索できる。
+`*_cjk`は bi-gram、`*_ja`は形態素解析で全文検索できる。
 
 ### bi-gram で全文検索してみる
 
-全文検索の対象するフィールド名の終わりを `_cjk` とすることにより bi-gram で全文検索できるようになる。
+全文検索の対象するフィールド名の終わりを`_cjk`とすることにより bi-gram で全文検索できるようになる。
 
 ```ruby
 [10] pry(main)> casiopea = bucket.get_or_new 'casiopea'
@@ -78,7 +78,7 @@ Loading development environment (Rails 4.1.5)
 
 ### 形態素解析で全文検索してみる
 
-全文検索の対象するフィールド名の終わりを `_ja` とすることにより形態素解析で全文検索できるようになる。
+全文検索の対象するフィールド名の終わりを`_ja`とすることにより形態素解析で全文検索できるようになる。
 
 ```ruby
 [14] pry(main)> casiopea = bucket.get_or_new 'casiopea'

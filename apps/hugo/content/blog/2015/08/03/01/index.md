@@ -47,13 +47,13 @@ defmodule MapReduceExample do
 end
 ```
 
-これを `map_reduce_example.ex` というファイル名で保存してコンパイルする。
+これを`map_reduce_example.ex`というファイル名で保存してコンパイルする。
 
 ```bash
 $ elixirc map_reduce_example.ex
 ```
 
-コンパイルが終わると `Elixir.MapReduceExample.beam` が生成される。このファイルを `/usr/lib64/riak/lib/basho-patches` にコピーして Riak を再起動する。
+コンパイルが終わると`Elixir.MapReduceExample.beam`が生成される。このファイルを`/usr/lib64/riak/lib/basho-patches`にコピーして Riak を再起動する。
 
 ```bash
 $ sudo cp Elixir.MapReduceExample.beam /usr/lib64/riak/lib/basho-patches

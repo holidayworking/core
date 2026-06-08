@@ -57,7 +57,7 @@ Nginx の Docker イメージでポートフォワーディングを試してみ
 }
 ```
 
-これを `nginx.pod` というファイル名で保存して、VM インスタンスの作成・起動をしてみた。
+これを`nginx.pod`というファイル名で保存して、VM インスタンスの作成・起動をしてみた。
 
 ```bash
 $ sudo hyper create nginx.pod

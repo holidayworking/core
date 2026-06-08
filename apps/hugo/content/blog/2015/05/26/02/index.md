@@ -7,7 +7,7 @@ tags:
   - ruby
 ---
 
-[riak-ruby-vagrant](https://github.com/basho-labs/riak-ruby-vagrant) を参考に [riak-ruby-client](https://github.com/basho/riak-ruby-client) のテスト専用の Docker イメージである[riak-ruby-docker](https://registry.hub.docker.com/u/holidayworking/riak-ruby-docker) というものをつくってみた。
+[riak-ruby-vagrant](https://github.com/basho-labs/riak-ruby-vagrant)を参考に[riak-ruby-client](https://github.com/basho/riak-ruby-client)のテスト専用の Docker イメージである[riak-ruby-docker](https://registry.hub.docker.com/u/holidayworking/riak-ruby-docker)というものをつくってみた。
 
 riak-ruby-client の RSpec がすべて成功していることを確認しているので、riak-ruby-vagrant と同じ環境が構築できているはず。
 
