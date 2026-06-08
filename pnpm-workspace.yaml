@@ -22,7 +22,7 @@ catalog:
   "@types/node": 25.9.1
   aws-cdk: 2.1126.0
   aws-cdk-github-oidc: 4.2.5
-  aws-cdk-lib: 2.257.0
+  aws-cdk-lib: 2.258.0
   aws-lambda: 1.0.7
   capitalize: 2.0.4
   cdk-nag: 2.38.2
