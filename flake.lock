@@ -284,6 +284,26 @@
         "type": "github"
       }
     },
+    "mcp-servers-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780915237,
+        "narHash": "sha256-9qMC1lJ1jkEPvbWquWFFENVTfmOS20w1qvvH7vBRhL8=",
+        "owner": "natsukium",
+        "repo": "mcp-servers-nix",
+        "rev": "a5a4db8f4fa5406390c99f628b3ff36819ea3677",
+        "type": "github"
+      },
+      "original": {
+        "owner": "natsukium",
+        "repo": "mcp-servers-nix",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -492,6 +512,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "llm-agents-nix": "llm-agents-nix",
+        "mcp-servers-nix": "mcp-servers-nix",
         "nix-darwin": "nix-darwin_2",
         "nix-homebrew": "nix-homebrew",
         "nix-vite-plus": "nix-vite-plus",

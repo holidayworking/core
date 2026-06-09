@@ -64,6 +64,7 @@ delib.module {
         "terminal.integrated.fontFamily" = "FiraCode Nerd Font";
         "terminal.integrated.fontLigatures.enabled" = true;
         "terminal.integrated.fontSize" = 14;
+        "claudeCode.claudeProcessWrapper" = pkgs.lib.getExe' pkgs.llm-agents.claude-code "claude";
         "claudeCode.initialPermissionMode" = "plan";
         "claudeCode.preferredLocation" = "panel";
         "claudeCode.useCtrlEnterToSend" = true;

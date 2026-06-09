@@ -6,13 +6,23 @@ delib.module {
     enable = true;
     package = pkgs.llm-agents.claude-code;
 
+    enableMcpIntegration = true;
+
     settings = {
       defaultMode = "plan";
+      enableAllProjectMcpServers = true;
+      language = "japanese";
       theme = "auto";
 
+      sandbox = {
+        enable = true;
+        allowUnsandboxedCommands = true;
+        failIfUnavailable = true;
+      };
+
       statusLine = {
-        type = "command";
         command = "${pkgs.lib.getExe' pkgs.llm-agents.ccusage "ccusage"} statusline";
+        type = "command";
       };
     };
   };
