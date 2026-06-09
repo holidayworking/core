@@ -14,6 +14,19 @@ delib.module {
       language = "japanese";
       theme = "auto";
 
+      enabledPlugins = {
+        "claude-notifications-go@claude-notifications-go" = true;
+      };
+
+      extraKnownMarketplaces = {
+        "claude-notifications-go" = {
+          source = {
+            source = "github";
+            repo = "777genius/claude-notifications-go";
+          };
+        };
+      };
+
       sandbox = {
         enable = true;
         allowUnsandboxedCommands = true;
