@@ -19,7 +19,7 @@ catalog:
   "@types/aws-lambda": 8.10.162
   "@types/capitalize": 2.0.2
   "@types/ejs": 3.1.5
-  "@types/node": 25.9.1
+  "@types/node": 25.9.2
   aws-cdk: 2.1126.0
   aws-cdk-github-oidc: 4.2.5
   aws-cdk-lib: 2.258.0
