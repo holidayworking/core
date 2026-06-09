@@ -16,7 +16,7 @@ catalog:
   "@cspell/dict-people-names": 1.1.16
   "@date-fns/tz": 1.5.0
   "@middy/core": 7.6.5
-  "@types/aws-lambda": 8.10.161
+  "@types/aws-lambda": 8.10.162
   "@types/capitalize": 2.0.2
   "@types/ejs": 3.1.5
   "@types/node": 25.9.1
