@@ -1,4 +1,4 @@
-FROM golang:1.26.4-trixie@sha256:0dcba0d95dbfb072e9917a106b9e07d7cc298097dc83e9307056ef1889de654d
+FROM golang:1.26.4-trixie@sha256:e2f47e5638d151001160a3b65ef7b0d6ddc29b0f7e05d40a0e08d189a59cd02a
 
 ADD --checksum=sha256:f4149bb2b0784e30e99bdda85471c9b5930d3402014e934a5098b41d0f7201b1 "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-static.tar.xz" /tmp
 
