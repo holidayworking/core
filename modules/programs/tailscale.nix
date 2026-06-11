@@ -5,6 +5,6 @@ delib.module {
   options = delib.singleEnableOption host.isDesktop;
 
   darwin.ifEnabled.homebrew.casks = [
-    "tailscale"
+    "tailscale-app"
   ];
 }
