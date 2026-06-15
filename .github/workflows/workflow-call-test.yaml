@@ -175,8 +175,6 @@ jobs:
           determinate: false
       - uses: DeterminateSystems/magic-nix-cache-action@908b263ff629f4cc17666315b7fd3ec127c6244d # v14
       - uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4 # v1.1.0
-        # TODO: revert after this PR merges; base lacks devShells.* attributes
-        continue-on-error: true
         with:
           mode: diff-only
           attributes: |
