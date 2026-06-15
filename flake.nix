@@ -124,8 +124,75 @@
         ];
 
         perSystem =
-          { pkgs, ... }:
           {
+            system,
+            pkgs,
+            ...
+          }:
+          {
+            _module.args.pkgs = import inputs.nixpkgs {
+              inherit system;
+              overlays = [
+                inputs.nix-vite-plus.overlays.default
+                (_final: prev: {
+                  aws-iac-mcp-server = prev.callPackage ./packages/aws-iac-mcp-server { };
+                  vite-plus = prev.vite-plus.overrideAttrs (old: {
+                    pnpmDeps = old.pnpmDeps.override {
+                      hash = "sha256-Kctvoh/zj7YkMxKVsrgq8OtqmFZQEIQKCAj9NrJtmsA=";
+                    };
+                    nativeBuildInputs = prev.lib.subtractLists [ prev.pnpm_10 ] old.nativeBuildInputs ++ [ prev.pnpm ];
+                  });
+                })
+              ];
+            };
+
+            devShells.default = pkgs.mkShell {
+              packages = with pkgs; [
+                act
+                aws-sam-cli
+                clang
+                hugo
+                vite-plus
+              ];
+
+              shellHook =
+                let
+                  mcpConfig = inputs.mcp-servers-nix.lib.mkConfig pkgs {
+                    programs = {
+                      nixos.enable = true;
+                    };
+
+                    settings.servers = {
+                      "awslabs.aws-iac-mcp-server" = {
+                        command = pkgs.lib.getExe pkgs.aws-iac-mcp-server;
+                        env = {
+                          AWS_PROFILE = "master";
+                          FASTMCP_LOG_LEVEL = "ERROR";
+                        };
+                      };
+
+                      textlint = {
+                        command = pkgs.lib.getExe pkgs.vite-plus;
+                        args = [
+                          "exec"
+                          "textlint"
+                          "--mcp"
+                        ];
+                      };
+                    };
+                  };
+                in
+                ''
+                  ${pkgs.lib.getExe pkgs.proto} install
+                  ${pkgs.lib.getExe pkgs.vite-plus} install
+
+                  if [ -L ".mcp.json" ]; then
+                    unlink .mcp.json
+                  fi
+                  ln -sf ${mcpConfig} .mcp.json
+                '';
+            };
+
             packages = {
               build-hugo = pkgs.stdenv.mkDerivation {
                 name = "build-hugo";

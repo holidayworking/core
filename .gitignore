@@ -1,3 +1,5 @@
+.direnv
+.mcp.json
 .venv
 .vscode/*
 !.vscode/settings.json
