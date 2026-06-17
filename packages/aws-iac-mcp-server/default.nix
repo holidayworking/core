@@ -60,5 +60,5 @@ python3Packages.buildPythonApplication {
 
   doCheck = false;
 
-  meta.mainProgram = "aws-iac-mcp-server";
+  meta.mainProgram = "awslabs.aws-iac-mcp-server";
 }
