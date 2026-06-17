@@ -15,7 +15,11 @@ delib.module {
       theme = "auto";
 
       enabledPlugins = {
+        "claude-code-setup@claude-plugins-official" = true;
+        "claude-md-management@claude-plugins-official" = true;
         "claude-notifications-go@claude-notifications-go" = true;
+        "code-simplifier@claude-plugins-official" = true;
+        "commit-commands@claude-plugins-official" = true;
       };
 
       extraKnownMarketplaces = {
