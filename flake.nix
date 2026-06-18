@@ -149,8 +149,7 @@
                         });
                     # Align the offline install with the pnpm used by fetchPnpmDeps,
                     # otherwise the store is missing tarballs (ERR_PNPM_NO_OFFLINE_TARBALL).
-                    nativeBuildInputs =
-                      prev.lib.subtractLists [ prev.pnpm_10 ] old.nativeBuildInputs ++ [ prev.pnpm ];
+                    nativeBuildInputs = prev.lib.subtractLists [ prev.pnpm_10 ] old.nativeBuildInputs ++ [ prev.pnpm ];
                     pnpm_config_minimum_release_age = "0";
                   });
                 })
