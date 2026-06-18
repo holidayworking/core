@@ -136,6 +136,23 @@
                 inputs.nix-vite-plus.overlays.default
                 (_final: prev: {
                   aws-iac-mcp-server = prev.callPackage ./packages/aws-iac-mcp-server { };
+                  vite-plus = prev.vite-plus.overrideAttrs (old: {
+                    pnpmDeps =
+                      (old.pnpmDeps.override {
+                        hash = "sha256-S4ai+v8lOxbbXDKT98AweIg51eu/LVnEyMnk0GjrxTM=";
+                      }).overrideAttrs
+                        (_: {
+                          # vite-plus is published in lockstep, so freshly released
+                          # versions trip pnpm's minimum-release-age supply-chain policy
+                          # while fetching pnpm deps. Disable it for the fetcher.
+                          pnpm_config_minimum_release_age = "0";
+                        });
+                    # Align the offline install with the pnpm used by fetchPnpmDeps,
+                    # otherwise the store is missing tarballs (ERR_PNPM_NO_OFFLINE_TARBALL).
+                    nativeBuildInputs =
+                      prev.lib.subtractLists [ prev.pnpm_10 ] old.nativeBuildInputs ++ [ prev.pnpm ];
+                    pnpm_config_minimum_release_age = "0";
+                  });
                 })
               ];
             };
