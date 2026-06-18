@@ -12,6 +12,13 @@ delib.module {
         sso_registration_scopes = "sso:account:access";
       };
 
+      "profile deployment" = {
+        sso_session = "default";
+        sso_account_id = "445411728232";
+        sso_role_name = "AdministratorAccess";
+        region = "ap-northeast-1";
+      };
+
       "profile main" = {
         sso_session = "default";
         sso_account_id = "766612536658";
