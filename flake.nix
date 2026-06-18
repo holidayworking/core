@@ -136,12 +136,6 @@
                 inputs.nix-vite-plus.overlays.default
                 (_final: prev: {
                   aws-iac-mcp-server = prev.callPackage ./packages/aws-iac-mcp-server { };
-                  vite-plus = prev.vite-plus.overrideAttrs (old: {
-                    pnpmDeps = old.pnpmDeps.override {
-                      hash = "sha256-Kctvoh/zj7YkMxKVsrgq8OtqmFZQEIQKCAj9NrJtmsA=";
-                    };
-                    nativeBuildInputs = prev.lib.subtractLists [ prev.pnpm_10 ] old.nativeBuildInputs ++ [ prev.pnpm ];
-                  });
                 })
               ];
             };
