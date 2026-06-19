@@ -52,8 +52,8 @@ catalogs:
       specifier: 4.2.5
       version: 4.2.5
     aws-cdk-lib:
-      specifier: 2.258.1
-      version: 2.258.1
+      specifier: 2.260.0
+      version: 2.260.0
     aws-lambda:
       specifier: 1.0.7
       version: 1.0.7
@@ -205,10 +205,10 @@ importers:
         version: 7.6.7
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 4.2.5(aws-cdk-lib@2.258.1(constructs@10.6.0))(constructs@10.6.0)
+        version: 4.2.5(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0)
       aws-cdk-lib:
         specifier: 'catalog:'
-        version: 2.258.1(constructs@10.6.0)
+        version: 2.260.0(constructs@10.6.0)
       aws-lambda:
         specifier: 'catalog:'
         version: 1.0.7
@@ -236,7 +236,7 @@ importers:
         version: 2.1126.0
       cdk-nag:
         specifier: 'catalog:'
-        version: 2.38.2(aws-cdk-lib@2.258.1(constructs@10.6.0))(constructs@10.6.0)
+        version: 2.38.2(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0)
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -254,10 +254,10 @@ importers:
     dependencies:
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 4.2.5(aws-cdk-lib@2.258.1(constructs@10.6.0))(constructs@10.6.0)
+        version: 4.2.5(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0)
       aws-cdk-lib:
         specifier: 'catalog:'
-        version: 2.258.1(constructs@10.6.0)
+        version: 2.260.0(constructs@10.6.0)
       constructs:
         specifier: 'catalog:'
         version: 10.6.0
@@ -267,7 +267,7 @@ importers:
         version: 2.1126.0
       cdk-nag:
         specifier: 'catalog:'
-        version: 2.38.2(aws-cdk-lib@2.258.1(constructs@10.6.0))(constructs@10.6.0)
+        version: 2.38.2(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0)
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -1657,8 +1657,8 @@ packages:
       aws-cdk-lib: ^v2.237.0
       constructs: ^10.3.0
 
-  aws-cdk-lib@2.258.1:
-    resolution: {integrity: sha512-isYgP0GASgTY99J3753iN6SLP05wEuinToE+p+Yat0d5Xi55iOtd5HFzBBklOb77FO5R3pikY6r9qaRSZUAwWA==}
+  aws-cdk-lib@2.260.0:
+    resolution: {integrity: sha512-2PPG+hbPDot8+ibkb5Jl9y3OY5rBE6TFwjzOi+yEyU4ZG6u8bM4DDKhhBi/S20NqqSFDso9rH1txVJAdwXNiuQ==}
     engines: {node: '>= 20.0.0'}
     peerDependencies:
       constructs: ^10.5.0
@@ -5404,12 +5404,12 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  aws-cdk-github-oidc@4.2.5(aws-cdk-lib@2.258.1(constructs@10.6.0))(constructs@10.6.0):
+  aws-cdk-github-oidc@4.2.5(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0):
     dependencies:
-      aws-cdk-lib: 2.258.1(constructs@10.6.0)
+      aws-cdk-lib: 2.260.0(constructs@10.6.0)
       constructs: 10.6.0
 
-  aws-cdk-lib@2.258.1(constructs@10.6.0):
+  aws-cdk-lib@2.260.0(constructs@10.6.0):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.282
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.2
@@ -5511,9 +5511,9 @@ snapshots:
 
   ccount@1.1.0: {}
 
-  cdk-nag@2.38.2(aws-cdk-lib@2.258.1(constructs@10.6.0))(constructs@10.6.0):
+  cdk-nag@2.38.2(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0):
     dependencies:
-      aws-cdk-lib: 2.258.1(constructs@10.6.0)
+      aws-cdk-lib: 2.260.0(constructs@10.6.0)
       constructs: 10.6.0
 
   chai@6.2.2: {}
