@@ -20,6 +20,7 @@
   "enableGlobDot": true,
   "ignorePaths": [
     "**/cdk.out",
+    "**/node_modules",
     "*.snap",
     ".claude/settings.local.json",
     ".direnv",
