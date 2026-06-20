@@ -43,6 +43,11 @@
 
     llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mcp-servers-nix = {
       url = "github:natsukium/mcp-servers-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -159,9 +164,11 @@
             devShells.default = pkgs.mkShell {
               packages = with pkgs; [
                 act
+                age
                 aws-sam-cli
                 clang
                 hugo
+                sops
                 vite-plus
               ];
 
