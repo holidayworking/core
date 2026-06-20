@@ -13,7 +13,7 @@ export class GithubActionsOidcStack extends cdk.Stack {
       owner: "holidayworking",
       provider,
       repo: "core",
-      roleName: "github-actions-role",
+      roleName: "github-actions",
     });
 
     role.attachInlinePolicy(
@@ -30,6 +30,14 @@ export class GithubActionsOidcStack extends cdk.Stack {
               `arn:aws:iam::${this.account}:role/cdk-hnb659fds-file-publishing-role-${this.account}-us-east-1`,
               `arn:aws:iam::${this.account}:role/cdk-hnb659fds-image-publishing-role-${this.account}-us-east-1`,
               `arn:aws:iam::${this.account}:role/cdk-hnb659fds-lookup-role-${this.account}-us-east-1`,
+              `arn:aws:iam::766612536658:role/cdk-hnb659fds-deploy-role-766612536658-${this.region}`,
+              `arn:aws:iam::766612536658:role/cdk-hnb659fds-file-publishing-role-766612536658-${this.region}`,
+              `arn:aws:iam::766612536658:role/cdk-hnb659fds-image-publishing-role-766612536658${this.region}`,
+              `arn:aws:iam::766612536658:role/cdk-hnb659fds-lookup-role-766612536658-${this.region}`,
+              `arn:aws:iam::766612536658:role/cdk-hnb659fds-deploy-role-766612536658-us-east-1`,
+              `arn:aws:iam::766612536658:role/cdk-hnb659fds-file-publishing-role-766612536658-us-east-1`,
+              `arn:aws:iam::766612536658:role/cdk-hnb659fds-image-publishing-role-766612536658-us-east-1`,
+              `arn:aws:iam::766612536658:role/cdk-hnb659fds-lookup-role-766612536658-us-east-1`,
             ],
           }),
         ],
