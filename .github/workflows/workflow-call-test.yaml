@@ -128,7 +128,7 @@ jobs:
       - run: vp install
       - uses: aws-actions/configure-aws-credentials@e7f100cf4c008499ea8adda475de1042d6975c7b # v6.2.0
         with:
-          role-to-assume: arn:aws:iam::766612536658:role/github-actions-role
+          role-to-assume: arn:aws:iam::445411728232:role/github-actions
           aws-region: ap-northeast-1
       - run: vp exec --filter radicast cdk synth
       - run: vp exec --filter radicast cdk diff --all
@@ -153,7 +153,7 @@ jobs:
       - run: vp install
       - uses: aws-actions/configure-aws-credentials@e7f100cf4c008499ea8adda475de1042d6975c7b # v6.2.0
         with:
-          role-to-assume: arn:aws:iam::766612536658:role/github-actions-role
+          role-to-assume: arn:aws:iam::445411728232:role/github-actions
           aws-region: ap-northeast-1
       - run: vp exec --filter @infrastructures/aws cdk synth
       - run: vp exec --filter @infrastructures/aws cdk diff --all

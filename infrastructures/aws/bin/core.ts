@@ -8,16 +8,16 @@ import { Route53Stack } from "../lib/route53-stack.ts";
 const app = new cdk.App();
 
 const props: cdk.StackProps = {
-  env: {
-    account: "766612536658",
-    region: "ap-northeast-1",
-  },
+  terminationProtection: true,
 };
 
 new GithubActionsOidcStack(app, "GithubActionsOidcStack", {
   ...props,
+  env: {
+    account: "445411728232",
+    region: "ap-northeast-1",
+  },
   stackName: "github-actions-oidc-stack",
-  terminationProtection: true,
 });
 
 new Route53Stack(app, "Route53Stack", {
@@ -27,13 +27,15 @@ new Route53Stack(app, "Route53Stack", {
     region: "us-east-1",
   },
   stackName: "route53-stack",
-  terminationProtection: true,
 });
 
 new CoreStack(app, "CoreStack", {
   ...props,
+  env: {
+    account: "766612536658",
+    region: "ap-northeast-1",
+  },
   stackName: "core-stack",
-  terminationProtection: true,
 });
 
 cdk.Aspects.of(app).add(new AwsSolutionsChecks());

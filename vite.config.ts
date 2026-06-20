@@ -1,7 +1,9 @@
 import { defineConfig } from "vite-plus";
 
 export default defineConfig({
-  test: {},
+  test: {
+    exclude: ["**/node_modules/**", ".git/**", ".direnv/**"],
+  },
   lint: {
     ignorePatterns: ["apps/hugo/themes/congo/**"],
     options: { typeAware: true, typeCheck: true },

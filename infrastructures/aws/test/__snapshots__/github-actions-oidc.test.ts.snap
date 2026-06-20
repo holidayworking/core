@@ -158,6 +158,54 @@ exports[`snapshot 1`] = `
                     ],
                   ],
                 },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:iam::766612536658:role/cdk-hnb659fds-deploy-role-766612536658-",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                    ],
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:iam::766612536658:role/cdk-hnb659fds-file-publishing-role-766612536658-",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                    ],
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:iam::766612536658:role/cdk-hnb659fds-image-publishing-role-766612536658",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                    ],
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:iam::766612536658:role/cdk-hnb659fds-lookup-role-766612536658-",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                    ],
+                  ],
+                },
+                "arn:aws:iam::766612536658:role/cdk-hnb659fds-deploy-role-766612536658-us-east-1",
+                "arn:aws:iam::766612536658:role/cdk-hnb659fds-file-publishing-role-766612536658-us-east-1",
+                "arn:aws:iam::766612536658:role/cdk-hnb659fds-image-publishing-role-766612536658-us-east-1",
+                "arn:aws:iam::766612536658:role/cdk-hnb659fds-lookup-role-766612536658-us-east-1",
               ],
             },
           ],
@@ -205,7 +253,7 @@ exports[`snapshot 1`] = `
           ],
           "Version": "2012-10-17",
         },
-        "RoleName": "github-actions-role",
+        "RoleName": "github-actions",
       },
       "Type": "AWS::IAM::Role",
     },

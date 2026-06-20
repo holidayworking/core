@@ -27,10 +27,6 @@ if (!Array.isArray(definitionsContext) || definitionsContext.length === 0) {
 const definitions: Definition[] = definitionsContext;
 
 const props: cdk.StackProps = {
-  env: {
-    account: "766612536658",
-    region: "ap-northeast-1",
-  },
   terminationProtection: true,
   crossRegionReferences: true,
 };
@@ -52,6 +48,10 @@ const radicastStack = new RadicastStack(app, "RadicastStack", {
   hostedZoneId,
   zoneName,
   definitions,
+  env: {
+    account: "766612536658",
+    region: "ap-northeast-1",
+  },
   stackName: "radicast-stack",
 });
 
