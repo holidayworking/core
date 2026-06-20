@@ -41,12 +41,13 @@
       flake = false;
     };
 
-    llm-agents-nix.url = "github:numtide/llm-agents.nix";
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+    agent-skills.url = "github:Kyure-A/agent-skills-nix";
+    vercel-labs-skills = {
+      url = "github:vercel-labs/agent-skills";
+      flake = false;
     };
+
+    llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
     mcp-servers-nix = {
       url = "github:natsukium/mcp-servers-nix";
@@ -60,6 +61,11 @@
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
