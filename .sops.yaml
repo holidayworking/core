@@ -1,0 +1,7 @@
+keys:
+  - &hidekazu age1u2yznk4jz5jrd44a95dpjgdl7sqdh35krdcpxs9wph56ccpsrdqsdmy495
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *hidekazu
