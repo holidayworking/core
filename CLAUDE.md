@@ -13,4 +13,10 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 - [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
+## Running Commands
+
+- If `vp` is not in PATH, use `node_modules/.bin/vp` from the repo root.
+- To run a command scoped to a package: `vp exec --filter @<scope> <cmd>` (e.g., `vp exec --filter @infrastructures/aws cdk synth`).
+- To update Vitest snapshots: `vp exec --filter @<scope> vp test -- --update`.
+
 <!--VITE PLUS END-->

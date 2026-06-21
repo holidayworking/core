@@ -9,7 +9,9 @@ expect.addSnapshotSerializer(snapshotPlugin);
 
 test("snapshot", () => {
   const app = new App();
-  const stack = new GithubActionsOidcStack(app, "GithubActionsOidc");
+  const stack = new GithubActionsOidcStack(app, "GithubActionsOidc", {
+    targetAccountIds: ["123456789012"],
+  });
   const template = Template.fromStack(stack);
   expect(template).toMatchSnapshot();
 });

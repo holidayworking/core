@@ -3,8 +3,12 @@ import * as cdk from "aws-cdk-lib";
 import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 
+interface GithubActionsOidcStackProps extends cdk.StackProps {
+  targetAccountIds: string[];
+}
+
 export class GithubActionsOidcStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props: GithubActionsOidcStackProps) {
     super(scope, id, props);
 
     const provider = new GithubActionsIdentityProvider(this, "Provider");
@@ -16,29 +20,23 @@ export class GithubActionsOidcStack extends cdk.Stack {
       roleName: "github-actions",
     });
 
+    const qualifier = cdk.DefaultStackSynthesizer.DEFAULT_QUALIFIER;
+
     role.attachInlinePolicy(
       new Policy(this, "AssumeRolePolicy", {
         statements: [
           new PolicyStatement({
             actions: ["sts:AssumeRole"],
-            resources: [
-              `arn:aws:iam::${this.account}:role/cdk-hnb659fds-deploy-role-${this.account}-${this.region}`,
-              `arn:aws:iam::${this.account}:role/cdk-hnb659fds-file-publishing-role-${this.account}-${this.region}`,
-              `arn:aws:iam::${this.account}:role/cdk-hnb659fds-image-publishing-role-${this.account}-${this.region}`,
-              `arn:aws:iam::${this.account}:role/cdk-hnb659fds-lookup-role-${this.account}-${this.region}`,
-              `arn:aws:iam::${this.account}:role/cdk-hnb659fds-deploy-role-${this.account}-us-east-1`,
-              `arn:aws:iam::${this.account}:role/cdk-hnb659fds-file-publishing-role-${this.account}-us-east-1`,
-              `arn:aws:iam::${this.account}:role/cdk-hnb659fds-image-publishing-role-${this.account}-us-east-1`,
-              `arn:aws:iam::${this.account}:role/cdk-hnb659fds-lookup-role-${this.account}-us-east-1`,
-              `arn:aws:iam::766612536658:role/cdk-hnb659fds-deploy-role-766612536658-${this.region}`,
-              `arn:aws:iam::766612536658:role/cdk-hnb659fds-file-publishing-role-766612536658-${this.region}`,
-              `arn:aws:iam::766612536658:role/cdk-hnb659fds-image-publishing-role-766612536658${this.region}`,
-              `arn:aws:iam::766612536658:role/cdk-hnb659fds-lookup-role-766612536658-${this.region}`,
-              `arn:aws:iam::766612536658:role/cdk-hnb659fds-deploy-role-766612536658-us-east-1`,
-              `arn:aws:iam::766612536658:role/cdk-hnb659fds-file-publishing-role-766612536658-us-east-1`,
-              `arn:aws:iam::766612536658:role/cdk-hnb659fds-image-publishing-role-766612536658-us-east-1`,
-              `arn:aws:iam::766612536658:role/cdk-hnb659fds-lookup-role-766612536658-us-east-1`,
-            ],
+            resources: [this.account, ...props.targetAccountIds].flatMap((accountId) => [
+              `arn:aws:iam::${accountId}:role/cdk-${qualifier}-deploy-role-${accountId}-${this.region}`,
+              `arn:aws:iam::${accountId}:role/cdk-${qualifier}-file-publishing-role-${accountId}-${this.region}`,
+              `arn:aws:iam::${accountId}:role/cdk-${qualifier}-image-publishing-role-${accountId}-${this.region}`,
+              `arn:aws:iam::${accountId}:role/cdk-${qualifier}-lookup-role-${accountId}-${this.region}`,
+              `arn:aws:iam::${accountId}:role/cdk-${qualifier}-deploy-role-${accountId}-us-east-1`,
+              `arn:aws:iam::${accountId}:role/cdk-${qualifier}-file-publishing-role-${accountId}-us-east-1`,
+              `arn:aws:iam::${accountId}:role/cdk-${qualifier}-image-publishing-role-${accountId}-us-east-1`,
+              `arn:aws:iam::${accountId}:role/cdk-${qualifier}-lookup-role-${accountId}-us-east-1`,
+            ]),
           }),
         ],
       }),

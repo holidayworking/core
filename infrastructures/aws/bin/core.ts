@@ -18,6 +18,7 @@ new GithubActionsOidcStack(app, "GithubActionsOidcStack", {
     region: "ap-northeast-1",
   },
   stackName: "github-actions-oidc-stack",
+  targetAccountIds: ["766612536658"],
 });
 
 new Route53Stack(app, "Route53Stack", {
