@@ -1,3 +1,4 @@
+import { AWS_MAIN_ACCOUNT_ID } from "@core/constants";
 import * as cdk from "aws-cdk-lib/core";
 import { AwsSolutionsChecks } from "cdk-nag";
 
@@ -36,7 +37,7 @@ const acmStack = new AcmStack(app, "RadicastAcmStack", {
   hostedZoneId,
   zoneName,
   env: {
-    account: "766612536658",
+    account: AWS_MAIN_ACCOUNT_ID,
     region: "us-east-1",
   },
   stackName: "radicast-acm-stack",
@@ -49,7 +50,7 @@ const radicastStack = new RadicastStack(app, "RadicastStack", {
   zoneName,
   definitions,
   env: {
-    account: "766612536658",
+    account: AWS_MAIN_ACCOUNT_ID,
     region: "ap-northeast-1",
   },
   stackName: "radicast-stack",
@@ -60,7 +61,7 @@ new CloudfrontAccessLogStack(app, "RadicastCloudfrontAccessLogStack", {
   distribution: radicastStack.distribution,
   distributionLogsBucket: radicastStack.distributionLogsBucket,
   env: {
-    account: "766612536658",
+    account: AWS_MAIN_ACCOUNT_ID,
     region: "us-east-1",
   },
   stackName: "radicast-cloudfront-access-log-stack",

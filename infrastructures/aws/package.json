@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@core/constants": "workspace:*",
     "aws-cdk-github-oidc": "catalog:",
     "aws-cdk-lib": "catalog:",
     "constructs": "catalog:"

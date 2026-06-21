@@ -10,6 +10,7 @@
     "@aws-sdk/client-cloudfront-keyvaluestore": "catalog:",
     "@aws-sdk/client-s3": "catalog:",
     "@aws-sdk/signature-v4a": "catalog:",
+    "@core/constants": "workspace:*",
     "@date-fns/tz": "catalog:",
     "@middy/core": "catalog:",
     "aws-cdk-github-oidc": "catalog:",
