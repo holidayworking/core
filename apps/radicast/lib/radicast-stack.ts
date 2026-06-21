@@ -2,6 +2,7 @@ import type { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
 import type { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 import type { IBucket } from "aws-cdk-lib/aws-s3";
 
+import { AWS_MAIN_ACCOUNT_ID } from "@core/constants";
 import { PolicyDocument, PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { DeployTimeSubstitutedFile } from "aws-cdk-lib/aws-s3-deployment";
 import { Schedule, ScheduleExpression, ScheduleTargetInput } from "aws-cdk-lib/aws-scheduler";
@@ -177,7 +178,7 @@ export class RadicastStack extends cdk.Stack {
     // Validations.acknowledge() limitation (cdklabs/cdk-nag#2351).
     bucketDeployment.node.addMetadata(cdk.Validations.ACKNOWLEDGED_RULES_METADATA_KEY, {
       // cspell:disable-next-line
-      "AwsSolutions-IAM5[Resource::arn:aws:s3:::cdk-hnb659fds-assets-766612536658-ap-northeast-1/*]":
+      [`AwsSolutions-IAM5[Resource::arn:aws:s3:::cdk-hnb659fds-assets-${AWS_MAIN_ACCOUNT_ID}-ap-northeast-1/*]`]:
         "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
     });
   }

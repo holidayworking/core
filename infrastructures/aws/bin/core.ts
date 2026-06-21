@@ -1,3 +1,4 @@
+import { AWS_DEPLOYMENT_ACCOUNT_ID, AWS_MAIN_ACCOUNT_ID } from "@core/constants";
 import * as cdk from "aws-cdk-lib";
 import { AwsSolutionsChecks } from "cdk-nag";
 
@@ -14,17 +15,17 @@ const props: cdk.StackProps = {
 new GithubActionsOidcStack(app, "GithubActionsOidcStack", {
   ...props,
   env: {
-    account: "445411728232",
+    account: AWS_DEPLOYMENT_ACCOUNT_ID,
     region: "ap-northeast-1",
   },
   stackName: "github-actions-oidc-stack",
-  targetAccountIds: ["766612536658"],
+  targetAccountIds: [AWS_MAIN_ACCOUNT_ID],
 });
 
 new Route53Stack(app, "Route53Stack", {
   ...props,
   env: {
-    account: "766612536658",
+    account: AWS_MAIN_ACCOUNT_ID,
     region: "us-east-1",
   },
   stackName: "route53-stack",
@@ -33,7 +34,7 @@ new Route53Stack(app, "Route53Stack", {
 new CoreStack(app, "CoreStack", {
   ...props,
   env: {
-    account: "766612536658",
+    account: AWS_MAIN_ACCOUNT_ID,
     region: "ap-northeast-1",
   },
   stackName: "core-stack",

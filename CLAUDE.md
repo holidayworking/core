@@ -19,4 +19,9 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 - To run a command scoped to a package: `vp exec --filter @<scope> <cmd>` (e.g., `vp exec --filter @infrastructures/aws cdk synth`).
 - To update Vitest snapshots: `vp exec --filter @<scope> vp test -- --update`.
 
+## Package Naming
+
+- Avoid bare names that collide with Node.js built-ins (e.g. `constants`, `path`, `fs`). Use scoped names like `@core/<name>` instead — with `moduleResolution: "nodenext"` and `@types/node`, TypeScript resolves bare built-in names to the Node.js type declarations rather than the workspace package.
+- `vp check --fix` auto-sorts imports; no need to maintain import order manually.
+
 <!--VITE PLUS END-->

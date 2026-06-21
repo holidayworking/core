@@ -197,6 +197,9 @@ importers:
       '@aws-sdk/signature-v4a':
         specifier: 'catalog:'
         version: 3.1069.0
+      '@core/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
       '@date-fns/tz':
         specifier: 'catalog:'
         version: 1.5.0
@@ -252,6 +255,9 @@ importers:
 
   infrastructures/aws:
     dependencies:
+      '@core/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
       aws-cdk-github-oidc:
         specifier: 'catalog:'
         version: 4.2.5(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0)
@@ -274,6 +280,8 @@ importers:
       vitest:
         specifier: 4.1.9
         version: 4.1.9(@types/node@25.9.3)(@vitest/browser-preview@4.1.9)(vite@8.0.11(@types/node@25.9.3)(yaml@2.9.0))
+
+  packages/constants: {}
 
 packages:
 
