@@ -1,11 +1,10 @@
 import type { IBucket } from "aws-cdk-lib/aws-s3";
 
-import { Duration, ScopedAws } from "aws-cdk-lib";
+import { Duration, ScopedAws, Validations } from "aws-cdk-lib";
 import { PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { Architecture, Code, LayerVersion, Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
 import { LogGroup, RetentionDays } from "aws-cdk-lib/aws-logs";
-import { NagSuppressions } from "cdk-nag";
 import { Construct } from "constructs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
@@ -89,16 +88,9 @@ export class RadikoRecorder extends Construct {
       }),
     );
 
-    NagSuppressions.addResourceSuppressions(
-      role,
-      [
-        {
-          id: "AwsSolutions-IAM5",
-          reason: "Lambda requires read and write access to all objects in the S3 bucket.",
-          appliesTo: ["Resource::<StorageBucket13B7643F.Arn>/*"],
-        },
-      ],
-      true,
-    );
+    Validations.of(role).acknowledge({
+      id: "AwsSolutions-IAM5[Resource::<StorageBucket13B7643F.Arn>/*]",
+      reason: "Lambda requires read and write access to all objects in the S3 bucket.",
+    });
   }
 }

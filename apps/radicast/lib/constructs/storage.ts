@@ -1,6 +1,6 @@
 import type { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
 
-import { ScopedAws } from "aws-cdk-lib";
+import { ScopedAws, Validations } from "aws-cdk-lib";
 import {
   Distribution,
   GeoRestriction,
@@ -18,7 +18,6 @@ import { AnyPrincipal, Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { ARecord, PublicHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
 import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
 import { Bucket, CfnBucket, type IBucket } from "aws-cdk-lib/aws-s3";
-import { NagSuppressions } from "cdk-nag";
 import { Construct } from "constructs";
 import fs from "fs";
 import path from "path";
@@ -52,30 +51,30 @@ export class Storage extends Construct {
 
     const { certificate, hostedZoneId, zoneName } = props;
 
-    this.bucket = Bucket.fromCfnBucket(
-      new CfnBucket(this, "Bucket", {
-        bucketName: `radicast-${accountId}-${region}-an`,
-        bucketNamespace: "account-regional",
-        lifecycleConfiguration: {
-          rules: [
-            {
-              status: "Enabled",
-              expiredObjectDeleteMarker: true,
-              noncurrentVersionExpirationInDays: 7,
-              transitions: [
-                {
-                  storageClass: "STANDARD_IA",
-                  transitionInDays: 30,
-                },
-              ],
-            },
-          ],
-        },
-        versioningConfiguration: {
-          status: "Enabled",
-        },
-      }),
-    );
+    const cfnBucket = new CfnBucket(this, "Bucket", {
+      bucketName: `radicast-${accountId}-${region}-an`,
+      bucketNamespace: "account-regional",
+      lifecycleConfiguration: {
+        rules: [
+          {
+            status: "Enabled",
+            expiredObjectDeleteMarker: true,
+            noncurrentVersionExpirationInDays: 7,
+            transitions: [
+              {
+                storageClass: "STANDARD_IA",
+                transitionInDays: 30,
+              },
+            ],
+          },
+        ],
+      },
+      versioningConfiguration: {
+        status: "Enabled",
+      },
+    });
+
+    this.bucket = Bucket.fromCfnBucket(cfnBucket);
 
     this.bucket.addToResourcePolicy(
       new PolicyStatement({
@@ -91,11 +90,10 @@ export class Storage extends Construct {
       }),
     );
 
-    NagSuppressions.addResourceSuppressions(
-      this.bucket,
-      [{ id: "AwsSolutions-S1", reason: "Access logs are not required." }],
-      false,
-    );
+    Validations.of(cfnBucket).acknowledge({
+      id: "AwsSolutions-S1",
+      reason: "Access logs are not required.",
+    });
 
     const zone = PublicHostedZone.fromPublicHostedZoneAttributes(this, "Zone", {
       hostedZoneId,
@@ -145,20 +143,16 @@ export class Storage extends Construct {
       recordName: "radicast",
     });
 
-    NagSuppressions.addResourceSuppressions(
-      this.distribution,
-      [
-        {
-          id: "AwsSolutions-CFR2",
-          reason: "AWS WAF is not required for static file distribution.",
-        },
-        {
-          id: "AwsSolutions-CFR3",
-          reason:
-            "Access logs are configured with Standard logging (v2), which cdk-nag does not support yet.",
-        },
-      ],
-      false,
+    Validations.of(this.distribution).acknowledge(
+      {
+        id: "AwsSolutions-CFR2",
+        reason: "AWS WAF is not required for static file distribution.",
+      },
+      {
+        id: "AwsSolutions-CFR3",
+        reason:
+          "Access logs are configured with Standard logging (v2), which cdk-nag does not support yet.",
+      },
     );
   }
 }

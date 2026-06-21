@@ -1,7 +1,6 @@
-import { ScopedAws } from "aws-cdk-lib";
+import { ScopedAws, Validations } from "aws-cdk-lib";
 import { AnyPrincipal, Effect, PolicyStatement, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { Bucket, CfnBucket } from "aws-cdk-lib/aws-s3";
-import { NagSuppressions } from "cdk-nag";
 import { Construct } from "constructs";
 
 export class Storage extends Construct {
@@ -10,20 +9,20 @@ export class Storage extends Construct {
 
     const { accountId, region } = new ScopedAws(this);
 
-    const cloudfrontAccessLogsBucket = Bucket.fromCfnBucket(
-      new CfnBucket(this, "CloudfrontAccessLogsBucket", {
-        bucketName: `cloudfront-access-logs-${accountId}-${region}-an`,
-        bucketNamespace: "account-regional",
-        lifecycleConfiguration: {
-          rules: [
-            {
-              status: "Enabled",
-              expirationInDays: 400,
-            },
-          ],
-        },
-      }),
-    );
+    const cfnCloudfrontAccessLogsBucket = new CfnBucket(this, "CloudfrontAccessLogsBucket", {
+      bucketName: `cloudfront-access-logs-${accountId}-${region}-an`,
+      bucketNamespace: "account-regional",
+      lifecycleConfiguration: {
+        rules: [
+          {
+            status: "Enabled",
+            expirationInDays: 400,
+          },
+        ],
+      },
+    });
+
+    const cloudfrontAccessLogsBucket = Bucket.fromCfnBucket(cfnCloudfrontAccessLogsBucket);
 
     cloudfrontAccessLogsBucket.addToResourcePolicy(
       new PolicyStatement({
@@ -60,8 +59,9 @@ export class Storage extends Construct {
       }),
     );
 
-    NagSuppressions.addResourceSuppressions(cloudfrontAccessLogsBucket, [
-      { id: "AwsSolutions-S1", reason: "Access logs are not required." },
-    ]);
+    Validations.of(cfnCloudfrontAccessLogsBucket).acknowledge({
+      id: "AwsSolutions-S1",
+      reason: "Access logs are not required.",
+    });
   }
 }
