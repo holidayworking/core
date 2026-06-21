@@ -162,7 +162,7 @@ exports[`snapshot 1`] = `
                   "Fn::Join": [
                     "",
                     [
-                      "arn:aws:iam::766612536658:role/cdk-hnb659fds-deploy-role-766612536658-",
+                      "arn:aws:iam::123456789012:role/cdk-hnb659fds-deploy-role-123456789012-",
                       {
                         "Ref": "AWS::Region",
                       },
@@ -173,7 +173,7 @@ exports[`snapshot 1`] = `
                   "Fn::Join": [
                     "",
                     [
-                      "arn:aws:iam::766612536658:role/cdk-hnb659fds-file-publishing-role-766612536658-",
+                      "arn:aws:iam::123456789012:role/cdk-hnb659fds-file-publishing-role-123456789012-",
                       {
                         "Ref": "AWS::Region",
                       },
@@ -184,7 +184,7 @@ exports[`snapshot 1`] = `
                   "Fn::Join": [
                     "",
                     [
-                      "arn:aws:iam::766612536658:role/cdk-hnb659fds-image-publishing-role-766612536658",
+                      "arn:aws:iam::123456789012:role/cdk-hnb659fds-image-publishing-role-123456789012-",
                       {
                         "Ref": "AWS::Region",
                       },
@@ -195,17 +195,17 @@ exports[`snapshot 1`] = `
                   "Fn::Join": [
                     "",
                     [
-                      "arn:aws:iam::766612536658:role/cdk-hnb659fds-lookup-role-766612536658-",
+                      "arn:aws:iam::123456789012:role/cdk-hnb659fds-lookup-role-123456789012-",
                       {
                         "Ref": "AWS::Region",
                       },
                     ],
                   ],
                 },
-                "arn:aws:iam::766612536658:role/cdk-hnb659fds-deploy-role-766612536658-us-east-1",
-                "arn:aws:iam::766612536658:role/cdk-hnb659fds-file-publishing-role-766612536658-us-east-1",
-                "arn:aws:iam::766612536658:role/cdk-hnb659fds-image-publishing-role-766612536658-us-east-1",
-                "arn:aws:iam::766612536658:role/cdk-hnb659fds-lookup-role-766612536658-us-east-1",
+                "arn:aws:iam::123456789012:role/cdk-hnb659fds-deploy-role-123456789012-us-east-1",
+                "arn:aws:iam::123456789012:role/cdk-hnb659fds-file-publishing-role-123456789012-us-east-1",
+                "arn:aws:iam::123456789012:role/cdk-hnb659fds-image-publishing-role-123456789012-us-east-1",
+                "arn:aws:iam::123456789012:role/cdk-hnb659fds-lookup-role-123456789012-us-east-1",
               ],
             },
           ],
