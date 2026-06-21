@@ -8,7 +8,6 @@ import { Schedule, ScheduleExpression, ScheduleTargetInput } from "aws-cdk-lib/a
 import { LambdaInvoke } from "aws-cdk-lib/aws-scheduler-targets";
 import * as cdk from "aws-cdk-lib/core";
 import capitalize from "capitalize";
-import { NagSuppressions } from "cdk-nag";
 import { Construct } from "constructs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
@@ -122,37 +121,64 @@ export class RadicastStack extends cdk.Stack {
       });
     }
 
-    NagSuppressions.addStackSuppressions(this, [
+    // The IAM4 finding references an AWS managed policy ARN, which contains
+    // multiple "::". Validations.acknowledge() rejects such IDs
+    // (https://github.com/cdklabs/cdk-nag/issues/2351), so write the
+    // acknowledgment metadata directly. Recorded on the stack so it covers both
+    // the bucket notifications handler and the bucket deployment service roles.
+    this.node.addMetadata(cdk.Validations.ACKNOWLEDGED_RULES_METADATA_KEY, {
+      "AwsSolutions-IAM4[Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole]":
+        "CDK-managed S3 bucket notifications handler requires AWSLambdaBasicExecutionRole.",
+    });
+
+    const bucketDeployment = this.node.findChild(
+      "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C", // cspell:disable-line
+    );
+
+    cdk.Validations.of(bucketDeployment).acknowledge(
       {
-        id: "AwsSolutions-IAM4",
-        reason: "CDK-managed S3 bucket notifications handler requires AWSLambdaBasicExecutionRole.",
-        appliesTo: [
-          "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-        ],
+        id: "AwsSolutions-L1",
+        reason: "CDK BucketDeployment Lambda runtime is managed by CDK and cannot be configured.",
       },
-    ]);
-
-    NagSuppressions.addResourceSuppressionsByPath(
-      this,
-      "/RadicastStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource", // cspell:disable-line
-      [
-        {
-          id: "AwsSolutions-L1",
-          reason: "CDK BucketDeployment Lambda runtime is managed by CDK and cannot be configured.",
-        },
-      ],
+      {
+        id: "AwsSolutions-IAM5[Action::s3:GetBucket*]",
+        reason:
+          "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
+      },
+      {
+        id: "AwsSolutions-IAM5[Action::s3:GetObject*]",
+        reason:
+          "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
+      },
+      {
+        id: "AwsSolutions-IAM5[Action::s3:List*]",
+        reason:
+          "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
+      },
+      {
+        id: "AwsSolutions-IAM5[Action::s3:Abort*]",
+        reason:
+          "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
+      },
+      {
+        id: "AwsSolutions-IAM5[Action::s3:DeleteObject*]",
+        reason:
+          "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
+      },
+      {
+        id: "AwsSolutions-IAM5[Resource::<StorageBucket13B7643F.Arn>/*]",
+        reason:
+          "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
+      },
     );
 
-    NagSuppressions.addResourceSuppressionsByPath(
-      this,
-      "/RadicastStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource", // cspell:disable-line
-      [
-        {
-          id: "AwsSolutions-IAM5",
-          reason:
-            "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
-        },
-      ],
-    );
+    // The IAM5 finding for the CDK assets bucket references an S3 ARN
+    // (arn:aws:s3:::...), which also contains multiple "::" and hits the same
+    // Validations.acknowledge() limitation (cdklabs/cdk-nag#2351).
+    bucketDeployment.node.addMetadata(cdk.Validations.ACKNOWLEDGED_RULES_METADATA_KEY, {
+      // cspell:disable-next-line
+      "AwsSolutions-IAM5[Resource::arn:aws:s3:::cdk-hnb659fds-assets-766612536658-ap-northeast-1/*]":
+        "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
+    });
   }
 }

@@ -12,19 +12,6 @@ exports[`snapshot 1`] = `
       },
     },
   },
-  "Metadata": {
-    "cdk_nag": {
-      "rules_to_suppress": [
-        {
-          "applies_to": [
-            "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-          ],
-          "id": "AwsSolutions-IAM4",
-          "reason": "CDK-managed S3 bucket notifications handler requires AWSLambdaBasicExecutionRole.",
-        },
-      ],
-    },
-  },
   "Parameters": {
     "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
@@ -314,16 +301,6 @@ def sort_filter_rules(json_obj):
         "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
         "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
       ],
-      "Metadata": {
-        "cdk_nag": {
-          "rules_to_suppress": [
-            {
-              "id": "AwsSolutions-L1",
-              "reason": "CDK BucketDeployment Lambda runtime is managed by CDK and cannot be configured.",
-            },
-          ],
-        },
-      },
       "Properties": {
         "Code": {
           "S3Bucket": {
@@ -385,16 +362,6 @@ def sort_filter_rules(json_obj):
       "Type": "AWS::IAM::Role",
     },
     "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": {
-      "Metadata": {
-        "cdk_nag": {
-          "rules_to_suppress": [
-            {
-              "id": "AwsSolutions-IAM5",
-              "reason": "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
-            },
-          ],
-        },
-      },
       "Properties": {
         "PolicyDocument": {
           "Statement": [
@@ -540,19 +507,6 @@ def sort_filter_rules(json_obj):
       "UpdateReplacePolicy": "Retain",
     },
     "FeedGeneratorServiceRoleD1740C61": {
-      "Metadata": {
-        "cdk_nag": {
-          "rules_to_suppress": [
-            {
-              "applies_to": [
-                "Resource::<StorageBucket13B7643F.Arn>/*",
-              ],
-              "id": "AwsSolutions-IAM5",
-              "reason": "Lambda requires read and write access to all objects in the S3 bucket.",
-            },
-          ],
-        },
-      },
       "Properties": {
         "AssumeRolePolicyDocument": {
           "Statement": [
@@ -570,19 +524,6 @@ def sort_filter_rules(json_obj):
       "Type": "AWS::IAM::Role",
     },
     "FeedGeneratorServiceRoleDefaultPolicyD668747D": {
-      "Metadata": {
-        "cdk_nag": {
-          "rules_to_suppress": [
-            {
-              "applies_to": [
-                "Resource::<StorageBucket13B7643F.Arn>/*",
-              ],
-              "id": "AwsSolutions-IAM5",
-              "reason": "Lambda requires read and write access to all objects in the S3 bucket.",
-            },
-          ],
-        },
-      },
       "Properties": {
         "PolicyDocument": {
           "Statement": [
@@ -717,19 +658,6 @@ def sort_filter_rules(json_obj):
       "Type": "AWS::Lambda::LayerVersion",
     },
     "RadikoRecorderServiceRoleBC470C91": {
-      "Metadata": {
-        "cdk_nag": {
-          "rules_to_suppress": [
-            {
-              "applies_to": [
-                "Resource::<StorageBucket13B7643F.Arn>/*",
-              ],
-              "id": "AwsSolutions-IAM5",
-              "reason": "Lambda requires read and write access to all objects in the S3 bucket.",
-            },
-          ],
-        },
-      },
       "Properties": {
         "AssumeRolePolicyDocument": {
           "Statement": [
@@ -747,19 +675,6 @@ def sort_filter_rules(json_obj):
       "Type": "AWS::IAM::Role",
     },
     "RadikoRecorderServiceRoleDefaultPolicy4A108080": {
-      "Metadata": {
-        "cdk_nag": {
-          "rules_to_suppress": [
-            {
-              "applies_to": [
-                "Resource::<StorageBucket13B7643F.Arn>/*",
-              ],
-              "id": "AwsSolutions-IAM5",
-              "reason": "Lambda requires read and write access to all objects in the S3 bucket.",
-            },
-          ],
-        },
-      },
       "Properties": {
         "PolicyDocument": {
           "Statement": [
@@ -1004,16 +919,6 @@ async function handler(event) {
       "Type": "AWS::CloudFront::Function",
     },
     "StorageBucket13B7643F": {
-      "Metadata": {
-        "cdk_nag": {
-          "rules_to_suppress": [
-            {
-              "id": "AwsSolutions-S1",
-              "reason": "Access logs are not required.",
-            },
-          ],
-        },
-      },
       "Properties": {
         "BucketName": {
           "Fn::Join": [
@@ -1335,20 +1240,6 @@ async function handler(event) {
       "Type": "AWS::S3::BucketPolicy",
     },
     "StorageDistributionA4A168F6": {
-      "Metadata": {
-        "cdk_nag": {
-          "rules_to_suppress": [
-            {
-              "id": "AwsSolutions-CFR2",
-              "reason": "AWS WAF is not required for static file distribution.",
-            },
-            {
-              "id": "AwsSolutions-CFR3",
-              "reason": "Access logs are configured with Standard logging (v2), which cdk-nag does not support yet.",
-            },
-          ],
-        },
-      },
       "Properties": {
         "DistributionConfig": {
           "Aliases": [

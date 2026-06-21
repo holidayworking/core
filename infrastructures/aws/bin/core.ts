@@ -38,4 +38,4 @@ new CoreStack(app, "CoreStack", {
   stackName: "core-stack",
 });
 
-cdk.Aspects.of(app).add(new AwsSolutionsChecks());
+cdk.Validations.of(app).addPlugins(new AwsSolutionsChecks(app));

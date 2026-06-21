@@ -66,4 +66,4 @@ new CloudfrontAccessLogStack(app, "RadicastCloudfrontAccessLogStack", {
   stackName: "radicast-cloudfront-access-log-stack",
 });
 
-cdk.Aspects.of(app).add(new AwsSolutionsChecks());
+cdk.Validations.of(app).addPlugins(new AwsSolutionsChecks(app));

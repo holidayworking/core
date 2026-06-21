@@ -11,16 +11,6 @@ exports[`snapshot 1`] = `
   },
   "Resources": {
     "StorageCloudfrontAccessLogsBucket83FA66BA": {
-      "Metadata": {
-        "cdk_nag": {
-          "rules_to_suppress": [
-            {
-              "id": "AwsSolutions-S1",
-              "reason": "Access logs are not required.",
-            },
-          ],
-        },
-      },
       "Properties": {
         "BucketName": {
           "Fn::Join": [

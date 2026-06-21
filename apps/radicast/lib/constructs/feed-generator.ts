@@ -1,13 +1,12 @@
 import type { IKeyValueStore } from "aws-cdk-lib/aws-cloudfront";
 
-import { Duration } from "aws-cdk-lib";
+import { Duration, Validations } from "aws-cdk-lib";
 import { PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { Architecture, Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
 import { LogGroup, RetentionDays } from "aws-cdk-lib/aws-logs";
 import { EventType, type IBucket } from "aws-cdk-lib/aws-s3";
 import { LambdaDestination } from "aws-cdk-lib/aws-s3-notifications";
-import { NagSuppressions } from "cdk-nag";
 import { Construct } from "constructs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
@@ -101,16 +100,9 @@ export class FeedGenerator extends Construct {
       suffix: "config.json",
     });
 
-    NagSuppressions.addResourceSuppressions(
-      role,
-      [
-        {
-          id: "AwsSolutions-IAM5",
-          reason: "Lambda requires read and write access to all objects in the S3 bucket.",
-          appliesTo: ["Resource::<StorageBucket13B7643F.Arn>/*"],
-        },
-      ],
-      true,
-    );
+    Validations.of(role).acknowledge({
+      id: "AwsSolutions-IAM5[Resource::<StorageBucket13B7643F.Arn>/*]",
+      reason: "Lambda requires read and write access to all objects in the S3 bucket.",
+    });
   }
 }
