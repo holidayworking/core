@@ -44,7 +44,7 @@ export class FeedGenerator extends Construct {
           afterBundling: (inputDir, outputDir) => [
             `cp ${join(
               inputDir,
-              "apps/radicast/lambda/functions/feed-generator/podcast.xml.ejs",
+              "apps/radicast/lib/constructs/lambda/functions/feed-generator/podcast.xml.ejs",
             )} ${join(outputDir, "podcast.xml.ejs")}`,
           ],
           beforeBundling: () => [],
@@ -55,7 +55,7 @@ export class FeedGenerator extends Construct {
         platform: "linux/arm64",
         sourceMap: true,
       },
-      entry: join(__dirname, "..", "..", "lambda", "functions", "feed-generator", "index.ts"),
+      entry: join(__dirname, "lambda", "functions", "feed-generator", "index.ts"),
       environment: {
         DOMAIN_NAME: `radicast.${zoneName}`,
         BASIC_AUTHENTICATION_CREDENTIAL_KEY_VALUE_STORE_ARN:
