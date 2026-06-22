@@ -31,63 +31,40 @@ chmod 600 ~/.config/sops/age/keys.txt
 make darwin/setup
 ```
 
-### NixOS VM Setup
+### Lima Setup
 
 #### Step 1: Create and Start VM
 
 ```shell
-make vm/create
+make lima/create
 ```
 
-#### Step 2: Initial VM Configuration
+#### Step 2: Configure SSH Access
 
-1. After VM startup, log into the VM console and become the root user:
+Find the VM's IP address:
 
-   ```shell
-   sudo -i
-   passwd
-   ```
+```shell
+lima ip addr show enp0s2
+```
 
-2. Find the VM's IP address (look for the `inet` address on `enp0s1` or similar interface):
+Note the `inet` address (e.g., `192.168.65.2`).
 
-   ```shell
-   ip addr show
-   ```
-
-#### Step 3: Bootstrap from macOS
-
-**Note**: The following commands should be run on your **macOS host**, not inside the VM.
-
-1. Run the bootstrap command with the VM's IP address:
-
-   ```shell
-   make vm/bootstrap VM_IP=<VM_IP_ADDRESS>
-   ```
-
-   Replace `<VM_IP_ADDRESS>` with the actual IP address found in Step 2.
-
-2. The NixOS installation will complete and the VM will automatically restart.
-
-#### Step 4: Configure SSH Access
-
-Add the following configuration to your `~/.ssh/config` file on macOS:
+Add the following configuration to `~/.ssh/config` on macOS:
 
 ```config
 Host gemini
+  IdentityFile "~/.lima/_config/user"
   StrictHostKeyChecking no
-  UserKnownHostsFile=/dev/null
-  HostName <VM_IP_ADDRESS>
+  UserKnownHostsFile /dev/null
+  Hostname <VM_IP_ADDRESS>
 ```
 
-Replace:
+Replace `<VM_IP_ADDRESS>` with the IP address found above.
 
-- `<VM_IP_ADDRESS>` with the actual IP address from Step 2
+#### Step 3: Bootstrap from macOS
 
-#### Step 5: Final VM Setup
-
-SSH into the VM and clone the repository:
+**Note**: The following commands should be run on the **macOS host**, not inside the VM.
 
 ```shell
-ssh gemini
-ghq get git@github.com:holidayworking/core.git
+make lima/bootstrap
 ```

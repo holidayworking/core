@@ -2,12 +2,7 @@
 delib.module {
   name = "networking";
 
-  nixos.always = {
-    networking = {
-      hostName = host.name;
-      networkmanager.enable = true;
-    };
-  };
+  nixos.always.networking.hostName = host.name;
 
   darwin.always = {
     networking = {
