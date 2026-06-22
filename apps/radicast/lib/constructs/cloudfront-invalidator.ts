@@ -43,15 +43,7 @@ export class CloudFrontInvalidator extends Construct {
         platform: "linux/arm64",
         sourceMap: true,
       },
-      entry: join(
-        __dirname,
-        "..",
-        "..",
-        "lambda",
-        "functions",
-        "cloudfront-invalidator",
-        "index.ts",
-      ),
+      entry: join(__dirname, "lambda", "functions", "cloudfront-invalidator", "index.ts"),
       environment: {
         DISTRIBUTION_ID: distribution.distributionId,
       },

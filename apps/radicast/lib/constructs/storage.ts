@@ -26,7 +26,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const basicAuthenticationFunctionSourceSource = fs.readFileSync(
-  path.join(__dirname, "..", "..", "lambda", "functions", "basic-authentication", "index.js"),
+  path.join(__dirname, "lambda", "functions", "basic-authentication", "index.js"),
   {
     encoding: "utf-8",
   },
