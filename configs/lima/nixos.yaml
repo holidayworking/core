@@ -7,6 +7,7 @@ memory: 12GiB
 disk: 100GiB
 mounts:
   - location: "~"
+    writable: true
 containerd:
   user: false
 user:

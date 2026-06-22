@@ -12,10 +12,6 @@ delib.module {
       homebrew = {
         enable = true;
 
-        taps = [
-          "socktainer/tap"
-        ];
-
         onActivation = {
           autoUpdate = false;
           cleanup = "zap";

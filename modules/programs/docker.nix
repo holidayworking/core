@@ -15,13 +15,13 @@ delib.module {
     ];
 
     home.activation.dockerContext = ''
-      if ! ${lib.getExe pkgs.docker} context inspect socktainer > /dev/null 2>&1; then
+      if ! ${lib.getExe pkgs.docker} context inspect lima > /dev/null 2>&1; then
         ${lib.getExe pkgs.docker} context create \
-          --description socktainer \
-          --docker "host=unix://$HOME/.socktainer/container.sock" \
-          socktainer
+          --description lima \
+          --docker "host=unix://$HOME/.lima/default/sock/docker.sock" \
+          lima
       fi
-      ${lib.getExe pkgs.docker} context use socktainer
+      ${lib.getExe pkgs.docker} context use lima
     '';
   };
 }
