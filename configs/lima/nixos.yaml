@@ -1,0 +1,22 @@
+images:
+  - location: "https://github.com/nixos-lima/nixos-lima/releases/download/v0.2/nixos-lima-v0.2-aarch64.qcow2"
+    arch: "aarch64"
+    digest: "sha512:dc297799d93f0fe6cb8fac779b97bb5e2712f0dd640eed53cc57d9c95844751a32d20ce794751fb56c128b35fe8a8a956cd08856b8818e9e6c377380d6f0cc4f"
+cpus: 4
+memory: 12GiB
+disk: 100GiB
+mounts:
+  - location: "~"
+containerd:
+  user: false
+user:
+  uid: 1000
+vmOpts:
+  rosetta:
+    enabled: true
+    binfmt: true
+networks:
+  - vzNAT: true
+portForwards:
+  - guestSocket: "/var/run/docker.sock"
+    hostSocket: "{{.Dir}}/sock/docker.sock"

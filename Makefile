@@ -16,8 +16,8 @@ nix/switch:
 nix/clean:
 	@nh clean all --ask
 
-vm/create:
-	@./scripts/vm-create.sh
+lima/create:
+	@./scripts/lima-create.sh
 
-vm/bootstrap:
-	@./scripts/vm-bootstrap.sh
+lima/bootstrap:
+	@./scripts/lima-bootstrap.sh
