@@ -15,7 +15,6 @@
   "devDependencies": {
     "@cspell/dict-people-names": "catalog:",
     "@types/aws-lambda": "catalog:",
-    "@types/capitalize": "catalog:",
     "@types/ejs": "catalog:",
     "@types/node": "catalog:",
     "cspell": "catalog:",
