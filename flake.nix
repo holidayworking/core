@@ -94,9 +94,9 @@
                 homeManagerUser = "hidekazu";
 
                 paths = [
-                  ./hosts
-                  ./modules
-                  ./overlays
+                  ./nix/hosts
+                  ./nix/modules
+                  ./nix/overlays
                 ];
 
                 extensions = with denix.lib.extensions; [
@@ -146,7 +146,7 @@
               overlays = [
                 inputs.nix-vite-plus.overlays.default
                 (_final: prev: {
-                  aws-iac-mcp-server = prev.callPackage ./packages/aws-iac-mcp-server { };
+                  aws-iac-mcp-server = prev.callPackage ./nix/packages/aws-iac-mcp-server { };
                 })
               ];
             };

@@ -29,7 +29,7 @@
     "apps/hugo/public",
     "apps/hugo/themes/congo",
     "pnpm-lock.yaml",
-    "secrets/secrets.yaml"
+    "nix/secrets/secrets.yaml"
   ],
   "import": ["@cspell/dict-people-names/cspell-ext.json"],
   "version": "0.2",
