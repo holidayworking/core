@@ -8,7 +8,6 @@ import { DeployTimeSubstitutedFile } from "aws-cdk-lib/aws-s3-deployment";
 import { Schedule, ScheduleExpression, ScheduleTargetInput } from "aws-cdk-lib/aws-scheduler";
 import { LambdaInvoke } from "aws-cdk-lib/aws-scheduler-targets";
 import * as cdk from "aws-cdk-lib/core";
-import capitalize from "capitalize";
 import { Construct } from "constructs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
@@ -87,6 +86,8 @@ export class RadicastStack extends cdk.Stack {
         }),
       },
     }).withoutPolicyUpdates();
+
+    const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
     for (const definition of definitions) {
       const { id, title, author, image, area, station, programSchedules, executionSchedule } =
