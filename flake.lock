@@ -47,11 +47,11 @@
     "brew-api": {
       "flake": false,
       "locked": {
-        "lastModified": 1782336816,
-        "narHash": "sha256-NgoI2MhzWXBBVsJc/JskHlhhzoYlVDUE7rHB0Hp9s38=",
+        "lastModified": 1782426638,
+        "narHash": "sha256-nEtO0VFaPtQwcIBK0L7OKXh/4BvPm9hCNTmQ0eoG8ak=",
         "owner": "BatteredBunny",
         "repo": "brew-api",
-        "rev": "ac3c9092def8f4304c00caf55b8cda84ef01498d",
+        "rev": "87a1415a03f7d85e5d2571e77a3e64caa8e0716e",
         "type": "github"
       },
       "original": {
@@ -217,24 +217,6 @@
         "type": "github"
       }
     },
-    "flake-utils": {
-      "inputs": {
-        "systems": "systems_2"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -285,11 +267,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782233665,
-        "narHash": "sha256-h/xOtrByoA/Ak1lWHn0O1lVZz4qWYbwOSLQ8YSwQO0I=",
+        "lastModified": 1782423922,
+        "narHash": "sha256-qPNd6lUohHP5gcJhqQ7rLV87RwIx0xYR2A4Frb9Zjc4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "062581938b4a378a82dfbb294b494808157153a1",
+        "rev": "5d320ab301cfaaca7d32514f13815d19d109f5f4",
         "type": "github"
       },
       "original": {
@@ -309,11 +291,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1782337499,
-        "narHash": "sha256-WtpE0zt7ET48+4FfFhJQDgPx0OZ8erfIkRv7tA1QY1Y=",
+        "lastModified": 1782366663,
+        "narHash": "sha256-hcxEl/eWQQaYkUqygP4ca8S7WlX9c6vqgvQCqtV3vuw=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "b5a4d92435040dd70baa4a076db3766cf3ed9677",
+        "rev": "5f9d86061f538b3f5f3568583c001fb9c0705b71",
         "type": "github"
       },
       "original": {
@@ -429,11 +411,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782273807,
-        "narHash": "sha256-dmGiRAOjJeSUD7lbv4mFQLgnz+zGRlAzsQPutwOhmoU=",
+        "lastModified": 1782360220,
+        "narHash": "sha256-v3qtoeI/NlVzB8y2HZ1SmTVPaOyZnYxwecZcLEyZWXk=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "eae9f4530da971a9a8c6793ae9c35c731e52c2a5",
+        "rev": "fecb9891ebd7de0f270f93c616dbcb988396ad31",
         "type": "github"
       },
       "original": {
@@ -481,18 +463,17 @@
     },
     "nixos-lima": {
       "inputs": {
-        "flake-utils": "flake-utils",
         "nixos-generators": "nixos-generators",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1782257019,
-        "narHash": "sha256-EMxi8bgB0QzQ1IteakWH4PkBT5++cYKKQg/gCwcO72E=",
+        "lastModified": 1782424390,
+        "narHash": "sha256-h9faCV2JYYAPbI4E6IybvyFzeBlHItpekHK8DHzNnDQ=",
         "owner": "nixos-lima",
         "repo": "nixos-lima",
-        "rev": "5b2786138776b1b82760715c364e9d45dd1c8c79",
+        "rev": "46b73698c6298b9b3dfff7f99e531fbe6dad0d2e",
         "type": "github"
       },
       "original": {
@@ -659,21 +640,6 @@
       }
     },
     "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
