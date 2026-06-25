@@ -1,6 +1,7 @@
 import {
   AWS_DEPLOYMENT_ACCOUNT_ID,
   AWS_MAIN_ACCOUNT_ID,
+  AWS_MASTER_ACCOUNT_ID,
   AWS_SECURITY_OPERATION_ACCOUNT_ID,
 } from "@core/constants";
 import * as cdk from "aws-cdk-lib";
@@ -8,6 +9,7 @@ import { AwsSolutionsChecks } from "cdk-nag";
 
 import { CoreStack } from "../lib/core-stack.ts";
 import { GithubActionsOidcStack } from "../lib/github-actions-oidc-stack.ts";
+import { OrganizationsStack } from "../lib/organizations-stack.ts";
 import { Route53Stack } from "../lib/route53-stack.ts";
 import { SecurityHubStack } from "../lib/security-hub-stack.ts";
 
@@ -33,7 +35,16 @@ new GithubActionsOidcStack(app, "GithubActionsOidcStack", {
     region: "ap-northeast-1",
   },
   stackName: "github-actions-oidc-stack",
-  targetAccountIds: [AWS_MAIN_ACCOUNT_ID, AWS_SECURITY_OPERATION_ACCOUNT_ID],
+  targetAccountIds: [AWS_MAIN_ACCOUNT_ID, AWS_MASTER_ACCOUNT_ID, AWS_SECURITY_OPERATION_ACCOUNT_ID],
+});
+
+new OrganizationsStack(app, "OrganizationsStack", {
+  ...props,
+  env: {
+    account: AWS_MASTER_ACCOUNT_ID,
+    region: "ap-northeast-1",
+  },
+  stackName: "organizations-stack",
 });
 
 new Route53Stack(app, "Route53Stack", {
