@@ -16,7 +16,7 @@ jobs:
       zenn: ${{ steps.filter.outputs.zenn }}
       aws-infrastructure: ${{ steps.filter.outputs.aws-infrastructure }}
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: "false"
           fetch-depth: 20
@@ -59,7 +59,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: "false"
           submodules: recursive
@@ -84,7 +84,7 @@ jobs:
     if: ${{ needs.changes.outputs.radicast == 'true' }}
     runs-on: ubuntu-24.04-arm
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: "false"
       - uses: docker/setup-docker-action@0234bb73ccb40f0c430b795634f9247e2b5c2d23 # v5.2.0
@@ -115,7 +115,7 @@ jobs:
     if: ${{ needs.changes.outputs.zenn == 'true' }}
     runs-on: ubuntu-24.04-arm
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: "false"
       - uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
@@ -135,7 +135,7 @@ jobs:
     if: ${{ needs.changes.outputs.aws-infrastructure == 'true' }}
     runs-on: ubuntu-24.04-arm
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: "false"
       - uses: voidzero-dev/setup-vp@2dec1e33f4ab2c6d5bce1b0c4607961bb1a3f7a1 # v1.12.0
