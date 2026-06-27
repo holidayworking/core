@@ -31,8 +31,8 @@ catalogs:
       specifier: 1.5.0
       version: 1.5.0
     '@middy/core':
-      specifier: 7.6.8
-      version: 7.6.8
+      specifier: 7.7.0
+      version: 7.7.0
     '@types/aws-lambda':
       specifier: 8.10.162
       version: 8.10.162
@@ -169,10 +169,10 @@ importers:
     dependencies:
       '@aws-lambda-powertools/logger':
         specifier: 'catalog:'
-        version: 2.33.1(@middy/core@7.6.8)
+        version: 2.33.1(@middy/core@7.7.0)
       '@aws-lambda-powertools/parameters':
         specifier: 'catalog:'
-        version: 2.33.1(@middy/core@7.6.8)
+        version: 2.33.1(@middy/core@7.7.0)
       '@aws-sdk/client-cloudfront':
         specifier: 'catalog:'
         version: 3.1075.0
@@ -193,7 +193,7 @@ importers:
         version: 1.5.0
       '@middy/core':
         specifier: 'catalog:'
-        version: 7.6.8
+        version: 7.7.0
       aws-cdk-github-oidc:
         specifier: 'catalog:'
         version: 4.2.5(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0)
@@ -754,17 +754,17 @@ packages:
   '@kvs/types@2.2.2':
     resolution: {integrity: sha512-5lmBuah+wOdypBf0O9t6BoHrnq5hX5MlhEPTDPBNKN38ayQwVc5gYgJOBR3Dg4EF7OwL+1c7JNtWXQEJXXVXlg==}
 
-  '@middy/core@7.6.8':
-    resolution: {integrity: sha512-2jzctqFkmkFhdEZVrW8ZEyxMRAen2+PX+zNC+iDrYGYrdJ5QqtfP7NIpUUnnK1apJfXKFIvYphGRaWnsLyy1/A==}
+  '@middy/core@7.7.0':
+    resolution: {integrity: sha512-5KtRHbSZNveR+rcSbJc+8D1/QQVqs3a1ePrP0fuxr41OZodwxz1B/IwjqOjVJMdu6IxhDz5QPInAiefJUNmKpQ==}
     engines: {node: '>=22'}
     peerDependencies:
-      '@aws/durable-execution-sdk-js': ^1.0.0
+      '@aws/durable-execution-sdk-js': ^2.0.0
     peerDependenciesMeta:
       '@aws/durable-execution-sdk-js':
         optional: true
 
-  '@middy/util@7.6.8':
-    resolution: {integrity: sha512-7ZFVcrQkNY4UJsgrERAplTruYDjiEv2ZNwvW3YSl3T3Fmgw+HJV1L8BrGA53LqLxe0xb2npesh8WO3ABIPYPbQ==}
+  '@middy/util@7.7.0':
+    resolution: {integrity: sha512-d9QHbliwIocuc2n+7dbrd9Ma/LrXaEDX5mxyV3Rqx79h7AyZGUbkXo0rw6JVVFsxOGvjNGN4gQ2fh++RLCS35A==}
     engines: {node: '>=22'}
 
   '@modelcontextprotocol/sdk@1.29.0':
@@ -3974,18 +3974,18 @@ snapshots:
     dependencies:
       '@aws/lambda-invoke-store': 0.2.4
 
-  '@aws-lambda-powertools/logger@2.33.1(@middy/core@7.6.8)':
+  '@aws-lambda-powertools/logger@2.33.1(@middy/core@7.7.0)':
     dependencies:
       '@aws-lambda-powertools/commons': 2.33.1
       '@aws/lambda-invoke-store': 0.2.4
     optionalDependencies:
-      '@middy/core': 7.6.8
+      '@middy/core': 7.7.0
 
-  '@aws-lambda-powertools/parameters@2.33.1(@middy/core@7.6.8)':
+  '@aws-lambda-powertools/parameters@2.33.1(@middy/core@7.7.0)':
     dependencies:
       '@aws-lambda-powertools/commons': 2.33.1
     optionalDependencies:
-      '@middy/core': 7.6.8
+      '@middy/core': 7.7.0
 
   '@aws-sdk/checksums@3.1000.8':
     dependencies:
@@ -4523,11 +4523,11 @@ snapshots:
 
   '@kvs/types@2.2.2': {}
 
-  '@middy/core@7.6.8':
+  '@middy/core@7.7.0':
     dependencies:
-      '@middy/util': 7.6.8
+      '@middy/util': 7.7.0
 
-  '@middy/util@7.6.8': {}
+  '@middy/util@7.7.0': {}
 
   '@modelcontextprotocol/sdk@1.29.0(zod@3.25.76)':
     dependencies:
