@@ -16,6 +16,21 @@ exports[`snapshot 1`] = `
       },
       "Type": "AWS::Organizations::Organization",
     },
+    "SecurityHub": {
+      "DependsOn": [
+        "Organization",
+      ],
+      "Type": "AWS::SecurityHub::Hub",
+    },
+    "SecurityHubDelegatedAdmin": {
+      "DependsOn": [
+        "SecurityHub",
+      ],
+      "Properties": {
+        "AdminAccountId": "376129857884",
+      },
+      "Type": "AWS::SecurityHub::DelegatedAdmin",
+    },
   },
   "Rules": {
     "CheckBootstrapVersion": {
