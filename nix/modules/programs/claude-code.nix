@@ -13,7 +13,6 @@ delib.module {
           enableMcpIntegration = true;
 
           settings = {
-            defaultMode = "plan";
             enableAllProjectMcpServers = true;
             language = "japanese";
             theme = "auto";
@@ -59,6 +58,10 @@ delib.module {
                   repo = "777genius/claude-notifications-go";
                 };
               };
+            };
+
+            permissions = {
+              defaultMode = "plan";
             };
 
             sandbox = {
