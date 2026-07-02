@@ -22,6 +22,7 @@ delib.module {
               "claude-md-management@claude-plugins-official" = true;
               "claude-notifications-go@claude-notifications-go" = true;
               "code-simplifier@claude-plugins-official" = true;
+              "codex@openai-codex" = true;
               "commit-commands@claude-plugins-official" = true;
             };
 
@@ -56,6 +57,12 @@ delib.module {
                 source = {
                   source = "github";
                   repo = "777genius/claude-notifications-go";
+                };
+              };
+              "openai-codex" = {
+                source = {
+                  source = "github";
+                  repo = "openai/codex-plugin-cc";
                 };
               };
             };
