@@ -214,6 +214,68 @@
                   cp -r ./public $out
                 '';
               };
+            }
+            // pkgs.lib.optionalAttrs (system == "aarch64-linux") {
+              lima =
+                (inputs.nixpkgs.lib.nixosSystem {
+                  modules = [
+                    { nixpkgs.pkgs = pkgs; }
+                    inputs.nixos-lima.nixosModules.lima
+                    (
+                      { modulesPath, pkgs, ... }:
+                      {
+                        imports = [
+                          (modulesPath + "/profiles/qemu-guest.nix")
+                        ];
+
+                        boot.kernelPackages = pkgs.linuxPackages_latest;
+                        system.stateVersion = "25.05";
+
+                        environment.systemPackages = with pkgs; [
+                          gitMinimal
+                        ];
+
+                        image.modules.qemu-efi =
+                          {
+                            config,
+                            lib,
+                            pkgs,
+                            modulesPath,
+                            ...
+                          }:
+                          {
+                            image.baseName = "nixos-lima";
+
+                            system.build.image = lib.mkForce (
+                              import (modulesPath + "/../lib/make-disk-image.nix") {
+                                inherit lib config pkgs;
+                                inherit (config.virtualisation) diskSize;
+                                inherit (config.image) baseName format;
+
+                                bootSize = "1G";
+                                partitionTableType = "efi";
+                              }
+                            );
+                          };
+
+                        nix.settings.experimental-features = [
+                          "nix-command"
+                          "flakes"
+                        ];
+
+                        security.sudo-rs = {
+                          enable = true;
+                          wheelNeedsPassword = false;
+                        };
+
+                        services = {
+                          lima.enable = true;
+                          openssh.enable = true;
+                        };
+                      }
+                    )
+                  ];
+                }).config.system.build.images.qemu-efi;
             };
 
             treefmt = {

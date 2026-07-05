@@ -1,3 +1,5 @@
+.ONESHELL:
+
 darwin/setup: nix/install nix/darwin
 
 nix/install:
@@ -16,8 +18,21 @@ nix/switch:
 nix/clean:
 	@nh clean all --ask
 
-lima/create:
-	@./scripts/lima-create.sh
+lima/build-image:
+	@nix build .#packages.aarch64-linux.lima
+
+lima/start:
+	@limactl start --name=default --tty=false ./lima.yaml
 
 lima/bootstrap:
-	@./scripts/lima-bootstrap.sh
+	@ssh gemini "mkdir -p ~/.config/sops/age"
+	@scp ~/.config/sops/age/keys.txt gemini:~/.config/sops/age/keys.txt
+	ssh gemini bash -s <<'SSH'
+	  set -euo pipefail
+	  ssh-keygen -F github.com || ssh-keyscan github.com >> ~/.ssh/known_hosts
+	  mkdir -p ~/src/github.com/holidayworking
+	  cd ~/src/github.com/holidayworking
+	  git clone git@github.com:holidayworking/core.git
+	  cd core
+	  sudo nixos-rebuild switch --flake ".#gemini"
+	SSH
