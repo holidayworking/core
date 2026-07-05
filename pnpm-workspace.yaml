@@ -21,7 +21,7 @@ catalog:
   "@types/node": 25.9.4
   aws-cdk: 2.1129.0
   aws-cdk-github-oidc: 4.2.5
-  aws-cdk-lib: 2.260.0
+  aws-cdk-lib: 2.261.0
   cdk-nag: 3.0.1
   constructs: 10.6.0
   cron-parser: 5.6.1
