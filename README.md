@@ -33,13 +33,19 @@ make darwin/setup
 
 ### Lima Setup
 
-#### Step 1: Create and Start VM
+#### Step 1: Build image
 
 ```shell
-make lima/create
+make lima/build-image
 ```
 
-#### Step 2: Configure SSH Access
+#### Step 2: Start VM
+
+```shell
+make lima/start
+```
+
+#### Step 3: Configure SSH Access
 
 Find the VM's IP address:
 
@@ -61,7 +67,7 @@ Host gemini
 
 Replace `<VM_IP_ADDRESS>` with the IP address found above.
 
-#### Step 3: Bootstrap from macOS
+#### Step 4: Bootstrap from macOS
 
 **Note**: The following commands should be run on the **macOS host**, not inside the VM.
 

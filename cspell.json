@@ -276,6 +276,7 @@
     "protobuffs",
     "pvscsi",
     "qboot",
+    "qcow",
     "qdisc",
     "qlapi",
     "queryformat",
