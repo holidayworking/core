@@ -15,4 +15,6 @@ delib.host {
   };
 
   home.home.stateVersion = "25.05";
+
+  myconfig.programs.cn-daemon.enable = true;
 }
