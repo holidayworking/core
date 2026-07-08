@@ -31,6 +31,7 @@ delib.module {
           mylesmurphy.prettify-ts
           redhat.vscode-yaml
           renesaarsoo.sql-formatter-vsc
+          singularityinc.claude-notifier
           streetsidesoftware.code-spell-checker
           tamasfe.even-better-toml
           timonwong.shellcheck

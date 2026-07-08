@@ -63,6 +63,7 @@ Host gemini
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
   Hostname <VM_IP_ADDRESS>
+  RemoteForward 47291 localhost:47291
 ```
 
 Replace `<VM_IP_ADDRESS>` with the IP address found above.
@@ -74,3 +75,13 @@ Replace `<VM_IP_ADDRESS>` with the IP address found above.
 ```shell
 make lima/bootstrap
 ```
+
+#### Step 5: Enable remote audio for Claude Notifier
+
+To hear Claude Notifier sounds on macOS when using VS Code Remote-SSH against the VM, enable remote audio in the VS Code settings:
+
+```json
+"claudeNotifier.remoteAudio.enabled": true
+```
+
+Notification events are forwarded to the local `cn-daemon` through the `RemoteForward` entry configured in Step 3.

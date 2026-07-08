@@ -5,6 +5,21 @@ delib.module {
   home.always.imports = [
     (
       { config, ... }:
+      let
+        mkNotifierHook = suffix: extra: [
+          (
+            {
+              hooks = [
+                {
+                  type = "command";
+                  command = "node ~/.claude/hooks/claude-notifier-on-${suffix}.js";
+                }
+              ];
+            }
+            // extra
+          )
+        ];
+      in
       {
         programs.claude-code = {
           enable = true;
@@ -14,13 +29,13 @@ delib.module {
 
           settings = {
             enableAllProjectMcpServers = true;
+            permissions.defaultMode = "plan";
             language = "japanese";
             theme = "auto";
 
             enabledPlugins = {
               "claude-code-setup@claude-plugins-official" = true;
               "claude-md-management@claude-plugins-official" = true;
-              "claude-notifications-go@claude-notifications-go" = true;
               "code-simplifier@claude-plugins-official" = true;
               "codex@openai-codex" = true;
               "commit-commands@claude-plugins-official" = true;
@@ -52,23 +67,17 @@ delib.module {
               printf '{"Authorization":"Basic %s"}\n' "$token"
             ''}";
 
-            extraKnownMarketplaces = {
-              "claude-notifications-go" = {
-                source = {
-                  source = "github";
-                  repo = "777genius/claude-notifications-go";
-                };
-              };
-              "openai-codex" = {
-                source = {
-                  source = "github";
-                  repo = "openai/codex-plugin-cc";
-                };
-              };
+            extraKnownMarketplaces."openai-codex".source = {
+              source = "github";
+              repo = "openai/codex-plugin-cc";
             };
 
-            permissions = {
-              defaultMode = "plan";
+            hooks = {
+              Stop = mkNotifierHook "stop" { };
+              PermissionRequest = mkNotifierHook "permission" { };
+              PreToolUse = mkNotifierHook "question" { matcher = "AskUserQuestion"; };
+              UserPromptSubmit = mkNotifierHook "prompt" { };
+              SubagentStop = mkNotifierHook "subagent-stop" { };
             };
 
             sandbox = {
