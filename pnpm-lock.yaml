@@ -110,7 +110,7 @@ catalogs:
       version: 0.5.2
 
 overrides:
-  vite: npm:@voidzero-dev/vite-plus-core@0.2.2
+  vite: npm:@voidzero-dev/vite-plus-core@0.2.3
   vitest: 4.1.10
 
 importers:
