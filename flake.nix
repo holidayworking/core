@@ -147,6 +147,12 @@
                 inputs.nix-vite-plus.overlays.default
                 (_final: prev: {
                   aws-iac-mcp-server = prev.callPackage ./nix/packages/aws-iac-mcp-server { };
+                  # nixpkgs' aws-sam-cli install checks (pytest) fail under the
+                  # pinned python3 (unrelated to our usage, which only needs the
+                  # built CLI). Tests run via installCheckPhase, not checkPhase.
+                  aws-sam-cli = prev.aws-sam-cli.overrideAttrs (_: {
+                    doInstallCheck = false;
+                  });
                 })
               ];
             };
