@@ -2,6 +2,17 @@
 delib.module {
   name = "sops";
 
+  darwin.always =
+    { myconfig, ... }:
+    {
+      imports = [ inputs.sops-nix.darwinModules.sops ];
+
+      sops = {
+        age.keyFile = "/Users/${myconfig.constants.username}/.config/sops/age/keys.txt";
+        defaultSopsFile = ../../secrets/secrets.yaml;
+      };
+    };
+
   home.always.imports = [
     inputs.sops-nix.homeManagerModules.sops
     (
