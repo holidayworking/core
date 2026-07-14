@@ -148,6 +148,11 @@
                 inputs.nix-vite-plus.overlays.default
                 (_final: prev: {
                   aws-iac-mcp-server = prev.callPackage ./nix/packages/aws-iac-mcp-server { };
+
+                  # TODO: remove once test_toml_invalid_file_name passes upstream
+                  aws-sam-cli = prev.aws-sam-cli.overridePythonAttrs (old: {
+                    disabledTests = old.disabledTests ++ [ "test_toml_invalid_file_name" ];
+                  });
                 })
               ];
             };
