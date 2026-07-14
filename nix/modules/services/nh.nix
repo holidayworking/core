@@ -7,7 +7,7 @@ delib.module {
 
     clean = {
       enable = true;
-      extraArgs = "--keep 2";
+      extraArgs = "--no-direnv";
     };
   };
 }

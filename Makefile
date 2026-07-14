@@ -16,7 +16,7 @@ nix/switch:
 	@./scripts/nh.sh switch --ask
 
 nix/clean:
-	@nh clean all --ask
+	@nh clean all --ask --no-direnv
 
 lima/build-image:
 	@nix build .#packages.aarch64-linux.lima
