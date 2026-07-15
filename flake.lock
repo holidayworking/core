@@ -488,22 +488,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-master": {
-      "locked": {
-        "lastModified": 1784146790,
-        "narHash": "sha256-5r/pmfjNd7sR2xGxEL6OHXiCROUpKu+9JlX9ezfOzg4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "37c948cc7607b9d964157ef05976ee7304923869",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1781577229,
@@ -604,7 +588,6 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-lima": "nixos-lima",
         "nixpkgs": "nixpkgs_5",
-        "nixpkgs-master": "nixpkgs-master",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_2",
         "vercel-labs-skills": "vercel-labs-skills"

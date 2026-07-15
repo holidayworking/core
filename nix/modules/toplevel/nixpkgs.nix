@@ -1,18 +1,6 @@
-{
-  delib,
-  inputs,
-  pkgs,
-  ...
-}:
+{ delib, ... }:
 let
-  shared = {
-    nixpkgs.config.allowUnfree = true;
-
-    _module.args.pkgs-master = import inputs.nixpkgs-master {
-      system = pkgs.stdenv.hostPlatform.system;
-      config.allowUnfree = true;
-    };
-  };
+  shared.nixpkgs.config.allowUnfree = true;
 in
 delib.module {
   name = "nixpkgs";
