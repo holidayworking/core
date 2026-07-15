@@ -17,7 +17,7 @@ delib.module {
         (pkgs.brewCasks.google-chrome.overrideAttrs (oldAttrs: {
           src = pkgs.fetchurl {
             url = builtins.head oldAttrs.src.urls;
-            hash = "sha256-VdMDp0IcO4y66ih2450VM2s8yC5bSFlHvN+LvtjI4uU=";
+            hash = "sha256-bp6aAnRMCLVX+gXpLoP4Po7xeMIxVyaALxsRddUGOWI=";
           };
         }))
       else
