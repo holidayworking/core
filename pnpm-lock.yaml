@@ -58,8 +58,8 @@ catalogs:
       specifier: 3.0.1
       version: 3.0.1
     constructs:
-      specifier: 10.6.0
-      version: 10.6.0
+      specifier: 10.7.0
+      version: 10.7.0
     cron-parser:
       specifier: 5.6.2
       version: 5.6.2
@@ -199,13 +199,13 @@ importers:
         version: 7.7.0
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 4.2.5(aws-cdk-lib@2.261.0(constructs@10.6.0))(constructs@10.6.0)
+        version: 4.2.5(aws-cdk-lib@2.261.0(constructs@10.7.0))(constructs@10.7.0)
       aws-cdk-lib:
         specifier: 'catalog:'
-        version: 2.261.0(constructs@10.6.0)
+        version: 2.261.0(constructs@10.7.0)
       constructs:
         specifier: 'catalog:'
-        version: 10.6.0
+        version: 10.7.0
       cron-parser:
         specifier: 'catalog:'
         version: 5.6.2
@@ -227,7 +227,7 @@ importers:
         version: 4.1.0
       cdk-nag:
         specifier: 'catalog:'
-        version: 3.0.1(aws-cdk-lib@2.261.0(constructs@10.6.0))(constructs@10.6.0)
+        version: 3.0.1(aws-cdk-lib@2.261.0(constructs@10.7.0))(constructs@10.7.0)
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -248,20 +248,20 @@ importers:
         version: link:../../packages/constants
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 4.2.5(aws-cdk-lib@2.261.0(constructs@10.6.0))(constructs@10.6.0)
+        version: 4.2.5(aws-cdk-lib@2.261.0(constructs@10.7.0))(constructs@10.7.0)
       aws-cdk-lib:
         specifier: 'catalog:'
-        version: 2.261.0(constructs@10.6.0)
+        version: 2.261.0(constructs@10.7.0)
       constructs:
         specifier: 'catalog:'
-        version: 10.6.0
+        version: 10.7.0
     devDependencies:
       aws-cdk:
         specifier: 'catalog:'
         version: 2.1131.0
       cdk-nag:
         specifier: 'catalog:'
-        version: 3.0.1(aws-cdk-lib@2.261.0(constructs@10.6.0))(constructs@10.6.0)
+        version: 3.0.1(aws-cdk-lib@2.261.0(constructs@10.7.0))(constructs@10.7.0)
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -1773,8 +1773,8 @@ packages:
     resolution: {integrity: sha512-uiqLcOiVDJtBP8WGkZHEP+FZIhTzP1dxvn59EfoYUi9gqupjrBWVQkO2atDrbnKPwLeotFYDsuNb26uBMqB+hw==}
     engines: {node: '>= 6'}
 
-  constructs@10.6.0:
-    resolution: {integrity: sha512-TxHOnBO5zMo/G76ykzGF/wMpEHu257TbWiIxP9K0Yv/+t70UzgBQiTqjkAsWOPC6jW91DzJI0+ehQV6xDRNBuQ==}
+  constructs@10.7.0:
+    resolution: {integrity: sha512-Vzwc30bMywc7DCzX8XOyuZbsBmfXTCrn6HHmhhELZK1J5dnUWwJ5uL7hBXGGq7xFPVOOO6cs9FwaxOshAxgcWQ==}
 
   content-disposition@1.1.0:
     resolution: {integrity: sha512-5jRCH9Z/+DRP7rkvY83B+yGIGX96OYdJmzngqnw2SBSxqCFPd0w2km3s5iawpGX8krnwSGmF0FW5Nhr0Hfai3g==}
@@ -5244,17 +5244,17 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  aws-cdk-github-oidc@4.2.5(aws-cdk-lib@2.261.0(constructs@10.6.0))(constructs@10.6.0):
+  aws-cdk-github-oidc@4.2.5(aws-cdk-lib@2.261.0(constructs@10.7.0))(constructs@10.7.0):
     dependencies:
-      aws-cdk-lib: 2.261.0(constructs@10.6.0)
-      constructs: 10.6.0
+      aws-cdk-lib: 2.261.0(constructs@10.7.0)
+      constructs: 10.7.0
 
-  aws-cdk-lib@2.261.0(constructs@10.6.0):
+  aws-cdk-lib@2.261.0(constructs@10.7.0):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.282
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.2
       '@aws-cdk/cloud-assembly-schema': 54.2.0
-      constructs: 10.6.0
+      constructs: 10.7.0
 
   aws-cdk@2.1131.0: {}
 
@@ -5327,10 +5327,10 @@ snapshots:
 
   ccount@1.1.0: {}
 
-  cdk-nag@3.0.1(aws-cdk-lib@2.261.0(constructs@10.6.0))(constructs@10.6.0):
+  cdk-nag@3.0.1(aws-cdk-lib@2.261.0(constructs@10.7.0))(constructs@10.7.0):
     dependencies:
-      aws-cdk-lib: 2.261.0(constructs@10.6.0)
-      constructs: 10.6.0
+      aws-cdk-lib: 2.261.0(constructs@10.7.0)
+      constructs: 10.7.0
 
   chai@6.2.2: {}
 
@@ -5386,7 +5386,7 @@ snapshots:
       array-timsort: 1.0.3
       esprima: 4.0.1
 
-  constructs@10.6.0: {}
+  constructs@10.7.0: {}
 
   content-disposition@1.1.0: {}
 
