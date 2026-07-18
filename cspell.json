@@ -350,6 +350,7 @@
     "unarchiver",
     "unmaximize",
     "unsandboxed",
+    "unstub",
     "usbat",
     "usbcore",
     "usbfs",

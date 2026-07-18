@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "aws-cdk": "catalog:",
+    "aws-sdk-client-mock": "catalog:",
     "cdk-nag": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
