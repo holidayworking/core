@@ -17,6 +17,7 @@ delib.module {
           description = userfullname;
           extraGroups = [
             "docker"
+            "networkmanager"
             "wheel"
           ];
           group = username;

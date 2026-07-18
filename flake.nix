@@ -19,6 +19,11 @@
       inputs.nix-darwin.follows = "nix-darwin";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -40,6 +45,14 @@
     vercel-labs-skills = {
       url = "github:vercel-labs/agent-skills";
       flake = false;
+    };
+
+    cosmic-manager = {
+      url = "github:HeitorAugustoLN/cosmic-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
 
     llm-agents-nix.url = "github:numtide/llm-agents.nix";

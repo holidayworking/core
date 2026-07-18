@@ -107,6 +107,30 @@
         "type": "github"
       }
     },
+    "cosmic-manager": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780178896,
+        "narHash": "sha256-98aHwiGZcvb0VJUGE+lCS/zuGdFAlNvm8keIimuLOK0=",
+        "owner": "HeitorAugustoLN",
+        "repo": "cosmic-manager",
+        "rev": "1630bbf792a95baffbd3169885580cd53a7027d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "HeitorAugustoLN",
+        "repo": "cosmic-manager",
+        "type": "github"
+      }
+    },
     "denix": {
       "inputs": {
         "home-manager": [
@@ -135,6 +159,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781152676,
+        "narHash": "sha256-RxWs5ND31KzTG7wvMM+PMfUjyNpmIEr999lqNARaM5o=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "ff8702b4de27f72b4c78573dfb89ec74e36abdf1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -154,6 +198,27 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
+          "cosmic-manager",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759362264,
+        "narHash": "sha256-wfG0S7pltlYyZTM+qqlhJ7GMw2fTF4mLKCIVhLii/4M=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "758cf7296bee11f1706a574c77d072b8a7baa881",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
+        "nixpkgs-lib": [
           "nixpkgs"
         ]
       },
@@ -171,7 +236,7 @@
         "type": "github"
       }
     },
-    "flake-parts_2": {
+    "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": [
           "llm-agents-nix",
@@ -259,7 +324,7 @@
     "llm-agents-nix": {
       "inputs": {
         "bun2nix": "bun2nix",
-        "flake-parts": "flake-parts_2",
+        "flake-parts": "flake-parts_3",
         "nixpkgs": "nixpkgs_4",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix"
@@ -577,8 +642,10 @@
         "agent-skills": "agent-skills",
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",
+        "cosmic-manager": "cosmic-manager",
         "denix": "denix",
-        "flake-parts": "flake-parts",
+        "disko": "disko",
+        "flake-parts": "flake-parts_2",
         "home-manager": "home-manager_2",
         "llm-agents-nix": "llm-agents-nix",
         "mcp-servers-nix": "mcp-servers-nix",

@@ -7,8 +7,6 @@ delib.host {
       inputs.nixos-lima.nixosModules.lima
     ];
 
-    boot.loader.systemd-boot.enable = true;
-    security.sudo-rs.wheelNeedsPassword = false;
     services.lima.enable = true;
 
     fileSystems = {

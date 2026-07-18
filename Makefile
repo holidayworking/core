@@ -36,3 +36,9 @@ lima/bootstrap:
 	  cd core
 	  sudo nixos-rebuild switch --flake ".#gemini"
 	SSH
+
+vm/create:
+	@./scripts/vm-create.sh
+
+vm/bootstrap:
+	@./scripts/vm-bootstrap.sh

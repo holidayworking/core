@@ -7,5 +7,8 @@
 delib.module {
   name = "boot";
 
-  nixos.always.boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  nixos.always.boot = {
+    loader.systemd-boot.enable = true;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  };
 }

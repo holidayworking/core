@@ -12,6 +12,7 @@ delib.host {
 
   nixos = {
     users.users.hidekazu.home = "/home/${config.myconfig.constants.username}.guest";
+    security.sudo-rs.wheelNeedsPassword = false;
     system.stateVersion = "25.05";
   };
 
