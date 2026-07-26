@@ -1,10 +1,10 @@
 { delib, pkgs, ... }:
 delib.module {
-  name = "programs.docker";
+  name = "programs.colima";
 
   options = delib.singleEnableOption pkgs.stdenv.isDarwin;
 
   home.ifEnabled.home.packages = with pkgs; [
-    docker
+    colima
   ];
 }

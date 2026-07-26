@@ -1,6 +1,6 @@
 .ONESHELL:
 
-darwin/setup: nix/install nix/darwin
+darwin/setup: nix/install nix/darwin colima/start
 
 nix/install:
 	@curl --fail --silent --show-error --location https://install.determinate.systems/nix | sh -s -- install --prefer-upstream-nix
@@ -17,6 +17,9 @@ nix/switch:
 
 nix/clean:
 	@nh clean all --ask --no-direnv
+
+colima/start:
+	@colima start default --cpus 4 --memory 8 --vm-type vz --vz-rosetta --mount ~/:w --mount /private:w --mount-inotify=true
 
 lima/build-image:
 	@nix build .#packages.aarch64-linux.lima
