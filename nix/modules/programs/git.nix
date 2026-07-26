@@ -13,6 +13,7 @@ delib.module {
         ignores = [
           ".DS_Store"
           ".claude/settings.local.json"
+          "docker-compose.override.yml"
         ];
 
         settings = {
