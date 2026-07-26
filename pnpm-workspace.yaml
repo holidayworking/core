@@ -29,7 +29,7 @@ catalog:
   cspell: 10.0.1
   date-fns: 4.4.0
   ejs: 6.0.1
-  execa: 9.6.1
+  execa: 10.0.0
   markdownlint: 0.41.1
   markdownlint-cli2: 0.23.1
   npm-run-all2: 9.0.2
