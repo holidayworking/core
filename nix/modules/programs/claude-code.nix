@@ -39,6 +39,7 @@ delib.module {
               "code-simplifier@claude-plugins-official" = true;
               "codex@openai-codex" = true;
               "commit-commands@claude-plugins-official" = true;
+              "crit@crit" = true;
             };
 
             env = {
@@ -67,9 +68,16 @@ delib.module {
               printf '{"Authorization":"Basic %s"}\n' "$token"
             ''}";
 
-            extraKnownMarketplaces."openai-codex".source = {
-              source = "github";
-              repo = "openai/codex-plugin-cc";
+            extraKnownMarketplaces = {
+              "crit".source = {
+                source = "github";
+                repo = "tomasz-tomczyk/crit";
+              };
+
+              "openai-codex".source = {
+                source = "github";
+                repo = "openai/codex-plugin-cc";
+              };
             };
 
             hooks = {
