@@ -107,6 +107,26 @@
         "type": "github"
       }
     },
+    "crit": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784802366,
+        "narHash": "sha256-PQ86AlCnILX/dni6V3svqRvUaoR4sMUK9D94miMsLDA=",
+        "owner": "tomasz-tomczyk",
+        "repo": "crit",
+        "rev": "818f561e3317ae441d492cb1cb655dcf7fc70244",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomasz-tomczyk",
+        "repo": "crit",
+        "type": "github"
+      }
+    },
     "denix": {
       "inputs": {
         "home-manager": [
@@ -577,6 +597,7 @@
         "agent-skills": "agent-skills",
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",
+        "crit": "crit",
         "denix": "denix",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
