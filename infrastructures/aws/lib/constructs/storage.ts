@@ -60,7 +60,7 @@ export class Storage extends Construct {
     );
 
     Validations.of(cfnCloudfrontAccessLogsBucket).acknowledge({
-      id: "AwsSolutions-S1",
+      id: "AwsSolutions::AwsSolutions-S1",
       reason: "Access logs are not required.",
     });
   }

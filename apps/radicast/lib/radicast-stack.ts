@@ -139,7 +139,7 @@ export class RadicastStack extends cdk.Stack {
 
     cdk.Validations.of(bucketDeployment).acknowledge(
       {
-        id: "AwsSolutions-L1",
+        id: "AwsSolutions::AwsSolutions-L1",
         reason: "CDK BucketDeployment Lambda runtime is managed by CDK and cannot be configured.",
       },
       {
