@@ -91,7 +91,7 @@ export class Storage extends Construct {
     );
 
     Validations.of(cfnBucket).acknowledge({
-      id: "AwsSolutions-S1",
+      id: "AwsSolutions::AwsSolutions-S1",
       reason: "Access logs are not required.",
     });
 
@@ -145,11 +145,11 @@ export class Storage extends Construct {
 
     Validations.of(this.distribution).acknowledge(
       {
-        id: "AwsSolutions-CFR2",
+        id: "AwsSolutions::AwsSolutions-CFR2",
         reason: "AWS WAF is not required for static file distribution.",
       },
       {
-        id: "AwsSolutions-CFR3",
+        id: "AwsSolutions::AwsSolutions-CFR3",
         reason:
           "Access logs are configured with Standard logging (v2), which cdk-nag does not support yet.",
       },
