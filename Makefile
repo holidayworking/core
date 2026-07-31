@@ -21,21 +21,11 @@ nix/clean:
 colima/start:
 	@colima start default --cpus 4 --memory 8 --vm-type vz --vz-rosetta --mount ~/:w --mount /private:w --mount-inotify=true
 
-lima/build-image:
-	@nix build .#packages.aarch64-linux.lima
+vm/create:
+	@./scripts/vm-create.sh
 
-lima/start:
-	@limactl start --name=default --tty=false ./lima.yaml
+vm/bootstrap:
+	@./scripts/vm-bootstrap.sh
 
-lima/bootstrap:
-	@ssh gemini "mkdir -p ~/.config/sops/age"
-	@scp ~/.config/sops/age/keys.txt gemini:~/.config/sops/age/keys.txt
-	ssh gemini bash -s <<'SSH'
-	  set -euo pipefail
-	  ssh-keygen -F github.com || ssh-keyscan github.com >> ~/.ssh/known_hosts
-	  mkdir -p ~/src/github.com/holidayworking
-	  cd ~/src/github.com/holidayworking
-	  git clone git@github.com:holidayworking/core.git
-	  cd core
-	  sudo nixos-rebuild switch --flake ".#gemini"
-	SSH
+vm/setup:
+	@./scripts/vm-setup.sh

@@ -31,52 +31,64 @@ chmod 600 ~/.config/sops/age/keys.txt
 make darwin/setup
 ```
 
-### Lima Setup
+### NixOS VM Setup
 
-#### Step 1: Build image
-
-```shell
-make lima/build-image
-```
-
-#### Step 2: Start VM
+#### Step 1: Create and Start VM
 
 ```shell
-make lima/start
+make vm/create
 ```
 
-#### Step 3: Configure SSH Access
+#### Step 2: Initial VM Configuration
 
-Find the VM's IP address:
+1. After VM startup, log into the VM console and become the root user:
 
-```shell
-lima ip addr show enp0s2
-```
+   ```shell
+   sudo -i
+   passwd
+   ```
 
-Note the `inet` address (e.g., `192.168.65.2`).
+2. Find the VM's IP address (look for the `inet` address on `enp0s1` or similar interface):
 
-Add the following configuration to `~/.ssh/config` on macOS:
+   ```shell
+   ip addr show
+   ```
 
-```config
-Host gemini
-  IdentityFile "~/.lima/_config/user"
-  StrictHostKeyChecking no
-  UserKnownHostsFile /dev/null
-  Hostname <VM_IP_ADDRESS>
-  RemoteForward 47291 localhost:47291
-```
-
-Replace `<VM_IP_ADDRESS>` with the IP address found above.
-
-#### Step 4: Bootstrap from macOS
+#### Step 3: Bootstrap from macOS
 
 **Note**: The following commands should be run on the **macOS host**, not inside the VM.
 
-```shell
-make lima/bootstrap
+1. Run the bootstrap command with the VM's IP address:
+
+   ```shell
+   make vm/bootstrap VM_IP=<VM_IP_ADDRESS>
+   ```
+
+   Replace `<VM_IP_ADDRESS>` with the actual IP address found in Step 2.
+
+2. The NixOS installation will complete and the VM will automatically restart.
+
+#### Step 4: Configure SSH Access
+
+Add the following configuration to the `~/.ssh/config` file on macOS:
+
+```config
+Host gemini
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
+  HostName <VM_IP_ADDRESS>
+  RemoteForward 47291 localhost:47291
 ```
 
-#### Step 5: Enable remote audio for Claude Notifier
+Replace `<VM_IP_ADDRESS>` with the actual IP address from Step 2.
+
+#### Step 5: Final VM Setup
+
+```shell
+make vm/setup
+```
+
+#### Step 6: Enable remote audio for Claude Notifier
 
 To hear Claude Notifier sounds on macOS when using VS Code Remote-SSH against the VM, enable remote audio in the VS Code settings:
 
@@ -84,4 +96,4 @@ To hear Claude Notifier sounds on macOS when using VS Code Remote-SSH against th
 "claudeNotifier.remoteAudio.enabled": true
 ```
 
-Notification events are forwarded to the local `cn-daemon` through the `RemoteForward` entry configured in Step 3.
+Notification events are forwarded to the local `cn-daemon` through the `RemoteForward` entry configured in Step 4.
