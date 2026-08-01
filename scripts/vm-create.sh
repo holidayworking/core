@@ -50,7 +50,8 @@ prlctl set "$VM_NAME" \
   --on-window-close keep-running \
   --cpus "$VM_CPU" \
   --memsize "$VM_MEMORY" \
-  --rosetta-linux on
+  --rosetta-linux on \
+  --high-resolution on
 prlctl set "$VM_NAME" \
   --device-add hdd \
   --size "$VM_DISK_SIZE" \

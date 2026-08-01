@@ -18,4 +18,6 @@ delib.module {
       package = pkgs.brewCasks."1password";
     };
   };
+
+  nixos.ifEnabled.programs._1password-gui.enable = true;
 }

@@ -54,7 +54,7 @@ make vm/create
 
 #### Step 3: Bootstrap from macOS
 
-**Note**: The following commands should be run on the **macOS host**, not inside the VM.
+SSH into the VM and clone the repository:
 
 1. Run the bootstrap command with the VM's IP address:
 
@@ -65,33 +65,3 @@ make vm/create
    Replace `<VM_IP_ADDRESS>` with the actual IP address found in Step 2.
 
 2. The NixOS installation will complete and the VM will automatically restart.
-
-#### Step 4: Configure SSH Access
-
-Add the following configuration to the `~/.ssh/config` file on macOS:
-
-```config
-Host gemini
-  StrictHostKeyChecking no
-  UserKnownHostsFile=/dev/null
-  HostName <VM_IP_ADDRESS>
-  RemoteForward 47291 localhost:47291
-```
-
-Replace `<VM_IP_ADDRESS>` with the actual IP address from Step 2.
-
-#### Step 5: Final VM Setup
-
-```shell
-make vm/setup
-```
-
-#### Step 6: Enable remote audio for Claude Notifier
-
-To hear Claude Notifier sounds on macOS when using VS Code Remote-SSH against the VM, enable remote audio in the VS Code settings:
-
-```json
-"claudeNotifier.remoteAudio.enabled": true
-```
-
-Notification events are forwarded to the local `cn-daemon` through the `RemoteForward` entry configured in Step 4.

@@ -11,6 +11,6 @@ delib.module {
 
   home.ifEnabled.programs.chromium = {
     enable = true;
-    package = if pkgs.stdenv.isDarwin then pkgs.google-chrome else pkgs.chromium;
+    package = pkgs.google-chrome;
   };
 }

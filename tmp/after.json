@@ -1,0 +1,163 @@
+[org/gnome/control-center]
+last-panel='keyboard'
+window-state=(980, 640, false)
+
+[org/gnome/desktop/app-folders]
+folder-children=['System', 'Utilities', 'YaST', 'Pardus']
+
+[org/gnome/desktop/app-folders/folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[org/gnome/desktop/app-folders/folders/System]
+apps=['org.gnome.tweaks.desktop']
+name='X-GNOME-Shell-System.directory'
+translate=true
+
+[org/gnome/desktop/app-folders/folders/Utilities]
+name='X-GNOME-Shell-Utilities.directory'
+translate=true
+
+[org/gnome/desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[org/gnome/desktop/input-sources]
+mru-sources=[('xkb', 'us')]
+sources=[('xkb', 'us')]
+xkb-options=@as []
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+scaling-factor=uint32 2
+show-battery-percentage=false
+
+[org/gnome/desktop/notifications]
+application-children=['location-trash-']
+
+[org/gnome/desktop/notifications/application/location-trash-]
+application-id='location:trash:///.desktop'
+
+[org/gnome/desktop/peripherals/keyboard]
+numlock-state=false
+
+[org/gnome/desktop/wm/keybindings]
+activate-window-menu=@as []
+begin-move=@as []
+begin-resize=@as []
+close=['<Super>q']
+cycle-group=@as []
+cycle-group-backward=@as []
+cycle-panels=@as []
+cycle-panels-backward=@as []
+cycle-windows=@as []
+cycle-windows-backward=@as []
+maximize=@as []
+minimize=@as []
+move-to-monitor-down=@as []
+move-to-monitor-left=@as []
+move-to-monitor-right=@as []
+move-to-monitor-up=@as []
+move-to-workspace-1=@as []
+move-to-workspace-last=@as []
+move-to-workspace-left=@as []
+move-to-workspace-right=@as []
+panel-run-dialog=@as []
+switch-applications=@as []
+switch-applications-backward=@as []
+switch-group=@as []
+switch-group-backward=@as []
+switch-input-source=@as []
+switch-input-source-backward=@as []
+switch-panels=@as []
+switch-panels-backward=@as []
+switch-to-workspace-1=@as []
+switch-to-workspace-last=@as []
+switch-to-workspace-left=@as []
+switch-to-workspace-right=@as []
+switch-windows=@as []
+switch-windows-backward=@as []
+toggle-maximized=@as []
+unmaximize=@as []
+
+[org/gnome/desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+
+[org/gnome/mutter]
+overlay-key=''
+
+[org/gnome/mutter/wayland/keybindings]
+restore-shortcuts=@as []
+
+[org/gnome/nautilus/icon-view]
+default-zoom-level='small'
+
+[org/gnome/nautilus/preferences]
+migrated-gtk-settings=true
+
+[org/gnome/nautilus/window-state]
+initial-size=(890, 550)
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-schedule-automatic=false
+
+[org/gnome/settings-daemon/plugins/media-keys]
+logout=@as []
+screensaver=@as []
+
+[org/gnome/shell]
+always-show-log-out=true
+disable-user-extensions=false
+enabled-extensions=['appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'kimpanel@kde.org', 'kiwi@kemma', 'kiwimenu@kemma', 'pop-shell@system76.com', 'xremap@k0kubun.com']
+favorite-apps=['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'foot.desktop']
+welcome-dialog-last-shown-version='50.2'
+
+[org/gnome/shell/extensions/dash-to-dock]
+disable-overview-on-startup=true
+dock-fixed=true
+show-favorites=true
+show-mounts=false
+show-show-apps-button=false
+
+[org/gnome/shell/extensions/kiwi]
+battery-percentage=false
+custom-dnd-button=false
+dock-blur=false
+enable-app-window-buttons=false
+enable-firefox-styling=false
+enable-thunderbird-styling=false
+hide-activities-button=true
+hide-minimized-windows=false
+keyboard-indicator=false
+move-calendar-right=false
+move-window-to-new-workspace=false
+overview-wallpaper-background=false
+panel-hover-fullscreen=false
+panel-transparency=false
+show-window-controls=false
+show-window-title=false
+skip-overview-on-login=true
+transparent-move=false
+
+[org/gnome/shell/extensions/kiwimenu]
+activity-menu-visibility=true
+icon=9
+
+[org/gnome/shell/extensions/pop-shell]
+activate-launcher=['<Super>space']
+log-level=uint32 0
+mouse-cursor-focus-location=uint32 0
+show-skip-taskbar=true
+show-title=true
+
+[org/gnome/shell/keybindings]
+focus-active-notification=@as []
+screenshot=['<Shift><Super>3']
+screenshot-window=['<Shift><Super>4']
+show-screen-recording-ui=@as []
+show-screenshot-ui=['<Shift><Super>5']
+toggle-application-view=@as []
+toggle-message-tray=@as []
+toggle-quick-settings=@as []

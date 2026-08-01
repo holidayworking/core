@@ -15,5 +15,12 @@ delib.host {
 
   home.home.stateVersion = "25.05";
 
-  myconfig.services.openssh.enable = true;
+  myconfig = {
+    programs = {
+      foot.enable = true;
+      ghostty.enable = false;
+    };
+
+    services.openssh.enable = true;
+  };
 }
