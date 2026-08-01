@@ -1,4 +1,9 @@
-{ delib, inputs, ... }:
+{
+  delib,
+  inputs,
+  config,
+  ...
+}:
 delib.host {
   name = "gemini";
 
@@ -66,6 +71,20 @@ delib.host {
         "/run/binfmt"
         "/mnt/psf/RosettaLinux"
       ];
+    };
+
+    # prlcc no longer spawns prlcp on its own, so clipboard sharing silently
+    # breaks. Restore the systemd user service that nixpkgs dropped in
+    # https://github.com/NixOS/nixpkgs/pull/438941.
+    systemd.user.services.prlcp = {
+      description = "Parallels Copy Paste Tool";
+      wantedBy = [ "graphical-session.target" ];
+      path = [ config.hardware.parallels.package ];
+      serviceConfig = {
+        ExecStart = "${config.hardware.parallels.package}/bin/prlcp";
+        Restart = "always";
+        WorkingDirectory = "${config.hardware.parallels.package}/bin";
+      };
     };
   };
 }
