@@ -34,6 +34,7 @@ delib.module {
             theme = "auto";
 
             enabledPlugins = {
+              "deploy-on-aws@agent-plugins-for-aws" = true;
               "claude-code-setup@claude-plugins-official" = true;
               "claude-md-management@claude-plugins-official" = true;
               "code-simplifier@claude-plugins-official" = true;
@@ -69,6 +70,11 @@ delib.module {
             ''}";
 
             extraKnownMarketplaces = {
+              "agent-plugins-for-aws".source = {
+                source = "github";
+                repo = "awslabs/agent-plugins";
+              };
+
               "crit".source = {
                 source = "github";
                 repo = "tomasz-tomczyk/crit";

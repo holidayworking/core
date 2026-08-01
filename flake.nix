@@ -151,8 +151,6 @@
               overlays = [
                 inputs.nix-vite-plus.overlays.default
                 (_final: prev: {
-                  aws-iac-mcp-server = prev.callPackage ./nix/packages/aws-iac-mcp-server { };
-
                   # TODO: remove once test_toml_invalid_file_name passes upstream
                   aws-sam-cli = prev.aws-sam-cli.overridePythonAttrs (old: {
                     disabledTests = old.disabledTests ++ [ "test_toml_invalid_file_name" ];
@@ -184,19 +182,9 @@
               shellHook =
                 let
                   mcpConfig = inputs.mcp-servers-nix.lib.mkConfig pkgs {
-                    programs = {
-                      nixos.enable = true;
-                    };
+                    programs.nixos.enable = true;
 
                     settings.servers = {
-                      "awslabs.aws-iac-mcp-server" = {
-                        command = pkgs.lib.getExe pkgs.aws-iac-mcp-server;
-                        env = {
-                          AWS_PROFILE = "master";
-                          FASTMCP_LOG_LEVEL = "ERROR";
-                        };
-                      };
-
                       textlint = {
                         command = pkgs.lib.getExe pkgs.vite-plus;
                         args = [
