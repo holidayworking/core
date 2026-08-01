@@ -16,6 +16,7 @@ delib.module {
     mcp-servers.programs = {
       codex.enable = true;
       context7.enable = true;
+      nixos.enable = true;
 
       github = {
         enable = true;
