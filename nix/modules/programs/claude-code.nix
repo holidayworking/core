@@ -2,111 +2,81 @@
 delib.module {
   name = "programs.claude-code";
 
-  home.always.imports = [
-    (
-      { config, ... }:
-      let
-        mkNotifierHook = suffix: extra: [
-          (
-            {
-              hooks = [
-                {
-                  type = "command";
-                  command = "node ~/.claude/hooks/claude-notifier-on-${suffix}.js";
-                }
-              ];
-            }
-            // extra
-          )
-        ];
-      in
-      {
-        programs.claude-code = {
-          enable = true;
-          package = pkgs.llm-agents.claude-code;
+  home.always =
+    let
+      mkNotifierHook = suffix: extra: [
+        (
+          {
+            hooks = [
+              {
+                type = "command";
+                command = "node ~/.claude/hooks/claude-notifier-on-${suffix}.js";
+              }
+            ];
+          }
+          // extra
+        )
+      ];
+    in
+    {
+      programs.claude-code = {
+        enable = true;
+        package = pkgs.llm-agents.claude-code;
 
-          enableMcpIntegration = true;
+        enableMcpIntegration = true;
 
-          settings = {
-            enableAllProjectMcpServers = true;
-            permissions.defaultMode = "plan";
-            language = "japanese";
-            theme = "auto";
+        settings = {
+          enableAllProjectMcpServers = true;
+          permissions.defaultMode = "plan";
+          language = "japanese";
+          theme = "auto";
 
-            enabledPlugins = {
-              "deploy-on-aws@agent-plugins-for-aws" = true;
-              "claude-code-setup@claude-plugins-official" = true;
-              "claude-md-management@claude-plugins-official" = true;
-              "code-simplifier@claude-plugins-official" = true;
-              "codex@openai-codex" = true;
-              "commit-commands@claude-plugins-official" = true;
-              "crit@crit" = true;
+          enabledPlugins = {
+            "deploy-on-aws@agent-plugins-for-aws" = true;
+            "claude-code-setup@claude-plugins-official" = true;
+            "claude-md-management@claude-plugins-official" = true;
+            "code-simplifier@claude-plugins-official" = true;
+            "codex@openai-codex" = true;
+            "commit-commands@claude-plugins-official" = true;
+            "crit@crit" = true;
+          };
+
+          extraKnownMarketplaces = {
+            "agent-plugins-for-aws".source = {
+              source = "github";
+              repo = "awslabs/agent-plugins";
             };
 
-            env = {
-              "CLAUDE_CODE_ENABLE_TELEMETRY" = "1";
-              "OTEL_METRICS_EXPORTER" = "otlp";
-              "OTEL_LOGS_EXPORTER" = "otlp";
-              "OTEL_EXPORTER_OTLP_PROTOCOL" = "http/protobuf";
-              "OTEL_EXPORTER_OTLP_ENDPOINT" = "https://otlp-gateway-prod-ap-northeast-0.grafana.net/otlp";
-              "OTEL_LOG_USER_PROMPTS" = "1";
-              "OTEL_LOG_TOOL_DETAILS" = "1";
-              "OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE" = "cumulative";
+            "crit".source = {
+              source = "github";
+              repo = "tomasz-tomczyk/crit";
             };
 
-            # The OTLP auth token is a secret, so it must not be baked into the
-            # world-readable settings.json in the Nix store. Claude Code's
-            # otelHeadersHelper delegates header generation to an external script,
-            # which here reads the token from the sops-decrypted file at runtime
-            # (and re-runs periodically).
-            otelHeadersHelper = "${pkgs.writeShellScript "claude-otel-headers" ''
-              set -euo pipefail
-              token="$(cat ${config.sops.secrets.grafana-cloud-claude-code-token.path} 2>/dev/null || true)"
-              if [ -z "$token" ]; then
-                printf '%s\n' '{"error":"grafana-cloud-claude-code-token unavailable"}' >&2
-                exit 1
-              fi
-              printf '{"Authorization":"Basic %s"}\n' "$token"
-            ''}";
-
-            extraKnownMarketplaces = {
-              "agent-plugins-for-aws".source = {
-                source = "github";
-                repo = "awslabs/agent-plugins";
-              };
-
-              "crit".source = {
-                source = "github";
-                repo = "tomasz-tomczyk/crit";
-              };
-
-              "openai-codex".source = {
-                source = "github";
-                repo = "openai/codex-plugin-cc";
-              };
-            };
-
-            hooks = {
-              Stop = mkNotifierHook "stop" { };
-              PermissionRequest = mkNotifierHook "permission" { };
-              PreToolUse = mkNotifierHook "question" { matcher = "AskUserQuestion"; };
-              UserPromptSubmit = mkNotifierHook "prompt" { };
-              SubagentStop = mkNotifierHook "subagent-stop" { };
-            };
-
-            sandbox = {
-              enable = true;
-              allowUnsandboxedCommands = true;
-              failIfUnavailable = true;
-            };
-
-            statusLine = {
-              command = "${pkgs.lib.getExe' pkgs.llm-agents.ccusage "ccusage"} statusline";
-              type = "command";
+            "openai-codex".source = {
+              source = "github";
+              repo = "openai/codex-plugin-cc";
             };
           };
+
+          hooks = {
+            Stop = mkNotifierHook "stop" { };
+            PermissionRequest = mkNotifierHook "permission" { };
+            PreToolUse = mkNotifierHook "question" { matcher = "AskUserQuestion"; };
+            UserPromptSubmit = mkNotifierHook "prompt" { };
+            SubagentStop = mkNotifierHook "subagent-stop" { };
+          };
+
+          sandbox = {
+            enable = true;
+            allowUnsandboxedCommands = true;
+            failIfUnavailable = true;
+          };
+
+          statusLine = {
+            command = "${pkgs.lib.getExe' pkgs.llm-agents.ccusage "ccusage"} statusline";
+            type = "command";
+          };
         };
-      }
-    )
-  ];
+      };
+    };
 }
