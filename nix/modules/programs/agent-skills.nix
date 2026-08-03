@@ -17,7 +17,10 @@ delib.module {
         "react-best-practices"
       ];
 
-      targets.claude.enable = true;
+      targets = {
+        claude.enable = true;
+        codex.enable = true;
+      };
     };
   };
 }
