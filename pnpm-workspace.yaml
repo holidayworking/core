@@ -40,7 +40,7 @@ catalog:
   textlint-rule-preset-ja-technical-writing: 12.0.2
   textlint-rule-prh: 6.1.0
   typescript: 7.0.2
-  vite: npm:@voidzero-dev/vite-plus-core@0.2.6
+  vite: npm:@voidzero-dev/vite-plus-core@0.2.7
   vite-plus: 0.2.6
   vitest: 4.1.10
   zenn-cli: 0.5.2
