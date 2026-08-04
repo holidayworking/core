@@ -176,6 +176,7 @@
     "ioapic",
     "iomm",
     "ipap",
+    "ireduce",
     "irqs",
     "itamae",
     "iwata",
