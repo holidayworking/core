@@ -6,7 +6,7 @@ delib.host {
   name = "gemini";
 
   system = "aarch64-linux";
-  type = "server";
+  type = "desktop";
 
   nixos = {
     security.sudo-rs.wheelNeedsPassword = false;
