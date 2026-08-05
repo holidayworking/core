@@ -25,7 +25,7 @@ catalog:
   aws-sdk-client-mock: 4.1.0
   cdk-nag: 3.0.1
   constructs: 10.8.0
-  cron-parser: 5.6.2
+  cron-parser: 5.7.0
   cspell: 10.0.1
   date-fns: 4.4.0
   ejs: 6.0.1
