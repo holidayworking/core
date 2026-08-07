@@ -58,8 +58,8 @@ catalogs:
       specifier: 3.0.1
       version: 3.0.1
     constructs:
-      specifier: 10.8.0
-      version: 10.8.0
+      specifier: 10.8.1
+      version: 10.8.1
     cron-parser:
       specifier: 5.7.0
       version: 5.7.0
@@ -199,13 +199,13 @@ importers:
         version: 7.7.2
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 4.2.5(aws-cdk-lib@2.263.0(constructs@10.8.0))(constructs@10.8.0)
+        version: 4.2.5(aws-cdk-lib@2.263.0(constructs@10.8.1))(constructs@10.8.1)
       aws-cdk-lib:
         specifier: 'catalog:'
-        version: 2.263.0(constructs@10.8.0)
+        version: 2.263.0(constructs@10.8.1)
       constructs:
         specifier: 'catalog:'
-        version: 10.8.0
+        version: 10.8.1
       cron-parser:
         specifier: 'catalog:'
         version: 5.7.0
@@ -227,7 +227,7 @@ importers:
         version: 4.1.0
       cdk-nag:
         specifier: 'catalog:'
-        version: 3.0.1(aws-cdk-lib@2.263.0(constructs@10.8.0))(constructs@10.8.0)
+        version: 3.0.1(aws-cdk-lib@2.263.0(constructs@10.8.1))(constructs@10.8.1)
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
@@ -248,20 +248,20 @@ importers:
         version: link:../../packages/constants
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 4.2.5(aws-cdk-lib@2.263.0(constructs@10.8.0))(constructs@10.8.0)
+        version: 4.2.5(aws-cdk-lib@2.263.0(constructs@10.8.1))(constructs@10.8.1)
       aws-cdk-lib:
         specifier: 'catalog:'
-        version: 2.263.0(constructs@10.8.0)
+        version: 2.263.0(constructs@10.8.1)
       constructs:
         specifier: 'catalog:'
-        version: 10.8.0
+        version: 10.8.1
     devDependencies:
       aws-cdk:
         specifier: 'catalog:'
         version: 2.1135.0
       cdk-nag:
         specifier: 'catalog:'
-        version: 3.0.1(aws-cdk-lib@2.263.0(constructs@10.8.0))(constructs@10.8.0)
+        version: 3.0.1(aws-cdk-lib@2.263.0(constructs@10.8.1))(constructs@10.8.1)
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
@@ -1868,9 +1868,8 @@ packages:
     resolution: {integrity: sha512-uiqLcOiVDJtBP8WGkZHEP+FZIhTzP1dxvn59EfoYUi9gqupjrBWVQkO2atDrbnKPwLeotFYDsuNb26uBMqB+hw==}
     engines: {node: '>= 6'}
 
-  constructs@10.8.0:
-    resolution: {integrity: sha512-pJHp2CxvTG0ttp52rZvQfkbspPLZzttWPooIRLBwlZK8rV7ZhkjIkyZWJhIfBDC4YdcwIDmXyUFr1ieJaqjBbg==}
-    deprecated: This version has a bug that breaks downstream jsii consumers
+  constructs@10.8.1:
+    resolution: {integrity: sha512-98yGXYyhePqPYh3cYu8nzBERmAhC0DONe3UD03okK0nehZ7hYP4wgZuf02a04+uOWxnTJ5Rpp5m0GRNpwyLGGA==}
 
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
@@ -5114,17 +5113,17 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  aws-cdk-github-oidc@4.2.5(aws-cdk-lib@2.263.0(constructs@10.8.0))(constructs@10.8.0):
+  aws-cdk-github-oidc@4.2.5(aws-cdk-lib@2.263.0(constructs@10.8.1))(constructs@10.8.1):
     dependencies:
-      aws-cdk-lib: 2.263.0(constructs@10.8.0)
-      constructs: 10.8.0
+      aws-cdk-lib: 2.263.0(constructs@10.8.1)
+      constructs: 10.8.1
 
-  aws-cdk-lib@2.263.0(constructs@10.8.0):
+  aws-cdk-lib@2.263.0(constructs@10.8.1):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.282
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.2
       '@aws-cdk/cloud-assembly-schema': 54.15.0
-      constructs: 10.8.0
+      constructs: 10.8.1
 
   aws-cdk@2.1135.0: {}
 
@@ -5181,10 +5180,10 @@ snapshots:
 
   ccount@1.1.0: {}
 
-  cdk-nag@3.0.1(aws-cdk-lib@2.263.0(constructs@10.8.0))(constructs@10.8.0):
+  cdk-nag@3.0.1(aws-cdk-lib@2.263.0(constructs@10.8.1))(constructs@10.8.1):
     dependencies:
-      aws-cdk-lib: 2.263.0(constructs@10.8.0)
-      constructs: 10.8.0
+      aws-cdk-lib: 2.263.0(constructs@10.8.1)
+      constructs: 10.8.1
 
   chai@6.2.2: {}
 
@@ -5235,7 +5234,7 @@ snapshots:
       array-timsort: 1.0.3
       esprima: 4.0.1
 
-  constructs@10.8.0: {}
+  constructs@10.8.1: {}
 
   convert-source-map@2.0.0: {}
 
