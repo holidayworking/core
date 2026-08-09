@@ -8,7 +8,9 @@
 delib.module {
   name = "programs.mcp";
 
-  home.always = {
+  options = delib.singleEnableOption true;
+
+  home.ifEnabled = {
     imports = [ inputs.mcp-servers-nix.homeManagerModules.default ];
 
     programs.mcp.enable = true;
