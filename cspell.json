@@ -25,10 +25,11 @@
     ".claude/settings.local.json",
     ".direnv",
     ".git",
+    ".sops.yaml",
     "apps/hugo/public",
     "apps/hugo/themes/congo",
-    "pnpm-lock.yaml",
-    "nix/secrets/secrets.yaml"
+    "nix/secrets/secrets.yaml",
+    "pnpm-lock.yaml"
   ],
   "import": ["@cspell/dict-people-names/cspell-ext.json"],
   "version": "0.2",

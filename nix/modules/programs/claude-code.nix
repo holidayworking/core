@@ -21,6 +21,15 @@ delib.module {
       ];
     in
     {
+      imports = [
+        (
+          { config, ... }:
+          {
+            programs.claude-code.settings.otelHeadersHelper = config.sops.templates."otlp-headers-helper".path;
+          }
+        )
+      ];
+
       programs.claude-code = {
         enable = true;
         package = pkgs.llm-agents.claude-code;
@@ -29,8 +38,8 @@ delib.module {
 
         settings = {
           enableAllProjectMcpServers = true;
-          permissions.defaultMode = "plan";
           language = "japanese";
+          permissions.defaultMode = "plan";
           theme = "auto";
 
           enabledPlugins = {
@@ -41,6 +50,23 @@ delib.module {
             "codex@openai-codex" = true;
             "commit-commands@claude-plugins-official" = true;
             "crit@crit" = true;
+          };
+
+          env = {
+            CLAUDE_CODE_ENABLE_TELEMETRY = "1";
+            CLAUDE_CODE_ENHANCED_TELEMETRY_BETA = "1";
+            OTEL_METRICS_EXPORTER = "otlp";
+            OTEL_LOGS_EXPORTER = "otlp";
+            OTEL_TRACES_EXPORTER = "otlp";
+            OTEL_EXPORTER_OTLP_PROTOCOL = "grpc";
+            OTEL_EXPORTER_OTLP_ENDPOINT = "https://otlp.mackerelio.com:4317";
+            OTEL_EXPORTER_OTLP_LOGS_PROTOCOL = "http/protobuf";
+            OTEL_EXPORTER_OTLP_LOGS_ENDPOINT = "https://otlp-vaxila.mackerelio.com/v1/logs";
+            OTEL_EXPORTER_OTLP_TRACES_PROTOCOL = "http/protobuf";
+            OTEL_EXPORTER_OTLP_TRACES_ENDPOINT = "https://otlp-vaxila.mackerelio.com/v1/traces";
+            OTEL_LOG_USER_PROMPTS = "1";
+            OTEL_LOG_TOOL_DETAILS = "1";
+            OTEL_LOG_TOOL_CONTENT = "1";
           };
 
           extraKnownMarketplaces = {
