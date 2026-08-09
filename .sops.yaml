@@ -1,0 +1,7 @@
+keys:
+  - &hidekazu age1nurupfgdxchkgrh34e27vw86ptskhxcrny9l5954duhz0vnjd9rs90xwhj
+creation_rules:
+  - path_regex: nix/secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *hidekazu
