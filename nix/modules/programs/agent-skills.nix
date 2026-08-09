@@ -2,7 +2,9 @@
 delib.module {
   name = "programs.agent-skills";
 
-  home.always = {
+  options = delib.singleEnableOption true;
+
+  home.ifEnabled = {
     imports = [ inputs.agent-skills.homeManagerModules.default ];
 
     programs.agent-skills = {

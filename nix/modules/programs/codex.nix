@@ -2,7 +2,9 @@
 delib.module {
   name = "programs.codex";
 
-  home.always = {
+  options = delib.singleEnableOption true;
+
+  home.ifEnabled = {
     imports = [
       (
         { config, lib, ... }:

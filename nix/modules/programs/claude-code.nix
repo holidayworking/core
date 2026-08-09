@@ -2,7 +2,9 @@
 delib.module {
   name = "programs.claude-code";
 
-  home.always =
+  options = delib.singleEnableOption true;
+
+  home.ifEnabled =
     let
       mkNotifierHook = suffix: extra: [
         (
