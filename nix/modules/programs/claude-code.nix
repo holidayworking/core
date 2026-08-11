@@ -47,7 +47,6 @@ delib.module {
             "claude-code-setup@claude-plugins-official" = true;
             "claude-md-management@claude-plugins-official" = true;
             "code-simplifier@claude-plugins-official" = true;
-            "codex@openai-codex" = true;
             "commit-commands@claude-plugins-official" = true;
             "crit@crit" = true;
           };
@@ -78,11 +77,6 @@ delib.module {
             "crit".source = {
               source = "github";
               repo = "tomasz-tomczyk/crit";
-            };
-
-            "openai-codex".source = {
-              source = "github";
-              repo = "openai/codex-plugin-cc";
             };
           };
 
