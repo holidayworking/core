@@ -25,7 +25,17 @@ delib.module {
         (
           { config, ... }:
           {
-            programs.claude-code.settings.otelHeadersHelper = config.sops.templates."otlp-headers-helper".path;
+            programs = {
+              claude-code.settings.otelHeadersHelper = config.sops.templates."otlp-headers-helper".path;
+
+              # otelHeadersHelper only applies to the http/protobuf and http/json
+              # OTLP protocols; the grpc exporter (used for metrics, since Mackerel
+              # only accepts OTLP metrics over grpc) only reads the static
+              # OTEL_EXPORTER_OTLP_HEADERS env var, so source it here instead.
+              zsh.initContent = ''
+                source "${config.sops.templates."otlp-metrics-headers".path}"
+              '';
+            };
           }
         )
       ];
