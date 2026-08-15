@@ -1,9 +1,4 @@
-{
-  delib,
-  host,
-  pkgs,
-  ...
-}:
+{ delib, host, ... }:
 delib.module {
   name = "programs.1password-gui";
 
@@ -11,11 +6,6 @@ delib.module {
 
   darwin.ifEnabled = {
     homebrew.masApps."1Password for Safari" = 1569813296;
-
-    # Nixpkgs 1password-gui is too old, so install via brew-nix instead.
-    programs._1password-gui = {
-      enable = true;
-      package = pkgs.brewCasks."1password";
-    };
+    programs._1password-gui.enable = true;
   };
 }

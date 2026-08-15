@@ -31,16 +31,6 @@
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
-    brew-nix = {
-      url = "github:BatteredBunny/brew-nix";
-      inputs.brew-api.follows = "brew-api";
-    };
-
-    brew-api = {
-      url = "github:BatteredBunny/brew-api";
-      flake = false;
-    };
-
     agent-skills.url = "github:Kyure-A/agent-skills-nix";
     vercel-labs-skills = {
       url = "github:vercel-labs/agent-skills";
