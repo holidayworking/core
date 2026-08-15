@@ -7,7 +7,7 @@ delib.module {
     let
       inherit (myconfig.constants) username;
 
-      isDarwin = pkgs.stdenv.isDarwin;
+      isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
     in
     {
       home.homeDirectory = pkgs.lib.mkForce (

@@ -10,6 +10,6 @@ delib.module {
   options = delib.singleEnableOption true;
 
   home.ifEnabled.home.packages = [
-    inputs.crit.packages.${pkgs.system}.default
+    inputs.crit.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

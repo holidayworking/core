@@ -12,7 +12,7 @@ delib.module {
   home.ifEnabled.programs.ghostty = {
     enable = true;
     enableZshIntegration = false;
-    package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
 
     settings = {
       font-family = "FiraCode Nerd Font";
