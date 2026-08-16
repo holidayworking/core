@@ -13,11 +13,11 @@ export class OrganizationsStack extends cdk.Stack {
     });
 
     const securityHub = new CfnHub(this, "SecurityHub", {});
-    securityHub.addDependency(organization);
+    securityHub.addResourceDependency(organization);
 
     const SecurityHubDelegatedAdmin = new CfnDelegatedAdmin(this, "SecurityHubDelegatedAdmin", {
       adminAccountId: AWS_SECURITY_OPERATION_ACCOUNT_ID,
     });
-    SecurityHubDelegatedAdmin.addDependency(securityHub);
+    SecurityHubDelegatedAdmin.addResourceDependency(securityHub);
   }
 }
