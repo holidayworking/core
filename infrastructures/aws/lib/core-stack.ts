@@ -1,15 +1,15 @@
 import * as cdk from "aws-cdk-lib/core";
 import { Construct } from "constructs";
 
+import { Log } from "./constructs/log.ts";
 import { Monitoring } from "./constructs/monitoring.ts";
-import { Storage } from "./constructs/storage.ts";
 
 export class CoreStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    new Monitoring(this, "Monitoring");
+    new Log(this, "Log");
 
-    new Storage(this, "Storage");
+    new Monitoring(this, "Monitoring");
   }
 }

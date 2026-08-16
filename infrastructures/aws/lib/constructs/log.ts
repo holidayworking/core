@@ -3,7 +3,7 @@ import { Effect, PolicyStatement, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { Bucket, BucketNamespace } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 
-export class Storage extends Construct {
+export class Log extends Construct {
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
