@@ -1,6 +1,6 @@
 import type { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
 
-import { ScopedAws, Validations } from "aws-cdk-lib";
+import { Duration, ScopedAws, Validations } from "aws-cdk-lib";
 import {
   Distribution,
   GeoRestriction,
@@ -14,10 +14,9 @@ import {
   type IKeyValueStore,
 } from "aws-cdk-lib/aws-cloudfront";
 import { S3BucketOrigin } from "aws-cdk-lib/aws-cloudfront-origins";
-import { AnyPrincipal, Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { ARecord, PublicHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
 import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
-import { Bucket, CfnBucket, type IBucket } from "aws-cdk-lib/aws-s3";
+import { Bucket, BucketNamespace, StorageClass, type IBucket } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 import fs from "fs";
 import path from "path";
@@ -51,46 +50,26 @@ export class Storage extends Construct {
 
     const { certificate, hostedZoneId, zoneName } = props;
 
-    const cfnBucket = new CfnBucket(this, "Bucket", {
-      bucketName: `radicast-${accountId}-${region}-an`,
-      bucketNamespace: "account-regional",
-      lifecycleConfiguration: {
-        rules: [
-          {
-            status: "Enabled",
-            expiredObjectDeleteMarker: true,
-            noncurrentVersionExpirationInDays: 7,
-            transitions: [
-              {
-                storageClass: "STANDARD_IA",
-                transitionInDays: 30,
-              },
-            ],
-          },
-        ],
-      },
-      versioningConfiguration: {
-        status: "Enabled",
-      },
+    this.bucket = new Bucket(this, "Bucket", {
+      bucketNamePrefix: "radicast",
+      bucketNamespace: BucketNamespace.ACCOUNT_REGIONAL,
+      enforceSSL: true,
+      lifecycleRules: [
+        {
+          expiredObjectDeleteMarker: true,
+          noncurrentVersionExpiration: Duration.days(7),
+          transitions: [
+            {
+              storageClass: StorageClass.INFREQUENT_ACCESS,
+              transitionAfter: Duration.days(30),
+            },
+          ],
+        },
+      ],
+      versioned: true,
     });
 
-    this.bucket = Bucket.fromCfnBucket(cfnBucket);
-
-    this.bucket.addToResourcePolicy(
-      new PolicyStatement({
-        actions: ["s3:*"],
-        conditions: {
-          Bool: {
-            "aws:SecureTransport": "false",
-          },
-        },
-        effect: Effect.DENY,
-        principals: [new AnyPrincipal()],
-        resources: [this.bucket.bucketArn, this.bucket.arnForObjects("*")],
-      }),
-    );
-
-    Validations.of(cfnBucket).acknowledge({
+    Validations.of(this.bucket).acknowledge({
       id: "AwsSolutions::AwsSolutions-S1",
       reason: "Access logs are not required.",
     });

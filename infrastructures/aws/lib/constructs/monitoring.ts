@@ -473,7 +473,7 @@ export class Monitoring extends Construct {
             height: 2,
             properties: {
               markdown:
-                "## Developer Productivity\nCode output, commits, active time, and pull requests — broken down by your selected grouping.",
+                "## Developer Productivity\nCode output, commits, active time, and pull requests - broken down by your selected grouping.",
               background: "transparent",
             },
           },
@@ -679,7 +679,7 @@ export class Monitoring extends Construct {
             height: 2,
             properties: {
               markdown:
-                "## Code Editing\nEdit-tool activity by language, decision, and tool — dimensions specific to these metrics.",
+                "## Code Editing\nEdit-tool activity by language, decision, and tool - dimensions specific to these metrics.",
               background: "transparent",
             },
           },
