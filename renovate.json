@@ -8,6 +8,10 @@
     {
       "groupName": "vite-plus",
       "matchPackageNames": ["vite", "vite-plus"]
+    },
+    {
+      "matchDatasources": ["git-refs"],
+      "minimumReleaseAge": null
     }
   ]
 }
