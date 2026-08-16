@@ -1,6 +1,6 @@
 import type { IKeyValueStore } from "aws-cdk-lib/aws-cloudfront";
 
-import { Duration, Validations } from "aws-cdk-lib";
+import { type CfnElement, Duration, Stack, Validations } from "aws-cdk-lib";
 import { PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { Architecture, Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
@@ -100,8 +100,10 @@ export class FeedGenerator extends Construct {
       suffix: "config.json",
     });
 
+    const bucketLogicalId = Stack.of(bucket).getLogicalId(bucket.node.defaultChild as CfnElement);
+
     Validations.of(role).acknowledge({
-      id: "AwsSolutions-IAM5[Resource::<StorageBucket13B7643F.Arn>/*]",
+      id: `AwsSolutions-IAM5[Resource::<${bucketLogicalId}.Arn>/*]`,
       reason: "Lambda requires read and write access to all objects in the S3 bucket.",
     });
   }

@@ -423,7 +423,7 @@ def sort_filter_rules(json_obj):
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "StorageBucket13B7643F",
+                    "StorageBucket5CB7C8EA",
                     "Arn",
                   ],
                 },
@@ -433,7 +433,7 @@ def sort_filter_rules(json_obj):
                     [
                       {
                         "Fn::GetAtt": [
-                          "StorageBucket13B7643F",
+                          "StorageBucket5CB7C8EA",
                           "Arn",
                         ],
                       },
@@ -555,7 +555,7 @@ def sort_filter_rules(json_obj):
               "Effect": "Allow",
               "Resource": {
                 "Fn::GetAtt": [
-                  "StorageBucket13B7643F",
+                  "StorageBucket5CB7C8EA",
                   "Arn",
                 ],
               },
@@ -572,7 +572,7 @@ def sort_filter_rules(json_obj):
                   [
                     {
                       "Fn::GetAtt": [
-                        "StorageBucket13B7643F",
+                        "StorageBucket5CB7C8EA",
                         "Arn",
                       ],
                     },
@@ -611,7 +611,7 @@ def sort_filter_rules(json_obj):
         "Environment": {
           "Variables": {
             "BUCKET": {
-              "Ref": "StorageBucket13B7643F",
+              "Ref": "StorageBucket5CB7C8EA",
             },
           },
         },
@@ -734,7 +734,7 @@ def sort_filter_rules(json_obj):
               "Effect": "Allow",
               "Resource": {
                 "Fn::GetAtt": [
-                  "StorageBucket13B7643F",
+                  "StorageBucket5CB7C8EA",
                   "Arn",
                 ],
               },
@@ -751,7 +751,7 @@ def sort_filter_rules(json_obj):
                   [
                     {
                       "Fn::GetAtt": [
-                        "StorageBucket13B7643F",
+                        "StorageBucket5CB7C8EA",
                         "Arn",
                       ],
                     },
@@ -918,30 +918,18 @@ async function handler(event) {
       },
       "Type": "AWS::CloudFront::Function",
     },
-    "StorageBucket13B7643F": {
+    "StorageBucket5CB7C8EA": {
+      "DeletionPolicy": "Retain",
       "Properties": {
-        "BucketName": {
-          "Fn::Join": [
-            "",
-            [
-              "radicast-",
-              {
-                "Ref": "AWS::AccountId",
-              },
-              "-",
-              {
-                "Ref": "AWS::Region",
-              },
-              "-an",
-            ],
-          ],
-        },
+        "BucketNamePrefix": "radicast",
         "BucketNamespace": "account-regional",
         "LifecycleConfiguration": {
           "Rules": [
             {
               "ExpiredObjectDeleteMarker": true,
-              "NoncurrentVersionExpirationInDays": 7,
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 7,
+              },
               "Status": "Enabled",
               "Transitions": [
                 {
@@ -952,13 +940,20 @@ async function handler(event) {
             },
           ],
         },
+        "Tags": [
+          {
+            "Key": "aws-cdk:cr-owned:716453e1",
+            "Value": "true",
+          },
+        ],
         "VersioningConfiguration": {
           "Status": "Enabled",
         },
       },
       "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
     },
-    "StorageBucketFromCfnBucketAllowBucketNotificationsToRadicastStackCloudFrontInvalidatorFunctionD0EED28085946975": {
+    "StorageBucketAllowBucketNotificationsToRadicastStackCloudFrontInvalidatorFunctionD0EED280F45E75DD": {
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
@@ -973,14 +968,14 @@ async function handler(event) {
         },
         "SourceArn": {
           "Fn::GetAtt": [
-            "StorageBucket13B7643F",
+            "StorageBucket5CB7C8EA",
             "Arn",
           ],
         },
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "StorageBucketFromCfnBucketAllowBucketNotificationsToRadicastStackFeedGeneratorFunction9DFB51D35FF0C7DF": {
+    "StorageBucketAllowBucketNotificationsToRadicastStackFeedGeneratorFunction9DFB51D3773D2C6D": {
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
@@ -995,25 +990,25 @@ async function handler(event) {
         },
         "SourceArn": {
           "Fn::GetAtt": [
-            "StorageBucket13B7643F",
+            "StorageBucket5CB7C8EA",
             "Arn",
           ],
         },
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "StorageBucketFromCfnBucketNotificationsF22FA94C": {
+    "StorageBucketNotifications531571AF": {
       "DependsOn": [
-        "StorageBucketFromCfnBucketAllowBucketNotificationsToRadicastStackCloudFrontInvalidatorFunctionD0EED28085946975",
-        "StorageBucketFromCfnBucketAllowBucketNotificationsToRadicastStackFeedGeneratorFunction9DFB51D35FF0C7DF",
-        "StorageBucketFromCfnBucketNotificationsHandlerPolicy5B2B780A",
-        "StorageBucketFromCfnBucketPolicy2C4045F2",
+        "StorageBucketAllowBucketNotificationsToRadicastStackCloudFrontInvalidatorFunctionD0EED280F45E75DD",
+        "StorageBucketAllowBucketNotificationsToRadicastStackFeedGeneratorFunction9DFB51D3773D2C6D",
+        "StorageBucketNotificationsHandlerPolicy21C3FDEA",
+        "StorageBucketPolicy49CFBD91",
       ],
       "Properties": {
         "BucketName": {
-          "Ref": "StorageBucket13B7643F",
+          "Ref": "StorageBucket5CB7C8EA",
         },
-        "Managed": false,
+        "Managed": true,
         "NotificationConfiguration": {
           "LambdaFunctionConfigurations": [
             {
@@ -1112,7 +1107,7 @@ async function handler(event) {
       },
       "Type": "Custom::S3BucketNotifications",
     },
-    "StorageBucketFromCfnBucketNotificationsHandlerPolicy5B2B780A": {
+    "StorageBucketNotificationsHandlerPolicy21C3FDEA": {
       "Properties": {
         "PolicyDocument": {
           "Statement": [
@@ -1121,17 +1116,7 @@ async function handler(event) {
               "Effect": "Allow",
               "Resource": {
                 "Fn::GetAtt": [
-                  "StorageBucket13B7643F",
-                  "Arn",
-                ],
-              },
-            },
-            {
-              "Action": "s3:GetBucketNotification",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "StorageBucket13B7643F",
+                  "StorageBucket5CB7C8EA",
                   "Arn",
                 ],
               },
@@ -1139,7 +1124,7 @@ async function handler(event) {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "StorageBucketFromCfnBucketNotificationsHandlerPolicy5B2B780A",
+        "PolicyName": "StorageBucketNotificationsHandlerPolicy21C3FDEA",
         "Roles": [
           {
             "Ref": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC",
@@ -1148,10 +1133,10 @@ async function handler(event) {
       },
       "Type": "AWS::IAM::Policy",
     },
-    "StorageBucketFromCfnBucketPolicy2C4045F2": {
+    "StorageBucketPolicy49CFBD91": {
       "Properties": {
         "Bucket": {
-          "Ref": "StorageBucket13B7643F",
+          "Ref": "StorageBucket5CB7C8EA",
         },
         "PolicyDocument": {
           "Statement": [
@@ -1169,7 +1154,7 @@ async function handler(event) {
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "StorageBucket13B7643F",
+                    "StorageBucket5CB7C8EA",
                     "Arn",
                   ],
                 },
@@ -1179,7 +1164,7 @@ async function handler(event) {
                     [
                       {
                         "Fn::GetAtt": [
-                          "StorageBucket13B7643F",
+                          "StorageBucket5CB7C8EA",
                           "Arn",
                         ],
                       },
@@ -1224,7 +1209,7 @@ async function handler(event) {
                   [
                     {
                       "Fn::GetAtt": [
-                        "StorageBucket13B7643F",
+                        "StorageBucket5CB7C8EA",
                         "Arn",
                       ],
                     },
@@ -1270,7 +1255,7 @@ async function handler(event) {
             {
               "DomainName": {
                 "Fn::GetAtt": [
-                  "StorageBucket13B7643F",
+                  "StorageBucket5CB7C8EA",
                   "RegionalDomainName",
                 ],
               },
@@ -1357,7 +1342,7 @@ async function handler(event) {
       "DeletionPolicy": "Delete",
       "Properties": {
         "DestinationBucketName": {
-          "Ref": "StorageBucket13B7643F",
+          "Ref": "StorageBucket5CB7C8EA",
         },
         "Extract": true,
         "OutputObjectKeys": true,

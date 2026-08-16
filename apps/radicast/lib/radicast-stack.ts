@@ -133,6 +133,10 @@ export class RadicastStack extends cdk.Stack {
         "CDK-managed S3 bucket notifications handler requires AWSLambdaBasicExecutionRole.",
     });
 
+    const bucketLogicalId = cdk.Stack.of(bucket).getLogicalId(
+      bucket.node.defaultChild as cdk.CfnElement,
+    );
+
     const bucketDeployment = this.node.findChild(
       "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C", // cspell:disable-line
     );
@@ -168,7 +172,7 @@ export class RadicastStack extends cdk.Stack {
           "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
       },
       {
-        id: "AwsSolutions-IAM5[Resource::<StorageBucket13B7643F.Arn>/*]",
+        id: `AwsSolutions-IAM5[Resource::<${bucketLogicalId}.Arn>/*]`,
         reason:
           "CDK BucketDeployment requires wildcard S3 permissions to manage assets, which are managed by CDK and cannot be scoped down.",
       },
