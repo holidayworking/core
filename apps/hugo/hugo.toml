@@ -2,7 +2,7 @@ theme = "congo"
 baseURL = "https://holidayworking.org"
 enableRobotsTXT = true
 
-languageCode = "ja"
+locale = "ja"
 title = "holidayworking.org"
 hasCJKLanguage = true
 
