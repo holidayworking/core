@@ -1,6 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["local>holidayworking/renovate-config"],
+  "git-submodules": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "groupName": "vite-plus",
