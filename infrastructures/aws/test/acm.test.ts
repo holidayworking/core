@@ -2,16 +2,19 @@ import { App } from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
 import { expect, test } from "vitest";
 
-import { GithubActionsOidcStack } from "../lib/github-actions-oidc-stack.ts";
-import snapshotPlugin from "../test/snapshot-plugin.ts";
+import { AcmStack } from "../lib/acm-stack.ts";
+import { Route53Stack } from "../lib/route53-stack.ts";
+import snapshotPlugin from "./snapshot-plugin.ts";
 
 expect.addSnapshotSerializer(snapshotPlugin);
 
 test("snapshot", () => {
   const app = new App();
 
-  const stack = new GithubActionsOidcStack(app, "GithubActionsOidc", {
-    targetAccountIds: ["123456789012"],
+  const route53Stack = new Route53Stack(app, "Route53Stack");
+
+  const stack = new AcmStack(app, "AcmStack", {
+    hostedZone: route53Stack.publicHostedZone,
   });
 
   const template = Template.fromStack(stack);

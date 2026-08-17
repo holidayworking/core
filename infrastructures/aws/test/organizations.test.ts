@@ -9,7 +9,9 @@ expect.addSnapshotSerializer(snapshotPlugin);
 
 test("snapshot", () => {
   const app = new App();
+
   const stack = new OrganizationsStack(app, "OrganizationsStack");
+
   const template = Template.fromStack(stack);
   expect(template).toMatchSnapshot();
 });
