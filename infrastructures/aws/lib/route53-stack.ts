@@ -5,6 +5,8 @@ import { ARecord, CnameRecord, PublicHostedZone, RecordTarget } from "aws-cdk-li
 import { Construct } from "constructs";
 
 export class Route53Stack extends cdk.Stack {
+  public readonly publicHostedZone: PublicHostedZone;
+
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -21,7 +23,7 @@ export class Route53Stack extends cdk.Stack {
       }),
     );
 
-    const zone = new PublicHostedZone(this, "HostedZone", {
+    this.publicHostedZone = new PublicHostedZone(this, "HostedZone", {
       queryLogsLogGroupArn: logGroup.logGroupArn,
       zoneName: "holidayworking.org",
     });
@@ -33,12 +35,12 @@ export class Route53Stack extends cdk.Stack {
         "185.199.110.153",
         "185.199.111.153",
       ),
-      zone,
+      zone: this.publicHostedZone,
     });
 
     new CnameRecord(this, "GitHubPagesCnameRecord", {
       domainName: gitHubPagesARecord.domainName,
-      zone,
+      zone: this.publicHostedZone,
       recordName: "www",
     });
   }
