@@ -31,5 +31,13 @@ delib.module {
         };
       };
     };
+
+    mcp-servers.settings.servers.codegraph = {
+      command = lib.getExe pkgs.llm-agents.codegraph;
+      args = [
+        "serve"
+        "--mcp"
+      ];
+    };
   };
 }
