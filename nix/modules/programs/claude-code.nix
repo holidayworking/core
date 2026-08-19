@@ -1,4 +1,9 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  lib,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.claude-code";
 
@@ -12,7 +17,7 @@ delib.module {
             hooks = [
               {
                 type = "command";
-                command = "node ~/.claude/hooks/claude-notifier-on-${suffix}.js";
+                command = "${lib.getExe pkgs.nodejs} ~/.claude/hooks/claude-notifier-on-${suffix}.js";
               }
             ];
           }
