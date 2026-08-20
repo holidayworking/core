@@ -1,8 +1,13 @@
-{ delib, inputs, ... }:
+{
+  delib,
+  inputs,
+  host,
+  ...
+}:
 delib.module {
   name = "programs.agent-skills";
 
-  options = delib.singleEnableOption true;
+  options = delib.singleEnableOption host.aiFeatured;
 
   home.ifEnabled = {
     imports = [ inputs.agent-skills.homeManagerModules.default ];
