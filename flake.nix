@@ -99,6 +99,11 @@
                   (base.withConfig {
                     args.enable = true;
                     rices.enable = false;
+
+                    hosts.features = {
+                      features = [ "ai" ];
+                      default = [ "ai" ];
+                    };
                   })
                   (overlays.withConfig {
                     defaultTargets = [

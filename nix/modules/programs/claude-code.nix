@@ -1,13 +1,14 @@
 {
   delib,
   lib,
+  host,
   pkgs,
   ...
 }:
 delib.module {
   name = "programs.claude-code";
 
-  options = delib.singleEnableOption true;
+  options = delib.singleEnableOption host.aiFeatured;
 
   home.ifEnabled =
     let
