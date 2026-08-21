@@ -25,3 +25,7 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 - `vp check --fix` auto-sorts imports; no need to maintain import order manually.
 
 <!--VITE PLUS END-->
+
+## Nix Modules
+
+- Module function arguments follow this order: `delib, host, inputs, lib, pkgs, config, ...` (include only what's actually used).

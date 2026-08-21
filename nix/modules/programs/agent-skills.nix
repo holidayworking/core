@@ -1,7 +1,7 @@
 {
   delib,
-  inputs,
   host,
+  inputs,
   ...
 }:
 delib.module {
