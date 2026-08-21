@@ -1,0 +1,11 @@
+{{ if .Page.HasShortcode "gallery" }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightbox3@1/dist/lightbox3.css" />
+{{ $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" }} {{ $cssMosaic :=
+resources.Get "css/mosaic-gallery.css" | resources.Minify | resources.Fingerprint $algorithm }}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ $cssMosaic.Permalink }}"
+  integrity="{{ $cssMosaic.Data.Integrity }}"
+/>
+{{ end }}
