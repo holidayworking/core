@@ -10,6 +10,7 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 
 - [ ] Run `vp install` after pulling remote changes and before getting started.
 - [ ] Run `vp check` and `vp test` to format, lint, type check and test changes.
+- [ ] `vp check` only lints/formats code (Oxlint/Oxfmt). For Markdown content (e.g. `apps/zenn`, docs), also run root-level `pnpm lint` (cspell, markdownlint, textlint) and `pnpm fix` to autofix.
 - [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
@@ -26,6 +27,16 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 
 <!--VITE PLUS END-->
 
+## Architecture
+
+This monorepo mixes two toolchains:
+
+- JS/TS workspaces managed by Vite+ (`vp`): `apps/hugo` (Hugo static site), `apps/radicast` and `apps/zenn` (a Zenn articles/books repo), `infrastructures/aws` (`@infrastructures/aws`, shared AWS CDK), `packages/constants` (`@core/constants`). `apps/radicast` also has its own `cdk.out`/`bin/` — it's a separate CDK app, not just a library.
+- Nix system configuration under `nix/`: `nix/hosts` (per-machine entry points: `aries` = macOS/darwin, `gemini` = NixOS VM), `nix/modules/{config,programs,services,toplevel}`, `nix/overlays`, `nix/packages`, `nix/secrets` (SOPS-encrypted; requires the age key from `~/.config/sops/age/keys.txt`, see README).
+
 ## Nix Modules
 
 - Module function arguments follow this order: `delib, host, inputs, lib, pkgs, config, ...` (include only what's actually used).
+- `delib` is the `denix` flake input's module DSL (aliased in module args, not a typo).
+- Gate AI/LLM-related programs (e.g. `claude-code`, `codegraph`, `mcp-server`) behind `options = delib.singleEnableOption host.aiFeatured;` rather than a plain `enable` option.
+- To apply Nix changes: `make nix/build` (dry build) or `make nix/switch` (build + activate), both wrapping `nh darwin|os` for the current host. Initial setup only: `make darwin/setup` (macOS) or `make vm/create` / `vm/bootstrap` / `vm/setup` (NixOS VM) — see README.md.
