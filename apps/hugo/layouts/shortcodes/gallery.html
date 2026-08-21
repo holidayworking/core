@@ -1,0 +1,8 @@
+{{ $group := printf "gallery-%d" .Ordinal }}
+<div class="mosaic-gallery">
+  {{ range .Params }}
+  <a href="{{ . }}" data-lightbox="{{ $group }}">
+    <img src="{{ . }}" />
+  </a>
+  {{ end }}
+</div>

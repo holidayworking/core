@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "hugo build",
-    "preview": "hugo server"
+    "preview": "hugo server -F"
+  },
+  "devDependencies": {
+    "happy-dom": "catalog:",
+    "vitest": "catalog:"
   }
 }

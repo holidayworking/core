@@ -1,0 +1,34 @@
+/*
+  Source: https://code.usecue.com/mosaic/
+  License: WTFPL
+*/
+
+body {
+  overflow-x: hidden;
+}
+
+.mosaic-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.mosaic-gallery > a {
+  display: inline-block;
+  vertical-align: bottom;
+  padding: 0;
+  margin: 0;
+  border: none;
+  text-decoration: none;
+}
+
+.mosaic-gallery img {
+  display: inline-block;
+  vertical-align: bottom;
+  line-height: 0;
+  margin: 0 0 4px;
+  border: 0;
+}

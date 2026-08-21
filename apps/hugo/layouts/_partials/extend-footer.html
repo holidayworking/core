@@ -1,0 +1,11 @@
+{{ if .Page.HasShortcode "gallery" }}
+<script defer src="https://cdn.jsdelivr.net/npm/lightbox3@1/dist/lightbox3.min.js"></script>
+{{ $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" }} {{ $jsMosaic :=
+resources.Get "js/index.ts" | js.Build | resources.Minify | resources.Fingerprint $algorithm }}
+<script
+  defer
+  type="text/javascript"
+  src="{{ $jsMosaic.Permalink }}"
+  integrity="{{ $jsMosaic.Data.Integrity }}"
+></script>
+{{ end }}
