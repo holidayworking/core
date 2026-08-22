@@ -10,33 +10,50 @@ exports[`snapshot 1`] = `
     },
   },
   "Resources": {
-    "PhotoDistributionDelivery": {
+    "DistributionDelivery": {
       "Properties": {
         "DeliveryDestinationArn": {
           "Fn::GetAtt": [
-            "PhotoDistributionDeliveryDestination",
+            "DistributionDeliveryDestination",
             "Arn",
           ],
         },
         "DeliverySourceName": {
-          "Ref": "PhotoDistributionDeliverySource",
+          "Ref": "DistributionDeliverySource",
         },
         "S3SuffixPath": "AWSLogs/{account-id}/CloudFront/{DistributionId}/{yyyy}/{MM}/{dd}/{HH}",
       },
       "Type": "AWS::Logs::Delivery",
     },
-    "PhotoDistributionDeliveryDestination": {
+    "DistributionDeliveryDestination": {
       "Properties": {
         "DeliveryDestinationType": "S3",
         "DestinationResourceArn": {
-          "Fn::ImportValue": "CoreStack:ExportsOutputFnGetAttLogCloudfrontAccessLogsBucket28B24633ArnF92F032C",
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":s3:::cloudfront-access-logs-",
+              {
+                "Fn::ImportValue": "PhotoStack:ExportsOutputRefAWSAccountIdAD568057",
+              },
+              "-",
+              {
+                "Fn::ImportValue": "PhotoStack:ExportsOutputRefAWSRegion31D1D346",
+              },
+              "-an",
+            ],
+          ],
         },
         "Name": "photo-cloudfront-access-logs-json",
         "OutputFormat": "json",
       },
       "Type": "AWS::Logs::DeliveryDestination",
     },
-    "PhotoDistributionDeliverySource": {
+    "DistributionDeliverySource": {
       "Properties": {
         "LogType": "ACCESS_LOGS",
         "Name": "photo-cloudfront-access-logs-source",
@@ -54,7 +71,7 @@ exports[`snapshot 1`] = `
               },
               ":distribution/",
               {
-                "Fn::ImportValue": "CoreStack:ExportsOutputRefStoragePhotoDistributionBB0FE9872F04A3FA",
+                "Fn::ImportValue": "PhotoStack:ExportsOutputRefStorageDistributionA4A168F6EB00D71C",
               },
             ],
           ],

@@ -13,6 +13,7 @@ jobs:
     outputs:
       hugo: ${{ steps.filter.outputs.hugo }}
       radicast: ${{ steps.filter.outputs.radicast }}
+      photo: ${{ steps.filter.outputs.photo }}
       zenn: ${{ steps.filter.outputs.zenn }}
       aws-infrastructure: ${{ steps.filter.outputs.aws-infrastructure }}
     steps:
@@ -29,6 +30,13 @@ jobs:
               - .github/workflows/deploy.yaml
             radicast:
               - "apps/radicast/**"
+              - .github/workflows/deploy.yaml
+              - package.json
+              - pnpm-lock.yaml
+              - pnpm-workspace.yaml
+              - tsconfig.json
+            photo:
+              - "apps/photo/**"
               - .github/workflows/deploy.yaml
               - package.json
               - pnpm-lock.yaml
@@ -105,6 +113,29 @@ jobs:
           role-to-assume: arn:aws:iam::445411728232:role/github-actions
           aws-region: ap-northeast-1
       - run: vp exec --filter radicast cdk deploy --all --require-approval never
+    timeout-minutes: 10
+
+  photo:
+    permissions:
+      contents: write
+      id-token: write
+    needs:
+      - changes
+    if: ${{ needs.changes.outputs.photo == 'true' }}
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: "false"
+      - uses: voidzero-dev/setup-vp@313600b80b104eadebb9111787d37a2e83e014ca # v1.17.0
+        with:
+          cache: true
+      - run: vp install
+      - uses: aws-actions/configure-aws-credentials@e6de054238d6b7531b4efff3b6587d9aade6a06c # v6.2.3
+        with:
+          role-to-assume: arn:aws:iam::445411728232:role/github-actions
+          aws-region: ap-northeast-1
+      - run: vp exec --filter photo cdk deploy --all --require-approval never
     timeout-minutes: 10
 
   zenn:
