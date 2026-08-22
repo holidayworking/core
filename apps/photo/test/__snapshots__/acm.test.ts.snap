@@ -10,21 +10,19 @@ exports[`snapshot 1`] = `
     },
   },
   "Resources": {
-    "PhotoCertificateDA6512A3": {
+    "Certificate4E7ABB08": {
       "Properties": {
-        "DomainName": "photo.holidayworking.org",
+        "DomainName": "photo.example.com",
         "DomainValidationOptions": [
           {
-            "DomainName": "photo.holidayworking.org",
-            "HostedZoneId": {
-              "Fn::ImportValue": "Route53Stack:ExportsOutputRefHostedZoneDB99F8662BBAE844",
-            },
+            "DomainName": "photo.example.com",
+            "HostedZoneId": "ZOJJZC49E0EPZ",
           },
         ],
         "Tags": [
           {
             "Key": "Name",
-            "Value": "AcmStack/PhotoCertificate",
+            "Value": "PhotoAcmStack/Certificate",
           },
         ],
         "ValidationMethod": "DNS",

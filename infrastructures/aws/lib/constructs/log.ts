@@ -1,13 +1,9 @@
-import type { IBucket } from "aws-cdk-lib/aws-s3";
-
 import { Duration, ScopedAws, Validations } from "aws-cdk-lib";
 import { Effect, PolicyStatement, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { Bucket, BucketNamespace } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 
 export class Log extends Construct {
-  public readonly cloudfrontAccessLogsBucket: IBucket;
-
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
@@ -46,7 +42,5 @@ export class Log extends Construct {
       id: "AwsSolutions::AwsSolutions-S1",
       reason: "Access logs are not required.",
     });
-
-    this.cloudfrontAccessLogsBucket = cloudfrontAccessLogsBucket;
   }
 }

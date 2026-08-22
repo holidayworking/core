@@ -3,7 +3,6 @@ import { Template } from "aws-cdk-lib/assertions";
 import { expect, test } from "vitest";
 
 import { AcmStack } from "../lib/acm-stack.ts";
-import { Route53Stack } from "../lib/route53-stack.ts";
 import snapshotPlugin from "./snapshot-plugin.ts";
 
 expect.addSnapshotSerializer(snapshotPlugin);
@@ -11,10 +10,9 @@ expect.addSnapshotSerializer(snapshotPlugin);
 test("snapshot", () => {
   const app = new App();
 
-  const route53Stack = new Route53Stack(app, "Route53Stack");
-
-  const stack = new AcmStack(app, "AcmStack", {
-    hostedZone: route53Stack.publicHostedZone,
+  const stack = new AcmStack(app, "PhotoAcmStack", {
+    hostedZoneId: "ZOJJZC49E0EPZ",
+    zoneName: "example.com",
   });
 
   const template = Template.fromStack(stack);
