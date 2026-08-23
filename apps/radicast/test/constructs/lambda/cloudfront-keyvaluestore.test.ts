@@ -2,12 +2,12 @@ import {
   CloudFrontKeyValueStoreClient,
   GetKeyCommand,
 } from "@aws-sdk/client-cloudfront-keyvaluestore";
+import { expectFailure, expectSuccess } from "@core/utils";
 import { mockClient } from "aws-sdk-client-mock";
 import { beforeEach, expect, test } from "vitest";
 
 import { findBasicAuthenticationCredential } from "../../../lib/constructs/lambda/cloudfront-keyvaluestore.ts";
 import { kvsArn } from "./fixtures.ts";
-import { expectFailure, expectSuccess } from "./helpers.ts";
 
 const kvsMock = mockClient(CloudFrontKeyValueStoreClient);
 

@@ -2,8 +2,7 @@ import {
   CloudFrontKeyValueStoreClient,
   GetKeyCommand,
 } from "@aws-sdk/client-cloudfront-keyvaluestore";
-
-import { Failure, Success } from "./result.ts";
+import { Failure, Success, toFailure } from "@core/utils";
 
 const client = new CloudFrontKeyValueStoreClient({ region: "us-east-1" });
 
@@ -19,10 +18,6 @@ export const findBasicAuthenticationCredential = async (kvsArn: string) => {
     }
     return new Success({ username: "radicast", password: response.Value });
   } catch (e) {
-    if (e instanceof Error) {
-      return new Failure(e);
-    } else {
-      return new Failure(new Error());
-    }
+    return toFailure(e);
   }
 };

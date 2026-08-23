@@ -1,13 +1,12 @@
 import { Logger } from "@aws-lambda-powertools/logger";
+import { Failure, Success } from "@core/utils";
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
 
 import { findBasicAuthenticationCredential } from "../../../../../lib/constructs/lambda/cloudfront-keyvaluestore.ts";
 import { Episode } from "../../../../../lib/constructs/lambda/episode.ts";
 import { handler } from "../../../../../lib/constructs/lambda/functions/feed-generator/index.ts";
-import { Failure, Success } from "../../../../../lib/constructs/lambda/result.ts";
 import { findDefinition, listEpisodes, saveFeed } from "../../../../../lib/constructs/lambda/s3.ts";
 import { createContext, createDefinition, createS3Event, kvsArn } from "../../fixtures.ts";
-import { spyOnLoggerError } from "../../helpers.ts";
 
 vi.mock("../../../../../lib/constructs/lambda/cloudfront-keyvaluestore.ts");
 vi.mock("../../../../../lib/constructs/lambda/s3.ts");
@@ -17,7 +16,7 @@ const findDefinitionMock = vi.mocked(findDefinition);
 const listEpisodesMock = vi.mocked(listEpisodes);
 const saveFeedMock = vi.mocked(saveFeed);
 
-const errorSpy = spyOnLoggerError();
+const errorSpy = vi.spyOn(Logger.prototype, "error").mockImplementation(() => {});
 vi.spyOn(Logger.prototype, "info").mockImplementation(() => {});
 
 const episode = Episode.from({

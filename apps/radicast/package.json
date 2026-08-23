@@ -11,6 +11,7 @@
     "@aws-sdk/client-s3": "catalog:",
     "@aws-sdk/signature-v4a": "catalog:",
     "@core/constants": "workspace:*",
+    "@core/utils": "workspace:*",
     "@date-fns/tz": "catalog:",
     "@middy/core": "catalog:",
     "aws-cdk-github-oidc": "catalog:",

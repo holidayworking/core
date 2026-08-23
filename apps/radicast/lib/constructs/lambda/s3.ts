@@ -4,6 +4,7 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
+import { Failure, Success, toFailure } from "@core/utils";
 import { tz } from "@date-fns/tz";
 import { format } from "date-fns";
 import { createReadStream } from "fs";
@@ -12,7 +13,6 @@ import { extname } from "path";
 import type { Definition } from "./definition.ts";
 
 import { Episode } from "./episode.ts";
-import { Failure, Success } from "./result.ts";
 
 const client = new S3Client({});
 
@@ -32,11 +32,7 @@ export const findDefinition = async (bucket: string, id: string) => {
     const definition: Definition = JSON.parse(str);
     return new Success(definition);
   } catch (e) {
-    if (e instanceof Error) {
-      return new Failure(e);
-    } else {
-      return new Failure(new Error());
-    }
+    return toFailure(e);
   }
 };
 
@@ -55,11 +51,7 @@ export const saveEpisode = async (bucket: string, id: string, episode: Episode) 
     );
     return new Success("");
   } catch (e) {
-    if (e instanceof Error) {
-      return new Failure(e);
-    } else {
-      return new Failure(new Error());
-    }
+    return toFailure(e);
   }
 };
 
@@ -87,11 +79,7 @@ export const listEpisodes = async (bucket: string, id: string, url: string) => {
       .sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime());
     return new Success(episodes);
   } catch (e) {
-    if (e instanceof Error) {
-      return new Failure(e);
-    } else {
-      return new Failure(new Error());
-    }
+    return toFailure(e);
   }
 };
 
@@ -106,10 +94,6 @@ export const saveFeed = async (bucket: string, id: string, feed: string) => {
     );
     return new Success("");
   } catch (e) {
-    if (e instanceof Error) {
-      return new Failure(e);
-    } else {
-      return new Failure(new Error());
-    }
+    return toFailure(e);
   }
 };

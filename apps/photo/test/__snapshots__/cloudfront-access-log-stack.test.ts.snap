@@ -38,11 +38,11 @@ exports[`snapshot 1`] = `
               },
               ":s3:::cloudfront-access-logs-",
               {
-                "Fn::ImportValue": "PhotoStack:ExportsOutputRefAWSAccountIdAD568057",
+                "Ref": "AWS::AccountId",
               },
               "-",
               {
-                "Fn::ImportValue": "PhotoStack:ExportsOutputRefAWSRegion31D1D346",
+                "Ref": "AWS::Region",
               },
               "-an",
             ],
@@ -71,7 +71,7 @@ exports[`snapshot 1`] = `
               },
               ":distribution/",
               {
-                "Fn::ImportValue": "PhotoStack:ExportsOutputRefStorageDistributionA4A168F6EB00D71C",
+                "Fn::ImportValue": "PhotoStack:ExportsOutputRefDistribution830FAC524DF81588",
               },
             ],
           ],

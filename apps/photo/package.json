@@ -4,12 +4,18 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@aws-lambda-powertools/logger": "catalog:",
+    "@aws-sdk/client-s3": "catalog:",
     "@core/constants": "workspace:*",
+    "@core/utils": "workspace:*",
+    "@middy/core": "catalog:",
     "aws-cdk-lib": "catalog:",
-    "constructs": "catalog:"
+    "constructs": "catalog:",
+    "sharp": "0.35.3"
   },
   "devDependencies": {
     "aws-cdk": "catalog:",
+    "aws-sdk-client-mock": "catalog:",
     "cdk-nag": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

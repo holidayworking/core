@@ -20,7 +20,7 @@ exports[`snapshot 1`] = `
     },
   },
   "Resources": {
-    "StorageBucket5CB7C8EA": {
+    "Bucket83908E77": {
       "DeletionPolicy": "Retain",
       "Properties": {
         "BucketNamePrefix": "photo",
@@ -32,10 +32,10 @@ exports[`snapshot 1`] = `
       "Type": "AWS::S3::Bucket",
       "UpdateReplacePolicy": "Retain",
     },
-    "StorageBucketPolicy49CFBD91": {
+    "BucketPolicyE9A3008A": {
       "Properties": {
         "Bucket": {
-          "Ref": "StorageBucket5CB7C8EA",
+          "Ref": "Bucket83908E77",
         },
         "PolicyDocument": {
           "Statement": [
@@ -53,7 +53,7 @@ exports[`snapshot 1`] = `
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "StorageBucket5CB7C8EA",
+                    "Bucket83908E77",
                     "Arn",
                   ],
                 },
@@ -63,7 +63,7 @@ exports[`snapshot 1`] = `
                     [
                       {
                         "Fn::GetAtt": [
-                          "StorageBucket5CB7C8EA",
+                          "Bucket83908E77",
                           "Arn",
                         ],
                       },
@@ -73,57 +73,13 @@ exports[`snapshot 1`] = `
                 },
               ],
             },
-            {
-              "Action": "s3:GetObject",
-              "Condition": {
-                "StringEquals": {
-                  "AWS:SourceArn": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition",
-                        },
-                        ":cloudfront::",
-                        {
-                          "Ref": "AWS::AccountId",
-                        },
-                        ":distribution/",
-                        {
-                          "Ref": "StorageDistributionA4A168F6",
-                        },
-                      ],
-                    ],
-                  },
-                },
-              },
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "cloudfront.amazonaws.com",
-              },
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    {
-                      "Fn::GetAtt": [
-                        "StorageBucket5CB7C8EA",
-                        "Arn",
-                      ],
-                    },
-                    "/*",
-                  ],
-                ],
-              },
-            },
           ],
           "Version": "2012-10-17",
         },
       },
       "Type": "AWS::S3::BucketPolicy",
     },
-    "StorageDistributionA4A168F6": {
+    "Distribution830FAC52": {
       "Properties": {
         "DistributionConfig": {
           "Aliases": [
@@ -132,30 +88,42 @@ exports[`snapshot 1`] = `
           "DefaultCacheBehavior": {
             "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
             "Compress": true,
-            "TargetOriginId": "PhotoStackStorageDistributionOrigin1F6DBC9A4",
+            "TargetOriginId": "PhotoStackDistributionOrigin16067CD69",
             "ViewerProtocolPolicy": "https-only",
           },
-          "DefaultRootObject": "index.html",
           "Enabled": true,
           "HttpVersion": "http2",
           "IPV6Enabled": true,
           "Origins": [
             {
-              "DomainName": {
-                "Fn::GetAtt": [
-                  "StorageBucket5CB7C8EA",
-                  "RegionalDomainName",
+              "CustomOriginConfig": {
+                "OriginProtocolPolicy": "https-only",
+                "OriginSSLProtocols": [
+                  "TLSv1.2",
                 ],
               },
-              "Id": "PhotoStackStorageDistributionOrigin1F6DBC9A4",
+              "DomainName": {
+                "Fn::Select": [
+                  2,
+                  {
+                    "Fn::Split": [
+                      "/",
+                      {
+                        "Fn::GetAtt": [
+                          "FunctionFunctionUrl08F79AC9",
+                          "FunctionUrl",
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              "Id": "PhotoStackDistributionOrigin16067CD69",
               "OriginAccessControlId": {
                 "Fn::GetAtt": [
-                  "StorageDistributionOrigin1S3OriginAccessControlAA77ED15",
+                  "DistributionOrigin1FunctionUrlOriginAccessControl1DA0EA55",
                   "Id",
                 ],
-              },
-              "S3OriginConfig": {
-                "OriginAccessIdentity": "",
               },
             },
           ],
@@ -170,12 +138,12 @@ exports[`snapshot 1`] = `
       },
       "Type": "AWS::CloudFront::Distribution",
     },
-    "StorageDistributionAliasRecord355B9CFC": {
+    "DistributionAliasRecord5B25145D": {
       "Properties": {
         "AliasTarget": {
           "DNSName": {
             "Fn::GetAtt": [
-              "StorageDistributionA4A168F6",
+              "Distribution830FAC52",
               "DomainName",
             ],
           },
@@ -195,16 +163,214 @@ exports[`snapshot 1`] = `
       },
       "Type": "AWS::Route53::RecordSet",
     },
-    "StorageDistributionOrigin1S3OriginAccessControlAA77ED15": {
+    "DistributionOrigin1FunctionUrlOriginAccessControl1DA0EA55": {
       "Properties": {
         "OriginAccessControlConfig": {
-          "Name": "PhotoStackStorageDistributioOrigin1S3OriginAccessControl13CD57FC",
-          "OriginAccessControlOriginType": "s3",
+          "Name": "PhotoStackDistributionOriginnctionUrlOriginAccessControlFAEBF3A9",
+          "OriginAccessControlOriginType": "lambda",
           "SigningBehavior": "always",
           "SigningProtocol": "sigv4",
         },
       },
       "Type": "AWS::CloudFront::OriginAccessControl",
+    },
+    "DistributionOrigin1InvokeFromApiForPhotoStackDistributionOrigin16067CD695B5D3320": {
+      "Properties": {
+        "Action": "lambda:InvokeFunctionUrl",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "FunctionFunctionUrl08F79AC9",
+            "FunctionArn",
+          ],
+        },
+        "Principal": "cloudfront.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":cloudfront::",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              ":distribution/",
+              {
+                "Ref": "Distribution830FAC52",
+              },
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "Function76856677": {
+      "DependsOn": [
+        "FunctionServiceRoleDefaultPolicyA390655B",
+        "FunctionServiceRole06CB2226",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "[ASSET ZIP]",
+        },
+        "Environment": {
+          "Variables": {
+            "BUCKET_NAME": {
+              "Ref": "Bucket83908E77",
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "FunctionLogGroupBD1576D5",
+          },
+        },
+        "MemorySize": 2048,
+        "Role": {
+          "Fn::GetAtt": [
+            "FunctionServiceRole06CB2226",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs24.x",
+        "Timeout": 30,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "FunctionAllowCloudFrontServicePrincipalInvokeFunctionB0858432": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "Function76856677",
+            "Arn",
+          ],
+        },
+        "Principal": "cloudfront.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":cloudfront::",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              ":distribution/",
+              {
+                "Ref": "Distribution830FAC52",
+              },
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "FunctionFunctionUrl08F79AC9": {
+      "Properties": {
+        "AuthType": "AWS_IAM",
+        "TargetFunctionArn": {
+          "Fn::GetAtt": [
+            "Function76856677",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Url",
+    },
+    "FunctionLogGroupBD1576D5": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "RetentionInDays": 7,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "FunctionServiceRole06CB2226": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FunctionServiceRoleDefaultPolicyA390655B": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "FunctionLogGroupBD1576D5",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "s3:ListBucket",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "Bucket83908E77",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "Bucket83908E77",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "FunctionServiceRoleDefaultPolicyA390655B",
+        "Roles": [
+          {
+            "Ref": "FunctionServiceRole06CB2226",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
     },
   },
   "Rules": {
