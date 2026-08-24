@@ -33,7 +33,7 @@ test("returns the converted image as a base64 body", async () => {
   expect(toWebpMock).toHaveBeenCalledExactlyOnceWith(new Uint8Array([1, 2, 3]), undefined);
   expect(result).toStrictEqual({
     body: Buffer.from([4, 5, 6]).toString("base64"),
-    headers: { "Content-Type": "image/webp" },
+    headers: { "Content-Type": "image/webp", "Cache-Control": "public, max-age=31536000" },
     isBase64Encoded: true,
     statusCode: 200,
   });
@@ -100,7 +100,7 @@ test("fetches the source image and converts it to WebP at the thumbnail width wh
   expect(toWebpMock).toHaveBeenCalledExactlyOnceWith(new Uint8Array([1, 2, 3]), 600);
   expect(result).toStrictEqual({
     body: Buffer.from([4, 5, 6]).toString("base64"),
-    headers: { "Content-Type": "image/webp" },
+    headers: { "Cache-Control": "public, max-age=31536000", "Content-Type": "image/webp" },
     isBase64Encoded: true,
     statusCode: 200,
   });
