@@ -56,6 +56,7 @@ const lambdaHandler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayP
   return {
     statusCode: 200,
     headers: {
+      "Cache-Control": "public, max-age=31536000",
       "Content-Type": "image/webp",
     },
     body: resultToWebp.value.toString("base64"),
