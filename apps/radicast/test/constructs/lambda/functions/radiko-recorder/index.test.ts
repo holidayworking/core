@@ -1,13 +1,13 @@
+import { Logger } from "@aws-lambda-powertools/logger";
 import { getParameter } from "@aws-lambda-powertools/parameters/ssm";
+import { Failure, Success } from "@core/utils";
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
 
 import { Episode } from "../../../../../lib/constructs/lambda/episode.ts";
 import { handler } from "../../../../../lib/constructs/lambda/functions/radiko-recorder/index.ts";
 import { recordEpisode } from "../../../../../lib/constructs/lambda/recorder.ts";
-import { Failure, Success } from "../../../../../lib/constructs/lambda/result.ts";
 import { findDefinition, saveEpisode } from "../../../../../lib/constructs/lambda/s3.ts";
 import { createContext, createDefinition } from "../../fixtures.ts";
-import { spyOnLoggerError } from "../../helpers.ts";
 
 vi.mock("@aws-lambda-powertools/parameters/ssm", () => ({
   getParameter: vi.fn(),
@@ -20,7 +20,7 @@ const findDefinitionMock = vi.mocked(findDefinition);
 const recordEpisodeMock = vi.mocked(recordEpisode);
 const saveEpisodeMock = vi.mocked(saveEpisode);
 
-const errorSpy = spyOnLoggerError();
+const errorSpy = vi.spyOn(Logger.prototype, "error").mockImplementation(() => {});
 
 const episode = Episode.from({
   station: "BAYFM78",

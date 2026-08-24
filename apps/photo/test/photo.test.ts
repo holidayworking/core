@@ -8,20 +8,28 @@ import snapshotPlugin from "./snapshot-plugin.ts";
 
 expect.addSnapshotSerializer(snapshotPlugin);
 
-test("snapshot", () => {
-  const app = new App();
+// `Function` bundles `sharp` via Docker (nodeModules install), which can take
+// longer than the default 5s test timeout.
+const BUNDLING_TIMEOUT_MS = 120_000;
 
-  const acmStack = new AcmStack(app, "PhotoAcmStack", {
-    hostedZoneId: "ZOJJZC49E0EPZ",
-    zoneName: "example.com",
-  });
+test(
+  "snapshot",
+  () => {
+    const app = new App();
 
-  const stack = new PhotoStack(app, "PhotoStack", {
-    certificate: acmStack.certificate,
-    hostedZoneId: "ZOJJZC49E0EPZ",
-    zoneName: "example.com",
-  });
+    const acmStack = new AcmStack(app, "PhotoAcmStack", {
+      hostedZoneId: "ZOJJZC49E0EPZ",
+      zoneName: "example.com",
+    });
 
-  const template = Template.fromStack(stack);
-  expect(template).toMatchSnapshot();
-});
+    const stack = new PhotoStack(app, "PhotoStack", {
+      certificate: acmStack.certificate,
+      hostedZoneId: "ZOJJZC49E0EPZ",
+      zoneName: "example.com",
+    });
+
+    const template = Template.fromStack(stack);
+    expect(template).toMatchSnapshot();
+  },
+  BUNDLING_TIMEOUT_MS,
+);

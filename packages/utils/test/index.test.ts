@@ -1,8 +1,8 @@
 import { expect, test } from "vitest";
 
-import type { Result } from "../../../lib/constructs/lambda/result.ts";
+import type { Result } from "../src/index.ts";
 
-import { Failure, Success } from "../../../lib/constructs/lambda/result.ts";
+import { Failure, Success } from "../src/index.ts";
 
 test("Success holds the value and narrows via isSuccess", () => {
   const result: Result<string, Error> = new Success("value");

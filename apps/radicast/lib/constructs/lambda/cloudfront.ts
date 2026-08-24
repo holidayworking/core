@@ -1,6 +1,5 @@
 import { CloudFrontClient, CreateInvalidationCommand } from "@aws-sdk/client-cloudfront";
-
-import { Failure, Success } from "./result.ts";
+import { Success, toFailure } from "@core/utils";
 
 const client = new CloudFrontClient({});
 
@@ -20,10 +19,6 @@ export const cloudFrontInvalidation = async (distributionId: string, path: strin
     );
     return new Success("");
   } catch (e) {
-    if (e instanceof Error) {
-      return new Failure(e);
-    } else {
-      return new Failure(new Error());
-    }
+    return toFailure(e);
   }
 };

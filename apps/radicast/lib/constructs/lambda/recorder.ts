@@ -1,3 +1,4 @@
+import { Failure, Success, toFailure } from "@core/utils";
 import { tz } from "@date-fns/tz";
 import { CronExpressionParser } from "cron-parser";
 import { randomUUID } from "crypto";
@@ -10,7 +11,6 @@ import { join } from "path";
 import type { Definition } from "./definition.ts";
 
 import { Episode } from "./episode.ts";
-import { Failure, Success } from "./result.ts";
 
 export const recordEpisode = async (email: string, password: string, definition: Definition) => {
   try {
@@ -40,11 +40,7 @@ export const recordEpisode = async (email: string, password: string, definition:
     }
     return new Failure(new Error("could not be recorded"));
   } catch (e) {
-    if (e instanceof Error) {
-      return new Failure(e);
-    } else {
-      return new Failure(new Error());
-    }
+    return toFailure(e);
   }
 };
 

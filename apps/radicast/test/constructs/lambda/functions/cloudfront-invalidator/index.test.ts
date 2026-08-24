@@ -1,16 +1,16 @@
+import { Logger } from "@aws-lambda-powertools/logger";
+import { Failure, Success } from "@core/utils";
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
 
 import { cloudFrontInvalidation } from "../../../../../lib/constructs/lambda/cloudfront.ts";
 import { handler } from "../../../../../lib/constructs/lambda/functions/cloudfront-invalidator/index.ts";
-import { Failure, Success } from "../../../../../lib/constructs/lambda/result.ts";
 import { createContext, createS3Event } from "../../fixtures.ts";
-import { spyOnLoggerError } from "../../helpers.ts";
 
 vi.mock("../../../../../lib/constructs/lambda/cloudfront.ts");
 
 const cloudFrontInvalidationMock = vi.mocked(cloudFrontInvalidation);
 
-const errorSpy = spyOnLoggerError();
+const errorSpy = vi.spyOn(Logger.prototype, "error").mockImplementation(() => {});
 
 beforeEach(() => {
   vi.clearAllMocks();
