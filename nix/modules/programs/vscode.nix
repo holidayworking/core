@@ -66,7 +66,7 @@ delib.module {
         "terminal.integrated.fontLigatures.enabled" = true;
         "terminal.integrated.fontSize" = 14;
         "claudeCode.claudeProcessWrapper" = pkgs.lib.getExe' pkgs.llm-agents.claude-code "claude";
-        "claudeCode.initialPermissionMode" = "plan";
+        "claudeCode.initialPermissionMode" = "auto";
         "claudeCode.preferredLocation" = "panel";
         "claudeCode.useCtrlEnterToSend" = true;
         "github.copilot.chat.claudeAgent.enabled" = false;

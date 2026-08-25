@@ -97,7 +97,7 @@ delib.module {
           };
 
           permissions = {
-            defaultMode = "plan";
+            defaultMode = "auto";
             allow = [
               "mcp__codegraph__*"
             ];
