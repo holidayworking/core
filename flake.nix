@@ -181,7 +181,6 @@
                   };
                 in
                 ''
-                  ${pkgs.lib.getExe pkgs.proto} install
                   ${pkgs.lib.getExe pkgs.vite-plus} install
 
                   if [ -L ".mcp.json" ]; then
