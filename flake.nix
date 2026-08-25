@@ -167,10 +167,11 @@
 
               shellHook =
                 let
+                  vp = pkgs.lib.getExe pkgs.vite-plus;
                   mcpConfig = inputs.mcp-servers-nix.lib.mkConfig pkgs {
                     settings.servers = {
                       textlint = {
-                        command = pkgs.lib.getExe pkgs.vite-plus;
+                        command = vp;
                         args = [
                           "exec"
                           "textlint"
@@ -181,7 +182,11 @@
                   };
                 in
                 ''
-                  ${pkgs.lib.getExe pkgs.vite-plus} install
+                  if [ ! -f "$HOME/.vite-plus/env" ]; then
+                    ${vp} env setup
+                  fi
+                  source "$HOME/.vite-plus/env"
+                  ${vp} install
 
                   if [ -L ".mcp.json" ]; then
                     unlink .mcp.json
