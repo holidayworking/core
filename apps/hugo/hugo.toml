@@ -11,6 +11,7 @@ dateFormat = "2 January 2006"
 mainSections = ["blog"]
 enableCodeCopy = true
 enableImageWebp = false
+photoBaseURL = "https://photo.holidayworking.org"
 
 [params.author]
 name = "Hidekazu Tanaka"
