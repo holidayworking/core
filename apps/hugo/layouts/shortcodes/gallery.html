@@ -1,8 +1,9 @@
-{{ $group := printf "gallery-%d" .Ordinal }}
+{{ $group := printf "gallery-%d" .Ordinal }} {{ $base := site.Params.photoBaseURL }}
 <div class="mosaic-gallery">
-  {{ range .Params }}
-  <a href="{{ . }}" data-lightbox="{{ $group }}">
-    <img src="{{ . }}" />
+  {{ range .Params }} {{ $url := urls.JoinPath $base . }} {{ $ext := path.Ext . }} {{ $thumbnailURL
+  := urls.JoinPath $base (printf "%s_thumbnail%s" (strings.TrimSuffix $ext .) $ext) }}
+  <a href="{{ $url }}" data-lightbox="{{ $group }}">
+    <img src="{{ $thumbnailURL }}" />
   </a>
   {{ end }}
 </div>
