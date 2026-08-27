@@ -226,6 +226,9 @@ exports[`snapshot 1`] = `
             "BUCKET_NAME": {
               "Ref": "Bucket83908E77",
             },
+            "FONTCONFIG_PATH": "/var/task/fonts",
+            "WATERMARK_BOLD_FONT_FILE": "/var/task/fonts/DejaVuSans-Bold.ttf",
+            "WATERMARK_FONT_FILE": "/var/task/fonts/DejaVuSans.ttf",
           },
         },
         "Handler": "index.handler",

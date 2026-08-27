@@ -28,8 +28,10 @@ catalog:
   cron-parser: 5.10.0
   cspell: 10.1.0
   date-fns: 4.4.0
+  dejavu-fonts-ttf: 2.37.3
   ejs: 6.0.1
   execa: 10.0.1
+  exif-reader: 2.0.3
   happy-dom: 20.11.6
   markdownlint: 0.41.1
   markdownlint-cli2: 0.23.2

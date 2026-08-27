@@ -18,10 +18,22 @@ import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
 import { Bucket, BucketNamespace } from "aws-cdk-lib/aws-s3";
 import * as cdk from "aws-cdk-lib/core";
 import { Construct } from "constructs";
-import { dirname, join } from "path";
+import { createRequire } from "module";
+import { basename, dirname, join, relative } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const projectRoot = join(__dirname, "..", "..", "..");
+const require = createRequire(import.meta.url);
+const bundledFile = (path: string) => relative(projectRoot, path);
+const FONT_FILE = bundledFile(require.resolve("dejavu-fonts-ttf/ttf/DejaVuSans.ttf"));
+const BOLD_FONT_FILE = bundledFile(require.resolve("dejavu-fonts-ttf/ttf/DejaVuSans-Bold.ttf"));
+const FONTS_CONFIG_FILE = bundledFile(join(__dirname, "..", "assets", "fonts.conf"));
+const BUNDLED_FONT_FILES = [FONT_FILE, BOLD_FONT_FILE, FONTS_CONFIG_FILE];
+const FONTS_DIRECTORY_NAME = "fonts";
+const FONTS_DIRECTORY = `/var/task/${FONTS_DIRECTORY_NAME}`;
+const bundledFilePath = (file: string) => `${FONTS_DIRECTORY}/${basename(file)}`;
 
 interface PhotoStackProps extends cdk.StackProps {
   readonly certificate: ICertificate;
@@ -65,6 +77,16 @@ export class PhotoStack extends cdk.Stack {
       bundling: {
         banner:
           "import { createRequire } from 'module';const require = createRequire(import.meta.url);",
+        commandHooks: {
+          afterBundling: (inputDir, outputDir) => [
+            `mkdir -p ${outputDir}/${FONTS_DIRECTORY_NAME}`,
+            ...BUNDLED_FONT_FILES.map(
+              (file) => `cp ${inputDir}/${file} ${outputDir}/${FONTS_DIRECTORY_NAME}/`,
+            ),
+          ],
+          beforeBundling: () => [],
+          beforeInstall: () => [],
+        },
         forceDockerBundling: true,
         format: OutputFormat.ESM,
         minify: true,
@@ -75,6 +97,9 @@ export class PhotoStack extends cdk.Stack {
       entry: join(__dirname, "lambda", "functions", "index.ts"),
       environment: {
         BUCKET_NAME: bucket.bucketName,
+        FONTCONFIG_PATH: FONTS_DIRECTORY,
+        WATERMARK_BOLD_FONT_FILE: bundledFilePath(BOLD_FONT_FILE),
+        WATERMARK_FONT_FILE: bundledFilePath(FONT_FILE),
       },
       logGroup,
       memorySize: 2048,

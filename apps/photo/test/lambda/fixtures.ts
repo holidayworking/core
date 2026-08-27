@@ -1,4 +1,7 @@
 import type { APIGatewayProxyEventV2, Context } from "aws-lambda";
+import type { Exif } from "sharp";
+
+import sharp from "sharp";
 
 export const createContext = () =>
   ({
@@ -14,3 +17,28 @@ export const createEvent = (rawPath: string) =>
   ({
     rawPath,
   }) as unknown as APIGatewayProxyEventV2;
+
+export const createPhoto = async (options: {
+  exif?: Exif;
+  height: number;
+  orientation?: number;
+  width: number;
+}) => {
+  const { exif, height, orientation, width } = options;
+  let pipeline = sharp({
+    create: { background: { b: 160, g: 120, r: 90 }, channels: 3, height, width },
+  });
+  if (exif) {
+    pipeline = pipeline.withExif(exif);
+  }
+  if (orientation) {
+    pipeline = pipeline.withMetadata({ orientation });
+  }
+  return await pipeline.jpeg().toBuffer();
+};
+
+export const createExif = async (exif: Exif) => {
+  const photo = await createPhoto({ exif, height: 2, width: 2 });
+  const { exif: buffer } = await sharp(photo).metadata();
+  return buffer;
+};
