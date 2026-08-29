@@ -206,6 +206,17 @@ exports[`snapshot 1`] = `
       },
       "Type": "AWS::Lambda::Permission",
     },
+    "FontsLayerA4721778": {
+      "Properties": {
+        "Content": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "[ASSET ZIP]",
+        },
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
     "Function76856677": {
       "DependsOn": [
         "FunctionServiceRoleDefaultPolicyA390655B",
@@ -226,9 +237,15 @@ exports[`snapshot 1`] = `
             "BUCKET_NAME": {
               "Ref": "Bucket83908E77",
             },
+            "FONTCONFIG_PATH": "/opt/fonts",
           },
         },
         "Handler": "index.handler",
+        "Layers": [
+          {
+            "Ref": "FontsLayerA4721778",
+          },
+        ],
         "LoggingConfig": {
           "LogGroup": {
             "Ref": "FunctionLogGroupBD1576D5",

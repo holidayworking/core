@@ -95,15 +95,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: "false"
-      - uses: docker/setup-docker-action@77e84dbf09b47d1e29270283c22f16145aa85ca1 # v5.4.0
-        with:
-          daemon-config: |
-            {
-              "features": {
-                "containerd-snapshotter": true
-              }
-            }
-      - uses: crazy-max/ghaction-github-runtime@04d248b84655b509d8c44dc1d6f990c879747487 # v4.0.0
+      - uses: ./.github/actions/setup-docker
       - uses: voidzero-dev/setup-vp@313600b80b104eadebb9111787d37a2e83e014ca # v1.17.0
         with:
           cache: true
@@ -127,6 +119,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: "false"
+      - uses: ./.github/actions/setup-docker
       - uses: voidzero-dev/setup-vp@313600b80b104eadebb9111787d37a2e83e014ca # v1.17.0
         with:
           cache: true
