@@ -8,9 +8,12 @@
     "@aws-sdk/client-s3": "catalog:",
     "@core/constants": "workspace:*",
     "@core/utils": "workspace:*",
+    "@date-fns/tz": "catalog:",
     "@middy/core": "catalog:",
     "aws-cdk-lib": "catalog:",
     "constructs": "catalog:",
+    "date-fns": "catalog:",
+    "exif-reader": "catalog:",
     "sharp": "0.35.3"
   },
   "devDependencies": {

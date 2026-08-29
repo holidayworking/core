@@ -10,7 +10,13 @@ import {
 } from "aws-cdk-lib/aws-cloudfront";
 import { FunctionUrlOrigin } from "aws-cdk-lib/aws-cloudfront-origins";
 import { PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
-import { Architecture, FunctionUrlAuthType, Runtime } from "aws-cdk-lib/aws-lambda";
+import {
+  Architecture,
+  Code,
+  FunctionUrlAuthType,
+  LayerVersion,
+  Runtime,
+} from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
 import { LogGroup, RetentionDays } from "aws-cdk-lib/aws-logs";
 import { ARecord, PublicHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
@@ -60,6 +66,13 @@ export class PhotoStack extends cdk.Stack {
 
     logGroup.grantWrite(role);
 
+    const fontsLayer = new LayerVersion(this, "FontsLayer", {
+      code: Code.fromDockerBuild(join(__dirname, "docker", "fonts"), {
+        cacheFrom: [{ type: "gha" }],
+        cacheTo: { type: "gha", params: { mode: "max" } },
+      }),
+    });
+
     const func = new NodejsFunction(this, "Function", {
       architecture: Architecture.ARM_64,
       bundling: {
@@ -75,7 +88,9 @@ export class PhotoStack extends cdk.Stack {
       entry: join(__dirname, "lambda", "functions", "index.ts"),
       environment: {
         BUCKET_NAME: bucket.bucketName,
+        FONTCONFIG_PATH: "/opt/fonts",
       },
+      layers: [fontsLayer],
       logGroup,
       memorySize: 2048,
       role,

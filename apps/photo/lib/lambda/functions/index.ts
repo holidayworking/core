@@ -1,16 +1,15 @@
 import type { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from "aws-lambda";
 
-import { Logger } from "@aws-lambda-powertools/logger";
 import { injectLambdaContext } from "@aws-lambda-powertools/logger/middleware";
 import middy from "@middy/core";
 
+import { logger } from "../logger.ts";
 import { getPhoto, NotFoundError } from "../s3.ts";
-import { toWebp } from "../sharp.ts";
+import { toWatermarkedWebp, toWebp } from "../sharp.ts";
 
 const THUMBNAIL_WIDTH = 600;
 
-const logger = new Logger({ serviceName: "photo" });
-
+// `path/to/photo_thumbnail.jpg` is served from the original `path/to/photo.jpg`.
 const resolveThumbnailSourceKey = (key: string) => {
   const match = /^(.+)_thumbnail(\.[^/.]+)$/.exec(key);
   if (!match) {
@@ -23,7 +22,7 @@ const resolveThumbnailSourceKey = (key: string) => {
 const lambdaHandler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> => {
   const bucket = process.env.BUCKET_NAME;
   if (!bucket) {
-    logger.error("Environment variable BUCKET is not set");
+    logger.error("Environment variable BUCKET_NAME is not set");
     return { statusCode: 500 };
   }
 
@@ -44,10 +43,9 @@ const lambdaHandler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayP
     return { statusCode: 500 };
   }
 
-  const resultToWebp = await toWebp(
-    resultForGetPhoto.value,
-    thumbnailSourceKey ? THUMBNAIL_WIDTH : undefined,
-  );
+  const resultToWebp = await (thumbnailSourceKey
+    ? toWebp(resultForGetPhoto.value, THUMBNAIL_WIDTH)
+    : toWatermarkedWebp(resultForGetPhoto.value));
   if (resultToWebp.isFailure()) {
     logger.error("unexpected error", resultToWebp.error);
     return { statusCode: 500 };

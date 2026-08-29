@@ -1,0 +1,15 @@
+name: Setup Docker
+description: Set up Docker with the containerd image store and expose the GitHub Actions cache runtime.
+
+runs:
+  using: composite
+  steps:
+    - uses: docker/setup-docker-action@77e84dbf09b47d1e29270283c22f16145aa85ca1 # v5.4.0
+      with:
+        daemon-config: |
+          {
+            "features": {
+              "containerd-snapshotter": true
+            }
+          }
+    - uses: crazy-max/ghaction-github-runtime@04d248b84655b509d8c44dc1d6f990c879747487 # v4.0.0
