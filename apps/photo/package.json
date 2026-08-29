@@ -14,7 +14,7 @@
     "constructs": "catalog:",
     "date-fns": "catalog:",
     "exif-reader": "catalog:",
-    "sharp": "0.35.3"
+    "sharp": "0.35.4"
   },
   "devDependencies": {
     "aws-cdk": "catalog:",
