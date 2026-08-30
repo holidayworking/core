@@ -1,6 +1,6 @@
 import { App } from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
-import { expect, test } from "vitest";
+import { expect, test } from "vite-plus/test";
 
 import { GithubActionsOidcStack } from "../lib/github-actions-oidc-stack.ts";
 import snapshotPlugin from "../test/snapshot-plugin.ts";

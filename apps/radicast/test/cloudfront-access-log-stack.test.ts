@@ -1,6 +1,6 @@
 import { App } from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
-import { expect, test } from "vitest";
+import { expect, test } from "vite-plus/test";
 
 import { AcmStack } from "../lib/acm-stack.ts";
 import { CloudfrontAccessLogStack } from "../lib/cloudfront-access-log-stack.ts";

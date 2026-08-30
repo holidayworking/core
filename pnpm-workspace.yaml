@@ -51,8 +51,8 @@ catalogMode: prefer
 minimumReleaseAgeExclude:
   - "@aws-sdk/signature-v4a@3.1056.0"
 overrides:
-  vite: "catalog:"
-  vitest: "catalog:"
+  vite@*: "catalog:"
+  vitest@*: "catalog:"
 peerDependencyRules:
   allowAny:
     - vite

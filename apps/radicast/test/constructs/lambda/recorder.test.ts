@@ -2,7 +2,7 @@ import { expectFailure, expectSuccess } from "@core/utils";
 import { execa } from "execa";
 import { statSync, unlinkSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
-import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 
 import { recordEpisode } from "../../../lib/constructs/lambda/recorder.ts";
 import { createDefinition } from "./fixtures.ts";

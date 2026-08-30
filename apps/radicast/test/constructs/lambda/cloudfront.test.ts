@@ -1,7 +1,7 @@
 import { CloudFrontClient, CreateInvalidationCommand } from "@aws-sdk/client-cloudfront";
 import { expectFailure } from "@core/utils";
 import { mockClient } from "aws-sdk-client-mock";
-import { beforeEach, expect, test } from "vitest";
+import { beforeEach, expect, test } from "vite-plus/test";
 
 import { cloudFrontInvalidation } from "../../../lib/constructs/lambda/cloudfront.ts";
 

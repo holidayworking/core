@@ -12,7 +12,6 @@
   "devDependencies": {
     "aws-cdk": "catalog:",
     "cdk-nag": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "catalog:"
+    "typescript": "catalog:"
   }
 }

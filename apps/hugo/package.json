@@ -8,7 +8,6 @@
     "preview": "hugo server -F"
   },
   "devDependencies": {
-    "happy-dom": "catalog:",
-    "vitest": "catalog:"
+    "happy-dom": "catalog:"
   }
 }

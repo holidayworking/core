@@ -9,7 +9,7 @@ import {
 import { expectFailure, expectSuccess } from "@core/utils";
 import { mockClient } from "aws-sdk-client-mock";
 import { createReadStream } from "fs";
-import { beforeEach, expect, test, vi } from "vitest";
+import { beforeEach, expect, test, vi } from "vite-plus/test";
 
 import { Episode } from "../../../lib/constructs/lambda/episode.ts";
 import {

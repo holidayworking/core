@@ -1,5 +1,5 @@
 import { Logger } from "@aws-lambda-powertools/logger";
-import { expect, test, vi } from "vitest";
+import { expect, test, vi } from "vite-plus/test";
 
 import { readWatermark } from "../../lib/lambda/exif.ts";
 import { CAPTURED_EXIF, createExif } from "./fixtures.ts";
