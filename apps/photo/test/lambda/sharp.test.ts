@@ -1,4 +1,4 @@
-import { expectFailure, expectSuccess } from "@core/utils";
+import { expectFailure, expectSuccess } from "@core/utils/test";
 import sharp from "sharp";
 import { expect, test } from "vite-plus/test";
 

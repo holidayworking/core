@@ -1,7 +1,7 @@
 import type { GetObjectCommandOutput } from "@aws-sdk/client-s3";
 
 import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { expectFailure, expectSuccess } from "@core/utils";
+import { expectFailure, expectSuccess } from "@core/utils/test";
 import { mockClient } from "aws-sdk-client-mock";
 import { beforeEach, expect, test } from "vite-plus/test";
 

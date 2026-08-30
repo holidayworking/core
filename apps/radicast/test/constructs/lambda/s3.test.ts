@@ -6,7 +6,7 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
-import { expectFailure, expectSuccess } from "@core/utils";
+import { expectFailure, expectSuccess } from "@core/utils/test";
 import { mockClient } from "aws-sdk-client-mock";
 import { createReadStream } from "fs";
 import { beforeEach, expect, test, vi } from "vite-plus/test";

@@ -1,4 +1,4 @@
-import { expectFailure, expectSuccess } from "@core/utils";
+import { expectFailure, expectSuccess } from "@core/utils/test";
 import { execa } from "execa";
 import { statSync, unlinkSync, writeFileSync } from "fs";
 import { tmpdir } from "os";

@@ -1,5 +1,3 @@
-import { expect } from "vitest";
-
 export type Result<T, E extends Error> = Success<T> | Failure<E>;
 
 export class Success<T> {
@@ -36,17 +34,3 @@ export type PromiseResult<T, E extends Error> = Promise<Result<T, E>>;
 // since values thrown in JavaScript aren't guaranteed to be `Error` instances.
 export const toFailure = (e: unknown): Failure<Error> =>
   e instanceof Error ? new Failure(e) : new Failure(new Error());
-
-export const expectSuccess = <T>(result: Result<T, Error>): T => {
-  if (result.isFailure()) {
-    expect.unreachable();
-  }
-  return result.value;
-};
-
-export const expectFailure = (result: Result<unknown, Error>): Error => {
-  if (result.isSuccess()) {
-    expect.unreachable();
-  }
-  return result.error;
-};
