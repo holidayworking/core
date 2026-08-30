@@ -182,10 +182,10 @@
                   };
                 in
                 ''
-                  if [ ! -f "$HOME/.vite-plus/env" ]; then
+                  if [ ! -f "$HOME/.config/vite-plus/env" ]; then
                     ${vp} env setup
                   fi
-                  source "$HOME/.vite-plus/env"
+                  source "$HOME/.config/vite-plus/env"
                   ${vp} install
 
                   if [ -L ".mcp.json" ]; then
