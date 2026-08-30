@@ -1,4 +1,9 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "home";
 
@@ -6,8 +11,7 @@ delib.module {
     { myconfig, ... }:
     let
       inherit (myconfig.constants) username;
-
-      isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
+      inherit (host) isDarwin;
     in
     {
       home.homeDirectory = pkgs.lib.mkForce (
