@@ -8,7 +8,7 @@
 delib.module {
   name = "programs.claude";
 
-  options = delib.singleEnableOption (host.aiFeatured && pkgs.stdenv.hostPlatform.isDarwin);
+  options = delib.singleEnableOption (host.isDarwin && host.aiFeatured);
 
   darwin.ifEnabled.homebrew.casks = [
     "claude"

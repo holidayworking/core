@@ -104,6 +104,8 @@
                       features = [ "ai" ];
                       default = [ "ai" ];
                     };
+
+                    hosts.extraSubmodules = [ hostPlatformSubmodule ];
                   })
                   (overlays.withConfig {
                     defaultTargets = [
@@ -118,14 +120,32 @@
                 };
               };
 
+            hostPlatformSubmodule =
+              { config, lib, ... }:
+              let
+                platform = lib.optionalAttrs (config.system != null) (lib.systems.elaborate config.system);
+              in
+              {
+                options = {
+                  isDarwin = lib.mkOption {
+                    type = lib.types.bool;
+                    default = platform.isDarwin or false;
+                  };
+
+                  isLinux = lib.mkOption {
+                    type = lib.types.bool;
+                    default = platform.isLinux or false;
+                  };
+                };
+              };
+
             lib = inputs.nixpkgs.lib;
-            filterBySystem =
-              suffix: configs:
-              lib.filterAttrs (_: cfg: lib.hasSuffix suffix (cfg.config.myconfig.host.system)) configs;
+            filterByPlatform =
+              predicate: configs: lib.filterAttrs (_: cfg: predicate cfg.config.myconfig.host) configs;
           in
           {
-            nixosConfigurations = filterBySystem "-linux" (mkConfigurations "nixos");
-            darwinConfigurations = filterBySystem "-darwin" (mkConfigurations "darwin");
+            nixosConfigurations = filterByPlatform (host: host.isLinux) (mkConfigurations "nixos");
+            darwinConfigurations = filterByPlatform (host: host.isDarwin) (mkConfigurations "darwin");
             homeConfigurations = mkConfigurations "home";
           };
 

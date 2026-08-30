@@ -1,8 +1,8 @@
-{ delib, pkgs, ... }:
+{ delib, host, ... }:
 delib.module {
   name = "programs.karabiner-elements";
 
-  options = delib.singleEnableOption pkgs.stdenv.hostPlatform.isDarwin;
+  options = delib.singleEnableOption host.isDarwin;
 
   darwin.ifEnabled.homebrew.casks = [
     "karabiner-elements"

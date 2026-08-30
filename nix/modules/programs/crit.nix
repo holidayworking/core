@@ -2,7 +2,6 @@
   delib,
   host,
   inputs,
-  pkgs,
   ...
 }:
 delib.module {
@@ -11,6 +10,6 @@ delib.module {
   options = delib.singleEnableOption host.aiFeatured;
 
   home.ifEnabled.home.packages = [
-    inputs.crit.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.crit.packages.${host.system}.default
   ];
 }
