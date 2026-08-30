@@ -1,6 +1,6 @@
-import { expectFailure, expectSuccess } from "@core/utils";
+import { expectFailure, expectSuccess } from "@core/utils/test";
 import sharp from "sharp";
-import { expect, test } from "vitest";
+import { expect, test } from "vite-plus/test";
 
 import { toWatermarkedWebp, toWebp } from "../../lib/lambda/sharp.ts";
 import { CAPTURED_EXIF, createPhoto } from "./fixtures.ts";

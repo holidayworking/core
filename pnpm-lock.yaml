@@ -111,6 +111,9 @@ catalogs:
     typescript:
       specifier: 7.0.2
       version: 7.0.2
+    vite:
+      specifier: npm:@voidzero-dev/vite-plus-core@0.3.0
+      version: 0.3.0
     vite-plus:
       specifier: 0.3.0
       version: 0.3.0
@@ -119,8 +122,8 @@ catalogs:
       version: 0.5.3
 
 overrides:
-  vite: npm:@voidzero-dev/vite-plus-core@0.3.0
-  vitest: 4.1.11
+  vite@*: npm:@voidzero-dev/vite-plus-core@0.3.0
+  vitest@*: 4.1.11
 
 importers:
 
@@ -168,6 +171,9 @@ importers:
       textlint-rule-prh:
         specifier: 'catalog:'
         version: 6.1.0
+      vite:
+        specifier: 'catalog:'
+        version: '@voidzero-dev/vite-plus-core@0.3.0(@types/node@25.9.5)(typescript@7.0.2)(yaml@2.9.0)'
       vite-plus:
         specifier: 'catalog:'
         version: 0.3.0(@types/node@25.9.5)(@voidzero-dev/vite-plus-core@0.3.0(@types/node@25.9.5)(typescript@7.0.2)(yaml@2.9.0))(happy-dom@20.11.6)(typescript@7.0.2)(yaml@2.9.0)
@@ -177,9 +183,6 @@ importers:
       happy-dom:
         specifier: 'catalog:'
         version: 20.11.6
-      vitest:
-        specifier: 4.1.11
-        version: 4.1.11(@types/node@25.9.5)(@vitest/browser-preview@4.1.11)(@voidzero-dev/vite-plus-core@0.3.0(@types/node@25.9.5)(typescript@7.0.2)(yaml@2.9.0))(happy-dom@20.11.6)
 
   apps/photo:
     dependencies:
@@ -229,9 +232,6 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
-      vitest:
-        specifier: 4.1.11
-        version: 4.1.11(@types/node@25.9.5)(@vitest/browser-preview@4.1.11)(@voidzero-dev/vite-plus-core@0.3.0(@types/node@25.9.5)(typescript@7.0.2)(yaml@2.9.0))(happy-dom@20.11.6)
 
   apps/radicast:
     dependencies:
@@ -299,9 +299,6 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
-      vitest:
-        specifier: 4.1.11
-        version: 4.1.11(@types/node@25.9.5)(@vitest/browser-preview@4.1.11)(@voidzero-dev/vite-plus-core@0.3.0(@types/node@25.9.5)(typescript@7.0.2)(yaml@2.9.0))(happy-dom@20.11.6)
 
   apps/zenn:
     dependencies:
@@ -333,17 +330,10 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
-      vitest:
-        specifier: 4.1.11
-        version: 4.1.11(@types/node@25.9.5)(@vitest/browser-preview@4.1.11)(@voidzero-dev/vite-plus-core@0.3.0(@types/node@25.9.5)(typescript@7.0.2)(yaml@2.9.0))(happy-dom@20.11.6)
 
   packages/constants: {}
 
-  packages/utils:
-    dependencies:
-      vitest:
-        specifier: 4.1.11
-        version: 4.1.11(@types/node@25.9.5)(@vitest/browser-preview@4.1.11)(@voidzero-dev/vite-plus-core@0.3.0(@types/node@25.9.5)(typescript@7.0.2)(yaml@2.9.0))(happy-dom@20.11.6)
+  packages/utils: {}
 
 packages:
 

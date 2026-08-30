@@ -1,6 +1,6 @@
 import { Logger } from "@aws-lambda-powertools/logger";
 import { Failure, Success } from "@core/utils";
-import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 
 import { handler } from "../../../lib/lambda/functions/index.ts";
 import { getPhoto, NotFoundError } from "../../../lib/lambda/s3.ts";

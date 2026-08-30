@@ -1,7 +1,7 @@
 import { Logger } from "@aws-lambda-powertools/logger";
 import { getParameter } from "@aws-lambda-powertools/parameters/ssm";
 import { Failure, Success } from "@core/utils";
-import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 
 import { Episode } from "../../../../../lib/constructs/lambda/episode.ts";
 import { handler } from "../../../../../lib/constructs/lambda/functions/radiko-recorder/index.ts";
