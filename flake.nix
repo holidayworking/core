@@ -100,12 +100,10 @@
                     args.enable = true;
                     rices.enable = false;
 
-                    hosts.features = {
-                      features = [ "ai" ];
-                      default = [ "ai" ];
+                    hosts = {
+                      extraSubmodules = [ hostPlatformSubmodule ];
+                      features.features = [ "ai" ];
                     };
-
-                    hosts.extraSubmodules = [ hostPlatformSubmodule ];
                   })
                   (overlays.withConfig {
                     defaultTargets = [

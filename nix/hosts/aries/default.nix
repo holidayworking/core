@@ -4,6 +4,7 @@ delib.host {
 
   system = "aarch64-darwin";
   type = "desktop";
+  features = [ "ai" ];
 
   darwin = {
     system.stateVersion = 5;

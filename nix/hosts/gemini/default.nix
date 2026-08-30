@@ -7,6 +7,7 @@ delib.host {
 
   system = "aarch64-linux";
   type = "desktop";
+  features = [ "ai" ];
 
   nixos = {
     security.sudo-rs.wheelNeedsPassword = false;
