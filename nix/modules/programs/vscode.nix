@@ -71,6 +71,7 @@ delib.module {
         "claudeCode.useCtrlEnterToSend" = true;
         "claudeNotifier.autoMuteWhenFocused" = true;
         "nix.enableLanguageServer" = true;
+        "nix.hiddenLanguageServerErrors" = [ "textDocument/definition" ];
         "nix.serverPath" = pkgs.lib.getExe pkgs.nixd;
         "nix.serverSettings".nixd.formatting.command = [ (pkgs.lib.getExe pkgs.nixfmt) ];
         "remote.autoForwardPortsSource" = "process";
