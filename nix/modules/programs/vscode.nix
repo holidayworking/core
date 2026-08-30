@@ -69,7 +69,10 @@ delib.module {
         "claudeCode.initialPermissionMode" = "auto";
         "claudeCode.preferredLocation" = "panel";
         "claudeCode.useCtrlEnterToSend" = true;
-        "github.copilot.chat.claudeAgent.enabled" = false;
+        "claudeNotifier.autoMuteWhenFocused" = true;
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = pkgs.lib.getExe pkgs.nixd;
+        "nix.serverSettings".nixd.formatting.command = [ (pkgs.lib.getExe pkgs.nixfmt) ];
         "remote.autoForwardPortsSource" = "process";
         "shfmt.executableArgs" = [
           "--indent"
