@@ -319,6 +319,7 @@ def sort_filter_rules(json_obj):
             "Ref": "Yuna78mhzConfigFileAwsCliLayerF76FF1E4",
           },
         ],
+        "MemorySize": 1024,
         "Role": {
           "Fn::GetAtt": [
             "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
