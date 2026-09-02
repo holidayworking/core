@@ -16,12 +16,7 @@ photoBaseURL = "https://photo.holidayworking.org"
 [params.author]
 name = "Hidekazu Tanaka"
 image = "img/author.jpg"
-links = [
-  { facebook = "https://facebook.com/holidayworking" },
-  { github = "https://github.com/holidayworking" },
-  { instagram = "https://instagram.com/holidayworking" },
-  { twitter = "https://twitter.com/holidayworking" },
-]
+links = [{ github = "https://github.com/holidayworking" }]
 
 [params.homepage]
 layout = "profile"
