@@ -7,8 +7,6 @@
 delib.module {
   name = "programs.zsh";
 
-  nixos.always.programs.zsh.enable = true;
-
   home.always.programs = {
     eza = {
       enable = true;

@@ -23,7 +23,7 @@ jobs:
   nix-check:
     permissions:
       contents: read
-    runs-on: ubuntu-24.04-arm
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -184,7 +184,7 @@ jobs:
     needs:
       - changes
     if: ${{ needs.changes.outputs.nix == 'true' }}
-    runs-on: ${{ matrix.runner }}
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -205,16 +205,8 @@ jobs:
         include:
           - host: aries
             attribute: darwinConfigurations.aries.system
-            runner: macos-26
-          - host: gemini
-            attribute: nixosConfigurations.gemini.config.system.build.toplevel
-            runner: ubuntu-24.04-arm
           - host: devShells.aarch64-darwin.default
             attribute: devShells.aarch64-darwin.default
-            runner: macos-26
-          - host: devShells.aarch64-linux.default
-            attribute: devShells.aarch64-linux.default
-            runner: ubuntu-24.04-arm
 
   nix-diff-comment:
     permissions:

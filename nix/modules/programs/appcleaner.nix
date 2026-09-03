@@ -1,15 +1,6 @@
-{
-  delib,
-  host,
-  pkgs,
-  ...
-}:
+{ delib, pkgs, ... }:
 delib.module {
   name = "programs.appcleaner";
 
-  options = delib.singleEnableOption host.isDarwin;
-
-  home.ifEnabled.home.packages = with pkgs; [
-    appcleaner
-  ];
+  home.always.home.packages = [ pkgs.appcleaner ];
 }

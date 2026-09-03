@@ -1,10 +1,8 @@
-{ delib, host, ... }:
+{ delib, ... }:
 delib.module {
   name = "programs.safari";
 
-  options = delib.singleEnableOption host.isDarwin;
-
-  home.ifEnabled.targets.darwin = {
+  home.always.targets.darwin = {
     defaults."com.apple.Safari" = {
       AutoFillPasswords = false;
       AutoOpenSafeDownloads = false;

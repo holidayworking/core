@@ -3,9 +3,7 @@ delib.module {
   name = "programs.tig";
 
   home.always.home = {
-    packages = with pkgs; [
-      tig
-    ];
+    packages = [ pkgs.tig ];
 
     file.".tigrc".text = ''
       bind main R !git rebase -i %(commit)

@@ -19,11 +19,6 @@
       inputs.nix-darwin.follows = "nix-darwin";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -99,17 +94,9 @@
                   (base.withConfig {
                     args.enable = true;
                     rices.enable = false;
-
-                    hosts = {
-                      extraSubmodules = [ hostPlatformSubmodule ];
-                      features.features = [ "ai" ];
-                    };
                   })
                   (overlays.withConfig {
-                    defaultTargets = [
-                      "nixos"
-                      "darwin"
-                    ];
+                    defaultTargets = [ "darwin" ];
                   })
                 ];
 
@@ -117,39 +104,14 @@
                   inherit inputs;
                 };
               };
-
-            hostPlatformSubmodule =
-              { config, lib, ... }:
-              let
-                platform = lib.optionalAttrs (config.system != null) (lib.systems.elaborate config.system);
-              in
-              {
-                options = {
-                  isDarwin = lib.mkOption {
-                    type = lib.types.bool;
-                    default = platform.isDarwin or false;
-                  };
-
-                  isLinux = lib.mkOption {
-                    type = lib.types.bool;
-                    default = platform.isLinux or false;
-                  };
-                };
-              };
-
-            lib = inputs.nixpkgs.lib;
-            filterByPlatform =
-              predicate: configs: lib.filterAttrs (_: cfg: predicate cfg.config.myconfig.host) configs;
           in
           {
-            nixosConfigurations = filterByPlatform (host: host.isLinux) (mkConfigurations "nixos");
-            darwinConfigurations = filterByPlatform (host: host.isDarwin) (mkConfigurations "darwin");
+            darwinConfigurations = mkConfigurations "darwin";
             homeConfigurations = mkConfigurations "home";
           };
 
         systems = [
           "aarch64-darwin"
-          "aarch64-linux"
         ];
 
         perSystem =
@@ -217,9 +179,7 @@
               build-hugo = pkgs.stdenv.mkDerivation {
                 name = "build-hugo";
                 src = ./apps/hugo;
-                nativeBuildInputs = with pkgs; [
-                  hugo
-                ];
+                nativeBuildInputs = [ pkgs.hugo ];
                 buildPhase = ''
                   hugo --minify
                 '';

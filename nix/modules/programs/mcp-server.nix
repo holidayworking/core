@@ -1,6 +1,5 @@
 {
   delib,
-  host,
   inputs,
   lib,
   pkgs,
@@ -9,10 +8,10 @@
 delib.module {
   name = "programs.mcp";
 
-  options = delib.singleEnableOption host.aiFeatured;
-
-  home.ifEnabled = {
-    imports = [ inputs.mcp-servers-nix.homeManagerModules.default ];
+  home.always = {
+    imports = [
+      inputs.mcp-servers-nix.homeManagerModules.default
+    ];
 
     programs.mcp.enable = true;
 

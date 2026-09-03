@@ -2,7 +2,5 @@
 delib.module {
   name = "programs.git-now";
 
-  home.always.home.packages = with pkgs; [
-    local.git-now
-  ];
+  home.always.home.packages = [ pkgs.local.git-now ];
 }

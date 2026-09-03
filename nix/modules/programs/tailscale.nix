@@ -1,10 +1,8 @@
-{ delib, host, ... }:
+{ delib, ... }:
 delib.module {
   name = "programs.tailscale";
 
-  options = delib.singleEnableOption host.isDesktop;
-
-  darwin.ifEnabled.homebrew.casks = [
+  darwin.always.homebrew.casks = [
     "tailscale-app"
   ];
 }

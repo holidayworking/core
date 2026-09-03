@@ -62,7 +62,7 @@ jobs:
     needs:
       - changes
     if: ${{ needs.changes.outputs.hugo == 'true' }}
-    runs-on: ubuntu-24.04-arm
+    runs-on: macos-26
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -1,6 +1,5 @@
 {
   delib,
-  host,
   lib,
   pkgs,
   ...
@@ -8,9 +7,7 @@
 delib.module {
   name = "programs.claude-code";
 
-  options = delib.singleEnableOption host.aiFeatured;
-
-  home.ifEnabled =
+  home.always =
     let
       mkNotifierHook = suffix: extra: [
         (
@@ -110,7 +107,7 @@ delib.module {
           };
 
           statusLine = {
-            command = "${pkgs.lib.getExe' pkgs.llm-agents.ccusage "ccusage"} statusline";
+            command = "${lib.getExe' pkgs.llm-agents.ccusage "ccusage"} statusline";
             type = "command";
           };
         };

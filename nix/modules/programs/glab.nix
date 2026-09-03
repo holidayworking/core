@@ -2,7 +2,5 @@
 delib.module {
   name = "programs.glab";
 
-  home.always.home.packages = with pkgs; [
-    glab
-  ];
+  home.always.home.packages = [ pkgs.glab ];
 }
