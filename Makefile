@@ -10,22 +10,13 @@ nix/darwin:
 		&& sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#aries
 
 nix/build:
-	@./scripts/nh.sh build
+	@nh darwin build --hostname "$$(hostname)" .
 
 nix/switch:
-	@./scripts/nh.sh switch --ask
+	@nh darwin switch --hostname "$$(hostname)" --ask .
 
 nix/clean:
 	@nh clean all --ask --no-direnv
 
 colima/start:
 	@colima start default --cpus 4 --memory 8 --vm-type vz --vz-rosetta --mount ~/:w --mount /private:w --mount-inotify=true
-
-vm/create:
-	@./scripts/vm-create.sh
-
-vm/bootstrap:
-	@./scripts/vm-bootstrap.sh
-
-vm/setup:
-	@./scripts/vm-setup.sh

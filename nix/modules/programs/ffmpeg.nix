@@ -2,7 +2,5 @@
 delib.module {
   name = "programs.ffmpeg";
 
-  home.always.home.packages = with pkgs; [
-    ffmpeg
-  ];
+  home.always.home.packages = [ pkgs.ffmpeg ];
 }

@@ -4,7 +4,6 @@ delib.host {
 
   system = "aarch64-darwin";
   type = "desktop";
-  features = [ "ai" ];
 
   darwin = {
     system.stateVersion = 5;
@@ -16,6 +15,4 @@ delib.host {
   };
 
   home.home.stateVersion = "25.05";
-
-  myconfig.programs.cn-daemon.enable = true;
 }

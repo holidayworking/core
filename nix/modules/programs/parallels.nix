@@ -1,10 +1,8 @@
-{ delib, host, ... }:
+{ delib, ... }:
 delib.module {
   name = "programs.parallels";
 
-  options = delib.singleEnableOption host.isDarwin;
-
-  darwin.ifEnabled.homebrew.casks = [
+  darwin.always.homebrew.casks = [
     "parallels"
   ];
 }

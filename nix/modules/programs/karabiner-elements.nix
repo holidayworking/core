@@ -1,14 +1,12 @@
-{ delib, host, ... }:
+{ delib, ... }:
 delib.module {
   name = "programs.karabiner-elements";
 
-  options = delib.singleEnableOption host.isDarwin;
-
-  darwin.ifEnabled.homebrew.casks = [
+  darwin.always.homebrew.casks = [
     "karabiner-elements"
   ];
 
-  home.ifEnabled.xdg.configFile."karabiner/karabiner.json".text = builtins.toJSON {
+  home.always.xdg.configFile."karabiner/karabiner.json".text = builtins.toJSON {
     global.show_in_menu_bar = false;
     profiles = [
       {

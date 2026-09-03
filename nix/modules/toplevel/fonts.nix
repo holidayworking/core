@@ -1,15 +1,6 @@
-{
-  delib,
-  host,
-  pkgs,
-  ...
-}:
+{ delib, pkgs, ... }:
 delib.module {
   name = "fonts";
 
-  options = delib.singleEnableOption host.isDesktop;
-
-  darwin.ifEnabled.fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-  ];
+  darwin.always.fonts.packages = [ pkgs.nerd-fonts.fira-code ];
 }

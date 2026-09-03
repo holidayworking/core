@@ -1,6 +1,5 @@
 {
   delib,
-  host,
   inputs,
   pkgs,
   ...
@@ -8,13 +7,11 @@
 delib.module {
   name = "programs.claude";
 
-  options = delib.singleEnableOption (host.isDarwin && host.aiFeatured);
-
-  darwin.ifEnabled.homebrew.casks = [
+  darwin.always.homebrew.casks = [
     "claude"
   ];
 
-  home.ifEnabled.imports = [
+  home.always.imports = [
     (
       { config, lib, ... }:
       let

@@ -1,24 +1,13 @@
-{
-  delib,
-  host,
-  pkgs,
-  ...
-}:
+{ delib, lib, ... }:
 delib.module {
   name = "home";
 
   home.always =
     { myconfig, ... }:
-    let
-      inherit (myconfig.constants) username;
-      inherit (host) isDarwin;
-    in
     {
-      home.homeDirectory = pkgs.lib.mkForce (
-        if isDarwin then "/Users/${username}" else "/home/${username}"
-      );
+      home.homeDirectory = lib.mkForce myconfig.constants.homeDirectory;
 
-      targets.darwin = pkgs.lib.mkIf isDarwin {
+      targets.darwin = {
         copyApps.enable = true;
         linkApps.enable = false;
       };
