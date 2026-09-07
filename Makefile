@@ -1,5 +1,7 @@
 .ONESHELL:
 
+HOST ?= aries
+
 darwin/setup: nix/install nix/darwin colima/start
 
 nix/install:
@@ -7,7 +9,7 @@ nix/install:
 
 nix/darwin:
 	. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh \
-		&& sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#aries
+		&& sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#$(HOST)
 
 nix/build:
 	@nh darwin build --hostname "$$(hostname)" .
