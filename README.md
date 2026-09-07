@@ -25,6 +25,10 @@ chmod 600 ~/.config/sops/age/keys.txt
 
 #### Step 3: Run the setup
 
+Pass the host name defined under `nix/hosts` via `HOST` (defaults to `aries`).
+The machine's host name is not configured yet at this point, so it cannot be
+detected automatically.
+
 ```shell
-make darwin/setup
+make darwin/setup HOST=aries
 ```
