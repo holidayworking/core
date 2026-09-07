@@ -205,8 +205,6 @@ jobs:
         include:
           - host: aries
             attribute: darwinConfigurations.aries.system
-          - host: taurus
-            attribute: darwinConfigurations.taurus.system
           - host: devShells.aarch64-darwin.default
             attribute: devShells.aarch64-darwin.default
 
