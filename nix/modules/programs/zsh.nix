@@ -213,7 +213,6 @@ delib.module {
       completionInit = ''
         autoload -U compinit && compinit
         autoload -U bashcompinit && bashcompinit
-        complete -C '${lib.getExe' pkgs.awscli2 "aws_completer"}' aws
       '';
 
       history = {
