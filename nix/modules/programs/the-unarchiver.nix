@@ -1,6 +1,13 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.the-unarchiver";
 
-  home.always.home.packages = [ pkgs.the-unarchiver ];
+  options = delib.singleEnableOption host.isDarwin;
+
+  home.ifEnabled.home.packages = with pkgs; [ the-unarchiver ];
 }

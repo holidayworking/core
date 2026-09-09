@@ -1,11 +1,19 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.ghostty";
 
-  home.always.programs.ghostty = {
+  options = delib.singleEnableOption host.isDarwin;
+
+  home.ifEnabled.programs.ghostty = {
     enable = true;
-    enableZshIntegration = false;
     package = pkgs.ghostty-bin;
+
+    enableZshIntegration = false;
 
     settings = {
       font-family = "FiraCode Nerd Font";

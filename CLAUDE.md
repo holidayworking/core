@@ -38,5 +38,7 @@ This monorepo mixes two toolchains:
 
 - Module function arguments follow this order: `delib, host, inputs, lib, pkgs, config, ...` (include only what's actually used).
 - `delib` is the `denix` flake input's module DSL (aliased in module args, not a typo).
-- All hosts are darwin and share the same config, so modules use `darwin.always` / `home.always` directly — no `options = delib.singleEnableOption ...;` gate.
+- Platform/role-specific modules gate on a host predicate: `options = delib.singleEnableOption host.isDarwin;` (or `host.isPC`) plus `darwin.ifEnabled` / `home.ifEnabled`. Modules that apply to every host use `darwin.always` / `home.always` directly.
+- `host.isPC` comes from denix (`type = "desktop"` / `"laptop"`); `host.isDarwin` is defined by `hostPlatformSubmodule` in `flake.nix`.
+- `home.ifEnabled` cannot take `imports` (infinite recursion) and its leaf lambda gets no `config`/`lib`. When a module needs those, use `home.always = { cfg, ... }: { imports = [ ({ config, lib, ... }: { config = lib.mkIf cfg.enable { ... }; }) ]; }` — see `nix/modules/programs/claude.nix`.
 - To apply Nix changes: `make nix/build` (dry build) or `make nix/switch` (build + activate), both wrapping `nh darwin` for the current host (`$(hostname)`). Initial setup only: `make darwin/setup HOST=<name>` (defaults to `aries`; hostname isn't configured yet at that point) — see README.md.

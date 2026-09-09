@@ -1,6 +1,13 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.slack";
 
-  home.always.home.packages = [ pkgs.slack ];
+  options = delib.singleEnableOption host.isPC;
+
+  home.ifEnabled.home.packages = with pkgs; [ slack ];
 }

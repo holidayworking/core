@@ -1,6 +1,13 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.terminal-notifier";
 
-  home.always.home.packages = [ pkgs.terminal-notifier ];
+  options = delib.singleEnableOption host.isDarwin;
+
+  home.ifEnabled.home.packages = with pkgs; [ terminal-notifier ];
 }

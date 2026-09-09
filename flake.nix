@@ -93,6 +93,7 @@
                   args
                   (base.withConfig {
                     args.enable = true;
+                    hosts.extraSubmodules = [ hostPlatformSubmodule ];
                     rices.enable = false;
                   })
                   (overlays.withConfig {
@@ -102,6 +103,25 @@
 
                 specialArgs = {
                   inherit inputs;
+                };
+              };
+
+            hostPlatformSubmodule =
+              { config, lib, ... }:
+              let
+                platform = lib.optionalAttrs (config.system != null) (lib.systems.elaborate config.system);
+              in
+              {
+                options = {
+                  isDarwin = lib.mkOption {
+                    type = lib.types.bool;
+                    default = platform.isDarwin or false;
+                  };
+
+                  isLinux = lib.mkOption {
+                    type = lib.types.bool;
+                    default = platform.isLinux or false;
+                  };
                 };
               };
           in

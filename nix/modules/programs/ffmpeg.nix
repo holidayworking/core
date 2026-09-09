@@ -1,6 +1,13 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.ffmpeg";
 
-  home.always.home.packages = [ pkgs.ffmpeg ];
+  options = delib.singleEnableOption host.isPC;
+
+  home.ifEnabled.home.packages = with pkgs; [ ffmpeg ];
 }
