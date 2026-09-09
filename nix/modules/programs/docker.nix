@@ -1,6 +1,16 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.docker";
 
-  home.always.home.packages = [ pkgs.docker ];
+  options = delib.singleEnableOption host.isDarwin;
+
+  home.ifEnabled.home.packages = with pkgs; [
+    colima
+    docker
+  ];
 }

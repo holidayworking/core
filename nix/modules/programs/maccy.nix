@@ -1,6 +1,13 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.maccy";
 
-  home.always.home.packages = [ pkgs.maccy ];
+  options = delib.singleEnableOption host.isDarwin;
+
+  home.ifEnabled.home.packages = with pkgs; [ maccy ];
 }

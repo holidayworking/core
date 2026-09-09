@@ -1,6 +1,13 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.notion";
 
-  home.always.home.packages = [ pkgs.notion-app ];
+  options = delib.singleEnableOption host.isDarwin;
+
+  home.ifEnabled.home.packages = with pkgs; [ notion-app ];
 }

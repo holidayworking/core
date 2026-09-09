@@ -1,8 +1,15 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.vscode";
 
-  home.always.programs.vscode = {
+  options = delib.singleEnableOption host.isPC;
+
+  home.ifEnabled.programs.vscode = {
     enable = true;
 
     profiles.default = {
