@@ -16,7 +16,7 @@ delib.module {
     enableZshIntegration = false;
 
     settings = {
-      font-family = "FiraCode Nerd Font";
+      font-family = "Firple";
       font-size = "14";
       theme = "GitHub Dark Default";
       shell-integration-features = "no-path,ssh-env,ssh-terminfo";

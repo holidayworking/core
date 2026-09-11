@@ -44,7 +44,7 @@ delib.module {
         ];
 
       userSettings = {
-        "editor.fontFamily" = "FiraCode Nerd Font";
+        "editor.fontFamily" = "Firple";
         "editor.fontLigatures" = true;
         "editor.fontSize" = 14;
         "editor.lineHeight" = 16;
@@ -62,7 +62,7 @@ delib.module {
         "workbench.startupEditor" = "none";
         "workbench.colorTheme" = "GitHub Dark Default";
         "workbench.iconTheme" = "vscode-icons";
-        "terminal.integrated.fontFamily" = "FiraCode Nerd Font";
+        "terminal.integrated.fontFamily" = "Firple";
         "terminal.integrated.fontLigatures.enabled" = true;
         "terminal.integrated.fontSize" = 14;
         "claudeCode.claudeProcessWrapper" = pkgs.lib.getExe' pkgs.llm-agents.claude-code "claude";
