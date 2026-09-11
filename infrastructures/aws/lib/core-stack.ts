@@ -3,13 +3,18 @@ import { Construct } from "constructs";
 
 import { Log } from "./constructs/log.ts";
 import { Monitoring } from "./constructs/monitoring.ts";
+import { Network } from "./constructs/network.ts";
 
 export class CoreStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    new Log(this, "Log");
+    const log = new Log(this, "Log");
 
     new Monitoring(this, "Monitoring");
+
+    new Network(this, "Network", {
+      flowLogsBucket: log.vpcFlowLogsBucket,
+    });
   }
 }
