@@ -54,6 +54,9 @@ catalogs:
     aws-sdk-client-mock:
       specifier: 4.1.0
       version: 4.1.0
+    cdk-fck-nat:
+      specifier: 1.6.22
+      version: 1.6.22
     cdk-nag:
       specifier: 3.0.2
       version: 3.0.2
@@ -317,6 +320,9 @@ importers:
       aws-cdk-lib:
         specifier: 'catalog:'
         version: 2.268.0(constructs@10.8.1)
+      cdk-fck-nat:
+        specifier: 'catalog:'
+        version: 1.6.22(aws-cdk-lib@2.268.0(constructs@10.8.1))(constructs@10.8.1)
       constructs:
         specifier: 'catalog:'
         version: 10.8.1
@@ -2120,6 +2126,12 @@ packages:
 
   ccount@1.1.0:
     resolution: {integrity: sha512-vlNK021QdI7PNeiUh/lKkC/mNHHfV0m/Ad5JoI0TYtlBnJAslM/JIkm/tGC88bkLIwO6OQ5uV6ztS6kVAtCDlg==}
+
+  cdk-fck-nat@1.6.22:
+    resolution: {integrity: sha512-swykqXYtMu2LnCp/DOSc6kRLbya5EKpTtBBZXQSaelqPmXHd4CaNdEhuBtnoHCSY89QfSdZM3bYPvvtFZngmgA==}
+    peerDependencies:
+      aws-cdk-lib: ^2.122.0
+      constructs: ^10.0.5
 
   cdk-nag@3.0.2:
     resolution: {integrity: sha512-mmrspXnYRK5RmBTfEu5EQZmTwGxaVCESJ5GXbQq62eOkVFd4vc4MuIfSbav74K4J7irXQVJaY3d5js0kVQMWdA==}
@@ -5836,6 +5848,11 @@ snapshots:
       get-intrinsic: 1.3.0
 
   ccount@1.1.0: {}
+
+  cdk-fck-nat@1.6.22(aws-cdk-lib@2.268.0(constructs@10.8.1))(constructs@10.8.1):
+    dependencies:
+      aws-cdk-lib: 2.268.0(constructs@10.8.1)
+      constructs: 10.8.1
 
   cdk-nag@3.0.2(aws-cdk-lib@2.268.0(constructs@10.8.1))(constructs@10.8.1):
     dependencies:

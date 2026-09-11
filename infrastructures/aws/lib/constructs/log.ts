@@ -4,6 +4,8 @@ import { Bucket, BucketNamespace } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 
 export class Log extends Construct {
+  readonly vpcFlowLogsBucket: Bucket;
+
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
@@ -39,6 +41,22 @@ export class Log extends Construct {
     );
 
     Validations.of(cloudfrontAccessLogsBucket).acknowledge({
+      id: "AwsSolutions::AwsSolutions-S1",
+      reason: "Access logs are not required.",
+    });
+
+    this.vpcFlowLogsBucket = new Bucket(this, "VpcFlowLogsBucket", {
+      bucketNamePrefix: "vpc-flow-logs",
+      bucketNamespace: BucketNamespace.ACCOUNT_REGIONAL,
+      enforceSSL: true,
+      lifecycleRules: [
+        {
+          expiration: Duration.days(400),
+        },
+      ],
+    });
+
+    Validations.of(this.vpcFlowLogsBucket).acknowledge({
       id: "AwsSolutions::AwsSolutions-S1",
       reason: "Access logs are not required.",
     });
