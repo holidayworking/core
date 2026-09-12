@@ -10,14 +10,11 @@ nix/darwin:
 	. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh \
 		&& sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#$(HOST)
 
-# nh subcommand differs per OS: nix-darwin hosts use "darwin", NixOS hosts use "os".
-nix/build nix/switch: NH_SUBCOMMAND = $(if $(filter Darwin,$(shell uname -s)),darwin,os)
-
 nix/build:
-	@nh $(NH_SUBCOMMAND) build --hostname "$$(hostname)" .
+	@./scripts/nh.sh build
 
 nix/switch:
-	@nh $(NH_SUBCOMMAND) switch --hostname "$$(hostname)" --ask .
+	@./scripts/nh.sh switch --ask
 
 nix/clean:
 	@nh clean all --ask --no-direnv
