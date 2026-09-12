@@ -397,20 +397,6 @@ sudo tailscale up --auth-key="$AUTH_KEY"",
           ],
           "Version": "2012-10-17",
         },
-        "ManagedPolicyArns": [
-          {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition",
-                },
-                ":iam::aws:policy/AmazonSSMManagedEC2InstanceDefaultPolicy",
-              ],
-            ],
-          },
-        ],
         "Policies": [
           {
             "PolicyDocument": {
@@ -437,6 +423,39 @@ sudo tailscale up --auth-key="$AUTH_KEY"",
         ],
       },
       "Type": "AWS::IAM::Role",
+    },
+    "NetworkVpcNatRoleDefaultPolicyA2EE193E": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ec2messages:AcknowledgeMessage",
+                "ec2messages:DeleteMessage",
+                "ec2messages:FailMessage",
+                "ec2messages:GetEndpoint",
+                "ec2messages:GetMessages",
+                "ec2messages:SendReply",
+                "ssm:UpdateInstanceInformation",
+                "ssmmessages:CreateControlChannel",
+                "ssmmessages:CreateDataChannel",
+                "ssmmessages:OpenControlChannel",
+                "ssmmessages:OpenDataChannel",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "NetworkVpcNatRoleDefaultPolicyA2EE193E",
+        "Roles": [
+          {
+            "Ref": "NetworkVpcNatRoleD4A24B39",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
     },
     "NetworkVpcNatSecurityGroup559BBD24": {
       "Properties": {
@@ -628,6 +647,7 @@ sudo tailscale up --auth-key="$AUTH_KEY"",
     },
     "NetworkVpcPublicSubnet1FckNatLaunchTemplate92498B95": {
       "DependsOn": [
+        "NetworkVpcNatRoleDefaultPolicyA2EE193E",
         "NetworkVpcNatRoleD4A24B39",
       ],
       "Properties": {

@@ -15,9 +15,9 @@ export class OrganizationsStack extends cdk.Stack {
     const securityHub = new CfnHub(this, "SecurityHub", {});
     securityHub.addResourceDependency(organization);
 
-    const SecurityHubDelegatedAdmin = new CfnDelegatedAdmin(this, "SecurityHubDelegatedAdmin", {
+    const securityHubDelegatedAdmin = new CfnDelegatedAdmin(this, "SecurityHubDelegatedAdmin", {
       adminAccountId: AWS_SECURITY_OPERATION_ACCOUNT_ID,
     });
-    SecurityHubDelegatedAdmin.addResourceDependency(securityHub);
+    securityHubDelegatedAdmin.addResourceDependency(securityHub);
   }
 }
