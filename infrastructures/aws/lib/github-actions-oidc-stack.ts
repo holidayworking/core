@@ -4,7 +4,7 @@ import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 
 interface GithubActionsOidcStackProps extends cdk.StackProps {
-  targetAccountIds: string[];
+  readonly targetAccountIds: string[];
 }
 
 export class GithubActionsOidcStack extends cdk.Stack {

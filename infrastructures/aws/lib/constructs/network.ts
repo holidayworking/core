@@ -10,21 +10,23 @@ import {
   Port,
   Vpc,
 } from "aws-cdk-lib/aws-ec2";
+import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { FckNatInstanceProvider } from "cdk-fck-nat";
 import { Construct } from "constructs";
 
-export interface NetworkProps {
+type Props = {
   readonly flowLogsBucket: IBucket;
-}
+};
 
 export class Network extends Construct {
   readonly vpc: Vpc;
 
-  constructor(scope: Construct, id: string, props: NetworkProps) {
+  constructor(scope: Construct, id: string, props: Props) {
     super(scope, id);
 
     const natGatewayProvider = new FckNatInstanceProvider({
       instanceType: InstanceType.of(InstanceClass.T4G, InstanceSize.NANO),
+      enableSsm: false,
     });
 
     this.vpc = new Vpc(this, "Vpc", {
@@ -40,6 +42,25 @@ export class Network extends Construct {
     natGatewayProvider.securityGroup.addIngressRule(
       Peer.ipv4(this.vpc.vpcCidrBlock),
       Port.allTraffic(),
+    );
+
+    natGatewayProvider.role.addToPolicy(
+      new PolicyStatement({
+        actions: [
+          "ec2messages:AcknowledgeMessage",
+          "ec2messages:DeleteMessage",
+          "ec2messages:FailMessage",
+          "ec2messages:GetEndpoint",
+          "ec2messages:GetMessages",
+          "ec2messages:SendReply",
+          "ssm:UpdateInstanceInformation",
+          "ssmmessages:CreateControlChannel",
+          "ssmmessages:CreateDataChannel",
+          "ssmmessages:OpenControlChannel",
+          "ssmmessages:OpenDataChannel",
+        ],
+        resources: ["*"],
+      }),
     );
 
     Validations.of(this.vpc).acknowledge(
@@ -59,13 +80,8 @@ export class Network extends Construct {
       {
         id: "AwsSolutions-IAM5[Resource::*]",
         reason:
-          "The fck-nat role attaches its own elastic network interface, which cannot be scoped to a resource.",
+          "Session Manager's ssmmessages/ec2messages control- and data-channel actions do not support resource-level scoping; the fck-nat role also attaches its own elastic network interface, which cannot be scoped to a resource.",
       },
     );
-
-    this.vpc.node.addMetadata(Validations.ACKNOWLEDGED_RULES_METADATA_KEY, {
-      "AwsSolutions-IAM4[Policy::arn:<AWS::Partition>:iam::aws:policy/AmazonSSMManagedEC2InstanceDefaultPolicy]":
-        "The fck-nat instance uses the AWS managed policy for SSM Session Manager access. Set on metadata directly because Validations.acknowledge() rejects rule IDs with multiple '::'.",
-    });
   }
 }

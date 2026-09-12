@@ -3,7 +3,7 @@ import { Template } from "aws-cdk-lib/assertions";
 import { expect, test } from "vite-plus/test";
 
 import { Route53Stack } from "../lib/route53-stack.ts";
-import snapshotPlugin from "../test/snapshot-plugin.ts";
+import snapshotPlugin from "./snapshot-plugin.ts";
 
 expect.addSnapshotSerializer(snapshotPlugin);
 
