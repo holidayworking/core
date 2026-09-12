@@ -1,6 +1,7 @@
 import * as cdk from "aws-cdk-lib/core";
 import { Construct } from "constructs";
 
+import { Computing } from "./constructs/computing.ts";
 import { Log } from "./constructs/log.ts";
 import { Monitoring } from "./constructs/monitoring.ts";
 import { Network } from "./constructs/network.ts";
@@ -11,10 +12,14 @@ export class CoreStack extends cdk.Stack {
 
     const log = new Log(this, "Log");
 
-    new Monitoring(this, "Monitoring");
-
-    new Network(this, "Network", {
+    const network = new Network(this, "Network", {
       flowLogsBucket: log.vpcFlowLogsBucket,
     });
+
+    new Computing(this, "Computing", {
+      vpc: network.vpc,
+    });
+
+    new Monitoring(this, "Monitoring");
   }
 }

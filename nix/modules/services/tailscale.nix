@@ -1,6 +1,8 @@
 { delib, ... }:
 delib.module {
-  name = "programs.tailscale";
+  name = "services.tailscale";
+
+  nixos.always.services.tailscale.enable = true;
 
   darwin.always.homebrew.casks = [
     "tailscale-app"

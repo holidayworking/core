@@ -1,0 +1,136 @@
+--- a/src/upload_ami/snapshot_uploader.py
++++ b/src/upload_ami/snapshot_uploader.py
+@@ -23,6 +23,7 @@
+ 
+ BLOCK_SIZE = 512 * 1024  # Fixed by EBS Direct API.
+ GIB = 1024**3
++ZERO_BLOCK = bytes(BLOCK_SIZE)
+ 
+ 
+ def upload_snapshot(
+@@ -33,7 +34,7 @@
+     description: str | None = None,
+     tags: dict[str, str] | None = None,
+     client_token: str | None = None,
+-    workers: int = 64,
++    workers: int = 16,
+     timeout_minutes: int = 60,
+ ) -> str:
+     """Upload a raw disk image to a new EBS snapshot.
+@@ -76,7 +77,7 @@
+     )
+ 
+     try:
+-        _upload_blocks(
++        written = _upload_blocks(
+             file_path,
+             snapshot_id,
+             block_count,
+@@ -84,7 +85,13 @@
+             client,
+             workers,
+         )
+-        status = _complete_snapshot(client, snapshot_id, block_count)
++        log.info(
++            "Wrote %d of %d blocks (%d all-zero blocks skipped)",
++            written,
++            block_count,
++            block_count - written,
++        )
++        status = _complete_snapshot(client, snapshot_id, written)
+         if status == "error":
+             raise RuntimeError(f"CompleteSnapshot returned error for {snapshot_id}")
+         if status != "completed":
+@@ -104,9 +111,9 @@
+ def _create_client(region: str, max_connections: int) -> EBSClient:
+     """Create a boto3 EBS client with adaptive retry and a sized connection pool."""
+     cfg = botocore.config.Config(
+-        retries={"mode": "adaptive"},
+-        connect_timeout=5,
+-        read_timeout=12,
++        retries={"mode": "adaptive", "max_attempts": 10},
++        connect_timeout=10,
++        read_timeout=60,
+         max_pool_connections=max_connections,
+         tcp_keepalive=True,
+     )
+@@ -140,14 +147,18 @@
+     return resp["SnapshotId"], resp["Status"]
+ 
+ 
+-def _complete_snapshot(client: EBSClient, snapshot_id: str, block_count: int) -> str:
++def _complete_snapshot(client: EBSClient, snapshot_id: str, written_blocks: int) -> str:
+     """Complete the snapshot.
+ 
++    *written_blocks* is the number of blocks actually written, which is
++    what ChangedBlocksCount expects; it is lower than the block count of
++    the image whenever all-zero blocks were skipped.
++
+     Returns the snapshot status from the CompleteSnapshot response.
+     Retries are handled by boto3's adaptive retry mode.
+     """
+     resp = client.complete_snapshot(
+-        SnapshotId=snapshot_id, ChangedBlocksCount=block_count
++        SnapshotId=snapshot_id, ChangedBlocksCount=written_blocks
+     )
+     return resp["Status"]
+ 
+@@ -224,15 +235,21 @@
+     file_size: int,
+     client: EBSClient,
+     workers: int,
+-) -> None:
+-    """Upload all blocks in parallel. Retries are handled by boto3."""
++) -> int:
++    """Upload all non-zero blocks in parallel, returning the number written.
++
++    A snapshot started without a parent reads unwritten blocks as zeros,
++    so all-zero blocks do not have to be sent at all.  Retries are
++    handled by boto3.
++    """
+     fd = os.open(str(path), os.O_RDONLY)
+     try:
+         failed: dict[int, BaseException] = {}
+         failed_lock = threading.Lock()
+ 
++        written = 0
+         with ThreadPoolExecutor(max_workers=workers) as pool:
+-            futures: dict[Future[None], int] = {}
++            futures: dict[Future[bool], int] = {}
+             for idx in range(block_count):
+                 with failed_lock:
+                     if failed:
+@@ -252,6 +269,8 @@
+                 if exc is not None:
+                     with failed_lock:
+                         failed[futures[f]] = exc
++                elif f.result():
++                    written += 1
+     finally:
+         os.close(fd)
+ 
+@@ -262,6 +281,8 @@
+             f"first failure at block {first_idx}: {failed[first_idx]}"
+         )
+ 
++    return written
++
+ 
+ def _upload_one_block(
+     fd: int,
+@@ -269,7 +290,13 @@
+     block_index: int,
+     file_size: int,
+     client: EBSClient,
+-) -> None:
+-    """Upload a single block. Retries are handled by boto3."""
++) -> bool:
++    """Upload a single block, returning whether it was written.
++
++    All-zero blocks are skipped. Retries are handled by boto3.
++    """
+     data = _read_block(fd, block_index, file_size)
++    if data == ZERO_BLOCK:
++        return False
+     _put_block(client, snapshot_id, block_index, data)
++    return True

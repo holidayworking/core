@@ -1,9 +1,6 @@
 { delib, ... }:
-delib.module {
-  name = "nix";
-
-  darwin.always.nix = {
-    gc.automatic = true;
+let
+  shared.nix = {
     optimise.automatic = true;
 
     settings = {
@@ -14,5 +11,16 @@ delib.module {
       extra-substituters = [ "https://cache.numtide.com" ];
       extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
     };
+  };
+in
+delib.module {
+  name = "nix";
+
+  nixos.always = shared;
+
+  darwin.always = {
+    imports = [ shared ];
+
+    nix.gc.automatic = true;
   };
 }
