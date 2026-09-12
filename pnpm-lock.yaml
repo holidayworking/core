@@ -121,8 +121,8 @@ catalogs:
       specifier: 0.3.1
       version: 0.3.1
     zenn-cli:
-      specifier: 0.5.3
-      version: 0.5.3
+      specifier: 0.5.4
+      version: 0.5.4
 
 overrides:
   vite@*: npm:@voidzero-dev/vite-plus-core@0.3.1
@@ -307,7 +307,7 @@ importers:
     dependencies:
       zenn-cli:
         specifier: 'catalog:'
-        version: 0.5.3(supports-color@7.2.0)
+        version: 0.5.4(supports-color@7.2.0)
 
   infrastructures/aws:
     dependencies:
@@ -4201,8 +4201,8 @@ packages:
   yuku-parser@0.9.5:
     resolution: {integrity: sha512-IBnAdNVMswWbJcM7woPluOudectJzFjJ1N8jVRxP9Uq4CIv5hZdBIcdmtRbFDYF/Ph2j2gVup4YJ4N9mh0jYFA==}
 
-  zenn-cli@0.5.3:
-    resolution: {integrity: sha512-WcIf3PlZNnrR/NjGbEnwv3CQGpeLfuIFFKxT+U1BosHTvD3bCm7OxCRHd6UDl103ZTp8ZEpICcFdJzE5rGxT8A==}
+  zenn-cli@0.5.4:
+    resolution: {integrity: sha512-YqoGZa7xhJ0Wx9ZomPBuVeKhnbkb5HYHtnzEg0xP2L1U43hUMwi0xRWjO5+zIlq8yBlumkMo5WfhT5BStL3zAQ==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
@@ -8511,7 +8511,7 @@ snapshots:
       '@yuku-parser/binding-win32-arm64': 0.9.5
       '@yuku-parser/binding-win32-x64': 0.9.5
 
-  zenn-cli@0.5.3(supports-color@7.2.0):
+  zenn-cli@0.5.4(supports-color@7.2.0):
     dependencies:
       '@ai-sdk/fireworks': 3.0.43(zod@4.4.3)
       '@ai-sdk/openai': 4.0.51(zod@4.4.3)
