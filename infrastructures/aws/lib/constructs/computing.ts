@@ -2,6 +2,7 @@ import type { IVpc } from "aws-cdk-lib/aws-ec2";
 
 import { Stack, Validations } from "aws-cdk-lib";
 import {
+  BlockDeviceVolume,
   GenericLinuxImage,
   Instance,
   InstanceClass,
@@ -66,9 +67,15 @@ export class Computing extends Construct {
     );
 
     const leoInstance = new Instance(this, "LeoInstance", {
-      instanceType: InstanceType.of(InstanceClass.T4G, InstanceSize.MICRO),
+      instanceType: InstanceType.of(InstanceClass.T4G, InstanceSize.SMALL),
       machineImage: new GenericLinuxImage({ "ap-northeast-1": "ami-087a24522f428a68e" }),
       vpc: props.vpc,
+      blockDevices: [
+        {
+          deviceName: "/dev/xvda",
+          volume: BlockDeviceVolume.ebs(20),
+        },
+      ],
       detailedMonitoring: true,
       disableApiTermination: true,
       requireImdsv2: true,
