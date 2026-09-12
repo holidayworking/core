@@ -18,6 +18,8 @@ export interface NetworkProps {
 }
 
 export class Network extends Construct {
+  readonly vpc: Vpc;
+
   constructor(scope: Construct, id: string, props: NetworkProps) {
     super(scope, id);
 
@@ -25,7 +27,7 @@ export class Network extends Construct {
       instanceType: InstanceType.of(InstanceClass.T4G, InstanceSize.NANO),
     });
 
-    const vpc = new Vpc(this, "Vpc", {
+    this.vpc = new Vpc(this, "Vpc", {
       maxAzs: 1,
       natGatewayProvider,
       flowLogs: {
@@ -35,9 +37,12 @@ export class Network extends Construct {
       },
     });
 
-    natGatewayProvider.securityGroup.addIngressRule(Peer.ipv4(vpc.vpcCidrBlock), Port.allTraffic());
+    natGatewayProvider.securityGroup.addIngressRule(
+      Peer.ipv4(this.vpc.vpcCidrBlock),
+      Port.allTraffic(),
+    );
 
-    Validations.of(vpc).acknowledge(
+    Validations.of(this.vpc).acknowledge(
       {
         id: "AwsSolutions::AwsSolutions-EC23",
         reason: "Ingress is restricted to the VPC CIDR; the rule cannot evaluate the CIDR token.",
@@ -58,7 +63,7 @@ export class Network extends Construct {
       },
     );
 
-    vpc.node.addMetadata(Validations.ACKNOWLEDGED_RULES_METADATA_KEY, {
+    this.vpc.node.addMetadata(Validations.ACKNOWLEDGED_RULES_METADATA_KEY, {
       "AwsSolutions-IAM4[Policy::arn:<AWS::Partition>:iam::aws:policy/AmazonSSMManagedEC2InstanceDefaultPolicy]":
         "The fck-nat instance uses the AWS managed policy for SSM Session Manager access. Set on metadata directly because Validations.acknowledge() rejects rule IDs with multiple '::'.",
     });

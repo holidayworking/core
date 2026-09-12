@@ -20,6 +20,11 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 - To run a command scoped to a package: `vp exec --filter @<scope> <cmd>` (e.g., `vp exec --filter @infrastructures/aws cdk synth`).
 - To update Vitest snapshots: `vp exec --filter @<scope> vp test -- --update`.
 
+## Pull Requests
+
+- Test Plan sections should only list manual verification steps. Omit anything already covered by CI (`vp check`, `vp test`, `cdk synth`/`cdk diff`, `nix flake check`, etc.).
+- Do not include the Claude-Session remote session URL in commit messages or PR descriptions.
+
 ## Package Naming
 
 - Avoid bare names that collide with Node.js built-ins (e.g. `constants`, `path`, `fs`). Use scoped names like `@core/<name>` instead — with `moduleResolution: "nodenext"` and `@types/node`, TypeScript resolves bare built-in names to the Node.js type declarations rather than the workspace package.

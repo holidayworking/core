@@ -2,5 +2,5 @@
 delib.module {
   name = "fonts";
 
-  darwin.always.fonts.packages = [ pkgs.local.firple ];
+  darwin.always.fonts.packages = with pkgs; [ local.firple ];
 }

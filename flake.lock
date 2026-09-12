@@ -18,6 +18,27 @@
         "type": "github"
       }
     },
+    "amis": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1784608250,
+        "narHash": "sha256-xineJSTBeLQ+6EuaP/oD6KMCSiSnSLCdme0c4sE7lq8=",
+        "owner": "NixOS",
+        "repo": "amis",
+        "rev": "c662c3a1f005ef1bb5325575bd774b3e550231fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "amis",
+        "type": "github"
+      }
+    },
     "brew-src": {
       "flake": false,
       "locked": {
@@ -77,7 +98,7 @@
           "nixpkgs"
         ],
         "systems": "systems_2",
-        "treefmt-nix": "treefmt-nix_2"
+        "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
         "lastModified": 1784665499,
@@ -269,7 +290,7 @@
         "flake-parts": "flake-parts_2",
         "nixpkgs": "nixpkgs_3",
         "systems": "systems",
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
         "lastModified": 1789164689,
@@ -487,6 +508,7 @@
     "root": {
       "inputs": {
         "agent-skills": "agent-skills",
+        "amis": "amis",
         "crit": "crit",
         "denix": "denix",
         "flake-parts": "flake-parts",
@@ -499,7 +521,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
         "sops-nix": "sops-nix",
-        "treefmt-nix": "treefmt-nix_3",
+        "treefmt-nix": "treefmt-nix_4",
         "vercel-labs-skills": "vercel-labs-skills"
       }
     },
@@ -556,6 +578,27 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
+          "amis",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784369104,
+        "narHash": "sha256-47cxbcZODibHv3rELFQ9vZly0vUNkND/atn/U7HLeb0=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "df3c0640565d04a0261253cdd89fce78ec50168a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_2": {
+      "inputs": {
+        "nixpkgs": [
           "llm-agents-nix",
           "nixpkgs"
         ]
@@ -574,7 +617,7 @@
         "type": "github"
       }
     },
-    "treefmt-nix_2": {
+    "treefmt-nix_3": {
       "inputs": {
         "nixpkgs": [
           "nix-vite-plus",
@@ -596,7 +639,7 @@
         "type": "github"
       }
     },
-    "treefmt-nix_3": {
+    "treefmt-nix_4": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"

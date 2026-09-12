@@ -32,6 +32,11 @@
       flake = false;
     };
 
+    amis = {
+      url = "github:NixOS/amis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     crit = {
       url = "github:tomasz-tomczyk/crit";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,7 +73,7 @@
   outputs =
     inputs@{ flake-parts, denix, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } (
-      { inputs, ... }:
+      { inputs, lib, ... }:
       {
         imports = [
           inputs.treefmt-nix.flakeModule
@@ -97,7 +102,11 @@
                     rices.enable = false;
                   })
                   (overlays.withConfig {
-                    defaultTargets = [ "darwin" ];
+                    defaultTargets = [
+                      "nixos"
+                      "darwin"
+                      "home"
+                    ];
                   })
                 ];
 
@@ -107,35 +116,33 @@
               };
 
             hostPlatformSubmodule =
-              { config, lib, ... }:
+              { config, ... }:
               let
                 platform = lib.optionalAttrs (config.system != null) (lib.systems.elaborate config.system);
               in
               {
-                options = {
-                  isDarwin = lib.mkOption {
-                    type = lib.types.bool;
-                    default = platform.isDarwin or false;
-                  };
-
-                  isLinux = lib.mkOption {
-                    type = lib.types.bool;
-                    default = platform.isLinux or false;
-                  };
+                options = with denix.lib; {
+                  isDarwin = boolOption (platform.isDarwin or false);
+                  isLinux = boolOption (platform.isLinux or false);
                 };
               };
+
+            filterByPlatform = attr: lib.filterAttrs (_: cfg: cfg.config.myconfig.host.${attr});
           in
           {
-            darwinConfigurations = mkConfigurations "darwin";
+            nixosConfigurations = filterByPlatform "isLinux" (mkConfigurations "nixos");
+            darwinConfigurations = filterByPlatform "isDarwin" (mkConfigurations "darwin");
             homeConfigurations = mkConfigurations "home";
           };
 
         systems = [
+          "aarch64-linux"
           "aarch64-darwin"
         ];
 
         perSystem =
           {
+            inputs',
             system,
             pkgs,
             ...
@@ -196,10 +203,18 @@
             };
 
             packages = {
+              # The EBS Direct upload hardcodes 64 concurrent connections and a
+              # 12s read timeout, which drops connections on a home uplink. Patch
+              # it to lower the concurrency, raise the timeouts, and skip sending
+              # all-zero blocks.
+              upload-ami = inputs'.amis.packages.upload-ami.overrideAttrs (old: {
+                patches = (old.patches or [ ]) ++ [ ./nix/patches/upload-ami-tune-ebs-direct-upload.patch ];
+              });
+
               build-hugo = pkgs.stdenv.mkDerivation {
                 name = "build-hugo";
                 src = ./apps/hugo;
-                nativeBuildInputs = [ pkgs.hugo ];
+                nativeBuildInputs = with pkgs; [ hugo ];
                 buildPhase = ''
                   hugo --minify
                 '';
