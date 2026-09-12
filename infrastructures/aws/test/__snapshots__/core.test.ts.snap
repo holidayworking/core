@@ -17,12 +17,20 @@ exports[`snapshot 1`] = `
       ],
       "Properties": {
         "AvailabilityZone": "dummy1a",
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeSize": 20,
+            },
+          },
+        ],
         "DisableApiTermination": true,
         "IamInstanceProfile": {
           "Ref": "ComputingLeoInstanceInstanceProfileEC1FB714",
         },
         "ImageId": "ami-087a24522f428a68e",
-        "InstanceType": "t4g.micro",
+        "InstanceType": "t4g.small",
         "LaunchTemplate": {
           "LaunchTemplateName": "LeoInstanceLaunchTemplate",
           "Version": {
