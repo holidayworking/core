@@ -3,7 +3,7 @@
 darwin/setup: nix/install nix/darwin colima/start
 
 nix/install:
-	@curl --fail --silent --show-error --location https://install.determinate.systems/nix | sh -s -- install --prefer-upstream-nix
+	@curl --fail --silent --show-error --location https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
 
 nix/darwin: HOST = aries
 nix/darwin:
