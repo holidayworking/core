@@ -57,6 +57,7 @@ delib.module {
           '';
 
           settings = {
+            attribution.sessionUrl = false;
             enableAllProjectMcpServers = true;
             language = "japanese";
             theme = "auto";
