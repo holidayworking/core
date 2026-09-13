@@ -1,6 +1,13 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.codegraph";
 
-  home.always.home.packages = [ pkgs.llm-agents.codegraph ];
+  options = delib.singleEnableOption host.isPC;
+
+  home.ifEnabled.home.packages = [ pkgs.llm-agents.codegraph ];
 }

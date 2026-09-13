@@ -7,7 +7,9 @@
 delib.module {
   name = "programs.crit";
 
-  home.always.home.packages = [
+  options = delib.singleEnableOption host.isPC;
+
+  home.ifEnabled.home.packages = [
     inputs.crit.packages.${host.system}.default
   ];
 }
