@@ -23,7 +23,6 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 ## Pull Requests
 
 - Test Plan sections should only list manual verification steps. Omit anything already covered by CI (`vp check`, `vp test`, `cdk synth`/`cdk diff`, `nix flake check`, etc.).
-- Do not include the Claude-Session remote session URL in commit messages or PR descriptions.
 
 ## Package Naming
 
