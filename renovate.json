@@ -12,6 +12,12 @@
     {
       "matchDatasources": ["git-refs"],
       "minimumReleaseAge": null
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["public.ecr.aws/amazonlinux/amazonlinux"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
     }
   ]
 }
