@@ -7,7 +7,7 @@ title = "holidayworking.org"
 hasCJKLanguage = true
 
 [params]
-dateFormat = "2 January 2006"
+dateFormat = "2006年January2日"
 mainSections = ["blog"]
 enableCodeCopy = true
 enableImageWebp = false
@@ -16,7 +16,10 @@ photoBaseURL = "https://photo.holidayworking.org"
 [params.author]
 name = "Hidekazu Tanaka"
 image = "img/author.jpg"
-links = [{ github = "https://github.com/holidayworking" }]
+links = [
+  { bluesky = "https://bsky.app/profile/holidayworking.bsky.social" },
+  { github = "https://github.com/holidayworking" },
+]
 
 [params.homepage]
 layout = "profile"
@@ -25,6 +28,7 @@ layout = "profile"
 showAuthor = false
 showReadingTime = false
 showTaxonomies = true
+sharingLinks = ["facebook", "x-twitter", "bluesky", "mastodon"]
 
 [markup.goldmark.renderer]
 unsafe = true
