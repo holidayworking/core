@@ -21,18 +21,6 @@ delib.module {
     mcp-servers.programs = {
       context7.enable = true;
       nixos.enable = true;
-
-      github = {
-        enable = true;
-
-        passwordCommand = {
-          GITHUB_PERSONAL_ACCESS_TOKEN = [
-            (lib.getExe pkgs.gh)
-            "auth"
-            "token"
-          ];
-        };
-      };
     };
 
     mcp-servers.settings.servers.codegraph = {
