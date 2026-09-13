@@ -1,8 +1,15 @@
-{ delib, inputs, ... }:
+{
+  delib,
+  host,
+  inputs,
+  ...
+}:
 delib.module {
   name = "programs.agent-skills";
 
-  home.always = {
+  options = delib.singleEnableOption host.isPC;
+
+  home.ifEnabled = {
     imports = [
       inputs.agent-skills.homeManagerModules.default
     ];

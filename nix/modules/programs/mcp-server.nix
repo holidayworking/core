@@ -1,5 +1,6 @@
 {
   delib,
+  host,
   inputs,
   lib,
   pkgs,
@@ -8,7 +9,9 @@
 delib.module {
   name = "programs.mcp";
 
-  home.always = {
+  options = delib.singleEnableOption host.isPC;
+
+  home.ifEnabled = {
     imports = [
       inputs.mcp-servers-nix.homeManagerModules.default
     ];
