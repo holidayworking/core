@@ -8,12 +8,16 @@ exports[`snapshot 1`] = `
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
+    "SsmParameterValuecorecomputingcanceramiidC96584B6F00A464EAD1953AFF4B05118Parameter": {
+      "Default": "/core/computing/cancer/ami-id",
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+    },
   },
   "Resources": {
-    "ComputingLeoInstance2E9EDB36": {
+    "ComputingCancerInstanceA9107087": {
       "DependsOn": [
-        "ComputingLeoRoleDefaultPolicy1088FACA",
-        "ComputingLeoRole0D636240",
+        "ComputingCancerRoleDefaultPolicyC7C9615C",
+        "ComputingCancerRole1644ECD1",
       ],
       "Properties": {
         "AvailabilityZone": "dummy1a",
@@ -27,15 +31,17 @@ exports[`snapshot 1`] = `
         ],
         "DisableApiTermination": true,
         "IamInstanceProfile": {
-          "Ref": "ComputingLeoInstanceInstanceProfileEC1FB714",
+          "Ref": "ComputingCancerInstanceInstanceProfile5DD74A57",
         },
-        "ImageId": "ami-087a24522f428a68e",
+        "ImageId": {
+          "Ref": "SsmParameterValuecorecomputingcanceramiidC96584B6F00A464EAD1953AFF4B05118Parameter",
+        },
         "InstanceType": "t4g.small",
         "LaunchTemplate": {
-          "LaunchTemplateName": "LeoInstanceLaunchTemplate",
+          "LaunchTemplateName": "CancerInstanceLaunchTemplate",
           "Version": {
             "Fn::GetAtt": [
-              "ComputingLeoInstanceLaunchTemplateEEDA5638",
+              "ComputingCancerInstanceLaunchTemplateFB4679BC",
               "LatestVersionNumber",
             ],
           },
@@ -44,7 +50,7 @@ exports[`snapshot 1`] = `
         "SecurityGroupIds": [
           {
             "Fn::GetAtt": [
-              "ComputingLeoInstanceInstanceSecurityGroup60294B74",
+              "ComputingCancerInstanceInstanceSecurityGroup9A4576EB",
               "GroupId",
             ],
           },
@@ -55,30 +61,30 @@ exports[`snapshot 1`] = `
         "Tags": [
           {
             "Key": "Name",
-            "Value": "CoreStack/Computing/LeoInstance",
+            "Value": "CoreStack/Computing/CancerInstance",
           },
         ],
         "UserData": {
           "Fn::Base64": "#!/bin/bash
-AUTH_KEY=$(sudo -u hidekazu -i aws ssm get-parameter --name /core/computing/leo/tailscale-auth-key --with-decryption --query "Parameter.Value" --output text)
+AUTH_KEY=$(sudo -u hidekazu -i aws ssm get-parameter --name /core/computing/cancer/tailscale-auth-key --with-decryption --query "Parameter.Value" --output text)
 sudo tailscale up --auth-key="$AUTH_KEY"",
         },
       },
       "Type": "AWS::EC2::Instance",
     },
-    "ComputingLeoInstanceInstanceProfileEC1FB714": {
+    "ComputingCancerInstanceInstanceProfile5DD74A57": {
       "Properties": {
         "Roles": [
           {
-            "Ref": "ComputingLeoRole0D636240",
+            "Ref": "ComputingCancerRole1644ECD1",
           },
         ],
       },
       "Type": "AWS::IAM::InstanceProfile",
     },
-    "ComputingLeoInstanceInstanceSecurityGroup60294B74": {
+    "ComputingCancerInstanceInstanceSecurityGroup9A4576EB": {
       "Properties": {
-        "GroupDescription": "CoreStack/Computing/LeoInstance/InstanceSecurityGroup",
+        "GroupDescription": "CoreStack/Computing/CancerInstance/InstanceSecurityGroup",
         "SecurityGroupEgress": [
           {
             "CidrIp": "0.0.0.0/0",
@@ -89,7 +95,7 @@ sudo tailscale up --auth-key="$AUTH_KEY"",
         "Tags": [
           {
             "Key": "Name",
-            "Value": "CoreStack/Computing/LeoInstance",
+            "Value": "CoreStack/Computing/CancerInstance",
           },
         ],
         "VpcId": {
@@ -98,18 +104,18 @@ sudo tailscale up --auth-key="$AUTH_KEY"",
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "ComputingLeoInstanceLaunchTemplateEEDA5638": {
+    "ComputingCancerInstanceLaunchTemplateFB4679BC": {
       "Properties": {
         "LaunchTemplateData": {
           "MetadataOptions": {
             "HttpTokens": "required",
           },
         },
-        "LaunchTemplateName": "LeoInstanceLaunchTemplate",
+        "LaunchTemplateName": "CancerInstanceLaunchTemplate",
       },
       "Type": "AWS::EC2::LaunchTemplate",
     },
-    "ComputingLeoRole0D636240": {
+    "ComputingCancerRole1644ECD1": {
       "Properties": {
         "AssumeRolePolicyDocument": {
           "Statement": [
@@ -126,7 +132,7 @@ sudo tailscale up --auth-key="$AUTH_KEY"",
       },
       "Type": "AWS::IAM::Role",
     },
-    "ComputingLeoRoleDefaultPolicy1088FACA": {
+    "ComputingCancerRoleDefaultPolicyC7C9615C": {
       "Properties": {
         "PolicyDocument": {
           "Statement": [
@@ -158,7 +164,7 @@ sudo tailscale up --auth-key="$AUTH_KEY"",
                     {
                       "Ref": "AWS::Partition",
                     },
-                    ":ssm:ap-northeast-1:766612536658:parameter/core/computing/leo/tailscale-auth-key",
+                    ":ssm:ap-northeast-1:766612536658:parameter/core/computing/cancer/tailscale-auth-key",
                   ],
                 ],
               },
@@ -166,10 +172,10 @@ sudo tailscale up --auth-key="$AUTH_KEY"",
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "ComputingLeoRoleDefaultPolicy1088FACA",
+        "PolicyName": "ComputingCancerRoleDefaultPolicyC7C9615C",
         "Roles": [
           {
-            "Ref": "ComputingLeoRole0D636240",
+            "Ref": "ComputingCancerRole1644ECD1",
           },
         ],
       },
