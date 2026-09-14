@@ -1,6 +1,6 @@
 { delib, inputs, ... }:
 delib.host {
-  name = "leo";
+  name = "cancer";
 
   system = "aarch64-linux";
   type = "server";

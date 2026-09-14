@@ -205,9 +205,9 @@ jobs:
           - host: taurus
             attribute: darwinConfigurations.taurus.system
             runner: macos-26
-          - host: leo
-            attribute: nixosConfigurations.leo.config.system.build.toplevel
-            runner: ubuntu-24.04-arm
+          # - host: cancer
+          #   attribute: nixosConfigurations.cancer.config.system.build.toplevel
+          #   runner: ubuntu-24.04-arm
           - host: devShells.aarch64-darwin.default
             attribute: devShells.aarch64-darwin.default
             runner: macos-26

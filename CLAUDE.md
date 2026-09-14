@@ -36,7 +36,7 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 This monorepo mixes two toolchains:
 
 - JS/TS workspaces managed by Vite+ (`vp`): `apps/hugo` (Hugo static site), `apps/radicast` and `apps/zenn` (a Zenn articles/books repo), `infrastructures/aws` (`@infrastructures/aws`, shared AWS CDK), `packages/constants` (`@core/constants`). `apps/radicast` also has its own `cdk.out`/`bin/` — it's a separate CDK app, not just a library.
-- Nix system configuration under `nix/`: `nix/hosts` (per-machine entry points: `aries`/`taurus` are macOS/darwin desktop/laptop hosts, `leo` is an `aarch64-linux` NixOS server — `type = "server"`, so `host.isPC` is false for it), `nix/modules/{config,programs,toplevel}`, `nix/overlays`, `nix/packages`, `nix/secrets` (SOPS-encrypted; requires the age key from `~/.config/sops/age/keys.txt`, see README).
+- Nix system configuration under `nix/`: `nix/hosts` (per-machine entry points: `aries`/`taurus` are macOS/darwin desktop/laptop hosts, `cancer` is an `aarch64-linux` NixOS server — `type = "server"`, so `host.isPC` is false for it), `nix/modules/{config,programs,toplevel}`, `nix/overlays`, `nix/packages`, `nix/secrets` (SOPS-encrypted; requires the age key from `~/.config/sops/age/keys.txt`, see README).
 
 ## Nix Modules
 

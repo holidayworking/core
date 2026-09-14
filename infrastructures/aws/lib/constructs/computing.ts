@@ -3,11 +3,11 @@ import type { IVpc } from "aws-cdk-lib/aws-ec2";
 import { Stack, Validations } from "aws-cdk-lib";
 import {
   BlockDeviceVolume,
-  GenericLinuxImage,
   Instance,
   InstanceClass,
   InstanceSize,
   InstanceType,
+  MachineImage,
   SubnetType,
   UserData,
 } from "aws-cdk-lib/aws-ec2";
@@ -18,17 +18,15 @@ type Props = {
   readonly vpc: IVpc;
 };
 
-const LEO_TAILSCALE_AUTH_KEY_PARAMETER_NAME = "core/computing/leo/tailscale-auth-key";
-
 export class Computing extends Construct {
   constructor(scope: Construct, id: string, props: Props) {
     super(scope, id);
 
-    const leoRole = new Role(this, "LeoRole", {
+    const cancerRole = new Role(this, "CancerRole", {
       assumedBy: new ServicePrincipal("ec2.amazonaws.com"),
     });
 
-    leoRole.addToPolicy(
+    cancerRole.addToPolicy(
       new PolicyStatement({
         actions: [
           "ec2messages:AcknowledgeMessage",
@@ -47,28 +45,28 @@ export class Computing extends Construct {
       }),
     );
 
-    leoRole.addToPolicy(
+    cancerRole.addToPolicy(
       new PolicyStatement({
         actions: ["ssm:GetParameter"],
         resources: [
           Stack.of(this).formatArn({
             service: "ssm",
             resource: "parameter",
-            resourceName: LEO_TAILSCALE_AUTH_KEY_PARAMETER_NAME,
+            resourceName: "core/computing/cancer/tailscale-auth-key",
           }),
         ],
       }),
     );
 
-    const leoUserData = UserData.forLinux();
-    leoUserData.addCommands(
-      `AUTH_KEY=$(sudo -u hidekazu -i aws ssm get-parameter --name /${LEO_TAILSCALE_AUTH_KEY_PARAMETER_NAME} --with-decryption --query "Parameter.Value" --output text)`,
+    const cancerUserData = UserData.forLinux();
+    cancerUserData.addCommands(
+      `AUTH_KEY=$(sudo -u hidekazu -i aws ssm get-parameter --name /core/computing/cancer/tailscale-auth-key --with-decryption --query "Parameter.Value" --output text)`,
       'sudo tailscale up --auth-key="$AUTH_KEY"',
     );
 
-    const leoInstance = new Instance(this, "LeoInstance", {
+    const cancerInstance = new Instance(this, "CancerInstance", {
       instanceType: InstanceType.of(InstanceClass.T4G, InstanceSize.SMALL),
-      machineImage: new GenericLinuxImage({ "ap-northeast-1": "ami-087a24522f428a68e" }),
+      machineImage: MachineImage.fromSsmParameter("/core/computing/cancer/ami-id"),
       vpc: props.vpc,
       blockDevices: [
         {
@@ -79,12 +77,12 @@ export class Computing extends Construct {
       detailedMonitoring: true,
       disableApiTermination: true,
       requireImdsv2: true,
-      role: leoRole,
-      userData: leoUserData,
+      role: cancerRole,
+      userData: cancerUserData,
       vpcSubnets: { subnetType: SubnetType.PRIVATE_WITH_EGRESS },
     });
 
-    Validations.of(leoInstance).acknowledge(
+    Validations.of(cancerInstance).acknowledge(
       {
         id: "AwsSolutions-IAM5[Resource::*]",
         reason:
