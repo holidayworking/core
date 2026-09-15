@@ -58,6 +58,12 @@ export class Computing extends Construct {
       }),
     );
 
+    Validations.of(cancerRole).acknowledge({
+      id: "AwsSolutions-IAM5[Resource::*]",
+      reason:
+        "Session Manager's ssmmessages/ec2messages control- and data-channel actions do not support resource-level scoping.",
+    });
+
     const cancerUserData = UserData.forLinux();
     cancerUserData.addCommands(
       `AUTH_KEY=$(sudo -u hidekazu -i aws ssm get-parameter --name /core/computing/cancer/tailscale-auth-key --with-decryption --query "Parameter.Value" --output text)`,
@@ -82,17 +88,10 @@ export class Computing extends Construct {
       vpcSubnets: { subnetType: SubnetType.PRIVATE_WITH_EGRESS },
     });
 
-    Validations.of(cancerInstance).acknowledge(
-      {
-        id: "AwsSolutions-IAM5[Resource::*]",
-        reason:
-          "Session Manager's ssmmessages/ec2messages control- and data-channel actions do not support resource-level scoping.",
-      },
-      {
-        id: "CloudFormation-Validate::W9010",
-        reason:
-          "This AMI is a custom NixOS image built and uploaded specifically for this instance; it is not meant to be portable across regions or environments.",
-      },
-    );
+    Validations.of(cancerInstance).acknowledge({
+      id: "CloudFormation-Validate::W9010",
+      reason:
+        "This AMI is a custom NixOS image built and uploaded specifically for this instance; it is not meant to be portable across regions or environments.",
+    });
   }
 }
