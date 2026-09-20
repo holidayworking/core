@@ -20,5 +20,8 @@ delib.host {
 
   home.home.stateVersion = "25.05";
 
-  myconfig.services.openssh.enable = true;
+  myconfig.services = {
+    openssh.enable = true;
+    opentelemetry-collector.enable = true;
+  };
 }
