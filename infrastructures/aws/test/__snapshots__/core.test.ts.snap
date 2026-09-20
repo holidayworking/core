@@ -138,6 +138,7 @@ sudo tailscale up --auth-key="$AUTH_KEY"",
           "Statement": [
             {
               "Action": [
+                "cloudwatch:PutMetricData",
                 "ec2messages:AcknowledgeMessage",
                 "ec2messages:DeleteMessage",
                 "ec2messages:FailMessage",

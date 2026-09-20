@@ -29,6 +29,7 @@ export class Computing extends Construct {
     cancerRole.addToPolicy(
       new PolicyStatement({
         actions: [
+          "cloudwatch:PutMetricData",
           "ec2messages:AcknowledgeMessage",
           "ec2messages:DeleteMessage",
           "ec2messages:FailMessage",
@@ -61,7 +62,7 @@ export class Computing extends Construct {
     Validations.of(cancerRole).acknowledge({
       id: "AwsSolutions-IAM5[Resource::*]",
       reason:
-        "Session Manager's ssmmessages/ec2messages control- and data-channel actions do not support resource-level scoping.",
+        "Session Manager's ssmmessages/ec2messages control- and data-channel actions do not support resource-level scoping, and CloudWatch's PutMetricData API does not support resource-level scoping either.",
     });
 
     const cancerUserData = UserData.forLinux();
