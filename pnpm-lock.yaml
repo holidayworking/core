@@ -240,8 +240,8 @@ catalogs:
       specifier: 2.0.3
       version: 2.0.3
     happy-dom:
-      specifier: 20.14.3
-      version: 20.14.3
+      specifier: 20.14.5
+      version: 20.14.5
     markdownlint:
       specifier: 0.41.1
       version: 0.41.1
@@ -343,7 +343,7 @@ importers:
     devDependencies:
       happy-dom:
         specifier: 'catalog:'
-        version: 20.14.3
+        version: 20.14.5
 
   apps/photo:
     dependencies:
@@ -1703,9 +1703,6 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@25.9.6':
-    resolution: {integrity: sha512-JR6Q/PV5DKFvjrGFVqQJdeG0qvsqQQLDa3TzFrqVwhqRXqwNaxPo2KYCtCQXpOdIulCouKwT7a6in9nFthBAzw==}
-
   '@types/node@25.9.7':
     resolution: {integrity: sha512-Y+axoNWOFLvDNFxNbDA+kqqV05imHwTu5bZWWO6tQM3Y2NX1jvzUJkYlf4nYnMCnvu4wQBKW6Nr+ok6yHWA9aQ==}
 
@@ -2797,6 +2794,10 @@ packages:
 
   happy-dom@20.14.3:
     resolution: {integrity: sha512-0KMb/Eh8rsd+aMNkOk5h8LkAjo9Na1aksnEGmsuZf+GXl6UkAdIi0VbUHU7d59lXhNmawODgwwuCMiZpCxwwCw==}
+    engines: {node: '>=20.0.0'}
+
+  happy-dom@20.14.5:
+    resolution: {integrity: sha512-x/RzkpWO40bTjIoT30iQtt64FLLmH/iRcUCN2X//bLx7H3ifkdfPXyqsro/OYtqzIAhiLMMA7mmiOR9C3NOKjQ==}
     engines: {node: '>=20.0.0'}
 
   has-bigints@1.1.0:
@@ -5633,10 +5634,6 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@25.9.6':
-    dependencies:
-      undici-types: 7.24.6
-
   '@types/node@25.9.7':
     dependencies:
       undici-types: 7.24.6
@@ -5655,7 +5652,7 @@ snapshots:
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 25.9.6
+      '@types/node': 25.9.7
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     optional: true
@@ -6045,7 +6042,7 @@ snapshots:
 
   buffer-image-size@0.6.4:
     dependencies:
-      '@types/node': 25.9.6
+      '@types/node': 25.9.7
 
   bundle-name@4.1.0:
     dependencies:
@@ -6628,7 +6625,21 @@ snapshots:
 
   happy-dom@20.14.3:
     dependencies:
-      '@types/node': 25.9.6
+      '@types/node': 25.9.7
+      '@types/whatwg-mimetype': 3.0.2
+      '@types/ws': 8.18.1
+      buffer-image-size: 0.6.4
+      entities: 7.0.1
+      whatwg-mimetype: 3.0.0
+      ws: 8.21.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    optional: true
+
+  happy-dom@20.14.5:
+    dependencies:
+      '@types/node': 25.9.7
       '@types/whatwg-mimetype': 3.0.2
       '@types/ws': 8.18.1
       buffer-image-size: 0.6.4
