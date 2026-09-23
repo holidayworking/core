@@ -38,5 +38,11 @@ name = "blog"
 pageRef = "blog"
 weight = 10
 
+
+[[menu.main]]
+name = "travel"
+pageRef = "travel"
+weight = 20
+
 [social]
 twitter = "holidayworking"
