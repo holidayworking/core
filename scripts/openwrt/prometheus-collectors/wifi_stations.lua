@@ -1,8 +1,9 @@
--- The Linksys Velop WRT Pro 7 cannot use prometheus-node-exporter-lua-wifi_stations
--- either (see wifi.lua): even after switching interface discovery to UCI,
--- iwinfo's assoclist() always returns nil for this firmware's wifi-device
--- type ("qcawificfg80211", QCA/QSDK), so no per-station data is available
--- through iwinfo on this device.
+-- The Linksys Velop WRT Pro 7 cannot use prometheus-node-exporter-lua-wifi_stations:
+-- its interface discovery (`ubus call network.wireless status`) always returns
+-- {} because this firmware's wifi-device type ("qcawificfg80211", QCA/QSDK) is
+-- never registered with netifd's wireless subsystem, and even with interfaces
+-- read from UCI instead, iwinfo's assoclist() always returns nil for that
+-- device type, so no per-station data is available through iwinfo.
 --
 -- This collector instead shells out to hostapd_cli, which talks to the
 -- per-radio hostapd control socket at /var/run/hostapd-<device>/<ifname>
