@@ -1,6 +1,6 @@
 .ONESHELL:
 
-darwin/setup: nix/install nix/darwin colima/start
+darwin/setup: nix/install nix/darwin
 
 nix/install:
 	@curl --fail --silent --show-error --location https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
@@ -34,6 +34,3 @@ nixos/build-ami:
 			--type String \
 			--value "$$(jq -r '.[keys[0]]' <<< "$$image_ids")" \
 			--overwrite
-
-colima/start:
-	@colima start default --cpus 4 --memory 8 --vm-type vz --vz-rosetta --mount ~/:w --mount /private:w --mount-inotify=true

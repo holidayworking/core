@@ -5,12 +5,11 @@
   ...
 }:
 delib.module {
-  name = "programs.docker";
+  name = "programs.orbstack";
 
   options = delib.singleEnableOption host.isDarwin;
 
   home.ifEnabled.home.packages = with pkgs; [
-    colima
-    docker
+    orbstack
   ];
 }
