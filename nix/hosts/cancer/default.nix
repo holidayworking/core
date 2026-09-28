@@ -11,6 +11,7 @@ delib.host {
     ];
 
     amazonImage.format = "raw";
+    boot.loader.grub.configurationLimit = 1;
     ec2.efi = true;
     security.sudo-rs.wheelNeedsPassword = false;
     system.stateVersion = "25.05";
