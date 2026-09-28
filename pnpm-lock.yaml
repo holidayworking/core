@@ -204,8 +204,8 @@ catalogs:
       specifier: 2.1143.0
       version: 2.1143.0
     aws-cdk-github-oidc:
-      specifier: 5.0.2
-      version: 5.0.2
+      specifier: 5.2.0
+      version: 5.2.0
     aws-cdk-lib:
       specifier: 2.270.0
       version: 2.270.0
@@ -428,7 +428,7 @@ importers:
         version: 7.9.2
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 5.0.2(aws-cdk-lib@2.270.0(constructs@10.8.1))(constructs@10.8.1)
+        version: 5.2.0(aws-cdk-lib@2.270.0(constructs@10.8.1))(constructs@10.8.1)
       aws-cdk-lib:
         specifier: 'catalog:'
         version: 2.270.0(constructs@10.8.1)
@@ -474,7 +474,7 @@ importers:
         version: link:../../packages/constants
       aws-cdk-github-oidc:
         specifier: 'catalog:'
-        version: 5.0.2(aws-cdk-lib@2.270.0(constructs@10.8.1))(constructs@10.8.1)
+        version: 5.2.0(aws-cdk-lib@2.270.0(constructs@10.8.1))(constructs@10.8.1)
       aws-cdk-lib:
         specifier: 'catalog:'
         version: 2.270.0(constructs@10.8.1)
@@ -2245,8 +2245,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-github-oidc@5.0.2:
-    resolution: {integrity: sha512-C0BNEEDhuUSi6v36boTFjeg5yTD0gefAvbA2uw58iUBuky8HpNcUVf5SneG6Lau0SD6JQz8EOOXBTKYpuLOa9g==}
+  aws-cdk-github-oidc@5.2.0:
+    resolution: {integrity: sha512-0h7q0VIWJZ6pXxWBBVgVw4K7mhwmR5MS6hvb/L1YU+U0k+EM9SW0hQwcNGFZLOtLzDbTVAjIQBGkZ4/Ve37eZg==}
     engines: {node: '>= 22 <= 26'}
     peerDependencies:
       aws-cdk-lib: ^2.260.0
@@ -6020,7 +6020,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  aws-cdk-github-oidc@5.0.2(aws-cdk-lib@2.270.0(constructs@10.8.1))(constructs@10.8.1):
+  aws-cdk-github-oidc@5.2.0(aws-cdk-lib@2.270.0(constructs@10.8.1))(constructs@10.8.1):
     dependencies:
       aws-cdk-lib: 2.270.0(constructs@10.8.1)
       constructs: 10.8.1
