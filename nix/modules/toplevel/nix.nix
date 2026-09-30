@@ -1,4 +1,4 @@
-{ delib, ... }:
+{ delib, pkgs, ... }:
 let
   shared.nix = {
     optimise.automatic = true;
@@ -18,9 +18,25 @@ delib.module {
 
   nixos.always = shared;
 
-  darwin.always = {
-    imports = [ shared ];
+  darwin.always =
+    { myconfig, ... }:
+    {
+      imports = [ shared ];
 
-    nix.gc.automatic = true;
-  };
+      nix = {
+        gc.automatic = true;
+
+        linux-builder = {
+          enable = true;
+          package = pkgs.darwin.linux-builder-vz;
+
+          systems = [
+            "aarch64-linux"
+            "x86_64-linux"
+          ];
+        };
+
+        settings.trusted-users = [ myconfig.constants.username ];
+      };
+    };
 }

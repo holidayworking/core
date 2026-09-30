@@ -8,9 +8,14 @@ delib.host {
   darwin = {
     system.stateVersion = 5;
 
-    nix = {
-      linux-builder.enable = true;
-      settings.trusted-users = [ "hidekazu" ];
+    nix.linux-builder = {
+      config.virtualisation.vz.nestedVirtualization = true;
+      supportedFeatures = [
+        "benchmark"
+        "big-parallel"
+        "kvm"
+        "nixos-test"
+      ];
     };
   };
 
