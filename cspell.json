@@ -31,7 +31,9 @@
     "nix/secrets/secrets.yaml",
     "pnpm-lock.yaml"
   ],
-  "import": ["@cspell/dict-people-names/cspell-ext.json"],
+  "import": [
+    "@cspell/dict-people-names/cspell-ext.json"
+  ],
   "version": "0.2",
   "words": [
     "acpi",
@@ -50,6 +52,7 @@
     "appcleaner",
     "appletouch",
     "artix",
+    "asahi",
     "ashmitb",
     "assoclist",
     "awslabs",
@@ -137,6 +140,7 @@
     "firple",
     "firstline",
     "flushall",
+    "fmask",
     "fontconfig",
     "freecom",
     "fsdev",
@@ -241,6 +245,7 @@
     "netfilter",
     "netifd's",
     "netinst",
+    "networkmanager",
     "nfnetlink",
     "nfnl",
     "niks",
@@ -385,6 +390,7 @@
     "useremail",
     "userfullname",
     "Velop",
+    "vendorfw",
     "vfat",
     "vgaarb",
     "vimcmd",

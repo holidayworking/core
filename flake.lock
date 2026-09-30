@@ -39,6 +39,39 @@
         "type": "github"
       }
     },
+    "apple-silicon": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790700867,
+        "narHash": "sha256-nmbZdbNGjUwkvRTL0UZV/gQ4ypzMFF8yTHaIVOUJSYc=",
+        "owner": "nix-community",
+        "repo": "nixos-apple-silicon",
+        "rev": "4a4ba6566ebb435b037dfdac28caf1dfe581b4c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixos-apple-silicon",
+        "type": "github"
+      }
+    },
+    "asahi-firmware": {
+      "flake": false,
+      "locked": {
+        "path": "./nix/hosts/gemini/firmware",
+        "type": "path"
+      },
+      "original": {
+        "path": "./nix/hosts/gemini/firmware",
+        "type": "path"
+      },
+      "parent": []
+    },
     "brew-src": {
       "flake": false,
       "locked": {
@@ -163,6 +196,21 @@
       }
     },
     "flake-compat": {
+      "locked": {
+        "lastModified": 1761640442,
+        "narHash": "sha256-AtrEP6Jmdvrqiv4x2xa5mrtaIp3OEe8uBYCDZDS+hu8=",
+        "owner": "nix-community",
+        "repo": "flake-compat",
+        "rev": "4a56054d8ffc173222d09dad23adf4ba946c8884",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_2": {
       "flake": false,
       "locked": {
         "lastModified": 1747046372,
@@ -487,7 +535,7 @@
     },
     "pre-commit-hooks": {
       "inputs": {
-        "flake-compat": "flake-compat",
+        "flake-compat": "flake-compat_2",
         "gitignore": "gitignore",
         "nixpkgs": "nixpkgs_2"
       },
@@ -509,6 +557,8 @@
       "inputs": {
         "agent-skills": "agent-skills",
         "amis": "amis",
+        "apple-silicon": "apple-silicon",
+        "asahi-firmware": "asahi-firmware",
         "crit": "crit",
         "denix": "denix",
         "flake-parts": "flake-parts",
