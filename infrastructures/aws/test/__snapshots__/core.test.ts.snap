@@ -25,6 +25,7 @@ exports[`snapshot 1`] = `
           {
             "DeviceName": "/dev/xvda",
             "Ebs": {
+              "Encrypted": true,
               "VolumeSize": 20,
             },
           },

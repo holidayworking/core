@@ -78,7 +78,7 @@ export class Computing extends Construct {
       blockDevices: [
         {
           deviceName: "/dev/xvda",
-          volume: BlockDeviceVolume.ebs(20),
+          volume: BlockDeviceVolume.ebs(20, { encrypted: true }),
         },
       ],
       detailedMonitoring: true,
