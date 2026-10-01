@@ -43,9 +43,8 @@ catalog:
   textlint-rule-preset-ja-technical-writing: 12.0.2
   textlint-rule-prh: 6.1.0
   typescript: 7.0.2
-  vite: npm:@voidzero-dev/vite-plus-core@0.3.3
-  vite-plus: 0.3.3
-  vitest: 5.0.2
+  vite: npm:@voidzero-dev/vite-plus-core@1.0.0
+  vite-plus: 1.0.0
   zenn-cli: 0.5.4
 
 catalogMode: prefer
@@ -53,11 +52,8 @@ minimumReleaseAgeExclude:
   - "@aws-sdk/signature-v4a@3.1056.0"
 overrides:
   vite@*: "catalog:"
-  vitest@*: "catalog:"
 peerDependencyRules:
   allowAny:
     - vite
-    - vitest
   allowedVersions:
     vite: "*"
-    vitest: "*"

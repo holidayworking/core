@@ -1,6 +1,7 @@
 .direnv
 .mcp.json
 .venv
+.vitest
 .vscode/*
 !.vscode/settings.json
 node_modules
