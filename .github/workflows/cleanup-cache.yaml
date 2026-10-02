@@ -1,0 +1,19 @@
+name: cleanup cache
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  cleanup-cache:
+    permissions:
+      actions: write
+    runs-on: ubuntu-slim
+    steps:
+      - run: gh cache delete --all --ref "refs/pull/${PR_NUMBER}/merge" --succeed-on-no-caches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+    timeout-minutes: 5
