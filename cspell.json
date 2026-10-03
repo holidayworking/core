@@ -368,6 +368,7 @@
     "uaccess",
     "ubus",
     "udqx",
+    "uefi",
     "uhci",
     "uinput",
     "ulauncher",
