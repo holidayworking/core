@@ -27,7 +27,11 @@ delib.module {
       settings.servers = {
         cloudwatch = {
           command = "uvx";
-          args = [ "awslabs.cloudwatch-mcp-server@latest" ];
+          args = [
+            "--python"
+            "3.13"
+            "awslabs.cloudwatch-mcp-server@latest"
+          ];
           env = {
             AWS_PROFILE = "main";
             AWS_REGION = "ap-northeast-1";
