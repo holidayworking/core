@@ -1,12 +1,14 @@
 .ONESHELL:
 
-darwin/setup: nix/install nix/darwin
+darwin/setup: check/host nix/install nix/darwin
+
+check/host:
+	@if [ -z "$(HOST)" ]; then echo "HOST is required (e.g. make $(MAKECMDGOALS) HOST=aries)" >&2; exit 1; fi
 
 nix/install:
 	@curl --fail --silent --show-error --location https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
 
-nix/darwin: HOST = aries
-nix/darwin:
+nix/darwin: check/host
 	. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh \
 		&& sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#$(HOST)
 
