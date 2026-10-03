@@ -29,6 +29,7 @@ delib.module {
         linux-builder = {
           enable = true;
           package = pkgs.darwin.linux-builder-vz;
+          config.virtualisation.darwin-builder.diskSize = 40 * 1024;
 
           systems = [
             "aarch64-linux"
