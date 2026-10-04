@@ -26,6 +26,19 @@
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
+    apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
+      inputs = {
+        flake-compat.follows = "";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    asahi-firmware = {
+      url = "path:./nix/hosts/gemini/firmware";
+      flake = false;
+    };
+
     agent-skills.url = "github:Kyure-A/agent-skills-nix";
     vercel-labs-skills = {
       url = "github:vercel-labs/agent-skills";

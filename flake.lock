@@ -39,6 +39,39 @@
         "type": "github"
       }
     },
+    "apple-silicon": {
+      "inputs": {
+        "flake-compat": [],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790700867,
+        "narHash": "sha256-nmbZdbNGjUwkvRTL0UZV/gQ4ypzMFF8yTHaIVOUJSYc=",
+        "owner": "nix-community",
+        "repo": "nixos-apple-silicon",
+        "rev": "4a4ba6566ebb435b037dfdac28caf1dfe581b4c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixos-apple-silicon",
+        "type": "github"
+      }
+    },
+    "asahi-firmware": {
+      "flake": false,
+      "locked": {
+        "path": "./nix/hosts/gemini/firmware",
+        "type": "path"
+      },
+      "original": {
+        "path": "./nix/hosts/gemini/firmware",
+        "type": "path"
+      },
+      "parent": []
+    },
     "brew-src": {
       "flake": false,
       "locked": {
@@ -509,6 +542,8 @@
       "inputs": {
         "agent-skills": "agent-skills",
         "amis": "amis",
+        "apple-silicon": "apple-silicon",
+        "asahi-firmware": "asahi-firmware",
         "crit": "crit",
         "denix": "denix",
         "flake-parts": "flake-parts",

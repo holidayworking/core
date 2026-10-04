@@ -73,7 +73,6 @@ delib.host {
 
     amazonImage.format = "raw";
     ec2.efi = true;
-    security.sudo-rs.wheelNeedsPassword = false;
     system.stateVersion = "25.05";
     virtualisation.diskSize = 8 * 1024;
     zramSwap.enable = true;

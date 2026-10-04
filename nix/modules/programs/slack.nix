@@ -7,7 +7,7 @@
 delib.module {
   name = "programs.slack";
 
-  options = delib.singleEnableOption host.isPC;
+  options = delib.singleEnableOption host.isDarwin;
 
   home.ifEnabled.home.packages = with pkgs; [ slack ];
 }

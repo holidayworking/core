@@ -16,4 +16,8 @@ else
   extra_args=(--hostname "$HOSTNAME")
 fi
 
+if [[ -f /boot/vendorfw/firmware.cpio ]]; then
+  extra_args+=(--override-input asahi-firmware path:/boot/vendorfw)
+fi
+
 nh "$subcommand" "$ACTION" "${extra_args[@]}" "$@" .
