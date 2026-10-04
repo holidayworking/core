@@ -203,6 +203,9 @@ jobs:
           - host: taurus
             attribute: darwinConfigurations.taurus.system
             runner: macos-26
+          - host: gemini
+            attribute: nixosConfigurations.gemini.config.system.build.toplevel
+            runner: ubuntu-24.04-arm
           - host: cancer
             attribute: nixosConfigurations.cancer.config.system.build.toplevel
             runner: ubuntu-24.04-arm
