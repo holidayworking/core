@@ -34,7 +34,14 @@ delib.module {
           singularityinc.claude-notifier
           streetsidesoftware.code-spell-checker
           tamasfe.even-better-toml
-          timonwong.shellcheck
+          # 0.43.0 turned `contributes.configuration` into an array, which breaks the
+          # upstream postInstall that assumes an object.
+          (timonwong.shellcheck.overrideAttrs {
+            postInstall = ''
+              cd "$out/$installPrefix"
+              jq '(.contributes.configuration[] | select(.properties | has("shellcheck.executablePath")) | .properties."shellcheck.executablePath".default) = "${pkgs.lib.getExe pkgs.shellcheck}"' package.json | sponge package.json
+            '';
+          })
           tyriar.sort-lines
           voidzero.vite-plus-extension-pack
           vscode-icons-team.vscode-icons
