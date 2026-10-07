@@ -1,7 +1,6 @@
 {
   delib,
   inputs,
-  lib,
   modulesPath,
   ...
 }:
@@ -42,19 +41,6 @@ delib.host {
       hardware.asahi = {
         enable = true;
         peripheralFirmwareDirectory = inputs.asahi-firmware;
-
-        # TODO: Remove once https://github.com/nix-community/nixos-apple-silicon/pull/559 is merged.
-        # nixpkgs' buildUBoot now passes `-Eno-node_name_not_empty`, which U-Boot's bundled
-        # dtc 1.7.2 doesn't recognize, so restore the `DTC=` flag uboot-asahi filters out.
-        overlay =
-          lib.composeExtensions (import "${inputs.apple-silicon}/apple-silicon-support/packages/overlay.nix")
-            (
-              final: prev: {
-                uboot-asahi = prev.uboot-asahi.overrideAttrs (o: {
-                  makeFlags = o.makeFlags ++ [ "DTC=${lib.getExe final.buildPackages.dtc}" ];
-                });
-              }
-            );
       };
 
       networking.networkmanager = {
