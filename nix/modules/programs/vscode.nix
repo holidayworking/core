@@ -9,87 +9,92 @@ delib.module {
 
   options = delib.singleEnableOption host.isPC;
 
-  home.ifEnabled.programs.vscode = {
-    enable = true;
+  home.ifEnabled = {
+    home.packages = with pkgs; [
+      nixd
+      nixfmt
+    ];
+    programs.vscode = {
+      enable = true;
 
-    profiles.default = {
-      enableUpdateCheck = false;
-      enableExtensionUpdateCheck = false;
+      profiles.default = {
+        enableUpdateCheck = false;
+        enableExtensionUpdateCheck = false;
 
-      extensions =
-        (with pkgs.vscode-marketplace-release; [
-          anthropic.claude-code
-          apollographql.vscode-apollo
-          christian-kohler.path-intellisense
-          davidanson.vscode-markdownlint
-          github.github-vscode-theme
-          github.vscode-github-actions
-          jnoortheen.nix-ide
-          long-kudo.vscode-claude-status
-          mkhl.shfmt
-          ms-vscode-remote.vscode-remote-extensionpack
-          mylesmurphy.prettify-ts
-          redhat.vscode-yaml
-          renesaarsoo.sql-formatter-vsc
-          singularityinc.claude-notifier
-          streetsidesoftware.code-spell-checker
-          tamasfe.even-better-toml
-          # 0.43.0 turned `contributes.configuration` into an array, which breaks the
-          # upstream postInstall that assumes an object.
-          (timonwong.shellcheck.overrideAttrs {
-            postInstall = ''
-              cd "$out/$installPrefix"
-              jq '(.contributes.configuration[] | select(.properties | has("shellcheck.executablePath")) | .properties."shellcheck.executablePath".default) = "${pkgs.lib.getExe pkgs.shellcheck}"' package.json | sponge package.json
-            '';
-          })
-          tyriar.sort-lines
-          voidzero.vite-plus-extension-pack
-          vscode-icons-team.vscode-icons
-        ])
-        ++ [
-          pkgs.vscode-marketplace-release."3w36zj6".textlint
-        ];
+        extensions =
+          (with pkgs.vscode-marketplace-release; [
+            anthropic.claude-code
+            apollographql.vscode-apollo
+            christian-kohler.path-intellisense
+            davidanson.vscode-markdownlint
+            github.github-vscode-theme
+            github.vscode-github-actions
+            jnoortheen.nix-ide
+            long-kudo.vscode-claude-status
+            mkhl.shfmt
+            ms-vscode-remote.vscode-remote-extensionpack
+            mylesmurphy.prettify-ts
+            redhat.vscode-yaml
+            renesaarsoo.sql-formatter-vsc
+            singularityinc.claude-notifier
+            streetsidesoftware.code-spell-checker
+            tamasfe.even-better-toml
+            # 0.43.0 turned `contributes.configuration` into an array, which breaks the
+            # upstream postInstall that assumes an object.
+            (timonwong.shellcheck.overrideAttrs {
+              postInstall = ''
+                cd "$out/$installPrefix"
+                jq '(.contributes.configuration[] | select(.properties | has("shellcheck.executablePath")) | .properties."shellcheck.executablePath".default) = "${pkgs.lib.getExe pkgs.shellcheck}"' package.json | sponge package.json
+              '';
+            })
+            tyriar.sort-lines
+            voidzero.vite-plus-extension-pack
+            vscode-icons-team.vscode-icons
+          ])
+          ++ [
+            pkgs.vscode-marketplace-release."3w36zj6".textlint
+          ];
 
-      userSettings = {
-        "editor.fontFamily" = "Firple";
-        "editor.fontLigatures" = true;
-        "editor.fontSize" = 14;
-        "editor.lineHeight" = 16;
-        "editor.renderLineHighlight" = "none";
-        "editor.renderWhitespace" = "boundary";
-        "editor.rulers" = [ 120 ];
-        "editor.tabSize" = 2;
-        "editor.wordWrap" = "on";
-        "editor.formatOnPaste" = true;
-        "editor.formatOnSave" = true;
-        "editor.formatOnType" = true;
-        "editor.minimap.enabled" = false;
-        "files.insertFinalNewline" = true;
-        "files.trimTrailingWhitespace" = true;
-        "workbench.startupEditor" = "none";
-        "workbench.colorTheme" = "GitHub Dark Default";
-        "workbench.iconTheme" = "vscode-icons";
-        "terminal.integrated.fontFamily" = "Firple";
-        "terminal.integrated.fontLigatures.enabled" = true;
-        "terminal.integrated.fontSize" = 14;
-        "claudeCode.claudeProcessWrapper" = pkgs.lib.getExe' pkgs.llm-agents.claude-code "claude";
-        "claudeCode.initialPermissionMode" = "auto";
-        "claudeCode.preferredLocation" = "panel";
-        "claudeCode.useCtrlEnterToSend" = true;
-        "claudeNotifier.autoMuteWhenFocused" = true;
-        "nix.enableLanguageServer" = true;
-        "nix.hiddenLanguageServerErrors" = [ "textDocument/definition" ];
-        "nix.serverPath" = pkgs.lib.getExe pkgs.nixd;
-        "nix.serverSettings".nixd.formatting.command = [ (pkgs.lib.getExe pkgs.nixfmt) ];
-        "remote.autoForwardPortsSource" = "process";
-        "shfmt.executableArgs" = [
-          "--indent"
-          "2"
-        ];
-        "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
-        "[shellscript]"."editor.defaultFormatter" = "mkhl.shfmt";
-        "[sql]"."editor.defaultFormatter" = "ReneSaarsoo.sql-formatter-vsc";
-        "[toml]"."editor.defaultFormatter" = "tamasfe.even-better-toml";
+        userSettings = {
+          "editor.fontFamily" = "Firple";
+          "editor.fontLigatures" = true;
+          "editor.fontSize" = 14;
+          "editor.lineHeight" = 16;
+          "editor.renderLineHighlight" = "none";
+          "editor.renderWhitespace" = "boundary";
+          "editor.rulers" = [ 120 ];
+          "editor.tabSize" = 2;
+          "editor.wordWrap" = "on";
+          "editor.formatOnPaste" = true;
+          "editor.formatOnSave" = true;
+          "editor.formatOnType" = true;
+          "editor.minimap.enabled" = false;
+          "files.insertFinalNewline" = true;
+          "files.trimTrailingWhitespace" = true;
+          "workbench.startupEditor" = "none";
+          "workbench.colorTheme" = "GitHub Dark Default";
+          "workbench.iconTheme" = "vscode-icons";
+          "terminal.integrated.fontFamily" = "Firple";
+          "terminal.integrated.fontLigatures.enabled" = true;
+          "terminal.integrated.fontSize" = 14;
+          "claudeCode.claudeProcessWrapper" = pkgs.lib.getExe' pkgs.llm-agents.claude-code "claude";
+          "claudeCode.initialPermissionMode" = "auto";
+          "claudeCode.preferredLocation" = "panel";
+          "claudeCode.useCtrlEnterToSend" = true;
+          "claudeNotifier.autoMuteWhenFocused" = true;
+          "nix.enableLanguageServer" = true;
+          "nix.hiddenLanguageServerErrors" = [ "textDocument/definition" ];
+          "nix.serverPath" = "nixd";
+          "remote.autoForwardPortsSource" = "process";
+          "shfmt.executableArgs" = [
+            "--indent"
+            "2"
+          ];
+          "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
+          "[shellscript]"."editor.defaultFormatter" = "mkhl.shfmt";
+          "[sql]"."editor.defaultFormatter" = "ReneSaarsoo.sql-formatter-vsc";
+          "[toml]"."editor.defaultFormatter" = "tamasfe.even-better-toml";
+        };
       };
     };
   };
