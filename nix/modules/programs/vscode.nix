@@ -74,6 +74,7 @@ delib.module {
           "workbench.startupEditor" = "none";
           "workbench.colorTheme" = "GitHub Dark Default";
           "workbench.iconTheme" = "vscode-icons";
+          "chat.disableAIFeatures" = true;
           "terminal.integrated.fontFamily" = "Firple";
           "terminal.integrated.fontLigatures.enabled" = true;
           "terminal.integrated.fontSize" = 14;
