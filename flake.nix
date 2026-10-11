@@ -202,6 +202,11 @@
                   };
                 in
                 ''
+                  # aws-sam-cli leaks python3.14 site-packages via PYTHONPATH,
+                  # which breaks uvx-based MCP servers on other Python versions.
+                  # sam itself is a wrapped binary and does not need it.
+                  unset PYTHONPATH
+
                   if [ ! -f "$HOME/.config/vite-plus/env" ]; then
                     ${vp} env setup
                   fi
