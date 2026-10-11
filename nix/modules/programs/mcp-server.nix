@@ -36,6 +36,9 @@ delib.module {
             AWS_PROFILE = "main";
             AWS_REGION = "ap-northeast-1";
             FASTMCP_LOG_LEVEL = "ERROR";
+            # Override PYTHONPATH inherited from devShells (e.g. aws-sam-cli),
+            # which otherwise shadows uvx's packages with incompatible ones.
+            PYTHONPATH = "";
           };
         };
 
