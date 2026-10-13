@@ -206,6 +206,39 @@ exports[`snapshot 1`] = `
       },
       "Type": "AWS::Lambda::Permission",
     },
+    "DistributionOrigin1InvokeFunctionFromCloudFrontForPhotoStackDistributionOrigin16067CD69A0274C5D": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "FunctionFunctionUrl08F79AC9",
+            "FunctionArn",
+          ],
+        },
+        "InvokedViaFunctionUrl": true,
+        "Principal": "cloudfront.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":cloudfront::",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              ":distribution/",
+              {
+                "Ref": "Distribution830FAC52",
+              },
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
     "FontsLayerA4721778": {
       "Properties": {
         "Content": {
@@ -262,38 +295,6 @@ exports[`snapshot 1`] = `
         "Timeout": 30,
       },
       "Type": "AWS::Lambda::Function",
-    },
-    "FunctionAllowCloudFrontServicePrincipalInvokeFunctionB0858432": {
-      "Properties": {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "Function76856677",
-            "Arn",
-          ],
-        },
-        "Principal": "cloudfront.amazonaws.com",
-        "SourceArn": {
-          "Fn::Join": [
-            "",
-            [
-              "arn:",
-              {
-                "Ref": "AWS::Partition",
-              },
-              ":cloudfront::",
-              {
-                "Ref": "AWS::AccountId",
-              },
-              ":distribution/",
-              {
-                "Ref": "Distribution830FAC52",
-              },
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
     },
     "FunctionFunctionUrl08F79AC9": {
       "Properties": {

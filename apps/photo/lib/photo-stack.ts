@@ -136,15 +136,6 @@ export class PhotoStack extends cdk.Stack {
       minimumProtocolVersion: SecurityPolicyProtocol.TLS_V1_2_2021,
     });
 
-    // `FunctionUrlOrigin.withOriginAccessControl` only grants `lambda:InvokeFunctionUrl`,
-    // but CloudFront also needs `lambda:InvokeFunction` to call the origin via OAC.
-    // https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-lambda.html#oac-permission-to-access-lambda
-    func.addPermission("AllowCloudFrontServicePrincipalInvokeFunction", {
-      principal: new ServicePrincipal("cloudfront.amazonaws.com"),
-      action: "lambda:InvokeFunction",
-      sourceArn: `arn:${cdk.Aws.PARTITION}:cloudfront::${cdk.Aws.ACCOUNT_ID}:distribution/${this.distribution.distributionId}`,
-    });
-
     this.distributionLogsBucket = Bucket.fromBucketAttributes(this, "DistributionLogsBucket", {
       bucketName: `cloudfront-access-logs-${this.account}-${this.region}-an`,
     });
