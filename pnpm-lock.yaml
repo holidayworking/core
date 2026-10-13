@@ -222,8 +222,8 @@ catalogs:
       specifier: 10.8.1
       version: 10.8.1
     cron-parser:
-      specifier: 5.10.1
-      version: 5.10.1
+      specifier: 5.10.2
+      version: 5.10.2
     cspell:
       specifier: 10.3.6
       version: 10.3.6
@@ -436,7 +436,7 @@ importers:
         version: 10.8.1
       cron-parser:
         specifier: 'catalog:'
-        version: 5.10.1
+        version: 5.10.2
       date-fns:
         specifier: 'catalog:'
         version: 4.4.0
@@ -2569,8 +2569,8 @@ packages:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
 
-  cron-parser@5.10.1:
-    resolution: {integrity: sha512-pKRrRagItwk9rGIStcUyMxFX34x56zoX3KDf9HJ4ttwkXIK1qxK63EvXvEDmlxI9AdPJ+Y7TEKRftRlW5eSS7A==}
+  cron-parser@5.10.2:
+    resolution: {integrity: sha512-JfAYMY0LZaWQTuict8PhtF/ksSnq8xefSDmQUnnoqvkPYkU/y3UP0DTWzJKFBz0P1IXsDG8q0vY3zHkoFZOhvw==}
     engines: {node: '>=18'}
 
   cross-spawn@7.0.6:
@@ -6888,7 +6888,7 @@ snapshots:
 
   cookie@0.7.2: {}
 
-  cron-parser@5.10.1:
+  cron-parser@5.10.2:
     dependencies:
       luxon: 3.7.2
 
