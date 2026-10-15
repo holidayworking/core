@@ -147,6 +147,21 @@
         "type": "github"
       }
     },
+    "crane": {
+      "locked": {
+        "lastModified": 1785782307,
+        "narHash": "sha256-MPaRdVkf6zZP5fCPxYCi8Dr4pZzgmXzg8T9nVEbp3Mw=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "2c71e194474d13de031d729b729c968ddbe3507f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "crit": {
       "inputs": {
         "nixpkgs": [
@@ -557,7 +572,8 @@
         "nixpkgs": "nixpkgs_4",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_4",
-        "vercel-labs-skills": "vercel-labs-skills"
+        "vercel-labs-skills": "vercel-labs-skills",
+        "xremap-flake": "xremap-flake"
       }
     },
     "sops-nix": {
@@ -707,6 +723,48 @@
       "original": {
         "owner": "vercel-labs",
         "repo": "agent-skills",
+        "type": "github"
+      }
+    },
+    "xremap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790501439,
+        "narHash": "sha256-KwKIHFBnlq2nIh4E1OeVdr4QSPwa+/zn8B44/84rJko=",
+        "owner": "k0kubun",
+        "repo": "xremap",
+        "rev": "a8a91cbe6352e0bcc24dc6f404f4f187c03cab62",
+        "type": "github"
+      },
+      "original": {
+        "owner": "k0kubun",
+        "ref": "v0.15.14",
+        "repo": "xremap",
+        "type": "github"
+      }
+    },
+    "xremap-flake": {
+      "inputs": {
+        "crane": "crane",
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "xremap": "xremap"
+      },
+      "locked": {
+        "lastModified": 1791260491,
+        "narHash": "sha256-pt58306ljniSd9//eKNYNuUJH0Y72lscFSoEtz8TVL8=",
+        "owner": "xremap",
+        "repo": "nix-flake",
+        "rev": "edc5a0efc1c9ee1921ff26122da8f75a74adce1e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xremap",
+        "repo": "nix-flake",
         "type": "github"
       }
     }

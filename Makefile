@@ -16,10 +16,10 @@ nix/build:
 	@./scripts/nh.sh build
 
 nix/switch:
-	@./scripts/nh.sh switch --ask
+	@./scripts/nh.sh switch
 
 nix/clean:
-	@nh clean all --ask --no-direnv
+	@nh clean all --no-direnv
 
 nixos/build-ami: HOST = cancer
 nixos/build-ami:
