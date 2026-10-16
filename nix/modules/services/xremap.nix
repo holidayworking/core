@@ -29,6 +29,7 @@ delib.module {
           keymap = [
             {
               name = "Global";
+              application.not = [ "com.mitchellh.ghostty" ];
               remap = {
                 "C-Super-f" = "C-Super-f";
                 "C-a" = "home";
