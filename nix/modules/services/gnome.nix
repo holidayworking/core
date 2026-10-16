@@ -11,6 +11,30 @@ delib.module {
   options = delib.singleEnableOption (host.isPC && host.isLinux);
 
   nixos.ifEnabled = {
+    environment.gnome.excludePackages = with pkgs; [
+      baobab
+      decibels
+      epiphany
+      gnome-calculator
+      gnome-calendar
+      gnome-characters
+      gnome-clocks
+      gnome-connections
+      gnome-console
+      gnome-contacts
+      gnome-maps
+      gnome-music
+      gnome-tecla
+      gnome-text-editor
+      gnome-tour
+      gnome-user-docs
+      gnome-weather
+      seahorse
+      showtime
+      simple-scan
+      snapshot
+      yelp
+    ];
     fonts.fontconfig.localConf = ''
       <alias>
         <family>Adwaita Sans</family>
@@ -20,46 +44,13 @@ delib.module {
       </alias>
     '';
 
-    environment = {
-      gnome.excludePackages = with pkgs; [
-        gnome-tour
-        gnome-user-docs
-      ];
-
-      systemPackages = with pkgs; [
-        gnome-tweaks
-        loupe
-        nautilus
-        papers
-        refine
-      ];
-    };
-
     services = {
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
-      gnome.core-apps.enable = false;
     };
-
-    xdg.mime.defaultApplications."inode/directory" = "org.gnome.Nautilus.desktop";
   };
 
   home.ifEnabled = {
-    imports = [
-      (
-        { config, ... }:
-        {
-          xdg.configFile."gtk-3.0/bookmarks".text = ''
-            file://${config.xdg.userDirs.documents}
-            file://${config.xdg.userDirs.music}
-            file://${config.xdg.userDirs.pictures}
-            file://${config.xdg.userDirs.videos}
-            file://${config.xdg.userDirs.download}
-          '';
-        }
-      )
-    ];
-
     dconf.settings = {
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
       "org/gnome/desktop/wm/keybindings" = {
