@@ -234,8 +234,8 @@ catalogs:
       specifier: 7.0.1
       version: 7.0.1
     execa:
-      specifier: 10.1.0
-      version: 10.1.0
+      specifier: 10.1.1
+      version: 10.1.1
     exif-reader:
       specifier: 2.0.3
       version: 2.0.3
@@ -445,7 +445,7 @@ importers:
         version: 7.0.1
       execa:
         specifier: 'catalog:'
-        version: 10.1.0
+        version: 10.1.1
     devDependencies:
       aws-cdk:
         specifier: 'catalog:'
@@ -2874,8 +2874,8 @@ packages:
     resolution: {integrity: sha512-EKN1vKAMcZ8MlYMpaNuxN6R9yakzH6uajHcHVTqWJzvu5pWw9DyhbP35HH8MVBQ+dZjAfDxk+A8NiR9KWaXiyQ==}
     engines: {node: '>=18.0.0'}
 
-  execa@10.1.0:
-    resolution: {integrity: sha512-5HT/600HqXEtmkb9mK/PkTWw+bQSCzPnWiZ4/87wD3Hi0wFzCapOuNT9p4M08PDd+KLHdHvFhKjOWmNx/npRNQ==}
+  execa@10.1.1:
+    resolution: {integrity: sha512-yJAC9ulsE6fU0K6wzJBIH+wI+KAtMeu6Ck8rs23OVzvEhqXjGADdI6K+YNIDAjcQQ6AwXTD96cKExJo6xFJXyg==}
     engines: {node: '>=22'}
 
   execall@2.0.0:
@@ -7270,7 +7270,7 @@ snapshots:
 
   eventsource-parser@3.1.1: {}
 
-  execa@10.1.0:
+  execa@10.1.1:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       figures: 6.1.0
