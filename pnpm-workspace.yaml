@@ -30,7 +30,7 @@ catalog:
   cspell: 10.3.6
   date-fns: 4.4.0
   ejs: 7.0.1
-  execa: 10.1.0
+  execa: 10.1.1
   exif-reader: 2.0.3
   happy-dom: 21.0.1
   markdownlint: 0.41.1
