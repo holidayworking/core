@@ -12,7 +12,13 @@ delib.module {
 
   home.ifEnabled.programs.ghostty = {
     enable = true;
-    package = if host.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+    package =
+      if host.isDarwin then
+        pkgs.ghostty-bin
+      else
+        pkgs.ghostty.overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [ ../../patches/ghostty-ime-cursor-rect.patch ];
+        });
 
     enableZshIntegration = false;
 

@@ -1,0 +1,14 @@
+--- a/src/apprt/gtk/class/surface.zig
++++ b/src/apprt/gtk/class/surface.zig
+@@ -1232,9 +1232,9 @@
+                 const ime_point = surface.imePoint();
+                 priv.im_context.as(gtk.IMContext).setCursorLocation(&.{
+                     .f_x = @intFromFloat(ime_point.x),
+-                    .f_y = @intFromFloat(ime_point.y),
++                    .f_y = @intFromFloat(ime_point.y - ime_point.height),
+                     .f_width = 1,
+-                    .f_height = 1,
++                    .f_height = @intFromFloat(ime_point.height),
+                 });
+             }
+ 
