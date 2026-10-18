@@ -275,10 +275,26 @@ delib.module {
       );
     };
 
-    xdg.userDirs = {
-      enable = true;
-      createDirectories = true;
-      setSessionVariables = false;
+    xdg = {
+      autostart = {
+        enable = true;
+        entries = [
+          "${
+            pkgs.makeDesktopItem {
+              name = "1password";
+              desktopName = "1Password";
+              exec = "1password --silent";
+              icon = "1password";
+            }
+          }/share/applications/1password.desktop"
+        ];
+      };
+
+      userDirs = {
+        enable = true;
+        createDirectories = true;
+        setSessionVariables = false;
+      };
     };
   };
 }
