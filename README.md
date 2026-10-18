@@ -95,7 +95,9 @@ ip -4 addr show wlan0
 passwd
 ```
 
-The remaining steps run over SSH as root from another host on the same network.
+Steps 4 and 5 run over SSH as root from another host on the same network. The
+minimal system installed in Step 5 does not enable SSH, so Step 6 runs on the
+console.
 
 ```shell
 ssh root@<IP_ADDRESS>
@@ -148,10 +150,6 @@ networking.networkmanager.enable = true;
 networking.networkmanager.wifi.backend = "iwd";
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
-environment.systemPackages = [ pkgs.git ];
-
-services.openssh.enable = true;
-security.sudo.wheelNeedsPassword = false;
 
 users.groups.hidekazu.gid = 1000;
 users.users.hidekazu = {
@@ -160,9 +158,6 @@ users.users.hidekazu = {
   group = "hidekazu";
   extraGroups = [ "wheel" "networkmanager" ];
   initialPassword = "hidekazu";
-  openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL8Zoej4KoXnIYd9g2ocJXHyYAtNUlaSWtq84aIuAFhq"
-  ];
 };
 ```
 
@@ -172,54 +167,47 @@ password for console access in an emergency.
 ```shell
 systemctl restart systemd-timesyncd
 nixos-install
+```
+
+Before rebooting, place the SOPS age key in the installed system's home
+directory; otherwise `sops-nix` fails when switching to the `gemini`
+configuration and the switch fails with it.
+
+```shell
+mkdir -p /mnt/home/hidekazu/.config/sops/age
+```
+
+From another terminal on the host you are connecting from, copy the age key.
+
+```shell
+scp ~/.config/sops/age/keys.txt root@<IP_ADDRESS>:/mnt/home/hidekazu/.config/sops/age/keys.txt
+```
+
+Back in the SSH session, fix the permissions and reboot. The installer has no
+`hidekazu` user, so set the owner by the fixed uid/gid.
+
+```shell
+chmod 600 /mnt/home/hidekazu/.config/sops/age/keys.txt
+chown -R 1000:1000 /mnt/home/hidekazu
 reboot
 ```
+
+##### Step 6: Switch to the `gemini` configuration
 
 After rebooting, log in as `hidekazu` on the console.
 
 ```shell
 passwd
 nmcli device wifi connect "<SSID>" --ask
-ip -4 addr show wlan0
 ```
-
-##### Step 6: Place the SOPS age key
-
-Copy the age key from this host before switching to the `gemini` configuration;
-otherwise `sops-nix` fails and the switch fails with it.
-
-```shell
-ssh <IP_ADDRESS> "mkdir -p ~/.config/sops/age"
-scp ~/.config/sops/age/keys.txt <IP_ADDRESS>:~/.config/sops/age/keys.txt
-ssh <IP_ADDRESS> "chmod 600 ~/.config/sops/age/keys.txt"
-```
-
-##### Step 7: Switch to the `gemini` configuration
 
 The `asahi-firmware` flake input is an empty directory in the repository, so
 override it with the firmware the Asahi Linux installer extracted to the ESP.
-Building the kernel can take a long time, so consider running this inside
-`tmux` (`nix-shell -p tmux`).
 
 ```shell
-ssh <IP_ADDRESS>
-mkdir -p ~/src/github.com/holidayworking
-cd ~/src/github.com/holidayworking
-git clone https://github.com/holidayworking/core.git
-cd core
-sudo nixos-rebuild switch --flake .#gemini --override-input asahi-firmware path:/boot/vendorfw
+sudo nixos-rebuild switch --flake github:holidayworking/core#gemini --override-input asahi-firmware path:/boot/vendorfw
+reboot
 ```
-
-##### Step 8: Join the Tailscale network
-
-Authenticate in the browser using the URL it prints. After that, `gemini` is
-resolved by Tailscale MagicDNS.
-
-```shell
-sudo tailscale up
-```
-
-From now on, apply configuration changes on `gemini` with `make nix/switch`.
 
 #### Amazon EC2
 
