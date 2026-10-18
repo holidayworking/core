@@ -71,6 +71,7 @@ delib.module {
           "editor.minimap.enabled" = false;
           "files.insertFinalNewline" = true;
           "files.trimTrailingWhitespace" = true;
+          "window.menuBarVisibility" = "visible";
           "workbench.startupEditor" = "none";
           "workbench.colorTheme" = "GitHub Dark Default";
           "workbench.iconTheme" = "vscode-icons";
