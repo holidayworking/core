@@ -53,6 +53,7 @@ delib.module {
   home.ifEnabled = {
     dconf.settings = {
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+      "org/gnome/desktop/peripherals/touchpad".tap-to-click = false;
       "org/gnome/desktop/wm/keybindings" = {
         activate-window-menu = [ ];
         begin-move = [ ];
