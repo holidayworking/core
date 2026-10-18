@@ -208,7 +208,7 @@ delib.module {
         lock-icon = false;
         move-calendar-right = false;
         overview-seamless-zoom = false;
-        panel-hover-fullscreen = false;
+        panel-hover-fullscreen = true;
         panel-styling = false;
         popup-menu-styling = false;
         reduce-window-animations = false;
