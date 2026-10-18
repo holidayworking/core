@@ -189,7 +189,11 @@ delib.module {
 
       "org/gnome/shell" = {
         always-show-log-out = true;
-        favorite-apps = [ "org.gnome.Nautilus.desktop" ];
+        favorite-apps = [
+          "org.gnome.Nautilus.desktop"
+          "google-chrome.desktop"
+          "com.mitchellh.ghostty.desktop"
+        ];
       };
 
       "org/gnome/shell/extensions/dash-to-dock" = {
