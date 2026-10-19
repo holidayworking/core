@@ -197,16 +197,26 @@ delib.module {
       };
 
       "org/gnome/shell/extensions/dash-to-dock" = {
+        click-action = "focus-or-appspread";
+        custom-theme-shrink = true;
+        disable-overview-on-startup = true;
         dock-fixed = true;
+        dock-position = "LEFT";
+        extend-height = true;
         hot-keys = false;
-        running-indicator-style = "DOT";
-        show-mounts = false;
-        show-show-apps-button = false;
+        icon-size-fixed = true;
+        intellihide-mode = "ALL_WINDOWS";
+        running-indicator-style = "DOTS";
+        scroll-action = "switch-workspace";
+        shift-click-action = "launch";
+        shift-middle-click-action = "minimize";
+        show-mounts-network = true;
       };
 
       "org/gnome/shell/extensions/kiwi" = {
         battery-percentage = false;
         custom-dnd-button = false;
+        downloads-in-dock = false;
         enable-app-window-buttons = false;
         keyboard-indicator = false;
         lock-icon = false;
