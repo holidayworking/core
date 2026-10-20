@@ -68,8 +68,8 @@ export class PhotoStack extends cdk.Stack {
 
     const fontsLayer = new LayerVersion(this, "FontsLayer", {
       code: Code.fromDockerBuild(join(__dirname, "docker", "fonts"), {
-        cacheFrom: [{ type: "gha" }],
-        cacheTo: { type: "gha", params: { mode: "max" } },
+        cacheFrom: [{ type: "gha", params: { scope: "photo-fonts" } }],
+        cacheTo: { type: "gha", params: { mode: "max", scope: "photo-fonts" } },
       }),
     });
 

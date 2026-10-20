@@ -37,8 +37,8 @@ export class RadikoRecorder extends Construct {
 
     const radigoLayer = new LayerVersion(this, "RadigoLayer", {
       code: Code.fromDockerBuild(join(__dirname, "docker", "radigo"), {
-        cacheFrom: [{ type: "gha" }],
-        cacheTo: { type: "gha", params: { mode: "max" } },
+        cacheFrom: [{ type: "gha", params: { scope: "radicast-radigo" } }],
+        cacheTo: { type: "gha", params: { mode: "max", scope: "radicast-radigo" } },
       }),
     });
 
