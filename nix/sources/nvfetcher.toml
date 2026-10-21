@@ -1,0 +1,3 @@
+[firple]
+src.github = "negset/Firple"
+fetch.url = "https://github.com/negset/Firple/releases/download/$ver/Firple.zip"

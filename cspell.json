@@ -29,6 +29,7 @@
     "apps/hugo/public",
     "apps/hugo/themes/congo",
     "nix/secrets/secrets.yaml",
+    "nix/sources/generated",
     "pnpm-lock.yaml"
   ],
   "import": ["@cspell/dict-people-names/cspell-ext.json"],
@@ -258,6 +259,7 @@
     "mylesmurphy",
     "natpf",
     "natsukium",
+    "negset",
     "netfilter",
     "netifd",
     "netifd's",
@@ -282,6 +284,7 @@
     "nono",
     "nowayout",
     "numtide",
+    "nvfetcher",
     "nvme",
     "ohci",
     "oldpatricka",

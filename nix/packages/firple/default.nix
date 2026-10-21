@@ -1,18 +1,16 @@
 {
   lib,
   stdenvNoCC,
-  fetchzip,
+  unzip,
+  sources,
   ...
 }:
-stdenvNoCC.mkDerivation rec {
-  pname = "firple";
-  version = "6.400";
+stdenvNoCC.mkDerivation {
+  inherit (sources.firple) pname version src;
 
-  src = fetchzip {
-    url = "https://github.com/negset/Firple/releases/download/${version}/Firple.zip";
-    hash = "sha256-ZQlz3vqdH2874DyaJ1mSPOSiO9oOv1TWj54fcsUXJq0=";
-    stripRoot = false;
-  };
+  nativeBuildInputs = [ unzip ];
+
+  sourceRoot = ".";
 
   installPhase = ''
     runHook preInstall

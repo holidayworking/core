@@ -1,0 +1,17 @@
+{
+    "firple": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "firple",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-JyMYNAfMWqF/nPT5mWjPcjE8q8kTesReUTPBZA7+5No=",
+            "type": "url",
+            "url": "https://github.com/negset/Firple/releases/download/6.400/Firple.zip"
+        },
+        "version": "6.400"
+    }
+}
