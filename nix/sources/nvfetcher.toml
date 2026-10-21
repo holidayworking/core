@@ -1,0 +1,17 @@
+[duckstation-darwin]
+src.github_tag = "stenzek/duckstation"
+src.include_regex = 'v0\.1-\d+'
+src.from_pattern = 'v(.+)'
+src.to_pattern = '\1'
+fetch.url = "https://github.com/stenzek/duckstation/releases/download/v$ver/duckstation-mac-release.zip"
+
+[duckstation-linux]
+src.github_tag = "stenzek/duckstation"
+src.include_regex = 'v0\.1-\d+'
+src.from_pattern = 'v(.+)'
+src.to_pattern = '\1'
+fetch.url = "https://github.com/stenzek/duckstation/releases/download/v$ver/DuckStation-arm64.AppImage"
+
+[firple]
+src.github = "negset/Firple"
+fetch.url = "https://github.com/negset/Firple/releases/download/$ver/Firple.zip"

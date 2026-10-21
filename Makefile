@@ -18,6 +18,11 @@ nix/build:
 nix/switch:
 	@./scripts/nh.sh switch
 
+nix/update-sources:
+	@nix run --inputs-from . nixpkgs#nvfetcher -- \
+		--config nix/sources/nvfetcher.toml \
+		--build-dir nix/sources/generated
+
 nix/clean:
 	@nh clean all --no-direnv
 

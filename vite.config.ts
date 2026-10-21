@@ -14,6 +14,7 @@ export default defineConfig({
       "apps/hugo/layouts/_partials/functions/warnings.html",
       "apps/hugo/themes/congo/**",
       "apps/radicast/lib/config.json",
+      "nix/sources/generated/**",
     ],
     sortImports: {
       groups: [
