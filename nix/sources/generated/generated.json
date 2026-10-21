@@ -1,4 +1,34 @@
 {
+    "duckstation-darwin": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "duckstation-darwin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-ftM5NGuoIQV2avAWyiaSUsQFlb0sCW1lz84Fo4CVm90=",
+            "type": "url",
+            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-11894/duckstation-mac-release.zip"
+        },
+        "version": "0.1-11894"
+    },
+    "duckstation-linux": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "duckstation-linux",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-1ndYwl/jdyVYZi45u1CGIMmXzGzT1m7MqDXnVJI/FYo=",
+            "type": "url",
+            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-11894/DuckStation-arm64.AppImage"
+        },
+        "version": "0.1-11894"
+    },
     "firple": {
         "cargoLock": null,
         "date": null,
