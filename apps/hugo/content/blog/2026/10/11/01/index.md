@@ -31,7 +31,7 @@ IAM ユーザーのアクセスキーは管理したくなかったので、IAM 
 - prometheus-node-exporter-lua-wifi
 - prometheus-node-exporter-lua-wifi_stations
 
-検証を進めた結果、prometheus-node-exporter-lua-wifi_stations は Linksys Velop WRT Pro 7 では動作しないこと、prometheus-node-exporter-lua-nat_traffic と prometheus-node-exporter-lua-wifi で取得できるメトリックスは今回のダッシュボードには不要なことがわかったので、この 3 つは最終的にインストールしないことにした。
+検証を進めた結果、prometheus-node-exporter-lua-wifi_stations は Linksys Velop WRT Pro 7 では動作しないこと、prometheus-node-exporter-lua-nat_traffic と prometheus-node-exporter-lua-wifi で取得できるメトリックスは今回のダッシュボードには不要なことが分かったので、この 3 つは最終的にインストールしないことにした。
 
 ### prometheus-node-exporter-lua-wifi_stations が Linksys Velop WRT Pro 7 で使えない理由
 
