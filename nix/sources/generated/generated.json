@@ -8,11 +8,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-ftM5NGuoIQV2avAWyiaSUsQFlb0sCW1lz84Fo4CVm90=",
+            "sha256": "sha256-zXfYC1UnbxU0DvocZd8lD49NQTto0cE25IYV14DxJJw=",
             "type": "url",
-            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-11894/duckstation-mac-release.zip"
+            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-12083/duckstation-mac-release.zip"
         },
-        "version": "0.1-11894"
+        "version": "0.1-12083"
     },
     "duckstation-linux": {
         "cargoLock": null,
@@ -23,11 +23,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-1ndYwl/jdyVYZi45u1CGIMmXzGzT1m7MqDXnVJI/FYo=",
+            "sha256": "sha256-DDoAUYP2VTj3j6AjHUyXqiMzaEtIGYXI1M+rBkDil8c=",
             "type": "url",
-            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-11894/DuckStation-arm64.AppImage"
+            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-12083/DuckStation-arm64.AppImage"
         },
-        "version": "0.1-11894"
+        "version": "0.1-12083"
     },
     "firple": {
         "cargoLock": null,

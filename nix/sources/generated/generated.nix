@@ -8,18 +8,18 @@
 {
   duckstation-darwin = {
     pname = "duckstation-darwin";
-    version = "0.1-11894";
+    version = "0.1-12083";
     src = fetchurl {
-      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-11894/duckstation-mac-release.zip";
-      sha256 = "sha256-ftM5NGuoIQV2avAWyiaSUsQFlb0sCW1lz84Fo4CVm90=";
+      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-12083/duckstation-mac-release.zip";
+      sha256 = "sha256-zXfYC1UnbxU0DvocZd8lD49NQTto0cE25IYV14DxJJw=";
     };
   };
   duckstation-linux = {
     pname = "duckstation-linux";
-    version = "0.1-11894";
+    version = "0.1-12083";
     src = fetchurl {
-      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-11894/DuckStation-arm64.AppImage";
-      sha256 = "sha256-1ndYwl/jdyVYZi45u1CGIMmXzGzT1m7MqDXnVJI/FYo=";
+      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-12083/DuckStation-arm64.AppImage";
+      sha256 = "sha256-DDoAUYP2VTj3j6AjHUyXqiMzaEtIGYXI1M+rBkDil8c=";
     };
   };
   firple = {
