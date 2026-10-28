@@ -1,0 +1,48 @@
+diff --git a/rec.go b/rec.go
+index e8a4b8d..96ee04e 100644
+--- a/rec.go
++++ b/rec.go
+@@ -111,8 +111,9 @@ func (c *recCommand) Run(args []string) int {
+ 
+ 	uri, err := client.TimeshiftPlaylistM3U8(ctx, stationID, startTime)
+ 	if err != nil {
+-		// Fallback for API contract changes observed in browser playback flow.
+-		if strings.Contains(err.Error(), "illegal parameter") {
++		// Fallback for API contract changes observed in browser playback flow,
++		// and for the area-free playback that go-radiko does not support.
++		if strings.Contains(err.Error(), "illegal parameter") || isAreaFree(client) {
+ 			chunklist, compatErr := getTimeshiftChunklistCompat(ctx, client, stationID, pg, 0)
+ 			if compatErr == nil {
+ 				return c.recordFromChunklist(ctx, output, chunklist)
+diff --git a/timeshift_compat.go b/timeshift_compat.go
+index 4012f5a..33c00d2 100644
+--- a/timeshift_compat.go
++++ b/timeshift_compat.go
+@@ -83,7 +83,7 @@ func getTimeshiftChunklistCompat(ctx context.Context, client *radiko.Client, sta
+ 			q.Set("preroll", "2")
+ 			q.Set("l", "15")
+ 			q.Set("lsid", randomLSIDCompat())
+-			q.Set("type", "b")
++			q.Set("type", timeshiftPlaylistType(client))
+ 			u.RawQuery = q.Encode()
+ 
+ 			req, err := http.NewRequest(http.MethodGet, u.String(), nil)
+@@ -234,3 +234,18 @@ func randomLSIDCompat() string {
+ 	}
+ 	return hex.EncodeToString(b)
+ }
++
++// isAreaFree reports whether the client plays a station outside the current
++// area as a radiko premium member.
++func isAreaFree(client *radiko.Client) bool {
++	return client.AreaID() != currentAreaID
++}
++
++// timeshiftPlaylistType returns "c" for the area-free playback, which rejects
++// "b" with 403.
++func timeshiftPlaylistType(client *radiko.Client) string {
++	if isAreaFree(client) {
++		return "c"
++	}
++	return "b"
++}

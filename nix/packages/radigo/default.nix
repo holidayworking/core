@@ -17,6 +17,9 @@ buildGoModule {
     hash = "sha256-EivGxiOAuu5umPi0wabY+dAbUdHvMiwSK3bipxtOcGs=";
   };
 
+  # Record stations outside the current area with radiko premium (area free).
+  patches = [ ../../patches/radigo-areafree-timefree.patch ];
+
   vendorHash = "sha256-fASJvEZ3GMNsHSxdq3kS2jz4kJV/oey37JJxYZGLDzU=";
 
   subPackages = [ "cmd/radigo" ];
