@@ -187,7 +187,7 @@ jobs:
         with:
           persist-credentials: "true"
       - uses: NixOS/nix-installer-action@62c1943b776c509394b550f3f983adc14e9212d6 # v1.0.0
-      - uses: natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7 # v1.1.1
+      - uses: natsukium/nix-diff-action@cff4f0f22193912492fd64da21e6c55565254479 # v1.2.0
         with:
           mode: diff-only
           attributes: |
@@ -224,7 +224,7 @@ jobs:
       - nix-diff
     runs-on: ubuntu-slim
     steps:
-      - uses: natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7 # v1.1.1
+      - uses: natsukium/nix-diff-action@cff4f0f22193912492fd64da21e6c55565254479 # v1.2.0
         with:
           mode: comment-only
     timeout-minutes: 5
