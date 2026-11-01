@@ -279,8 +279,8 @@ catalogs:
       specifier: 1.4.0
       version: 1.4.0
     zenn-cli:
-      specifier: 0.5.10
-      version: 0.5.10
+      specifier: 0.5.11
+      version: 0.5.11
 
 overrides:
   vite@*: npm:@voidzero-dev/vite-plus-core@1.4.0
@@ -464,7 +464,7 @@ importers:
     dependencies:
       zenn-cli:
         specifier: 'catalog:'
-        version: 0.5.10(@types/markdown-it@14.2.0)(supports-color@7.2.0)
+        version: 0.5.11(@types/markdown-it@14.2.0)(supports-color@7.2.0)
 
   infrastructures/aws:
     dependencies:
@@ -5109,13 +5109,13 @@ packages:
     resolution: {integrity: sha512-XrBh9ZiQK5mJVRxZBAvD6LwRyAYrK3MFtH3+onyuxFL5hFD44EC3QOmIC1FjTj6H2MMwq46/NAI+NZxLZPZgxg==}
     engines: {node: '>=14.18.0'}
 
-  zenn-cli@0.5.10:
-    resolution: {integrity: sha512-OrLUCMxBn99YE+iReVs3n+OL5E+o6ixD3S1eEjndHrLSg1+a2/X2QftkhYknCkrRNI3FRAVFoMhcIVbkhPxLmQ==}
+  zenn-cli@0.5.11:
+    resolution: {integrity: sha512-uUqvYVKCSoaIzLfLRmEWktjnE8tZdMQFMRrXKRjKLOXOsZTgCOifsVW7l33DTTxu/3PYD2RtU7eo/aRCDHJZEg==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
-  zenn-markdown-html@0.5.10:
-    resolution: {integrity: sha512-Quh3wgV7bttiYMFJtuzpqdKwsf/WOtAjuokaefyRt13n+aGzIbc44EC9NQWdzfTd9rsU35OMz0Bk9isCUkatKw==}
+  zenn-markdown-html@0.5.11:
+    resolution: {integrity: sha512-cwC9krZdv36s9ZtcLt0MzD1t+t5pB8XaxOL1DcVN+iujSKG+xFq8EKSvNAqqSaOvH58XX1AjTcfpbMzlxQtPVQ==}
     engines: {node: '>=22.12.0'}
 
   zlibjs@0.3.1:
@@ -5313,7 +5313,7 @@ snapshots:
     dependencies:
       '@aws-sdk/nested-clients': 3.997.53
       '@aws-sdk/types': 3.975.0
-      '@smithy/core': 3.37.0
+      '@smithy/core': 3.38.1
       '@smithy/types': 4.19.0
       tslib: 2.8.1
 
@@ -5403,7 +5403,7 @@ snapshots:
 
   '@aws-sdk/credential-providers@3.1160.0':
     dependencies:
-      '@aws-sdk/core': 3.979.0
+      '@aws-sdk/core': 3.979.1
       '@aws-sdk/credential-provider-cognito-identity': 3.972.78
       '@aws-sdk/credential-provider-env': 3.972.79
       '@aws-sdk/credential-provider-http': 3.972.81
@@ -5415,7 +5415,7 @@ snapshots:
       '@aws-sdk/credential-provider-web-identity': 3.972.85
       '@aws-sdk/nested-clients': 3.997.53
       '@aws-sdk/types': 3.975.0
-      '@smithy/core': 3.37.0
+      '@smithy/core': 3.38.1
       '@smithy/credential-provider-imds': 4.5.2
       '@smithy/types': 4.19.0
       tslib: 2.8.1
@@ -6314,7 +6314,7 @@ snapshots:
 
   '@smithy/eventstream-codec@4.5.2':
     dependencies:
-      '@smithy/core': 3.37.0
+      '@smithy/core': 3.38.1
       tslib: 2.8.1
 
   '@smithy/fetch-http-handler@5.8.0':
@@ -6358,7 +6358,7 @@ snapshots:
 
   '@smithy/util-utf8@4.5.2':
     dependencies:
-      '@smithy/core': 3.37.0
+      '@smithy/core': 3.38.1
       tslib: 2.8.1
 
   '@standard-schema/spec@1.1.0': {}
@@ -10397,7 +10397,7 @@ snapshots:
       '@yuku-toolchain/types': 0.19.0
       yuku-core: 0.19.0
 
-  zenn-cli@0.5.10(@types/markdown-it@14.2.0)(supports-color@7.2.0):
+  zenn-cli@0.5.11(@types/markdown-it@14.2.0)(supports-color@7.2.0):
     dependencies:
       '@ai-sdk/amazon-bedrock': 5.0.128(zod@4.4.3)
       '@ai-sdk/anthropic': 4.0.92(zod@4.4.3)
@@ -10425,7 +10425,7 @@ snapshots:
       open: 11.0.4
       package-manager-detector: 1.8.0
       ws: 8.22.0
-      zenn-markdown-html: 0.5.10(@types/markdown-it@14.2.0)
+      zenn-markdown-html: 0.5.11(@types/markdown-it@14.2.0)
       zod: 4.4.3
     transitivePeerDependencies:
       - '@types/markdown-it'
@@ -10433,7 +10433,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  zenn-markdown-html@0.5.10(@types/markdown-it@14.2.0):
+  zenn-markdown-html@0.5.11(@types/markdown-it@14.2.0):
     dependencies:
       cheerio: 1.2.0
       markdown-it: 15.0.3
