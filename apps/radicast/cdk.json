@@ -132,6 +132,28 @@
         "station": "BAYFM78",
         "programSchedules": ["00 23 * * 2"],
         "executionSchedule": "00 00 ? * 4 *"
+      },
+      {
+        "id": "radirer",
+        "service": "radiru",
+        "title": "らじらー! サンデー",
+        "author": "乃木坂46",
+        "image": "https://img.nhk.jp/static/assets/images/radioseries/rs/88W859PYQ9/88W859PYQ9-eyecatch_3b7aee569c3f1a3bb44bf3f282016720.jpg",
+        "seriesSiteId": "88W859PYQ9",
+        "cornerSiteId": "01",
+        "programSchedules": ["05 20 * * 0", "05 21 * * 0", "05 22 * * 0"],
+        "executionSchedule": "30 23 ? * 1 *"
+      },
+      {
+        "id": "hanarajichiba",
+        "service": "radiru",
+        "title": "花ラジちば",
+        "author": "NHK千葉放送局",
+        "image": "https://img.nhk.jp/static/assets/images/radioseries/rs/ZPN5WR61G3/ZPN5WR61G3-eyecatch_a68f2dd39e23ff10ba893a48f673e6c5.png",
+        "seriesSiteId": "ZPN5WR61G3",
+        "cornerSiteId": "01",
+        "programSchedules": ["00 11 * * 5"],
+        "executionSchedule": "00 19 ? * 6 *"
       }
     ]
   }
