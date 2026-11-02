@@ -2,7 +2,7 @@ import { AWS_MAIN_ACCOUNT_ID } from "@core/constants";
 import * as cdk from "aws-cdk-lib/core";
 import { AwsSolutionsChecks } from "cdk-nag";
 
-import type { Definition } from "../lib/radicast-stack.ts";
+import type { Definition } from "../lib/constructs/lambda/definition.ts";
 
 import { AcmStack } from "../lib/acm-stack.ts";
 import { CloudfrontAccessLogStack } from "../lib/cloudfront-access-log-stack.ts";

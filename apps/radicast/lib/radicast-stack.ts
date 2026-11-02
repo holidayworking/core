@@ -12,23 +12,14 @@ import { Construct } from "constructs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
+import type { Definition } from "./constructs/lambda/definition.ts";
+
 import { CloudFrontInvalidator } from "./constructs/cloudfront-invalidator.ts";
 import { FeedGenerator } from "./constructs/feed-generator.ts";
 import { RadikoRecorder } from "./constructs/radiko-recorder.ts";
 import { Storage } from "./constructs/storage.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-export type Definition = {
-  id: string;
-  title: string;
-  author: string;
-  image: string;
-  area: string;
-  station: string;
-  programSchedules: string[];
-  executionSchedule: string;
-};
 
 interface RadicastStackProps extends cdk.StackProps {
   readonly certificate: ICertificate;
@@ -90,28 +81,20 @@ export class RadicastStack extends cdk.Stack {
     const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
     for (const definition of definitions) {
-      const { id, title, author, image, area, station, programSchedules, executionSchedule } =
-        definition;
+      const { id, executionSchedule } = definition;
 
       new DeployTimeSubstitutedFile(this, `${capitalize(id)}ConfigFile`, {
         destinationBucket: bucket,
         source: join(__dirname, "config.json"),
         substitutions: {
-          id,
-          title,
-          author,
-          image,
-          area,
-          station,
-          programSchedules: JSON.stringify(programSchedules),
-          executionSchedule,
+          definition: JSON.stringify(definition),
         },
         destinationKey: `${id}/config.json`,
       });
 
       new Schedule(this, `${capitalize(id)}Schedule`, {
         schedule: ScheduleExpression.expression(
-          `cron(${definition.executionSchedule})`,
+          `cron(${executionSchedule})`,
           cdk.TimeZone.ASIA_TOKYO,
         ),
         target: new LambdaInvoke(radikoRecorder.function, {
