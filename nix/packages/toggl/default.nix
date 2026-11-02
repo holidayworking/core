@@ -7,11 +7,11 @@
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "toggl";
-  version = "1.9.1";
+  version = "1.14.2";
 
   src = fetchurl {
     url = "https://toggl.com/toggl/desktop/downloads/Toggl-arm64.dmg";
-    hash = "sha256-8ChB0XfKK9GOcFTepIXBE0AeZjyE4nu3u5zgI9mhZXs=";
+    hash = "sha256-/1gEd9O9w097kU5Uk8oZxoWUXMBIMR4zUcl9QZ/u/ms=";
   };
 
   nativeBuildInputs = [ undmg ];
