@@ -6,7 +6,7 @@ import { expectFailure, expectSuccess } from "@core/utils/test";
 import { mockClient } from "aws-sdk-client-mock";
 import { beforeEach, expect, test } from "vite-plus/test";
 
-import { findBasicAuthenticationCredential } from "../../../lib/constructs/lambda/cloudfront-keyvaluestore.ts";
+import { findBasicAuthenticationCredential } from "../../../lib/constructs/lambda/credential.ts";
 import { kvsArn } from "./fixtures.ts";
 
 const kvsMock = mockClient(CloudFrontKeyValueStoreClient);

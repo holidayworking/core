@@ -5,9 +5,9 @@ import { execa } from "execa";
 import { tmpdir } from "os";
 
 import { previousStartTimes, type RadikoDefinition } from "./definition.ts";
-import { toEpisode } from "./media.ts";
+import { toEpisode } from "./recording.ts";
 
-export const recordEpisode = async (
+export const recordRadikoEpisode = async (
   email: string,
   password: string,
   definition: RadikoDefinition,

@@ -4,11 +4,11 @@ import { Failure, Success } from "@core/utils";
 import { rmSync } from "fs";
 import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 
-import { Episode } from "../../../../../lib/constructs/lambda/episode.ts";
+import { findDefinition } from "../../../../../lib/constructs/lambda/definition.ts";
+import { Episode, saveEpisode } from "../../../../../lib/constructs/lambda/episode.ts";
 import { handler } from "../../../../../lib/constructs/lambda/functions/radiko-recorder/index.ts";
+import { recordRadikoEpisode } from "../../../../../lib/constructs/lambda/radiko.ts";
 import { recordRadiruEpisode } from "../../../../../lib/constructs/lambda/radiru.ts";
-import { recordEpisode } from "../../../../../lib/constructs/lambda/recorder.ts";
-import { findDefinition, saveEpisode } from "../../../../../lib/constructs/lambda/s3.ts";
 import { createContext, createDefinition, createRadiruDefinition } from "../../fixtures.ts";
 
 vi.mock("fs", async (importOriginal) => ({
@@ -18,14 +18,18 @@ vi.mock("fs", async (importOriginal) => ({
 vi.mock("@aws-lambda-powertools/parameters/ssm", () => ({
   getParameter: vi.fn(),
 }));
+vi.mock("../../../../../lib/constructs/lambda/definition.ts");
+vi.mock("../../../../../lib/constructs/lambda/episode.ts", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("../../../../../lib/constructs/lambda/episode.ts")>()),
+  saveEpisode: vi.fn(),
+}));
+vi.mock("../../../../../lib/constructs/lambda/radiko.ts");
 vi.mock("../../../../../lib/constructs/lambda/radiru.ts");
-vi.mock("../../../../../lib/constructs/lambda/recorder.ts");
-vi.mock("../../../../../lib/constructs/lambda/s3.ts");
 
 const getParameterMock = vi.mocked(getParameter);
 const rmSyncMock = vi.mocked(rmSync);
 const findDefinitionMock = vi.mocked(findDefinition);
-const recordEpisodeMock = vi.mocked(recordEpisode);
+const recordRadikoEpisodeMock = vi.mocked(recordRadikoEpisode);
 const recordRadiruEpisodeMock = vi.mocked(recordRadiruEpisode);
 const saveEpisodeMock = vi.mocked(saveEpisode);
 
@@ -44,7 +48,7 @@ beforeEach(() => {
   getParameterMock.mockImplementation((async (name: string) =>
     name === "/app/radicast/radiko_mail" ? "mail@example.com" : "secret") as never);
   findDefinitionMock.mockResolvedValue(new Success(createDefinition()));
-  recordEpisodeMock.mockResolvedValue(new Success(episode));
+  recordRadikoEpisodeMock.mockResolvedValue(new Success(episode));
   recordRadiruEpisodeMock.mockResolvedValue(new Success(episode));
   saveEpisodeMock.mockResolvedValue(new Success(""));
 });
@@ -61,7 +65,11 @@ test("records and saves the episode for the given id", async () => {
     decrypt: true,
   });
   expect(findDefinitionMock).toHaveBeenCalledWith("bucket", "yuna78mhz");
-  expect(recordEpisodeMock).toHaveBeenCalledWith("mail@example.com", "secret", createDefinition());
+  expect(recordRadikoEpisodeMock).toHaveBeenCalledWith(
+    "mail@example.com",
+    "secret",
+    createDefinition(),
+  );
   expect(saveEpisodeMock).toHaveBeenCalledWith("bucket", "yuna78mhz", episode);
   expect(rmSyncMock).toHaveBeenCalledWith("/tmp/20260714230000-BAYFM78.m4a", { force: true });
   expect(recordRadiruEpisodeMock).not.toHaveBeenCalled();
@@ -74,7 +82,7 @@ test("records らじる★らじる episodes without the radiko credentials", as
   await handler({ id: "radirer" }, createContext());
 
   expect(getParameterMock).not.toHaveBeenCalled();
-  expect(recordEpisodeMock).not.toHaveBeenCalled();
+  expect(recordRadikoEpisodeMock).not.toHaveBeenCalled();
   expect(recordRadiruEpisodeMock).toHaveBeenCalledWith(createRadiruDefinition());
   expect(saveEpisodeMock).toHaveBeenCalledWith("bucket", "radirer", episode);
   expect(errorSpy).not.toHaveBeenCalled();
@@ -98,7 +106,7 @@ test("logs an error when the radiko credentials are not configured", async () =>
     "unexpected error",
     new Error("Radiko credentials are not configured"),
   );
-  expect(recordEpisodeMock).not.toHaveBeenCalled();
+  expect(recordRadikoEpisodeMock).not.toHaveBeenCalled();
 });
 
 test("stops when findDefinition fails", async () => {
@@ -108,12 +116,12 @@ test("stops when findDefinition fails", async () => {
   await handler({ id: "yuna78mhz" }, createContext());
 
   expect(errorSpy).toHaveBeenCalledWith("unexpected error", error);
-  expect(recordEpisodeMock).not.toHaveBeenCalled();
+  expect(recordRadikoEpisodeMock).not.toHaveBeenCalled();
 });
 
-test("stops when recordEpisode fails", async () => {
+test("stops when recordRadikoEpisode fails", async () => {
   const error = new Error("could not be recorded");
-  recordEpisodeMock.mockResolvedValue(new Failure(error));
+  recordRadikoEpisodeMock.mockResolvedValue(new Failure(error));
 
   await handler({ id: "yuna78mhz" }, createContext());
 
