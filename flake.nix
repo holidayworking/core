@@ -257,7 +257,6 @@
               settings.global.excludes = [ "nix/sources/generated/*" ];
 
               programs = {
-                actionlint.enable = true;
                 deadnix.enable = true;
                 nixfmt.enable = true;
                 # pinact.enable = true;
@@ -273,6 +272,20 @@
                     "-euc"
                     "${pkgs.lib.getExe pkgs.ghalint} run $@"
                     "--"
+                  ];
+                  includes = [
+                    ".github/workflows/*.yml"
+                    ".github/workflows/*.yaml"
+                  ];
+                };
+
+                jactionlint = {
+                  command = pkgs.lib.getExe pkgs.jactionlint;
+                  options = [
+                    # Unlike actionlint, the nixpkgs package does not wrap these, and
+                    # silently skips the checks when they are not on PATH.
+                    "--shellcheck=${pkgs.lib.getExe pkgs.shellcheck}"
+                    "--pyflakes=${pkgs.lib.getExe pkgs.python3Packages.pyflakes}"
                   ];
                   includes = [
                     ".github/workflows/*.yml"

@@ -5,6 +5,13 @@ on:
     branches:
       - main
 
+# The paths filter only looks at the changes of each push, so the changes of a
+# run that is dropped from the queue would never be deployed.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+  queue: max
+
 jobs:
   changes:
     permissions:
