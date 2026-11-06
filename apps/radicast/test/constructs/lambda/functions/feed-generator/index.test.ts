@@ -2,14 +2,20 @@ import { Logger } from "@aws-lambda-powertools/logger";
 import { Failure, Success } from "@core/utils";
 import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 
-import { findBasicAuthenticationCredential } from "../../../../../lib/constructs/lambda/cloudfront-keyvaluestore.ts";
-import { Episode } from "../../../../../lib/constructs/lambda/episode.ts";
+import { findBasicAuthenticationCredential } from "../../../../../lib/constructs/lambda/credential.ts";
+import { findDefinition } from "../../../../../lib/constructs/lambda/definition.ts";
+import { Episode, listEpisodes } from "../../../../../lib/constructs/lambda/episode.ts";
+import { saveFeed } from "../../../../../lib/constructs/lambda/feed.ts";
 import { handler } from "../../../../../lib/constructs/lambda/functions/feed-generator/index.ts";
-import { findDefinition, listEpisodes, saveFeed } from "../../../../../lib/constructs/lambda/s3.ts";
 import { createContext, createDefinition, createS3Event, kvsArn } from "../../fixtures.ts";
 
-vi.mock("../../../../../lib/constructs/lambda/cloudfront-keyvaluestore.ts");
-vi.mock("../../../../../lib/constructs/lambda/s3.ts");
+vi.mock("../../../../../lib/constructs/lambda/credential.ts");
+vi.mock("../../../../../lib/constructs/lambda/definition.ts");
+vi.mock("../../../../../lib/constructs/lambda/episode.ts", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("../../../../../lib/constructs/lambda/episode.ts")>()),
+  listEpisodes: vi.fn(),
+}));
+vi.mock("../../../../../lib/constructs/lambda/feed.ts");
 
 const findBasicAuthenticationCredentialMock = vi.mocked(findBasicAuthenticationCredential);
 const findDefinitionMock = vi.mocked(findDefinition);

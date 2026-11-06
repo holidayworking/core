@@ -3,7 +3,7 @@ import { expectFailure } from "@core/utils/test";
 import { mockClient } from "aws-sdk-client-mock";
 import { beforeEach, expect, test } from "vite-plus/test";
 
-import { cloudFrontInvalidation } from "../../../lib/constructs/lambda/cloudfront.ts";
+import { invalidateCache } from "../../../lib/constructs/lambda/cdn.ts";
 
 const cloudFrontMock = mockClient(CloudFrontClient);
 
@@ -14,7 +14,7 @@ beforeEach(() => {
 test("creates an invalidation for the given paths", async () => {
   cloudFrontMock.on(CreateInvalidationCommand).resolves({});
 
-  const result = await cloudFrontInvalidation("E123EXAMPLE", ["/yuna78mhz/index.rss"]);
+  const result = await invalidateCache("E123EXAMPLE", ["/yuna78mhz/index.rss"]);
 
   expect(result.isSuccess()).toBe(true);
   const calls = cloudFrontMock.commandCalls(CreateInvalidationCommand);
@@ -35,7 +35,7 @@ test("creates an invalidation for the given paths", async () => {
 test("returns Failure when the invalidation fails", async () => {
   cloudFrontMock.on(CreateInvalidationCommand).rejects(new Error("access denied"));
 
-  const result = await cloudFrontInvalidation("E123EXAMPLE", ["/yuna78mhz/index.rss"]);
+  const result = await invalidateCache("E123EXAMPLE", ["/yuna78mhz/index.rss"]);
 
   expect(expectFailure(result).message).toBe("access denied");
 });

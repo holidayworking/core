@@ -5,7 +5,7 @@ import { injectLambdaContext } from "@aws-lambda-powertools/logger/middleware";
 import "@aws-sdk/signature-v4a";
 import middy from "@middy/core";
 
-import { cloudFrontInvalidation } from "../../cloudfront.ts";
+import { invalidateCache } from "../../cdn.ts";
 
 const logger = new Logger({ serviceName: "radicast" });
 
@@ -17,7 +17,7 @@ const lambdaHandler = async (event: S3Event) => {
   }
 
   const paths = event.Records.map((record) => `/${record.s3.object.key}`);
-  const result = await cloudFrontInvalidation(distributionId, paths);
+  const result = await invalidateCache(distributionId, paths);
   if (result.isFailure()) {
     logger.error("unexpected error", result.error);
     return;

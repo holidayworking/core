@@ -11,8 +11,10 @@ import { readFileSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
-import { findBasicAuthenticationCredential } from "../../cloudfront-keyvaluestore.ts";
-import { findDefinition, listEpisodes, saveFeed } from "../../s3.ts";
+import { findBasicAuthenticationCredential } from "../../credential.ts";
+import { findDefinition } from "../../definition.ts";
+import { listEpisodes } from "../../episode.ts";
+import { saveFeed } from "../../feed.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

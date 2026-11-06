@@ -3,7 +3,7 @@ import { execa } from "execa";
 import { rmSync, statSync, writeFileSync } from "fs";
 import { beforeEach, expect, test, vi } from "vite-plus/test";
 
-import { concat, toEpisode } from "../../../lib/constructs/lambda/media.ts";
+import { concat, toEpisode } from "../../../lib/constructs/lambda/recording.ts";
 
 vi.mock("execa", () => ({
   execa: vi.fn(),

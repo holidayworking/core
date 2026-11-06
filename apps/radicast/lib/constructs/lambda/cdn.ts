@@ -3,7 +3,7 @@ import { Success, toFailure } from "@core/utils";
 
 const client = new CloudFrontClient({});
 
-export const cloudFrontInvalidation = async (distributionId: string, path: string[]) => {
+export const invalidateCache = async (distributionId: string, paths: string[]) => {
   try {
     await client.send(
       new CreateInvalidationCommand({
@@ -11,7 +11,7 @@ export const cloudFrontInvalidation = async (distributionId: string, path: strin
         InvalidationBatch: {
           Paths: {
             Quantity: 1,
-            Items: path,
+            Items: paths,
           },
           CallerReference: Math.floor(Date.now() / 1000).toString(),
         },

@@ -5,15 +5,15 @@ import { tmpdir } from "os";
 import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 
 import { Episode } from "../../../lib/constructs/lambda/episode.ts";
-import { toEpisode } from "../../../lib/constructs/lambda/media.ts";
-import { recordEpisode } from "../../../lib/constructs/lambda/recorder.ts";
+import { recordRadikoEpisode } from "../../../lib/constructs/lambda/radiko.ts";
+import { toEpisode } from "../../../lib/constructs/lambda/recording.ts";
 import { createDefinition } from "./fixtures.ts";
 
 vi.mock("execa", () => ({
   execa: vi.fn(),
 }));
 
-vi.mock("../../../lib/constructs/lambda/media.ts", () => ({
+vi.mock("../../../lib/constructs/lambda/recording.ts", () => ({
   toEpisode: vi.fn(),
 }));
 
@@ -47,7 +47,7 @@ test("records the previous program schedule and converts it into an m4a", async 
   const aacPath = `${tmpdir()}/20260714230000-BAYFM78.aac`;
   const m4aPath = `${tmpdir()}/20260714230000-BAYFM78.m4a`;
 
-  const result = await recordEpisode("mail@example.com", "password", createDefinition());
+  const result = await recordRadikoEpisode("mail@example.com", "password", createDefinition());
 
   expect(execaMock).toHaveBeenCalledTimes(2);
   expect(execaMock).toHaveBeenNthCalledWith(1, "rm", ["-f", aacPath]);
@@ -82,7 +82,7 @@ test("records every program schedule and uses the first start time", async () =>
   // The previous runs are 7/14 (Tue) 23:00 and 7/13 (Mon) 22:00
   definition.programSchedules = ["00 23 * * 2", "00 22 * * 1"];
 
-  const result = await recordEpisode("mail@example.com", "password", definition);
+  const result = await recordRadikoEpisode("mail@example.com", "password", definition);
 
   // rm + radigo for each of the 2 programs
   expect(execaMock).toHaveBeenCalledTimes(4);
@@ -102,7 +102,7 @@ test("returns Failure when radigo fails", async () => {
       ? Promise.reject(new Error("radigo failed"))
       : Promise.resolve()) as never);
 
-  const result = await recordEpisode("mail@example.com", "password", createDefinition());
+  const result = await recordRadikoEpisode("mail@example.com", "password", createDefinition());
 
   expect(expectFailure(result).message).toBe("radigo failed");
 });
@@ -111,7 +111,7 @@ test("returns Failure for an invalid program schedule", async () => {
   const definition = createDefinition();
   definition.programSchedules = ["invalid cron"];
 
-  const result = await recordEpisode("mail@example.com", "password", definition);
+  const result = await recordRadikoEpisode("mail@example.com", "password", definition);
 
   expect(result.isFailure()).toBe(true);
   expect(execaMock).not.toHaveBeenCalled();

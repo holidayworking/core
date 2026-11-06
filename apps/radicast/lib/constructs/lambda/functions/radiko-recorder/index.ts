@@ -5,11 +5,10 @@ import { Failure } from "@core/utils";
 import middy from "@middy/core";
 import { rmSync } from "fs";
 
-import type { Definition } from "../../definition.ts";
-
+import { type Definition, findDefinition } from "../../definition.ts";
+import { saveEpisode } from "../../episode.ts";
+import { recordRadikoEpisode } from "../../radiko.ts";
 import { recordRadiruEpisode } from "../../radiru.ts";
-import { recordEpisode } from "../../recorder.ts";
-import { findDefinition, saveEpisode } from "../../s3.ts";
 
 const logger = new Logger({ serviceName: "radicast" });
 
@@ -59,7 +58,7 @@ const record = async (definition: Definition) => {
     return new Failure(new Error("Radiko credentials are not configured"));
   }
 
-  return await recordEpisode(radikoMail, radikoPassword, definition);
+  return await recordRadikoEpisode(radikoMail, radikoPassword, definition);
 };
 
 export const handler = middy(lambdaHandler).use(injectLambdaContext(logger));
