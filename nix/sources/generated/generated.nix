@@ -30,4 +30,12 @@
       sha256 = "sha256-JyMYNAfMWqF/nPT5mWjPcjE8q8kTesReUTPBZA7+5No=";
     };
   };
+  toggl = {
+    pname = "toggl";
+    version = "1.16.2";
+    src = fetchurl {
+      url = "https://toggl.com/toggl/desktop/downloads/Toggl-1.16.2-arm64.dmg";
+      sha256 = "sha256-pgWpIVQIh7PJE9Z7qZ5I9sXxFapBefAtxLnXh/D5M3Q=";
+    };
+  };
 }

@@ -15,3 +15,8 @@ fetch.url = "https://github.com/stenzek/duckstation/releases/download/v$ver/Duck
 [firple]
 src.github = "negset/Firple"
 fetch.url = "https://github.com/negset/Firple/releases/download/$ver/Firple.zip"
+
+[toggl]
+src.webpage = "https://toggl.com/toggl/desktop/downloads/latest-mac.yml"
+src.regex = 'version: ([\d.]+)'
+fetch.url = "https://toggl.com/toggl/desktop/downloads/Toggl-$ver-arm64.dmg"

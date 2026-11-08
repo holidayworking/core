@@ -43,5 +43,20 @@
             "url": "https://github.com/negset/Firple/releases/download/6.400/Firple.zip"
         },
         "version": "6.400"
+    },
+    "toggl": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "toggl",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-pgWpIVQIh7PJE9Z7qZ5I9sXxFapBefAtxLnXh/D5M3Q=",
+            "type": "url",
+            "url": "https://toggl.com/toggl/desktop/downloads/Toggl-1.16.2-arm64.dmg"
+        },
+        "version": "1.16.2"
     }
 }
