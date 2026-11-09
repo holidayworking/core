@@ -30,6 +30,14 @@
       sha256 = "sha256-JyMYNAfMWqF/nPT5mWjPcjE8q8kTesReUTPBZA7+5No=";
     };
   };
+  karabiner-elements = {
+    pname = "karabiner-elements";
+    version = "16.3.0";
+    src = fetchurl {
+      url = "https://github.com/pqrs-org/Karabiner-Elements/releases/download/v16.3.0/Karabiner-Elements-16.3.0.dmg";
+      sha256 = "sha256-GcznvtPUinIiQspoO9G65Aa2qH/tUgco0ckd7hdbdeQ=";
+    };
+  };
   tailscale-gui = {
     pname = "tailscale-gui";
     version = "1.104.5";

@@ -1,12 +1,25 @@
-{ delib, host, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
+let
+  package = pkgs.local.karabiner-elements;
+in
 delib.module {
   name = "programs.karabiner-elements";
 
   options = delib.singleEnableOption host.isDarwin;
 
-  darwin.ifEnabled.homebrew.casks = [
-    "karabiner-elements"
-  ];
+  # nix-darwin's services.karabiner-elements has been broken since v15
+  # (nix-darwin/nix-darwin#1041), so run the official installer package (see
+  # nix/packages/karabiner-elements) whenever the installed version differs.
+  darwin.ifEnabled.system.activationScripts.postActivation.text = ''
+    if [ "$(pkgutil --pkg-info org.pqrs.Karabiner-Elements 2>/dev/null | sed -n 's/^version: //p')" != "${package.version}" ]; then
+      installer -pkg "${package}/Karabiner-Elements.pkg" -target /
+    fi
+  '';
 
   home.ifEnabled.xdg.configFile."karabiner/karabiner.json".text = builtins.toJSON {
     global.show_in_menu_bar = false;
