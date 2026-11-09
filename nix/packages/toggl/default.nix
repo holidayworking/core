@@ -1,18 +1,12 @@
 {
   lib,
   stdenvNoCC,
-  fetchurl,
   undmg,
+  sources,
   ...
 }:
-stdenvNoCC.mkDerivation rec {
-  pname = "toggl";
-  version = "1.14.2";
-
-  src = fetchurl {
-    url = "https://toggl.com/toggl/desktop/downloads/Toggl-arm64.dmg";
-    hash = "sha256-/1gEd9O9w097kU5Uk8oZxoWUXMBIMR4zUcl9QZ/u/ms=";
-  };
+stdenvNoCC.mkDerivation {
+  inherit (sources.toggl) pname version src;
 
   nativeBuildInputs = [ undmg ];
 
