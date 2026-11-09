@@ -38,6 +38,14 @@
       sha256 = "sha256-GcznvtPUinIiQspoO9G65Aa2qH/tUgco0ckd7hdbdeQ=";
     };
   };
+  multiviewer = {
+    pname = "multiviewer";
+    version = "https://releases.multiviewer.app/v/2.16.1/1/RMIPsm6IG_e90vEhX8Oi1Y4-YM818WcZ/MultiViewer-2.16.1-arm64.dmg";
+    src = fetchurl {
+      url = "https://releases.multiviewer.app/v/2.16.1/1/RMIPsm6IG_e90vEhX8Oi1Y4-YM818WcZ/MultiViewer-2.16.1-arm64.dmg";
+      sha256 = "sha256-KlvoPDUJ9v468mv2XQ/04c8VFR9Pkq0p2u0qRq5eqmk=";
+    };
+  };
   tailscale-gui = {
     pname = "tailscale-gui";
     version = "1.104.5";

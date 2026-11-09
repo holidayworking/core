@@ -31,3 +31,10 @@ src.github = "pqrs-org/Karabiner-Elements"
 src.from_pattern = 'v(.+)'
 src.to_pattern = '\1'
 fetch.url = "https://github.com/pqrs-org/Karabiner-Elements/releases/download/v$ver/Karabiner-Elements-$ver.dmg"
+
+# Download URLs carry a per-release token, so track the whole arm64 dmg URL
+# from the releases API and derive the version from it in the package.
+[multiviewer]
+src.webpage = "https://api.multiviewer.app/api/v1/releases/latest/"
+src.regex = '"url":\s*"(https://releases\.multiviewer\.app/v/[^"]+/MultiViewer-[\d.]+-arm64\.dmg)"'
+fetch.url = "$ver"
