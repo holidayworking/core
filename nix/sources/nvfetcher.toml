@@ -20,3 +20,8 @@ fetch.url = "https://github.com/negset/Firple/releases/download/$ver/Firple.zip"
 src.webpage = "https://toggl.com/toggl/desktop/downloads/latest-mac.yml"
 src.regex = 'version: ([\d.]+)'
 fetch.url = "https://toggl.com/toggl/desktop/downloads/Toggl-$ver-arm64.dmg"
+
+[tailscale-gui]
+src.webpage = "https://pkgs.tailscale.com/stable/?mode=json&os=darwin"
+src.regex = '"MacZipsVersion": "([\d.]+)"'
+fetch.url = "https://pkgs.tailscale.com/stable/Tailscale-$ver-macos.pkg"
