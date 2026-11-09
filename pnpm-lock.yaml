@@ -201,8 +201,8 @@ catalogs:
       specifier: 26.6.6
       version: 26.6.6
     aws-cdk:
-      specifier: 2.1147.0
-      version: 2.1147.0
+      specifier: 2.1148.0
+      version: 2.1148.0
     aws-cdk-github-oidc:
       specifier: 5.2.0
       version: 5.2.0
@@ -382,7 +382,7 @@ importers:
     devDependencies:
       aws-cdk:
         specifier: 'catalog:'
-        version: 2.1147.0
+        version: 2.1148.0
       aws-sdk-client-mock:
         specifier: 'catalog:'
         version: 4.1.0
@@ -449,7 +449,7 @@ importers:
     devDependencies:
       aws-cdk:
         specifier: 'catalog:'
-        version: 2.1147.0
+        version: 2.1148.0
       aws-sdk-client-mock:
         specifier: 'catalog:'
         version: 4.1.0
@@ -486,7 +486,7 @@ importers:
     devDependencies:
       aws-cdk:
         specifier: 'catalog:'
-        version: 2.1147.0
+        version: 2.1148.0
       cdk-nag:
         specifier: 'catalog:'
         version: 3.0.2(aws-cdk-lib@2.275.0(constructs@10.8.1))(constructs@10.8.1)
@@ -2413,8 +2413,8 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.1147.0:
-    resolution: {integrity: sha512-2ON/W4jShXWS926bKO6Osgw3MDlxhco5cz3n7SS5GLzaEaYs6ebpAHRDZp6sirkGnMqWoUwxCmIOkvAHS9Rn2A==}
+  aws-cdk@2.1148.0:
+    resolution: {integrity: sha512-G7MqPDzldsFxrVSFxR8Oj3vf8NutokIatJVygW/g/0COjrepsbDjuCP9OB9iN2hOn3QvOSf10qd5K/P3D5TQcQ==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
 
@@ -6997,7 +6997,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 55.2.0
       constructs: 10.8.1
 
-  aws-cdk@2.1147.0: {}
+  aws-cdk@2.1148.0: {}
 
   aws-sdk-client-mock@4.1.0:
     dependencies:
