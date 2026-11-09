@@ -6,6 +6,14 @@
   dockerTools,
 }:
 {
+  claude = {
+    pname = "claude";
+    version = "https://downloads.claude.ai/releases/darwin/universal/4.23118.1/Claude-e071e72f72fe1f56124e3c8a0096f4d75510060a.zip";
+    src = fetchurl {
+      url = "https://downloads.claude.ai/releases/darwin/universal/4.23118.1/Claude-e071e72f72fe1f56124e3c8a0096f4d75510060a.zip";
+      sha256 = "sha256-obaasoI3o0uYlMf+NwSSEH4+O2pszLmKJYveJ86YpXU=";
+    };
+  };
   duckstation-darwin = {
     pname = "duckstation-darwin";
     version = "0.1-12083";

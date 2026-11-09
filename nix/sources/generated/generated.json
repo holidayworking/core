@@ -1,4 +1,19 @@
 {
+    "claude": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "claude",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-obaasoI3o0uYlMf+NwSSEH4+O2pszLmKJYveJ86YpXU=",
+            "type": "url",
+            "url": "https://downloads.claude.ai/releases/darwin/universal/4.23118.1/Claude-e071e72f72fe1f56124e3c8a0096f4d75510060a.zip"
+        },
+        "version": "https://downloads.claude.ai/releases/darwin/universal/4.23118.1/Claude-e071e72f72fe1f56124e3c8a0096f4d75510060a.zip"
+    },
     "duckstation-darwin": {
         "cargoLock": null,
         "date": null,
