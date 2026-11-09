@@ -25,3 +25,9 @@ fetch.url = "https://toggl.com/toggl/desktop/downloads/Toggl-$ver-arm64.dmg"
 src.webpage = "https://pkgs.tailscale.com/stable/?mode=json&os=darwin"
 src.regex = '"MacZipsVersion": "([\d.]+)"'
 fetch.url = "https://pkgs.tailscale.com/stable/Tailscale-$ver-macos.pkg"
+
+[karabiner-elements]
+src.github = "pqrs-org/Karabiner-Elements"
+src.from_pattern = 'v(.+)'
+src.to_pattern = '\1'
+fetch.url = "https://github.com/pqrs-org/Karabiner-Elements/releases/download/v$ver/Karabiner-Elements-$ver.dmg"
