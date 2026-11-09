@@ -10,10 +10,6 @@ delib.module {
 
   options = delib.singleEnableOption host.isDarwin;
 
-  darwin.ifEnabled.homebrew.casks = [
-    "claude"
-  ];
-
   home.ifEnabled.imports = [
     (
       { config, lib, ... }:
@@ -25,6 +21,8 @@ delib.module {
         };
       in
       {
+        home.packages = [ pkgs.local.claude ];
+
         # Claude Desktop rewrites claude_desktop_config.json on launch, so a
         # plain home.file symlink cannot survive. Merge the Nix-managed settings
         # into the existing file on activation instead, letting Nix own the

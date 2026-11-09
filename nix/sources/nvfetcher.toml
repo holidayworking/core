@@ -38,3 +38,10 @@ fetch.url = "https://github.com/pqrs-org/Karabiner-Elements/releases/download/v$
 src.webpage = "https://api.multiviewer.app/api/v1/releases/latest/"
 src.regex = '"url":\s*"(https://releases\.multiviewer\.app/v/[^"]+/MultiViewer-[\d.]+-arm64\.dmg)"'
 fetch.url = "$ver"
+
+# Download URLs carry a per-release hash, so track the whole zip URL from the
+# auto-update feed and derive the version from it in the package.
+[claude]
+src.webpage = "https://downloads.claude.ai/releases/darwin/universal/RELEASES.json"
+src.regex = '"url":\s*"(https://downloads\.claude\.ai/releases/darwin/universal/[\d.]+/Claude-[0-9a-f]+\.zip)"'
+fetch.url = "$ver"
