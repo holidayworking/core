@@ -24,8 +24,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs = {
