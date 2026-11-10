@@ -252,8 +252,8 @@ catalogs:
       specifier: 9.0.4
       version: 9.0.4
     prh:
-      specifier: 6.1.0
-      version: 6.1.0
+      specifier: 7.0.0
+      version: 7.0.0
     textlint:
       specifier: 15.8.0
       version: 15.8.0
@@ -315,7 +315,7 @@ importers:
         version: 9.0.4
       prh:
         specifier: 'catalog:'
-        version: 6.1.0
+        version: 7.0.0
       textlint:
         specifier: 'catalog:'
         version: 15.8.0(supports-color@7.2.0)
@@ -4230,6 +4230,11 @@ packages:
   prh@6.1.0:
     resolution: {integrity: sha512-FRJaF6DxCAhJwZZUkL20XmL+Fz2O79JFdcn35wdigm435A9G7WX9J5In6h6tCfmMzK/n4KVUjf68qmYMBHkqRQ==}
     engines: {node: '>=22'}
+    hasBin: true
+
+  prh@7.0.0:
+    resolution: {integrity: sha512-Ky/3v1dpuXo1YTFhbIlDau6Rw12n5L/uSpz+8itiy10jdKVMr6wK7pq/8j0brVPv+tVk1ENyoaH7JyLwrVg3bg==}
+    engines: {node: '>=22.12.0'}
     hasBin: true
 
   property-information@5.6.0:
@@ -9143,6 +9148,12 @@ snapshots:
       commander: 14.0.3
       diff: 9.0.0
       js-yaml: 4.3.0
+
+  prh@7.0.0:
+    dependencies:
+      commander: 15.0.0
+      diff: 9.0.0
+      js-yaml: 5.4.3
 
   property-information@5.6.0:
     dependencies:
