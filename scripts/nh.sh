@@ -16,6 +16,12 @@ else
   extra_args=(--hostname "$HOSTNAME")
 fi
 
+# nh hides activation output by default, which swallows warnings printed by
+# activation scripts (e.g. the Claude Desktop profile reminder).
+if [[ $ACTION == "switch" ]]; then
+  extra_args+=(--show-activation-logs)
+fi
+
 if [[ -f /boot/vendorfw/firmware.cpio ]]; then
   extra_args+=(--override-input asahi-firmware path:/boot/vendorfw)
 fi
