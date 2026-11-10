@@ -14,7 +14,14 @@ delib.module {
     };
 
   darwin.ifEnabled = {
-    homebrew.masApps."1Password for Safari" = 1569813296;
-    programs._1password-gui.enable = true;
+    programs = {
+      _1password-gui.enable = true;
+
+      mas = {
+        enable = true;
+        packages."1Password for Safari" = 1569813296;
+        update = false;
+      };
+    };
   };
 }
