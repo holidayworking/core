@@ -9,5 +9,5 @@ delib.module {
 
   options = delib.singleEnableOption host.isDarwin;
 
-  home.ifEnabled.home.packages = with pkgs; [ notion-app ];
+  darwin.ifEnabled.environment.systemPackages = with pkgs; [ notion-app ];
 }

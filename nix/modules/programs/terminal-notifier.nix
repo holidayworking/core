@@ -9,5 +9,5 @@ delib.module {
 
   options = delib.singleEnableOption host.isDarwin;
 
-  home.ifEnabled.home.packages = with pkgs; [ terminal-notifier ];
+  darwin.ifEnabled.environment.systemPackages = with pkgs; [ terminal-notifier ];
 }
