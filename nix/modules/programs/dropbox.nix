@@ -22,10 +22,10 @@ delib.module {
         '';
       });
     in
-    lib.mkIf host.isLinux {
-      home.packages = [ maestral-gui ];
+    {
+      home.packages = [ (if host.isDarwin then pkgs.local.dropbox else maestral-gui) ];
 
-      xdg.autostart = {
+      xdg.autostart = lib.mkIf host.isLinux {
         enable = true;
         entries = [
           # Delay startup like Maestral's own login item so the tray is ready.
@@ -41,8 +41,4 @@ delib.module {
         ];
       };
     };
-
-  darwin.ifEnabled.homebrew.casks = [
-    "dropbox"
-  ];
 }
