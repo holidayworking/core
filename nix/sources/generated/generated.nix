@@ -8,35 +8,35 @@
 {
   claude = {
     pname = "claude";
-    version = "https://downloads.claude.ai/releases/darwin/universal/4.23118.1/Claude-e071e72f72fe1f56124e3c8a0096f4d75510060a.zip";
+    version = "https://downloads.claude.ai/releases/darwin/universal/5.1231.0/Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip";
     src = fetchurl {
-      url = "https://downloads.claude.ai/releases/darwin/universal/4.23118.1/Claude-e071e72f72fe1f56124e3c8a0096f4d75510060a.zip";
-      sha256 = "sha256-obaasoI3o0uYlMf+NwSSEH4+O2pszLmKJYveJ86YpXU=";
+      url = "https://downloads.claude.ai/releases/darwin/universal/5.1231.0/Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip";
+      sha256 = "sha256-jLbNjqRbge6/xjUnAc8wIgZnPnvG6zzIQuTcozKE2xQ=";
     };
   };
   dropbox = {
     pname = "dropbox";
-    version = "276.4.5325";
+    version = "278.4.4020";
     src = fetchurl {
-      url = "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20276.4.5325.arm64.dmg";
-      name = "Dropbox-276.4.5325.arm64.dmg";
-      sha256 = "sha256-j4W2M/Q9vW2bSg2Y1xg/AJSsJJEiWGPycu3XQZNoJk0=";
+      url = "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20278.4.4020.arm64.dmg";
+      name = "Dropbox-278.4.4020.arm64.dmg";
+      sha256 = "sha256-NhE4US2fNnUW+lNiMNlvg49eZDuWE6nR0sanBoafRe0=";
     };
   };
   duckstation-darwin = {
     pname = "duckstation-darwin";
-    version = "0.1-12083";
+    version = "0.1-12442";
     src = fetchurl {
-      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-12083/duckstation-mac-release.zip";
-      sha256 = "sha256-zXfYC1UnbxU0DvocZd8lD49NQTto0cE25IYV14DxJJw=";
+      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-12442/duckstation-mac-release.zip";
+      sha256 = "sha256-ufbw50fuJheYjeM+H6/dF9AukY0EL+1pE1Wu2ahsEc0=";
     };
   };
   duckstation-linux = {
     pname = "duckstation-linux";
-    version = "0.1-12083";
+    version = "0.1-12442";
     src = fetchurl {
-      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-12083/DuckStation-arm64.AppImage";
-      sha256 = "sha256-DDoAUYP2VTj3j6AjHUyXqiMzaEtIGYXI1M+rBkDil8c=";
+      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-12442/DuckStation-arm64.AppImage";
+      sha256 = "sha256-3ObKdwVazmBJF4G2tX8+Vem1Rnh3esV1rCRxwirREo4=";
     };
   };
   firple = {
@@ -73,10 +73,10 @@
   };
   toggl = {
     pname = "toggl";
-    version = "1.16.2";
+    version = "1.18.0";
     src = fetchurl {
-      url = "https://toggl.com/toggl/desktop/downloads/Toggl-1.16.2-arm64.dmg";
-      sha256 = "sha256-pgWpIVQIh7PJE9Z7qZ5I9sXxFapBefAtxLnXh/D5M3Q=";
+      url = "https://toggl.com/toggl/desktop/downloads/Toggl-1.18.0-arm64.dmg";
+      sha256 = "sha256-DXflDsljD5AyBo4nStb+ynucINuyZugKhw2gNQ0Dgv8=";
     };
   };
 }

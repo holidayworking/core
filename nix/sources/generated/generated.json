@@ -8,11 +8,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-obaasoI3o0uYlMf+NwSSEH4+O2pszLmKJYveJ86YpXU=",
+            "sha256": "sha256-jLbNjqRbge6/xjUnAc8wIgZnPnvG6zzIQuTcozKE2xQ=",
             "type": "url",
-            "url": "https://downloads.claude.ai/releases/darwin/universal/4.23118.1/Claude-e071e72f72fe1f56124e3c8a0096f4d75510060a.zip"
+            "url": "https://downloads.claude.ai/releases/darwin/universal/5.1231.0/Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip"
         },
-        "version": "https://downloads.claude.ai/releases/darwin/universal/4.23118.1/Claude-e071e72f72fe1f56124e3c8a0096f4d75510060a.zip"
+        "version": "https://downloads.claude.ai/releases/darwin/universal/5.1231.0/Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip"
     },
     "dropbox": {
         "cargoLock": null,
@@ -22,12 +22,12 @@
         "passthru": null,
         "pinned": false,
         "src": {
-            "name": "Dropbox-276.4.5325.arm64.dmg",
-            "sha256": "sha256-j4W2M/Q9vW2bSg2Y1xg/AJSsJJEiWGPycu3XQZNoJk0=",
+            "name": "Dropbox-278.4.4020.arm64.dmg",
+            "sha256": "sha256-NhE4US2fNnUW+lNiMNlvg49eZDuWE6nR0sanBoafRe0=",
             "type": "url",
-            "url": "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20276.4.5325.arm64.dmg"
+            "url": "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20278.4.4020.arm64.dmg"
         },
-        "version": "276.4.5325"
+        "version": "278.4.4020"
     },
     "duckstation-darwin": {
         "cargoLock": null,
@@ -38,11 +38,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-zXfYC1UnbxU0DvocZd8lD49NQTto0cE25IYV14DxJJw=",
+            "sha256": "sha256-ufbw50fuJheYjeM+H6/dF9AukY0EL+1pE1Wu2ahsEc0=",
             "type": "url",
-            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-12083/duckstation-mac-release.zip"
+            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-12442/duckstation-mac-release.zip"
         },
-        "version": "0.1-12083"
+        "version": "0.1-12442"
     },
     "duckstation-linux": {
         "cargoLock": null,
@@ -53,11 +53,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-DDoAUYP2VTj3j6AjHUyXqiMzaEtIGYXI1M+rBkDil8c=",
+            "sha256": "sha256-3ObKdwVazmBJF4G2tX8+Vem1Rnh3esV1rCRxwirREo4=",
             "type": "url",
-            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-12083/DuckStation-arm64.AppImage"
+            "url": "https://github.com/stenzek/duckstation/releases/download/v0.1-12442/DuckStation-arm64.AppImage"
         },
-        "version": "0.1-12083"
+        "version": "0.1-12442"
     },
     "firple": {
         "cargoLock": null,
@@ -128,10 +128,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-pgWpIVQIh7PJE9Z7qZ5I9sXxFapBefAtxLnXh/D5M3Q=",
+            "sha256": "sha256-DXflDsljD5AyBo4nStb+ynucINuyZugKhw2gNQ0Dgv8=",
             "type": "url",
-            "url": "https://toggl.com/toggl/desktop/downloads/Toggl-1.16.2-arm64.dmg"
+            "url": "https://toggl.com/toggl/desktop/downloads/Toggl-1.18.0-arm64.dmg"
         },
-        "version": "1.16.2"
+        "version": "1.18.0"
     }
 }
