@@ -33,7 +33,7 @@ catalog:
   execa: 10.2.1
   exif-reader: 2.0.3
   happy-dom: 21.0.4
-  markdownlint: 0.42.0
+  markdownlint: 0.42.1
   markdownlint-cli2: 0.24.0
   npm-run-all2: 9.0.4
   prh: 6.1.0
