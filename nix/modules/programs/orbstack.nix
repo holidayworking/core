@@ -9,7 +9,5 @@ delib.module {
 
   options = delib.singleEnableOption host.isDarwin;
 
-  home.ifEnabled.home.packages = with pkgs; [
-    orbstack
-  ];
+  darwin.ifEnabled.environment.systemPackages = with pkgs; [ orbstack ];
 }

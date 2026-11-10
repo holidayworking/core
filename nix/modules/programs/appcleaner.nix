@@ -9,5 +9,13 @@ delib.module {
 
   options = delib.singleEnableOption host.isDarwin;
 
-  home.ifEnabled.home.packages = with pkgs; [ appcleaner ];
+  darwin.ifEnabled.environment.systemPackages = [
+    (pkgs.appcleaner.overrideAttrs (old: {
+      # The upstream zip ships Finder's __MACOSX metadata, which would otherwise
+      # be copied into /Applications/Nix Apps next to the app.
+      postInstall = (old.postInstall or "") + ''
+        rm -rf $out/Applications/__MACOSX
+      '';
+    }))
+  ];
 }
