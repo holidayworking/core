@@ -14,6 +14,15 @@
       sha256 = "sha256-obaasoI3o0uYlMf+NwSSEH4+O2pszLmKJYveJ86YpXU=";
     };
   };
+  dropbox = {
+    pname = "dropbox";
+    version = "276.4.5325";
+    src = fetchurl {
+      url = "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20276.4.5325.arm64.dmg";
+      name = "Dropbox-276.4.5325.arm64.dmg";
+      sha256 = "sha256-j4W2M/Q9vW2bSg2Y1xg/AJSsJJEiWGPycu3XQZNoJk0=";
+    };
+  };
   duckstation-darwin = {
     pname = "duckstation-darwin";
     version = "0.1-12083";

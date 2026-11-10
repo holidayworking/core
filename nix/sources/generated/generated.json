@@ -14,6 +14,21 @@
         },
         "version": "https://downloads.claude.ai/releases/darwin/universal/4.23118.1/Claude-e071e72f72fe1f56124e3c8a0096f4d75510060a.zip"
     },
+    "dropbox": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "dropbox",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": "Dropbox-276.4.5325.arm64.dmg",
+            "sha256": "sha256-j4W2M/Q9vW2bSg2Y1xg/AJSsJJEiWGPycu3XQZNoJk0=",
+            "type": "url",
+            "url": "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20276.4.5325.arm64.dmg"
+        },
+        "version": "276.4.5325"
+    },
     "duckstation-darwin": {
         "cargoLock": null,
         "date": null,
