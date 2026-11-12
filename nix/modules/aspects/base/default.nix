@@ -1,11 +1,19 @@
 {
   den.aspects.base = {
-    os.programs.nh = {
-      enable = true;
+    os = { pkgs, ... }: {
+      environment.systemPackages = with pkgs; [
+        corepack_24
+        gnumake
+        nodejs_24
+      ];
 
-      clean = {
+      programs.nh = {
         enable = true;
-        extraArgs = "--keep 5 --keep-since 7d --no-direnv";
+
+        clean = {
+          enable = true;
+          extraArgs = "--keep 5 --keep-since 7d --no-direnv";
+        };
       };
     };
 
@@ -26,12 +34,6 @@
     };
 
     homeManager = { lib, pkgs, ... }: {
-      home.packages = with pkgs; [
-        corepack_24
-        gnumake
-        nodejs_24
-      ];
-
       programs = {
         direnv.enable = true;
         jq.enable = true;

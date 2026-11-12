@@ -4,9 +4,9 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.aspects.ai.homeManager =
+  den.aspects.ai.os =
     { inputs', ... }:
     {
-      home.packages = [ inputs'.crit.packages.default ];
+      environment.systemPackages = [ inputs'.crit.packages.default ];
     };
 }
