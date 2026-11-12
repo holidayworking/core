@@ -1,16 +1,12 @@
 {
   lib,
+  sources,
   stdenvNoCC,
   unzip,
-  sources,
   ...
 }:
 stdenvNoCC.mkDerivation {
   inherit (sources.firple) pname version src;
-
-  nativeBuildInputs = [ unzip ];
-
-  sourceRoot = ".";
 
   installPhase = ''
     runHook preInstall
@@ -24,4 +20,8 @@ stdenvNoCC.mkDerivation {
     license = licenses.ofl;
     platforms = platforms.all;
   };
+
+  nativeBuildInputs = [ unzip ];
+
+  sourceRoot = ".";
 }

@@ -1,18 +1,15 @@
 {
   lib,
+  sources,
   stdenvNoCC,
   undmg,
-  sources,
   ...
 }:
 stdenvNoCC.mkDerivation {
   inherit (sources.toggl) pname version src;
 
-  nativeBuildInputs = [ undmg ];
-
-  sourceRoot = ".";
-
-  dontPatchShebangs = true;
+  # Prebuilt, signed app bundle: skip fixup so nothing rewrites its binaries.
+  dontFixup = true;
 
   installPhase = ''
     runHook preInstall
@@ -28,4 +25,8 @@ stdenvNoCC.mkDerivation {
     platforms = platforms.darwin;
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
   };
+
+  nativeBuildInputs = [ undmg ];
+
+  sourceRoot = ".";
 }

@@ -1,9 +1,9 @@
 {
   lib,
-  stdenvNoCC,
   appimageTools,
-  unzip,
   sources,
+  stdenvNoCC,
+  unzip,
   ...
 }:
 let
@@ -13,23 +13,20 @@ let
     description = "Fast PlayStation 1 emulator";
     homepage = "https://www.duckstation.org/";
     license = licenses.cc-by-nc-nd-40;
+
     platforms = [
       "aarch64-darwin"
       "aarch64-linux"
     ];
+
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
-    mainProgram = pname;
   };
 
   darwin = stdenvNoCC.mkDerivation {
     inherit pname meta;
     inherit (sources.duckstation-darwin) version src;
 
-    nativeBuildInputs = [ unzip ];
-
-    sourceRoot = ".";
-
-    # Keep the upstream code signature intact.
+    # Prebuilt, signed app bundle: skip fixup so nothing rewrites its binaries.
     dontFixup = true;
 
     installPhase = ''
@@ -38,10 +35,14 @@ let
       cp -r DuckStation.app "$out/Applications/"
       runHook postInstall
     '';
+
+    nativeBuildInputs = [ unzip ];
+
+    sourceRoot = ".";
   };
 
   linux = appimageTools.wrapType2 (finalAttrs: {
-    inherit pname meta;
+    inherit pname;
     inherit (sources.duckstation-linux) version src;
 
     extraInstallCommands = ''
@@ -51,6 +52,10 @@ let
         --replace-fail 'Exec=duckstation-qt' 'Exec=${pname}'
       install -Dm444 -t $out/share/icons/hicolor/512x512/apps ${finalAttrs.contents}/org.duckstation.DuckStation.png
     '';
+
+    meta = meta // {
+      mainProgram = pname;
+    };
   });
 in
 if stdenvNoCC.hostPlatform.isDarwin then darwin else linux

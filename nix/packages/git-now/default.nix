@@ -1,10 +1,10 @@
 {
   lib,
-  stdenv,
   fetchFromGitHub,
+  stdenvNoCC,
   ...
 }:
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation {
   pname = "git-now";
   version = "2025-06-14";
 
@@ -16,15 +16,14 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
-  installPhase = ''
-    runHook preInstall
-    make prefix=$out install
-    runHook postInstall
-  '';
+  dontBuild = true;
+
+  makeFlags = [ "prefix=$(out)" ];
 
   meta = with lib; {
     description = "A temporary commit tool for git";
     homepage = "https://github.com/iwata/git-now";
-    license = licenses.gpl2;
+    license = licenses.gpl2Only;
+    mainProgram = "git-now";
   };
 }

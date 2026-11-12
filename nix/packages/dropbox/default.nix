@@ -1,16 +1,12 @@
 {
   lib,
+  sources,
   stdenvNoCC,
   undmg,
-  sources,
   ...
 }:
 stdenvNoCC.mkDerivation {
   inherit (sources.dropbox) pname version src;
-
-  nativeBuildInputs = [ undmg ];
-
-  sourceRoot = ".";
 
   # Prebuilt, signed app bundle: skip fixup so nothing rewrites its binaries.
   dontFixup = true;
@@ -29,4 +25,8 @@ stdenvNoCC.mkDerivation {
     platforms = [ "aarch64-darwin" ];
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
   };
+
+  nativeBuildInputs = [ undmg ];
+
+  sourceRoot = ".";
 }

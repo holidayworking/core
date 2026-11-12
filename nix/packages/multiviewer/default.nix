@@ -1,8 +1,8 @@
 {
   lib,
+  sources,
   stdenvNoCC,
   undmg,
-  sources,
   ...
 }:
 stdenvNoCC.mkDerivation {
@@ -12,10 +12,6 @@ stdenvNoCC.mkDerivation {
     builtins.match ".*/MultiViewer-([0-9.]+)-arm64\\.dmg" sources.multiviewer.version
   );
   inherit (sources.multiviewer) src;
-
-  nativeBuildInputs = [ undmg ];
-
-  sourceRoot = ".";
 
   # Prebuilt, signed app bundle: skip fixup so nothing rewrites its binaries.
   dontFixup = true;
@@ -34,4 +30,8 @@ stdenvNoCC.mkDerivation {
     platforms = [ "aarch64-darwin" ];
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
   };
+
+  nativeBuildInputs = [ undmg ];
+
+  sourceRoot = ".";
 }
