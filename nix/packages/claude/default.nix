@@ -1,8 +1,8 @@
 {
   lib,
+  sources,
   stdenvNoCC,
   unzip,
-  sources,
   ...
 }:
 stdenvNoCC.mkDerivation {
@@ -12,10 +12,6 @@ stdenvNoCC.mkDerivation {
     builtins.match ".*/universal/([0-9.]+)/Claude-[0-9a-f]+\\.zip" sources.claude.version
   );
   inherit (sources.claude) src;
-
-  nativeBuildInputs = [ unzip ];
-
-  sourceRoot = ".";
 
   # Prebuilt, signed app bundle: skip fixup so nothing rewrites its binaries.
   dontFixup = true;
@@ -34,4 +30,8 @@ stdenvNoCC.mkDerivation {
     platforms = platforms.darwin;
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
   };
+
+  nativeBuildInputs = [ unzip ];
+
+  sourceRoot = ".";
 }

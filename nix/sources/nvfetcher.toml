@@ -1,3 +1,18 @@
+# Download URLs carry a per-release hash, so track the whole zip URL from the
+# auto-update feed and derive the version from it in the package.
+[claude]
+src.webpage = "https://downloads.claude.ai/releases/darwin/universal/RELEASES.json"
+src.regex = '"url":\s*"(https://downloads\.claude\.ai/releases/darwin/universal/[\d.]+/Claude-[0-9a-f]+\.zip)"'
+fetch.url = "$ver"
+
+# The download endpoint only redirects to the versioned dmg, so read the
+# version from its Location header (the same source Homebrew's livecheck uses).
+[dropbox]
+src.cmd = "curl -fsSI 'https://www.dropbox.com/download?plat=mac&full=1&arch=arm64' | sed -n 's|^location: .*/Dropbox%20\\([0-9.]*\\)\\.arm64\\.dmg.*|\\1|p'"
+fetch.url = "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20$ver.arm64.dmg"
+# The default store name would keep the URL's space, which Nix rejects.
+url.name = "Dropbox-$ver.arm64.dmg"
+
 [duckstation-darwin]
 src.github_tag = "stenzek/duckstation"
 src.include_regex = 'v0\.1-\d+'
@@ -16,16 +31,6 @@ fetch.url = "https://github.com/stenzek/duckstation/releases/download/v$ver/Duck
 src.github = "negset/Firple"
 fetch.url = "https://github.com/negset/Firple/releases/download/$ver/Firple.zip"
 
-[toggl]
-src.webpage = "https://toggl.com/toggl/desktop/downloads/latest-mac.yml"
-src.regex = 'version: ([\d.]+)'
-fetch.url = "https://toggl.com/toggl/desktop/downloads/Toggl-$ver-arm64.dmg"
-
-[tailscale-gui]
-src.webpage = "https://pkgs.tailscale.com/stable/?mode=json&os=darwin"
-src.regex = '"MacZipsVersion": "([\d.]+)"'
-fetch.url = "https://pkgs.tailscale.com/stable/Tailscale-$ver-macos.pkg"
-
 [karabiner-elements]
 src.github = "pqrs-org/Karabiner-Elements"
 src.from_pattern = 'v(.+)'
@@ -39,17 +44,12 @@ src.webpage = "https://api.multiviewer.app/api/v1/releases/latest/"
 src.regex = '"url":\s*"(https://releases\.multiviewer\.app/v/[^"]+/MultiViewer-[\d.]+-arm64\.dmg)"'
 fetch.url = "$ver"
 
-# Download URLs carry a per-release hash, so track the whole zip URL from the
-# auto-update feed and derive the version from it in the package.
-[claude]
-src.webpage = "https://downloads.claude.ai/releases/darwin/universal/RELEASES.json"
-src.regex = '"url":\s*"(https://downloads\.claude\.ai/releases/darwin/universal/[\d.]+/Claude-[0-9a-f]+\.zip)"'
-fetch.url = "$ver"
+[tailscale-gui]
+src.webpage = "https://pkgs.tailscale.com/stable/?mode=json&os=darwin"
+src.regex = '"MacZipsVersion": "([\d.]+)"'
+fetch.url = "https://pkgs.tailscale.com/stable/Tailscale-$ver-macos.pkg"
 
-# The download endpoint only redirects to the versioned dmg, so read the
-# version from its Location header (the same source Homebrew's livecheck uses).
-[dropbox]
-src.cmd = "curl -fsSI 'https://www.dropbox.com/download?plat=mac&full=1&arch=arm64' | sed -n 's|^location: .*/Dropbox%20\\([0-9.]*\\)\\.arm64\\.dmg.*|\\1|p'"
-fetch.url = "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20$ver.arm64.dmg"
-# The default store name would keep the URL's space, which Nix rejects.
-url.name = "Dropbox-$ver.arm64.dmg"
+[toggl]
+src.webpage = "https://toggl.com/toggl/desktop/downloads/latest-mac.yml"
+src.regex = 'version: ([\d.]+)'
+fetch.url = "https://toggl.com/toggl/desktop/downloads/Toggl-$ver-arm64.dmg"

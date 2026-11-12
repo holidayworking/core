@@ -1,4 +1,4 @@
-{ tailscale-gui, sources, ... }:
+{ sources, tailscale-gui, ... }:
 # nixpkgs lags behind upstream releases, so only bump the source to the
 # version tracked by nvfetcher and reuse the nixpkgs build.
 tailscale-gui.overrideAttrs {
