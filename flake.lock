@@ -235,6 +235,26 @@
         "type": "github"
       }
     },
+    "hjem": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794190356,
+        "narHash": "sha256-tttNqwFIXsClznNv3uEltACsfBm8xIDo9bPl+BHqYZc=",
+        "owner": "feel-co",
+        "repo": "hjem",
+        "rev": "28cec3017cc94842f919f8f294c8b7136216b79b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "feel-co",
+        "repo": "hjem",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -396,6 +416,7 @@
         "den": "den",
         "flake-file": "flake-file",
         "flake-parts": "flake-parts",
+        "hjem": "hjem",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
         "llm-agents-nix": "llm-agents-nix",

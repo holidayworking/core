@@ -45,7 +45,13 @@ in
 
     nixos.system.stateVersion = "25.05";
 
-    darwin.system.stateVersion = 5;
+    darwin = { lib, ... }: {
+      # hjem's nix-darwin module always installs this agent, which symlinks apps
+      # into ~/Applications/Nix User Apps. Home Manager already copies them.
+      launchd.user.agents.link-nix-apps.serviceConfig.RunAtLoad = lib.mkForce false;
+
+      system.stateVersion = 5;
+    };
 
     homeManager = {
       home.stateVersion = "25.05";
@@ -54,5 +60,8 @@ in
     };
   };
 
-  den.schema.user.classes = [ "homeManager" ];
+  den.schema.user.classes = [
+    "hjem"
+    "homeManager"
+  ];
 }
