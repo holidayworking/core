@@ -8,10 +8,10 @@
 {
   claude = {
     pname = "claude";
-    version = "https://downloads.claude.ai/releases/darwin/universal/5.1231.0/Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip";
+    version = "https://downloads.claude.ai/releases/darwin/universal/5.1231.2/Claude-26912242b6649f3e503e012d9b7b9367d09c68e4.zip";
     src = fetchurl {
-      url = "https://downloads.claude.ai/releases/darwin/universal/5.1231.0/Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip";
-      sha256 = "sha256-jLbNjqRbge6/xjUnAc8wIgZnPnvG6zzIQuTcozKE2xQ=";
+      url = "https://downloads.claude.ai/releases/darwin/universal/5.1231.2/Claude-26912242b6649f3e503e012d9b7b9367d09c68e4.zip";
+      sha256 = "sha256-50z+yY0lYIEqX+kbsH/konfO/qcdQDn2vzsd4zhGJAo=";
     };
   };
   dropbox = {
@@ -65,18 +65,18 @@
   };
   tailscale-gui = {
     pname = "tailscale-gui";
-    version = "1.104.5";
+    version = "1.104.6";
     src = fetchurl {
-      url = "https://pkgs.tailscale.com/stable/Tailscale-1.104.5-macos.pkg";
-      sha256 = "sha256-8aKvtYncFkh8/58jxZ0AIaGk3PhHbSY3q0k8YoQiuBA=";
+      url = "https://pkgs.tailscale.com/stable/Tailscale-1.104.6-macos.pkg";
+      sha256 = "sha256-aTPigwLlaSpL542houF4RF626dVTkZdkfmTxh9VoLFM=";
     };
   };
   toggl = {
     pname = "toggl";
-    version = "1.18.0";
+    version = "1.19.0";
     src = fetchurl {
-      url = "https://toggl.com/toggl/desktop/downloads/Toggl-1.18.0-arm64.dmg";
-      sha256 = "sha256-DXflDsljD5AyBo4nStb+ynucINuyZugKhw2gNQ0Dgv8=";
+      url = "https://toggl.com/toggl/desktop/downloads/Toggl-1.19.0-arm64.dmg";
+      sha256 = "sha256-ikA54GgLZYYM4pvirWMHu9LnYKkt/emLycQsyBJpSRU=";
     };
   };
 }

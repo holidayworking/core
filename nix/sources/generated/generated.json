@@ -8,11 +8,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-jLbNjqRbge6/xjUnAc8wIgZnPnvG6zzIQuTcozKE2xQ=",
+            "sha256": "sha256-50z+yY0lYIEqX+kbsH/konfO/qcdQDn2vzsd4zhGJAo=",
             "type": "url",
-            "url": "https://downloads.claude.ai/releases/darwin/universal/5.1231.0/Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip"
+            "url": "https://downloads.claude.ai/releases/darwin/universal/5.1231.2/Claude-26912242b6649f3e503e012d9b7b9367d09c68e4.zip"
         },
-        "version": "https://downloads.claude.ai/releases/darwin/universal/5.1231.0/Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip"
+        "version": "https://downloads.claude.ai/releases/darwin/universal/5.1231.2/Claude-26912242b6649f3e503e012d9b7b9367d09c68e4.zip"
     },
     "dropbox": {
         "cargoLock": null,
@@ -113,11 +113,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-8aKvtYncFkh8/58jxZ0AIaGk3PhHbSY3q0k8YoQiuBA=",
+            "sha256": "sha256-aTPigwLlaSpL542houF4RF626dVTkZdkfmTxh9VoLFM=",
             "type": "url",
-            "url": "https://pkgs.tailscale.com/stable/Tailscale-1.104.5-macos.pkg"
+            "url": "https://pkgs.tailscale.com/stable/Tailscale-1.104.6-macos.pkg"
         },
-        "version": "1.104.5"
+        "version": "1.104.6"
     },
     "toggl": {
         "cargoLock": null,
@@ -128,10 +128,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-DXflDsljD5AyBo4nStb+ynucINuyZugKhw2gNQ0Dgv8=",
+            "sha256": "sha256-ikA54GgLZYYM4pvirWMHu9LnYKkt/emLycQsyBJpSRU=",
             "type": "url",
-            "url": "https://toggl.com/toggl/desktop/downloads/Toggl-1.18.0-arm64.dmg"
+            "url": "https://toggl.com/toggl/desktop/downloads/Toggl-1.19.0-arm64.dmg"
         },
-        "version": "1.18.0"
+        "version": "1.19.0"
     }
 }
