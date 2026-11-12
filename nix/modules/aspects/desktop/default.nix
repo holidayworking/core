@@ -18,7 +18,6 @@
           postInstall = (old.postInstall or "") + "rm -rf $out/Applications/__MACOSX\n";
         }))
         local.claude
-        local.dropbox
         local.multiviewer
         local.toggl
         maccy

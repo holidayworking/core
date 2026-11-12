@@ -10,12 +10,12 @@
 
       darwin.programs._1password-gui.enable = true;
 
-      # 1Password rewrites settings.json itself, so it can't be a read-only
-      # symlink; turn off "Install updates automatically" in place instead,
-      # seeding the file before the first launch. The option only exists on macOS.
       homeManager =
         { lib, pkgs, ... }:
         {
+          # 1Password rewrites settings.json itself, so it can't be a read-only
+          # symlink; turn off "Install updates automatically" in place instead,
+          # seeding the file before the first launch. The option only exists on macOS.
           home.activation.disable1PasswordAutoUpdate = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
             lib.hm.dag.entryAfter [ "writeBoundary" ] ''
               settings="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/settings/settings.json"
@@ -39,6 +39,21 @@
               fi
             ''
           );
+
+          xdg.autostart = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+            enable = true;
+
+            entries = [
+              "${
+                pkgs.makeDesktopItem {
+                  name = "1password";
+                  desktopName = "1Password";
+                  exec = "1password --silent";
+                  icon = "1password";
+                }
+              }/share/applications/1password.desktop"
+            ];
+          };
         };
     };
 }
