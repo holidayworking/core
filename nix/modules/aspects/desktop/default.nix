@@ -29,6 +29,9 @@
         utm
       ];
 
+      # Slack only honors AutoUpdate from managed preferences.
+      managedPreferences."com.tinyspeck.slackmacgap".AutoUpdate = false;
+
       programs.mas = {
         enable = true;
         packages."1Password for Safari" = 1569813296;
