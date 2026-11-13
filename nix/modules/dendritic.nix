@@ -14,11 +14,6 @@
 
       den.url = "github:denful/den";
 
-      hjem = {
-        url = "github:feel-co/hjem";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
       home-manager = {
         url = "github:nix-community/home-manager/master";
         inputs.nixpkgs.follows = "nixpkgs";
