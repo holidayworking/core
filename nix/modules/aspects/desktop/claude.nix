@@ -21,20 +21,24 @@
         {
           imports = [ inputs.mcp-servers-nix.homeManagerModules.default ];
 
-          # Claude Desktop rewrites claude_desktop_config.json on launch, so a
-          # plain home.file symlink cannot survive. Merge the Nix-managed settings
-          # into the existing file on activation instead, letting Nix own the
-          # mcpServers key while preserving anything else Claude Desktop wrote.
-          home.activation.claudeDesktopConfig = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-            (
-              claudeConfig=${lib.escapeShellArg configPath}
-              run mkdir -p "$(dirname "$claudeConfig")"
-              merged="$(${lib.getExe pkgs.jq} -s '.[0] + .[1]' "$claudeConfig" ${staticConfig} 2>/dev/null || cat ${staticConfig})"
-              if [ "$merged" != "$(cat "$claudeConfig" 2>/dev/null)" ]; then
-                printf '%s\n' "$merged" | run tee "$claudeConfig" >/dev/null
-              fi
-            )
-          '';
+          home = {
+            # Claude Desktop rewrites claude_desktop_config.json on launch, so a
+            # plain home.file symlink cannot survive. Merge the Nix-managed settings
+            # into the existing file on activation instead, letting Nix own the
+            # mcpServers key while preserving anything else Claude Desktop wrote.
+            activation.claudeDesktopConfig = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+              (
+                claudeConfig=${lib.escapeShellArg configPath}
+                run mkdir -p "$(dirname "$claudeConfig")"
+                merged="$(${lib.getExe pkgs.jq} -s '.[0] + .[1]' "$claudeConfig" ${staticConfig} 2>/dev/null || cat ${staticConfig})"
+                if [ "$merged" != "$(cat "$claudeConfig" 2>/dev/null)" ]; then
+                  printf '%s\n' "$merged" | run tee "$claudeConfig" >/dev/null
+                fi
+              )
+            '';
+
+            packages = [ pkgs.local.claude ];
+          };
 
           mcp-servers.settings.servers = { };
         }
