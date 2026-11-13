@@ -63,14 +63,6 @@
       sha256 = "sha256-KlvoPDUJ9v468mv2XQ/04c8VFR9Pkq0p2u0qRq5eqmk=";
     };
   };
-  tailscale-gui = {
-    pname = "tailscale-gui";
-    version = "1.104.6";
-    src = fetchurl {
-      url = "https://pkgs.tailscale.com/stable/Tailscale-1.104.6-macos.pkg";
-      sha256 = "sha256-aTPigwLlaSpL542houF4RF626dVTkZdkfmTxh9VoLFM=";
-    };
-  };
   toggl = {
     pname = "toggl";
     version = "1.19.0";

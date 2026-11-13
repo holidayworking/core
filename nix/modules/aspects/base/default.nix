@@ -15,6 +15,8 @@
           extraArgs = "--keep 5 --keep-since 7d --no-direnv";
         };
       };
+
+      services.tailscale.enable = true;
     };
 
     nixos = { lib, pkgs, ... }: {
@@ -28,7 +30,16 @@
     };
 
     darwin = { config, ... }: {
-      networking.computerName = config.networking.hostName;
+      networking = {
+        computerName = config.networking.hostName;
+
+        knownNetworkServices = [
+          "Ethernet"
+          "Wi-Fi"
+        ];
+      };
+
+      services.tailscale.overrideLocalDns = true;
 
       system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
     };
