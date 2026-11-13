@@ -104,21 +104,6 @@
         },
         "version": "https://releases.multiviewer.app/v/2.16.1/1/RMIPsm6IG_e90vEhX8Oi1Y4-YM818WcZ/MultiViewer-2.16.1-arm64.dmg"
     },
-    "tailscale-gui": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "tailscale-gui",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-aTPigwLlaSpL542houF4RF626dVTkZdkfmTxh9VoLFM=",
-            "type": "url",
-            "url": "https://pkgs.tailscale.com/stable/Tailscale-1.104.6-macos.pkg"
-        },
-        "version": "1.104.6"
-    },
     "toggl": {
         "cargoLock": null,
         "date": null,

@@ -44,11 +44,6 @@ src.webpage = "https://api.multiviewer.app/api/v1/releases/latest/"
 src.regex = '"url":\s*"(https://releases\.multiviewer\.app/v/[^"]+/MultiViewer-[\d.]+-arm64\.dmg)"'
 fetch.url = "$ver"
 
-[tailscale-gui]
-src.webpage = "https://pkgs.tailscale.com/stable/?mode=json&os=darwin"
-src.regex = '"MacZipsVersion": "([\d.]+)"'
-fetch.url = "https://pkgs.tailscale.com/stable/Tailscale-$ver-macos.pkg"
-
 [toggl]
 src.webpage = "https://toggl.com/toggl/desktop/downloads/latest-mac.yml"
 src.regex = 'version: ([\d.]+)'

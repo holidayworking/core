@@ -35,7 +35,6 @@ in
   den.default = {
     includes = [
       den.aspects.base
-      den.aspects.vpn
       den.batteries.define-user
       den.batteries.hostname
       den.batteries.inputs'
