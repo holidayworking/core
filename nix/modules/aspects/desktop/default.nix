@@ -29,8 +29,10 @@
         utm
       ];
 
-      # Slack only honors AutoUpdate from managed preferences.
-      managedPreferences."com.tinyspeck.slackmacgap".AutoUpdate = false;
+      managedPreferences = {
+        "com.tinyspeck.slackmacgap".AutoUpdate = false;
+        "notion.id".NotionNoAutoUpdates = true;
+      };
 
       programs.mas = {
         enable = true;
