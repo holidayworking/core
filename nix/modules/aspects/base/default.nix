@@ -1,12 +1,6 @@
 {
   den.aspects.base = {
-    os = { pkgs, ... }: {
-      environment.systemPackages = with pkgs; [
-        corepack_24
-        gnumake
-        nodejs_24
-      ];
-
+    os = {
       programs.nh = {
         enable = true;
 
@@ -45,6 +39,12 @@
     };
 
     homeManager = { lib, pkgs, ... }: {
+      home.packages = with pkgs; [
+        corepack_24
+        gnumake
+        nodejs_24
+      ];
+
       programs = {
         direnv.enable = true;
         jq.enable = true;

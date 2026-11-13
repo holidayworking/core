@@ -1,34 +1,6 @@
 {
   den.aspects.desktop = {
-    os =
-      { pkgs, ... }:
-      {
-        environment.systemPackages = with pkgs; [
-          ffmpeg
-          local.duckstation
-          local.radigo
-        ];
-      };
-
-    darwin = { pkgs, ... }: {
-      environment.systemPackages = with pkgs; [
-        (appcleaner.overrideAttrs (old: {
-          # The upstream zip ships Finder's __MACOSX metadata, which would otherwise
-          # be copied into /Applications/Nix Apps next to the app.
-          postInstall = (old.postInstall or "") + "rm -rf $out/Applications/__MACOSX\n";
-        }))
-        local.claude
-        local.multiviewer
-        local.toggl
-        maccy
-        notion-app
-        orbstack
-        slack
-        terminal-notifier
-        the-unarchiver
-        utm
-      ];
-
+    darwin = {
       managedPreferences = {
         "com.tinyspeck.slackmacgap".AutoUpdate = false;
         "notion.id".NotionNoAutoUpdates = true;
@@ -79,7 +51,31 @@
       };
     };
 
-    homeManager = {
+    homeManager = { lib, pkgs, ... }: {
+      home.packages =
+        with pkgs;
+        [
+          ffmpeg
+          local.duckstation
+          local.radigo
+        ]
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+          (appcleaner.overrideAttrs (old: {
+            # The upstream zip ships Finder's __MACOSX metadata, which would otherwise
+            # be copied into ~/Applications/Home Manager Apps next to the app.
+            postInstall = (old.postInstall or "") + "rm -rf $out/Applications/__MACOSX\n";
+          }))
+          local.multiviewer
+          local.toggl
+          maccy
+          notion-app
+          orbstack
+          slack
+          terminal-notifier
+          the-unarchiver
+          utm
+        ];
+
       programs = {
         google-chrome.enable = true;
         yt-dlp.enable = true;
