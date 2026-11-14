@@ -31,6 +31,20 @@ fetch.url = "https://github.com/stenzek/duckstation/releases/download/v$ver/Duck
 src.github = "negset/Firple"
 fetch.url = "https://github.com/negset/Firple/releases/download/$ver/Firple.zip"
 
+[herdr-gitview]
+src.github_tag = "ChmaraX/herdr-gitview"
+fetch.github = "ChmaraX/herdr-gitview"
+cargo_lock = ["Cargo.lock"]
+
+[herdr-nvim]
+src.github_tag = "ChmaraX/herdr-nvim"
+fetch.github = "ChmaraX/herdr-nvim"
+cargo_lock = ["Cargo.lock"]
+
+[herdr-terminal-notifier]
+src.git = "https://github.com/dot/herdr-terminal-notifier"
+fetch.github = "dot/herdr-terminal-notifier"
+
 [karabiner-elements]
 src.github = "pqrs-org/Karabiner-Elements"
 src.from_pattern = 'v(.+)'

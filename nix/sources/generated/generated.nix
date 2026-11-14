@@ -47,6 +47,52 @@
       sha256 = "sha256-JyMYNAfMWqF/nPT5mWjPcjE8q8kTesReUTPBZA7+5No=";
     };
   };
+  herdr-gitview = {
+    pname = "herdr-gitview";
+    version = "v0.5.0";
+    src = fetchFromGitHub {
+      owner = "ChmaraX";
+      repo = "herdr-gitview";
+      rev = "v0.5.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-3EBZ1d0AOdm07RK4dPXfMjLcqAeZVcBcrjvStS0QxjI=";
+    };
+    cargoLock."Cargo.lock" = {
+      lockFile = ./. + "/sha256-3EBZ1d0AOdm07RK4dPXfMjLcqAeZVcBcrjvStS0QxjI=/Cargo.lock";
+      outputHashes = {
+        
+      };
+    };
+  };
+  herdr-nvim = {
+    pname = "herdr-nvim";
+    version = "v1.3.1";
+    src = fetchFromGitHub {
+      owner = "ChmaraX";
+      repo = "herdr-nvim";
+      rev = "v1.3.1";
+      fetchSubmodules = false;
+      sha256 = "sha256-/026mNSbhZIAMJeNdSsbi9vhUuQEfdjqI99QzKAHW6w=";
+    };
+    cargoLock."Cargo.lock" = {
+      lockFile = ./. + "/sha256-_026mNSbhZIAMJeNdSsbi9vhUuQEfdjqI99QzKAHW6w=/Cargo.lock";
+      outputHashes = {
+        
+      };
+    };
+  };
+  herdr-terminal-notifier = {
+    pname = "herdr-terminal-notifier";
+    version = "321cb6e18df7c5e42030c019ed9e7c812f8998f5";
+    src = fetchFromGitHub {
+      owner = "dot";
+      repo = "herdr-terminal-notifier";
+      rev = "321cb6e18df7c5e42030c019ed9e7c812f8998f5";
+      fetchSubmodules = false;
+      sha256 = "sha256-hw/MBb7ND/FdQ7CbnpJDSBNf1Qb/g74ntariURwNRQU=";
+    };
+    date = "2026-09-07";
+  };
   karabiner-elements = {
     pname = "karabiner-elements";
     version = "16.3.0";

@@ -56,9 +56,12 @@ in
       colorscheme = "github_dark_default";
       colorschemes.github-theme.enable = true;
       dependencies.ripgrep.enable = true;
+      extraConfigLua = ''require("herdr-nvim").setup({})'';
 
       # Used by bashls.
       extraPackages = [ pkgs.shellcheck ];
+
+      extraPlugins = [ pkgs.local.herdr-nvim ];
 
       globals.mapleader = " ";
 
