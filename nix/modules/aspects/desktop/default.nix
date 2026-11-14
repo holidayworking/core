@@ -78,6 +78,11 @@
 
       programs = {
         google-chrome.enable = true;
+
+        herdr.plugins = lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+          pkgs.local.herdr-terminal-notifier
+        ];
+
         yt-dlp.enable = true;
       };
     };

@@ -74,6 +74,79 @@
         },
         "version": "6.400"
     },
+    "herdr-gitview": {
+        "cargoLock": {
+            "Cargo.lock": [
+                "sha256-3EBZ1d0AOdm07RK4dPXfMjLcqAeZVcBcrjvStS0QxjI=/Cargo.lock",
+                {}
+            ]
+        },
+        "date": null,
+        "extract": null,
+        "name": "herdr-gitview",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "ChmaraX",
+            "repo": "herdr-gitview",
+            "rev": "v0.5.0",
+            "sha256": "sha256-3EBZ1d0AOdm07RK4dPXfMjLcqAeZVcBcrjvStS0QxjI=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "v0.5.0"
+    },
+    "herdr-nvim": {
+        "cargoLock": {
+            "Cargo.lock": [
+                "sha256-_026mNSbhZIAMJeNdSsbi9vhUuQEfdjqI99QzKAHW6w=/Cargo.lock",
+                {}
+            ]
+        },
+        "date": null,
+        "extract": null,
+        "name": "herdr-nvim",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "ChmaraX",
+            "repo": "herdr-nvim",
+            "rev": "v1.3.1",
+            "sha256": "sha256-/026mNSbhZIAMJeNdSsbi9vhUuQEfdjqI99QzKAHW6w=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "v1.3.1"
+    },
+    "herdr-terminal-notifier": {
+        "cargoLock": null,
+        "date": "2026-09-07",
+        "extract": null,
+        "name": "herdr-terminal-notifier",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "dot",
+            "repo": "herdr-terminal-notifier",
+            "rev": "321cb6e18df7c5e42030c019ed9e7c812f8998f5",
+            "sha256": "sha256-hw/MBb7ND/FdQ7CbnpJDSBNf1Qb/g74ntariURwNRQU=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "321cb6e18df7c5e42030c019ed9e7c812f8998f5"
+    },
     "karabiner-elements": {
         "cargoLock": null,
         "date": null,

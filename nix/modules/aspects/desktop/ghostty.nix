@@ -9,6 +9,10 @@
         font-family = "Firple";
         font-size = "14";
 
+        # Attach to herdr in the first window. Go through a login shell so the
+        # herdr server, if this starts it, gets the user's PATH for its plugins.
+        initial-command = "${lib.getExe pkgs.zsh} -lc 'exec herdr'";
+
         # Mirror Ghostty's macOS default keybinds (Cmd -> Super) on Linux.
         keybind = lib.mkIf pkgs.stdenv.hostPlatform.isLinux [
           "clear"
