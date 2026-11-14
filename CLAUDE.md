@@ -10,7 +10,7 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 
 - [ ] Run `vp install` after pulling remote changes and before getting started.
 - [ ] Run `vp check` and `vp test` to format, lint, type check and test changes.
-- [ ] `vp check` only lints/formats code (Oxlint/Oxfmt). For Markdown content (e.g. `apps/zenn`, docs), also run root-level `pnpm lint` (cspell, markdownlint, textlint) and `pnpm fix` to autofix.
+- [ ] `vp check` only lints/formats code (Oxlint/Oxfmt). For Markdown content (e.g. `apps/zenn`, docs), also run root-level `vp run lint` (cspell, markdownlint, textlint) and `vp run fix` to autofix.
 - [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
@@ -50,6 +50,7 @@ The configuration uses [den](https://den.denful.dev) on flake-parts. `flake.nix`
 - den drops config silently, so check where it lands ([docs](https://den.denful.dev/explanation/where-config-lands/)) and confirm with `nix eval` when adding a new delivery path:
   - `homeManager` keys reach the user from a host's `includes` only through the `host-aspects` battery on `den.aspects.hidekazu`. `den.schema.host.includes` is dropped even with that battery; use `den.default.includes` for everything global.
   - Don't write `nixos`/`darwin`/`os` keys directly on a user aspect ([#694](https://github.com/denful/den/issues/694)); use `provides.to-hosts`.
+- Neovim is configured with Nixvim in `aspects/base/nixvim.nix`. [LazyVim](https://www.lazyvim.org) is the reference for plugin choices, settings and keymaps: suggest what it does when relevant, but add nothing from it without the user's approval (a plugin's `opts` maps to `plugins.<name>.settings`).
 - Unfree packages are allowed globally (`nixpkgs.config.allowUnfree` in `defaults.nix`); don't use `den.batteries.unfree`.
 - Module function arguments follow this order: `den, inputs, lib, pkgs, config, ...` (include only what's actually used). Inside class modules (`homeManager = { config, ... }: ...`) `config`, `lib` and `pkgs` are normal module arguments, and `imports` works.
 - Order and separate elements in a module as follows:
