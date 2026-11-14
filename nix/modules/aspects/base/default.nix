@@ -48,12 +48,6 @@
       programs = {
         direnv.enable = true;
         jq.enable = true;
-
-        vim = {
-          enable = true;
-          packageConfigurable = pkgs.vim;
-          defaultEditor = true;
-        };
       };
 
       targets.darwin = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {

@@ -423,6 +423,9 @@
           );
         };
 
+        # Neovim's clipboard provider for the GNOME Wayland session.
+        programs.nixvim.clipboard.providers.wl-copy.enable = true;
+
         xdg.userDirs = {
           enable = true;
           createDirectories = true;
