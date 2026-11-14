@@ -18,20 +18,6 @@
           --replace-fail "command -v python3" "command -v ${lib.getExe pkgs.python3}" \
           --replace-fail "python3 - <<" "${lib.getExe pkgs.python3} - <<"
       '';
-
-      mkNotifierHook = suffix: extra: [
-        (
-          {
-            hooks = [
-              {
-                type = "command";
-                command = "${lib.getExe pkgs.nodejs_24} ~/.claude/hooks/claude-notifier-on-${suffix}.js";
-              }
-            ];
-          }
-          // extra
-        )
-      ];
     in
     {
       programs = {
@@ -73,29 +59,20 @@
               };
             };
 
-            hooks = {
-              PermissionRequest = mkNotifierHook "permission" { };
-              PreToolUse = mkNotifierHook "question" { matcher = "AskUserQuestion"; };
+            # Same entry as `herdr integration install claude`.
+            hooks.SessionStart = [
+              {
+                hooks = [
+                  {
+                    command = "bash ~/.claude/hooks/herdr-agent-state.sh session";
+                    timeout = 10;
+                    type = "command";
+                  }
+                ];
 
-              # Same entry as `herdr integration install claude`.
-              SessionStart = [
-                {
-                  hooks = [
-                    {
-                      command = "bash ~/.claude/hooks/herdr-agent-state.sh session";
-                      timeout = 10;
-                      type = "command";
-                    }
-                  ];
-
-                  matcher = "^(startup|resume|clear|compact|fork)$";
-                }
-              ];
-
-              Stop = mkNotifierHook "stop" { };
-              SubagentStop = mkNotifierHook "subagent-stop" { };
-              UserPromptSubmit = mkNotifierHook "prompt" { };
-            };
+                matcher = "^(startup|resume|clear|compact|fork)$";
+              }
+            ];
 
             language = "japanese";
             otelHeadersHelper = config.sops.templates.otlp-headers-helper.path;

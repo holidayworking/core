@@ -21,10 +21,7 @@
           config = {
             keymap = [
               {
-                application.not = [
-                  "code"
-                  "com.mitchellh.ghostty"
-                ];
+                application.not = [ "com.mitchellh.ghostty" ];
 
                 name = "Global";
 

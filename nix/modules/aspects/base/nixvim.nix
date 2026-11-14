@@ -111,8 +111,8 @@ in
           autoInstall.enable = true;
 
           settings = {
-            # Apply Oxlint's safe fixes before formatting, like VS Code's
-            # `source.fixAll.oxc` code action on save.
+            # Apply Oxlint's safe fixes (the `source.fixAll.oxc` code action)
+            # before formatting on save.
             format_on_save.__raw = ''
               function(bufnr)
                 local client = vim.lsp.get_clients({ bufnr = bufnr, name = "oxlint" })[1]
