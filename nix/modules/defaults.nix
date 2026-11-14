@@ -5,7 +5,6 @@ let
 
     overlays = [
       inputs.llm-agents-nix.overlays.shared-nixpkgs
-      inputs.nix-vscode-extensions.overlays.default
       (_final: prev: {
         local =
           let
@@ -23,14 +22,7 @@ let
   };
 in
 {
-  flake-file.inputs = {
-    llm-agents-nix.url = "github:numtide/llm-agents.nix";
-
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+  flake-file.inputs.llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
   den.default = {
     includes = [
