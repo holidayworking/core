@@ -1,9 +1,12 @@
 {
   git,
   lib,
+  libgit2,
+  pkg-config,
   ps,
   rustPlatform,
   sources,
+  zlib,
   ...
 }:
 rustPlatform.buildRustPackage {
@@ -12,6 +15,13 @@ rustPlatform.buildRustPackage {
   version = lib.removePrefix "v" sources.herdr-nvim.version;
 
   cargoLock = sources.herdr-nvim.cargoLock."Cargo.lock";
+
+  # nixpkgs' cargo setup hook sets LIBGIT2_NO_VENDOR, so libgit2-sys links the
+  # system libgit2 through pkg-config instead of building its own.
+  buildInputs = [
+    libgit2
+    zlib
+  ];
 
   # Run the unit tests only: the integration tests under tests/ spawn nvim
   # daemons and read the process table, which the build sandbox doesn't allow.
@@ -37,6 +47,8 @@ rustPlatform.buildRustPackage {
     mainProgram = "herdr-nvim";
     platforms = platforms.unix;
   };
+
+  nativeBuildInputs = [ pkg-config ];
 
   # Tests run git and ps on scratch repositories and processes.
   nativeCheckInputs = [
