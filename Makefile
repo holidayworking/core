@@ -24,7 +24,7 @@ nix/update-sources:
 		--build-dir nix/sources/generated
 
 nix/clean:
-	@nh clean all --no-direnv
+	@nh clean all --keep 5 --keep-since 7d --no-direnv
 
 nixos/build-ami: HOST = cancer
 nixos/build-ami:
