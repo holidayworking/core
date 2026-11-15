@@ -3,6 +3,7 @@
     "commands-show-output": false,
     "line-length": false,
     "no-bare-urls": false,
+    "no-duplicate-heading": { "siblings_only": true },
     "no-inline-html": false,
   },
   "gitignore": true,
