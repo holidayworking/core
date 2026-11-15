@@ -85,6 +85,15 @@
 
         yt-dlp.enable = true;
       };
+
+      # Bring Ghostty to the front after focusing the agent's pane, so clicking a
+      # notification also works while another app is in front. The plugin runs
+      # this through a shell, so `;` chains the second command.
+      xdg.configFile."herdr/plugins/config/dot.terminal-notifier/config.env" =
+        lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
+          {
+            text = "CLICK_COMMAND='agent focus {pane}; /usr/bin/open -b com.mitchellh.ghostty'\n";
+          };
     };
   };
 }
