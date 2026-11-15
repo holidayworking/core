@@ -66,7 +66,6 @@
             postInstall = (old.postInstall or "") + "rm -rf $out/Applications/__MACOSX\n";
           }))
           local.multiviewer
-          local.toggl
           maccy
           notion-app
           orbstack

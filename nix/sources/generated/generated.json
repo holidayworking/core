@@ -176,20 +176,5 @@
             "url": "https://releases.multiviewer.app/v/2.16.1/1/RMIPsm6IG_e90vEhX8Oi1Y4-YM818WcZ/MultiViewer-2.16.1-arm64.dmg"
         },
         "version": "https://releases.multiviewer.app/v/2.16.1/1/RMIPsm6IG_e90vEhX8Oi1Y4-YM818WcZ/MultiViewer-2.16.1-arm64.dmg"
-    },
-    "toggl": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "toggl",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-ikA54GgLZYYM4pvirWMHu9LnYKkt/emLycQsyBJpSRU=",
-            "type": "url",
-            "url": "https://toggl.com/toggl/desktop/downloads/Toggl-1.19.0-arm64.dmg"
-        },
-        "version": "1.19.0"
     }
 }

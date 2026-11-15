@@ -57,8 +57,3 @@ fetch.url = "https://github.com/pqrs-org/Karabiner-Elements/releases/download/v$
 src.webpage = "https://api.multiviewer.app/api/v1/releases/latest/"
 src.regex = '"url":\s*"(https://releases\.multiviewer\.app/v/[^"]+/MultiViewer-[\d.]+-arm64\.dmg)"'
 fetch.url = "$ver"
-
-[toggl]
-src.webpage = "https://toggl.com/toggl/desktop/downloads/latest-mac.yml"
-src.regex = 'version: ([\d.]+)'
-fetch.url = "https://toggl.com/toggl/desktop/downloads/Toggl-$ver-arm64.dmg"
