@@ -10,7 +10,7 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 
 - [ ] Run `vp install` after pulling remote changes and before getting started.
 - [ ] Run `vp check` and `vp test` to format, lint, type check and test changes.
-- [ ] `vp check` only lints/formats code (Oxlint/Oxfmt). For Markdown content (e.g. `apps/zenn`, docs), also run root-level `vp run lint` (cspell, markdownlint, textlint) and `vp run fix` to autofix.
+- [ ] `vp check` only lints/formats code (Oxlint/Oxfmt). Also run root-level `vp run lint` (cspell, markdownlint, textlint) and `vp run fix` to autofix: CI runs it, and cspell checks every file.
 - [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
