@@ -1,6 +1,8 @@
 {
   git,
   lib,
+  oniguruma,
+  pkg-config,
   rustPlatform,
   sources,
   ...
@@ -11,6 +13,10 @@ rustPlatform.buildRustPackage {
   version = lib.removePrefix "v" sources.herdr-gitview.version;
 
   cargoLock = sources.herdr-gitview.cargoLock."Cargo.lock";
+
+  # nixpkgs' cargo setup hook sets RUSTONIG_SYSTEM_LIBONIG, so onig_sys links
+  # the system oniguruma through pkg-config instead of building its own.
+  buildInputs = [ oniguruma ];
 
   # Run the unit tests only: some integration tests under tests/ drive the herdr
   # desktop app setup or a live terminal, which the build sandbox doesn't allow.
@@ -23,6 +29,8 @@ rustPlatform.buildRustPackage {
     mainProgram = "herdr-gitview";
     platforms = platforms.unix;
   };
+
+  nativeBuildInputs = [ pkg-config ];
 
   # Tests run git on fixture repositories.
   nativeCheckInputs = [ git ];
