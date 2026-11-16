@@ -1362,9 +1362,6 @@ async function handler(event) {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
         ],
-        "SourceMarkers": [
-          {},
-        ],
         "SourceObjectKeys": [
           "[ASSET ZIP]",
         ],
