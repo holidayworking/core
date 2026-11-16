@@ -1,5 +1,6 @@
 import type { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 
+import { Validations } from "aws-cdk-lib";
 import { Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import { Architecture, Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
@@ -50,6 +51,12 @@ export class CloudFrontInvalidator extends Construct {
       logGroup,
       role,
       runtime: Runtime.NODEJS_24_X,
+    });
+
+    Validations.of(func).acknowledge({
+      id: "AwsSolutions::AwsSolutions-L1",
+      reason:
+        "Node.js 26 cannot be bundled yet because the public.ecr.aws/sam/build-nodejs26.x image is not published.",
     });
 
     distribution.grantCreateInvalidation(func);

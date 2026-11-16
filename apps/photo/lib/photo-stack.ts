@@ -98,6 +98,12 @@ export class PhotoStack extends cdk.Stack {
       timeout: cdk.Duration.seconds(30),
     });
 
+    Validations.of(func).acknowledge({
+      id: "AwsSolutions::AwsSolutions-L1",
+      reason:
+        "Node.js 26 cannot be bundled yet because the public.ecr.aws/sam/build-nodejs26.x image is not published.",
+    });
+
     func.addToRolePolicy(
       new PolicyStatement({
         actions: ["s3:ListBucket"],

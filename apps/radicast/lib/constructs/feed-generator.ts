@@ -67,6 +67,12 @@ export class FeedGenerator extends Construct {
       timeout: Duration.minutes(15),
     });
 
+    Validations.of(func).acknowledge({
+      id: "AwsSolutions::AwsSolutions-L1",
+      reason:
+        "Node.js 26 cannot be bundled yet because the public.ecr.aws/sam/build-nodejs26.x image is not published.",
+    });
+
     func.addToRolePolicy(
       new PolicyStatement({
         actions: ["cloudfront-keyvaluestore:GetKey"],
