@@ -180,14 +180,14 @@ catalogs:
       specifier: 2.36.0
       version: 2.36.0
     '@aws-sdk/client-cloudfront':
-      specifier: 3.1167.0
-      version: 3.1167.0
+      specifier: 3.1169.0
+      version: 3.1169.0
     '@aws-sdk/client-cloudfront-keyvaluestore':
-      specifier: 3.1167.0
-      version: 3.1167.0
+      specifier: 3.1169.0
+      version: 3.1169.0
     '@aws-sdk/client-s3':
-      specifier: 3.1167.0
-      version: 3.1167.0
+      specifier: 3.1169.0
+      version: 3.1169.0
     '@aws-sdk/signature-v4a':
       specifier: 3.1138.0
       version: 3.1138.0
@@ -360,7 +360,7 @@ importers:
         version: 2.36.0(@middy/core@7.9.2)
       '@aws-sdk/client-s3':
         specifier: 'catalog:'
-        version: 3.1167.0
+        version: 3.1169.0
       '@core/constants':
         specifier: workspace:*
         version: link:../../packages/constants
@@ -412,13 +412,13 @@ importers:
         version: 2.36.0(@middy/core@7.9.2)
       '@aws-sdk/client-cloudfront':
         specifier: 'catalog:'
-        version: 3.1167.0
+        version: 3.1169.0
       '@aws-sdk/client-cloudfront-keyvaluestore':
         specifier: 'catalog:'
-        version: 3.1167.0
+        version: 3.1169.0
       '@aws-sdk/client-s3':
         specifier: 'catalog:'
-        version: 3.1167.0
+        version: 3.1169.0
       '@aws-sdk/signature-v4a':
         specifier: 'catalog:'
         version: 3.1138.0
@@ -633,16 +633,16 @@ packages:
     resolution: {integrity: sha512-OHlfkNzDFjYnwNPABhwAkDTUi0HPjfsKUHJDR0bSMORpCXNzRpInPCNCIT08xKDhjaPlcLJ+2Av+Sk7hHnuC8A==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/client-cloudfront-keyvaluestore@3.1167.0':
-    resolution: {integrity: sha512-r72m7oeSsT1+BIywtQz5Ox1la8hBdvB+dipHVD5oqatDOfBfsu/aRJIv5XejLtWdh86zjIqZAkn9mekeIE0Tmw==}
+  '@aws-sdk/client-cloudfront-keyvaluestore@3.1169.0':
+    resolution: {integrity: sha512-xPPSdlTN3tzdYewHd8D9mSzjPMcjdmyspN817XFm/CI6ZULZEYkKZS4g3GsscgBrabRvdUs38XlXBNLJ6kcfCQ==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/client-cloudfront@3.1167.0':
-    resolution: {integrity: sha512-xADVzvXdw02c5xDKbClF5GLFd79swPpb44jGvJP716QTe0ckyYSZI0E7rgfPmXDs2LLwB5A6hCBynGTpxU7TIw==}
+  '@aws-sdk/client-cloudfront@3.1169.0':
+    resolution: {integrity: sha512-WTApNj+nbEu2xKsBsWjODypbm7ZSV+dllV7SzfRmR+wh21HqjJLLExtmywgAQje1/UC/AROBtbghIjE3MpXQrw==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/client-s3@3.1167.0':
-    resolution: {integrity: sha512-HMOyvnlf0+7DFjZjMxGYluL3kbaJMFfslmL7KVda7KFJU/gb0KROGuKhrv2s0abQ0Nryd006yGy0dsxz3BpK+w==}
+  '@aws-sdk/client-s3@3.1169.0':
+    resolution: {integrity: sha512-5IjQ2R1TM5lMuUvCvCfGNG9q6g3nxdputC9FY7YQJf1ygVUwsOruEYxQqpjik1nZdl8mNvV57Mhivtp2JbgBtg==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/core@3.981.0':
@@ -5264,7 +5264,7 @@ snapshots:
       '@smithy/types': 4.20.0
       tslib: 2.8.1
 
-  '@aws-sdk/client-cloudfront-keyvaluestore@3.1167.0':
+  '@aws-sdk/client-cloudfront-keyvaluestore@3.1169.0':
     dependencies:
       '@aws-sdk/core': 3.981.0
       '@aws-sdk/credential-provider-node': 3.972.97
@@ -5276,7 +5276,7 @@ snapshots:
       '@smithy/types': 4.20.0
       tslib: 2.8.1
 
-  '@aws-sdk/client-cloudfront@3.1167.0':
+  '@aws-sdk/client-cloudfront@3.1169.0':
     dependencies:
       '@aws-sdk/core': 3.981.0
       '@aws-sdk/credential-provider-node': 3.972.97
@@ -5287,7 +5287,7 @@ snapshots:
       '@smithy/types': 4.20.0
       tslib: 2.8.1
 
-  '@aws-sdk/client-s3@3.1167.0':
+  '@aws-sdk/client-s3@3.1169.0':
     dependencies:
       '@aws-sdk/checksums': 3.1002.5
       '@aws-sdk/core': 3.981.0
