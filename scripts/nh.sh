@@ -8,7 +8,7 @@ shift
 subcommand=os
 
 if [[ -n ${TARGET_HOST:-} ]]; then
-  extra_args=(--elevation-strategy passwordless --target-host "$TARGET_HOST" --build-host "$TARGET_HOST")
+  extra_args=(--elevation-strategy passwordless --target-host "$TARGET_HOST")
 else
   if [[ "$(uname)" == "Darwin" ]]; then
     subcommand=darwin

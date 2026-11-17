@@ -9,7 +9,11 @@
     ];
 
     darwin.nix.linux-builder = {
-      config.virtualisation.vz.nestedVirtualization = true;
+      config.virtualisation = {
+        cores = 4;
+        darwin-builder.memorySize = 16 * 1024;
+        vz.nestedVirtualization = true;
+      };
 
       supportedFeatures = [
         "benchmark"

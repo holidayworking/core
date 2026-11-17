@@ -76,6 +76,10 @@ in
 
       ec2.efi = true;
 
+      # Let `make nix/switch TARGET_HOST=cancer` copy unsigned, locally built paths. This grants
+      # nothing new: wheel already gets root through passwordless sudo.
+      nix.settings.trusted-users = [ "@wheel" ];
+
       security.sudo-rs.wheelNeedsPassword = false;
 
       services = {
@@ -83,7 +87,11 @@ in
 
         opentelemetry-collector = {
           enable = true;
-          package = pkgs.opentelemetry-collector-contrib;
+
+          # github.com/cockroachdb/swiss, a dependency of otelcol-contrib, fails to compile with Go 1.27.
+          package =
+            (pkgs.opentelemetry-collector-releases.override { buildGoModule = pkgs.buildGo126Module; })
+            .otelcol-contrib;
 
           settings = {
             exporters.otlphttp = {
