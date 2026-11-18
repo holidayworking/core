@@ -94,6 +94,8 @@ in
         yamlls.enable = true;
       };
 
+      nixpkgs.source = inputs.nixpkgs;
+
       opts = {
         expandtab = true;
         ignorecase = true;
