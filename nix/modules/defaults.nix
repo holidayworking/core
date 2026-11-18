@@ -45,5 +45,7 @@ in
     };
   };
 
+  den.schema.host.includes = [ den.batteries.mutual-provider ];
+
   den.schema.user.classes = [ "homeManager" ];
 }
