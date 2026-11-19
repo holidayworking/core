@@ -8,10 +8,10 @@
 {
   claude = {
     pname = "claude";
-    version = "https://downloads.claude.ai/releases/darwin/universal/5.1231.2/Claude-26912242b6649f3e503e012d9b7b9367d09c68e4.zip";
+    version = "https://downloads.claude.ai/releases/darwin/universal/6.6395.1/Claude-8fc566f7b97e371bae421fc79c260de86c6a4106.zip";
     src = fetchurl {
-      url = "https://downloads.claude.ai/releases/darwin/universal/5.1231.2/Claude-26912242b6649f3e503e012d9b7b9367d09c68e4.zip";
-      sha256 = "sha256-50z+yY0lYIEqX+kbsH/konfO/qcdQDn2vzsd4zhGJAo=";
+      url = "https://downloads.claude.ai/releases/darwin/universal/6.6395.1/Claude-8fc566f7b97e371bae421fc79c260de86c6a4106.zip";
+      sha256 = "sha256-6vI9LmWmMCx2qhgGgtHGHtS/etrq2VtM+kbq2pYUVGc=";
     };
   };
   dropbox = {
@@ -49,16 +49,16 @@
   };
   herdr-gitview = {
     pname = "herdr-gitview";
-    version = "v0.5.0";
+    version = "v0.6.0";
     src = fetchFromGitHub {
       owner = "ChmaraX";
       repo = "herdr-gitview";
-      rev = "v0.5.0";
+      rev = "v0.6.0";
       fetchSubmodules = false;
-      sha256 = "sha256-3EBZ1d0AOdm07RK4dPXfMjLcqAeZVcBcrjvStS0QxjI=";
+      sha256 = "sha256-TMNepzANCA0YWphvN0hFt+f/bOgdjqYppBzUF/aq+x4=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./. + "/sha256-3EBZ1d0AOdm07RK4dPXfMjLcqAeZVcBcrjvStS0QxjI=/Cargo.lock";
+      lockFile = ./. + "/sha256-TMNepzANCA0YWphvN0hFt+f_bOgdjqYppBzUF_aq+x4=/Cargo.lock";
       outputHashes = {
         
       };
