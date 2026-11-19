@@ -22,5 +22,11 @@
         "nixos-test"
       ];
     };
+
+    homeManager = { pkgs, ... }: {
+      home.packages = [ pkgs.lmstudio ];
+
+      programs.obsidian.enable = true;
+    };
   };
 }
