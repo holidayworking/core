@@ -21,7 +21,14 @@
           deadnix.enable = true;
           nixfmt.enable = true;
           shellcheck.enable = true;
-          shfmt.enable = true;
+
+          # treefmt-nix no longer defaults to these (tabs and no -s otherwise).
+          shfmt = {
+            enable = true;
+            indent_size = 2;
+            simplify = true;
+          };
+
           stylua.enable = true;
         };
 
