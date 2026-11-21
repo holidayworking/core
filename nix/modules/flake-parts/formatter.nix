@@ -44,9 +44,7 @@
             };
 
             jactionlint = {
-              # The tests treat macos-14 as retired from 2026-11-02 on, so they fail
-              # when built after that date.
-              command = lib.getExe (pkgs.jactionlint.overrideAttrs { doCheck = false; });
+              command = lib.getExe pkgs.jactionlint;
               includes = workflows;
 
               options = [

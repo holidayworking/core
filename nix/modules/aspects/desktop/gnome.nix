@@ -406,16 +406,7 @@
             [
               appindicator
               dash-to-dock
-              # v94 only declares shell-version 51; pin v92 (48-50) until GNOME Shell 51 lands.
-              (kimpanel.overrideAttrs {
-                version = "92";
-
-                src = pkgs.fetchzip {
-                  url = "https://extensions.gnome.org/extension-data/kimpanelkde.org.v92.shell-extension.zip";
-                  hash = "sha256-ad9NaWmXN+nWXkkqOGVhwSiYWXiYk0KTFKVl412m4n0=";
-                  stripRoot = false;
-                };
-              })
+              kimpanel
               kiwi-is-not-apple
               user-themes
               xremap
