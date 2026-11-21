@@ -18,6 +18,21 @@ let
             }
           ) (prev.lib.filterAttrs (_: type: type == "directory") (builtins.readDir ../packages));
       })
+      # Backport of NixOS/nixpkgs#590962: install_name_tool fails on Darwin without header
+      # padding. Drop once nixpkgs-unstable includes it.
+      (_final: prev: {
+        swiftPackages = prev.swiftPackages.overrideScope (
+          _: swiftPrev: {
+            swift-collections = swiftPrev.swift-collections.overrideAttrs (old: {
+              env =
+                (old.env or { })
+                // prev.lib.optionalAttrs prev.stdenv.hostPlatform.isDarwin {
+                  NIX_LDFLAGS = "-headerpad_max_install_names";
+                };
+            });
+          }
+        );
+      })
     ];
   };
 in
