@@ -16,15 +16,7 @@
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
 
-        overlays = [
-          inputs.nix-vite-plus.overlays.default
-          (_final: prev: {
-            # TODO: remove once test_toml_invalid_file_name passes upstream
-            aws-sam-cli = prev.aws-sam-cli.overridePythonAttrs (old: {
-              disabledTests = old.disabledTests ++ [ "test_toml_invalid_file_name" ];
-            });
-          })
-        ];
+        overlays = [ inputs.nix-vite-plus.overlays.default ];
       };
 
       devShells.default = pkgs.mkShell {
