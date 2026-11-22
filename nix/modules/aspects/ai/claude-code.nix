@@ -29,6 +29,7 @@
 
           settings = {
             attribution.sessionUrl = false;
+            autoMemoryEnabled = false;
             enableAllProjectMcpServers = true;
 
             enabledPlugins = {
