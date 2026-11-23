@@ -82,6 +82,8 @@
           pkgs.local.herdr-terminal-notifier
         ];
 
+        obsidian.enable = true;
+
         yt-dlp.enable = true;
       };
 
