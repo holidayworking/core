@@ -1,4 +1,10 @@
 {
+  # OpenSSH 10.1+ keeps forwarded agent sockets in ~/.ssh/agent, where they survive a
+  # reboot, and herdr's first server after boot reuses one of those dead sockets for its
+  # panes over $SSH_AUTH_SOCK. `!` limits the cleanup to boot: every switch also runs
+  # `systemd-tmpfiles --remove`, which would delete the sockets of live SSH sessions.
+  den.aspects.base.nixos.systemd.tmpfiles.rules = [ "R! /home/*/.ssh/agent/s.*" ];
+
   den.aspects.base.homeManager =
     {
       lib,
