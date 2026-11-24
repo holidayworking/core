@@ -34,7 +34,7 @@ catalog:
   exif-reader: 2.0.3
   happy-dom: 21.0.4
   markdownlint: 0.42.2
-  markdownlint-cli2: 0.24.1
+  markdownlint-cli2: 0.24.2
   npm-run-all2: 9.0.4
   prh: 7.0.0
   textlint: 16.1.1
