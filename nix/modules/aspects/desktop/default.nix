@@ -76,11 +76,6 @@
         ];
 
       programs = {
-        desktoppr = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
-          enable = true;
-          settings.picture = "${pkgs.local.wallpaper}";
-        };
-
         google-chrome.enable = true;
 
         herdr.plugins = lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
