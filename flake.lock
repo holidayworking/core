@@ -62,18 +62,6 @@
         "type": "github"
       }
     },
-    "asahi-firmware": {
-      "flake": false,
-      "locked": {
-        "path": "./nix/modules/hosts/gemini/firmware",
-        "type": "path"
-      },
-      "original": {
-        "path": "./nix/modules/hosts/gemini/firmware",
-        "type": "path"
-      },
-      "parent": []
-    },
     "bun2nix": {
       "inputs": {
         "flake-parts": [
@@ -394,7 +382,6 @@
         "agent-skills": "agent-skills",
         "amis": "amis",
         "apple-silicon": "apple-silicon",
-        "asahi-firmware": "asahi-firmware",
         "crit": "crit",
         "darwin": "darwin",
         "den": "den",
