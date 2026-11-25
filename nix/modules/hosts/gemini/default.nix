@@ -1,18 +1,11 @@
 { den, inputs, ... }:
 {
-  flake-file.inputs = {
-    apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
+  flake-file.inputs.apple-silicon = {
+    url = "github:nix-community/nixos-apple-silicon";
 
-      inputs = {
-        flake-compat.follows = "";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    asahi-firmware = {
-      url = "path:./nix/modules/hosts/gemini/firmware";
-      flake = false;
+    inputs = {
+      flake-compat.follows = "";
+      nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -49,10 +42,7 @@
         };
       };
 
-      hardware.asahi = {
-        enable = true;
-        peripheralFirmwareDirectory = inputs.asahi-firmware;
-      };
+      hardware.asahi.enable = true;
 
       networking.networkmanager = {
         enable = true;

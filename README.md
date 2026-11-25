@@ -201,11 +201,8 @@ passwd
 nmcli device wifi connect "<SSID>" --ask
 ```
 
-The `asahi-firmware` flake input is an empty directory in the repository, so
-override it with the firmware the Asahi Linux installer extracted to the ESP.
-
 ```shell
-sudo nixos-rebuild switch --flake github:holidayworking/core#gemini --override-input asahi-firmware path:/boot/vendorfw
+sudo nixos-rebuild switch --flake github:holidayworking/core#gemini
 reboot
 ```
 

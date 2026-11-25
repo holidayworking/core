@@ -20,10 +20,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    asahi-firmware = {
-      url = "path:./nix/modules/hosts/gemini/firmware";
-      flake = false;
-    };
     crit = {
       url = "github:tomasz-tomczyk/crit";
       inputs.nixpkgs.follows = "nixpkgs";
