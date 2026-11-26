@@ -20,12 +20,12 @@ src.from_pattern = 'v(.+)'
 src.to_pattern = '\1'
 fetch.url = "https://github.com/stenzek/duckstation/releases/download/v$ver/duckstation-mac-release.zip"
 
+# Versioned releases no longer ship AppImages; only the rolling "latest"
+# release does. Track the commit its tag points to, so the version changes
+# whenever the release is replaced, and derive the version in the package.
 [duckstation-linux]
-src.github_tag = "stenzek/duckstation"
-src.include_regex = 'v0\.1-\d+'
-src.from_pattern = 'v(.+)'
-src.to_pattern = '\1'
-fetch.url = "https://github.com/stenzek/duckstation/releases/download/v$ver/DuckStation-arm64.AppImage"
+src.cmd = "git ls-remote https://github.com/stenzek/duckstation refs/tags/latest | cut -f1"
+fetch.url = "https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-arm64.AppImage"
 
 [firple]
 src.github = "negset/Firple"
