@@ -184,11 +184,11 @@ settings:
 catalogs:
   default:
     '@aws-lambda-powertools/logger':
-      specifier: 2.36.0
-      version: 2.36.0
+      specifier: 2.37.0
+      version: 2.37.0
     '@aws-lambda-powertools/parameters':
-      specifier: 2.36.0
-      version: 2.36.0
+      specifier: 2.37.0
+      version: 2.37.0
     '@aws-sdk/client-cloudfront':
       specifier: 3.1175.0
       version: 3.1175.0
@@ -367,7 +367,7 @@ importers:
     dependencies:
       '@aws-lambda-powertools/logger':
         specifier: 'catalog:'
-        version: 2.36.0(@middy/core@7.9.2)
+        version: 2.37.0(@middy/core@7.9.2)
       '@aws-sdk/client-s3':
         specifier: 'catalog:'
         version: 3.1175.0
@@ -416,10 +416,10 @@ importers:
     dependencies:
       '@aws-lambda-powertools/logger':
         specifier: 'catalog:'
-        version: 2.36.0(@middy/core@7.9.2)
+        version: 2.37.0(@middy/core@7.9.2)
       '@aws-lambda-powertools/parameters':
         specifier: 'catalog:'
-        version: 2.36.0(@middy/core@7.9.2)
+        version: 2.37.0(@middy/core@7.9.2)
       '@aws-sdk/client-cloudfront':
         specifier: 'catalog:'
         version: 3.1175.0
@@ -602,13 +602,13 @@ packages:
       - jsonschema
       - semver
 
-  '@aws-lambda-powertools/commons@2.36.0':
-    resolution: {integrity: sha512-rYkMu22qpi9wVWCcj51qMj2eKIFyxzpG5Rsasckjq6MPNzafLk/0G/VhFUY536gjWsgwVKZDuM3jMOsdVJFChw==}
+  '@aws-lambda-powertools/commons@2.37.0':
+    resolution: {integrity: sha512-YT+yg8u8EMU5szM0howYP7j3r/fIzDjuf8A8NWu8IK3rCHin+7q4A2b1vqkKQJRnQHFm6deSYVtf403eCIEFDg==}
 
-  '@aws-lambda-powertools/logger@2.36.0':
-    resolution: {integrity: sha512-NQrZd6bJNw2CL7DlwU7ta6ktxGIbvyga8znuHRlIAAqRjkpC8pYtfXkYDUEQZGqhTeVS6+tU3YxszHuOB/1nkg==}
+  '@aws-lambda-powertools/logger@2.37.0':
+    resolution: {integrity: sha512-1Z+1AhvBlW5qIDcCwv4YjWXe/vRWge+ARxpawqgRdTbsyST4eClR8EridibjV/yC38VtsEMnZkZLuYkf8JD5/w==}
     peerDependencies:
-      '@aws-lambda-powertools/jmespath': 2.36.0
+      '@aws-lambda-powertools/jmespath': 2.37.0
       '@middy/core': 4.x || 5.x || 6.x || 7.x
     peerDependenciesMeta:
       '@aws-lambda-powertools/jmespath':
@@ -616,8 +616,8 @@ packages:
       '@middy/core':
         optional: true
 
-  '@aws-lambda-powertools/parameters@2.36.0':
-    resolution: {integrity: sha512-345x5em64yHy/7qFWqDa1aY5dESyNhz4xFOjfMcdXS3UIopNt7zSkfpzfszbp3kgLUeLtcYU6akkB9NBbYHRUQ==}
+  '@aws-lambda-powertools/parameters@2.37.0':
+    resolution: {integrity: sha512-jkWUUrjEyK46/O2J0oPWt+moTRrR+V4TEUrrjLF1oWMIw4xXG5r1qEOmFFExdnCY/fqiWVsLsGOsQ0UZCC7w9Q==}
     peerDependencies:
       '@aws-sdk/client-appconfigdata': '>=3.x'
       '@aws-sdk/client-dynamodb': '>=3.x'
@@ -5268,19 +5268,19 @@ snapshots:
 
   '@aws-cdk/cloud-assembly-schema@55.6.0': {}
 
-  '@aws-lambda-powertools/commons@2.36.0':
+  '@aws-lambda-powertools/commons@2.37.0':
     dependencies:
       '@aws/lambda-invoke-store': 0.3.0
 
-  '@aws-lambda-powertools/logger@2.36.0(@middy/core@7.9.2)':
+  '@aws-lambda-powertools/logger@2.37.0(@middy/core@7.9.2)':
     dependencies:
-      '@aws-lambda-powertools/commons': 2.36.0
+      '@aws-lambda-powertools/commons': 2.37.0
     optionalDependencies:
       '@middy/core': 7.9.2
 
-  '@aws-lambda-powertools/parameters@2.36.0(@middy/core@7.9.2)':
+  '@aws-lambda-powertools/parameters@2.37.0(@middy/core@7.9.2)':
     dependencies:
-      '@aws-lambda-powertools/commons': 2.36.0
+      '@aws-lambda-powertools/commons': 2.37.0
     optionalDependencies:
       '@middy/core': 7.9.2
 
