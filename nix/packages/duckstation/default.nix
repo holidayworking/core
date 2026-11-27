@@ -43,7 +43,10 @@ let
 
   linux = appimageTools.wrapType2 (finalAttrs: {
     inherit pname;
-    inherit (sources.duckstation-linux) version src;
+    inherit (sources.duckstation-linux) src;
+
+    # The source version is the commit of the rolling "latest" release tag.
+    version = "0.1-unstable-${lib.substring 0 7 sources.duckstation-linux.version}";
 
     extraInstallCommands = ''
       install -Dm444 -t $out/share/applications ${finalAttrs.contents}/org.duckstation.DuckStation.desktop

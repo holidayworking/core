@@ -33,10 +33,10 @@
   };
   duckstation-linux = {
     pname = "duckstation-linux";
-    version = "0.1-12442";
+    version = "2c79bd36a705b3b08ac7761257bbcff71bfc27ec";
     src = fetchurl {
-      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-12442/DuckStation-arm64.AppImage";
-      sha256 = "sha256-3ObKdwVazmBJF4G2tX8+Vem1Rnh3esV1rCRxwirREo4=";
+      url = "https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-arm64.AppImage";
+      sha256 = "sha256-PNnoRlppeemO6mn1xRLUdkufH52MxYQiZl7t5LCj4EU=";
     };
   };
   firple = {
