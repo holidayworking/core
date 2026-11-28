@@ -8,27 +8,27 @@
 {
   claude = {
     pname = "claude";
-    version = "https://downloads.claude.ai/releases/darwin/universal/6.6395.1/Claude-8fc566f7b97e371bae421fc79c260de86c6a4106.zip";
+    version = "https://downloads.claude.ai/releases/darwin/universal/7.37095.0/Claude-bc368c812ec26d3a5740519cc4d5cb69bbe43025.zip";
     src = fetchurl {
-      url = "https://downloads.claude.ai/releases/darwin/universal/6.6395.1/Claude-8fc566f7b97e371bae421fc79c260de86c6a4106.zip";
-      sha256 = "sha256-6vI9LmWmMCx2qhgGgtHGHtS/etrq2VtM+kbq2pYUVGc=";
+      url = "https://downloads.claude.ai/releases/darwin/universal/7.37095.0/Claude-bc368c812ec26d3a5740519cc4d5cb69bbe43025.zip";
+      sha256 = "sha256-gAgGVWys7Oa9rLufOu8YSantjW/C7g6y7YgaCY0JTqs=";
     };
   };
   dropbox = {
     pname = "dropbox";
-    version = "278.4.4020";
+    version = "280.4.5053";
     src = fetchurl {
-      url = "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20278.4.4020.arm64.dmg";
-      name = "Dropbox-278.4.4020.arm64.dmg";
-      sha256 = "sha256-NhE4US2fNnUW+lNiMNlvg49eZDuWE6nR0sanBoafRe0=";
+      url = "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20280.4.5053.arm64.dmg";
+      name = "Dropbox-280.4.5053.arm64.dmg";
+      sha256 = "sha256-+m6bGl8deBCHSdJkPoia2Y1nupDCQ+SLUW2EkbFORJc=";
     };
   };
   duckstation-darwin = {
     pname = "duckstation-darwin";
-    version = "0.1-12442";
+    version = "0.1-12777";
     src = fetchurl {
-      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-12442/duckstation-mac-release.zip";
-      sha256 = "sha256-ufbw50fuJheYjeM+H6/dF9AukY0EL+1pE1Wu2ahsEc0=";
+      url = "https://github.com/stenzek/duckstation/releases/download/v0.1-12777/duckstation-mac-release.zip";
+      sha256 = "sha256-hBiBJC6s945NFouyrkbr0Y65P80GdLluvek1ufWwD8Q=";
     };
   };
   duckstation-linux = {
@@ -95,18 +95,18 @@
   };
   karabiner-elements = {
     pname = "karabiner-elements";
-    version = "16.3.0";
+    version = "17.0.0";
     src = fetchurl {
-      url = "https://github.com/pqrs-org/Karabiner-Elements/releases/download/v16.3.0/Karabiner-Elements-16.3.0.dmg";
-      sha256 = "sha256-GcznvtPUinIiQspoO9G65Aa2qH/tUgco0ckd7hdbdeQ=";
+      url = "https://github.com/pqrs-org/Karabiner-Elements/releases/download/v17.0.0/Karabiner-Elements-17.0.0.dmg";
+      sha256 = "sha256-l3MMfU3IMc8vtbXuU07Rn4hbIFv4Rwv2sgH5MgRqU6o=";
     };
   };
   multiviewer = {
     pname = "multiviewer";
-    version = "https://releases.multiviewer.app/v/2.16.1/1/RMIPsm6IG_e90vEhX8Oi1Y4-YM818WcZ/MultiViewer-2.16.1-arm64.dmg";
+    version = "https://releases.multiviewer.app/v/2.17.3/1/05fhngQIWldwYCuDLgxWrMZ6k1UoGcZx/MultiViewer-2.17.3-arm64.dmg";
     src = fetchurl {
-      url = "https://releases.multiviewer.app/v/2.16.1/1/RMIPsm6IG_e90vEhX8Oi1Y4-YM818WcZ/MultiViewer-2.16.1-arm64.dmg";
-      sha256 = "sha256-KlvoPDUJ9v468mv2XQ/04c8VFR9Pkq0p2u0qRq5eqmk=";
+      url = "https://releases.multiviewer.app/v/2.17.3/1/05fhngQIWldwYCuDLgxWrMZ6k1UoGcZx/MultiViewer-2.17.3-arm64.dmg";
+      sha256 = "sha256-DJxV6tIi9KJkBEhx3Cmz7u2ZjxD6caZvirfyZm4ff64=";
     };
   };
 }
