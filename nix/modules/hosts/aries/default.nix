@@ -22,5 +22,15 @@
         "nixos-test"
       ];
     };
+
+    homeManager =
+      { pkgs, ... }:
+      {
+        home = {
+          packages = [ pkgs.lmstudio ];
+
+          sessionPath = [ "$HOME/.lmstudio/bin" ];
+        };
+      };
   };
 }
