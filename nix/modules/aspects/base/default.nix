@@ -6,7 +6,7 @@
 
         clean = {
           enable = true;
-          extraArgs = "--keep 5 --keep-since 7d --no-direnv";
+          extraArgs = "--keep 5 --no-direnv";
         };
       };
 
